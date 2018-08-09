@@ -34,7 +34,6 @@
                         ],
                         "scripts": [
                             "src/assets/js/jquery.min.js",
-                            "src/assets/js/modernizr.min.js",
                             "src/assets/js/bootstrap.min.js",
                             "src/assets/js/detect.js",
                             "src/assets/js/fastclick.js",
@@ -43,7 +42,11 @@
                             "src/assets/js/waves.js",
                             "src/assets/js/wow.min.js",
                             "src/assets/js/jquery.nicescroll.js",
-                            "src/assets/js/jquery.scrollTo.min.js"
+                            "src/assets/js/jquery.scrollTo.min.js",
+                            "src/assets/js/jquery.core.js",
+                            "src/assets/js/jquery.app.js",
+                            "src/assets/js/modernizr.min.js"
+                            
                         ]
                     },
                     "configurations": {
