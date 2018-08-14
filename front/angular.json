@@ -46,7 +46,7 @@
                             "src/assets/js/jquery.core.js",
                             "src/assets/js/jquery.app.js",
                             "src/assets/js/modernizr.min.js"
-                            
+
                         ]
                     },
                     "configurations": {
