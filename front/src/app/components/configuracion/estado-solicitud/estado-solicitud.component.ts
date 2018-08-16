@@ -1,15 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { EstadoSolicitudService } from '../../../services/estado-solicitud.service';
+import { EstadoSolicitud } from '../../../models/estado-solicitud';
 
 @Component({
   selector: 'app-estado-solicitud',
   templateUrl: './estado-solicitud.component.html',
   styles: []
 })
-export class EstadoSolicitudComponent implements OnInit {
+export class EstadoSolicitudComponent {
 
-  constructor() { }
-
-  ngOnInit() {
+  estados:EstadoSolicitud[]=[];
+  
+  constructor(private service:EstadoSolicitudService) {
+    service.getEstados().subscribe((response:any)=>{
+      this.estados=response;
+    })
   }
+
 
 }

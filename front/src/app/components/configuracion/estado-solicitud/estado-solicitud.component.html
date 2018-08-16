@@ -1,1 +1,32 @@
-<p>asdasdnbaskdaskj kajsdkahskdahk jhak</p>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box">
+            <h4 class="m-t-0 header-title"><b>Estados Solicitud</b></h4>
+            <p class="text-muted m-b-30 font-13">
+                Se muestran los distintos estados posibles de una solicitud.
+            </p>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Fecha de baja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let estado of estados">
+                        <td>{{estado.nombreEstadoSolicitud}}</td>
+                        <td>
+                            <div *ngIf="estado.fechaBaja!=null">
+                                {{estado.fechaBaja | date:'dd/MM/yyyy'}}
+                            </div>
+                            <div *ngIf="estado.fechaBaja==null">
+                                -
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
