@@ -15,7 +15,7 @@ import { MedioPagoComponent } from './components/configuracion/medio-pago/medio-
 import { EstadoDestacadoComponent } from './components/configuracion/estado-destacado/estado-destacado.component';
 import { RubroComponent } from './components/configuracion/rubro/rubro.component';
 import { UsuarioComponent } from './components/configuracion/usuario/usuario.component';
-import { DateValueAccessorModule } from 'angular-date-value-accessor';
+import { EstadoRequerimientoComponent } from './components/estado-requerimiento/estado-requerimiento.component';
 
 @NgModule({
   declarations: [
@@ -29,14 +29,15 @@ import { DateValueAccessorModule } from 'angular-date-value-accessor';
     MedioPagoComponent,
     EstadoDestacadoComponent,
     RubroComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    RubroComponent,
+    EstadoRequerimientoComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule, 
     HttpClientModule,
-    APP_ROUTING,
-    DateValueAccessorModule
+    APP_ROUTING
   ],
   providers: [],
   bootstrap: [AppComponent]
