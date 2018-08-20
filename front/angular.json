@@ -30,7 +30,8 @@
                             "src/assets/css/icons.css",
                             "src/assets/css/pages.css",
                             "src/assets/css/menu.css",
-                            "src/assets/css/responsive.css"
+                            "src/assets/css/responsive.css",
+                            "src/assets/plugins/bootstrap-sweetalert/sweet-alert.css"
                         ],
                         "scripts": [
                             "src/assets/js/jquery.min.js",
@@ -43,10 +44,11 @@
                             "src/assets/js/wow.min.js",
                             "src/assets/js/jquery.nicescroll.js",
                             "src/assets/js/jquery.scrollTo.min.js",
+                            "src/assets/js/modernizr.min.js",
+                            "src/assets/plugins/bootstrap-sweetalert/sweet-alert.min.js",
+                            "src/assets/pages/jquery.sweet-alert.init.js",
                             "src/assets/js/jquery.core.js",
-                            "src/assets/js/jquery.app.js",
-                            "src/assets/js/modernizr.min.js"
-
+                            "src/assets/js/jquery.app.js"
                         ]
                     },
                     "configurations": {
