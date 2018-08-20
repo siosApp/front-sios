@@ -39,4 +39,9 @@ prepareProvincia ():any{
 return saveProvincia;
 }
 
+irAok(){
+  this.provincia.navigate(['/components/pantallaOk']);
+}
+
+
 }
