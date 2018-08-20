@@ -9,6 +9,7 @@ import { APP_ROUTING } from './app.routes';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { EstadoSolicitudComponent } from './components/configuracion/estado-solicitud/estado-solicitud.component';
+import { TipoUsuarioComponent } from './components/configuracion/tipo-usuario/tipo-usuario.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { EstadoSolicitudComponent } from './components/configuracion/estado-soli
     ProvinciaComponent,
     NavbarComponent,
     HomeComponent,
-    EstadoSolicitudComponent
+    EstadoSolicitudComponent,
+    TipoUsuarioComponent
   ],
   imports: [
     BrowserModule,
