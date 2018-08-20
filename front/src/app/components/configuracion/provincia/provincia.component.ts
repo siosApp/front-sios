@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProvinciaService } from '../../services/provincia.service';
+import { ProvinciaService } from '../../../services/provincia.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 

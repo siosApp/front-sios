@@ -2,23 +2,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ProvinciaComponent } from './components/provincia/provincia.component';
+import { ProvinciaComponent } from './components/configuracion/provincia/provincia.component';
 import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
+import { APP_ROUTING } from './app.routes';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { PantallaOkComponent } from './components/pantalla-ok/pantalla-ok.component';
+import { HomeComponent } from './components/home/home.component';
+import { EstadoSolicitudComponent } from './components/configuracion/estado-solicitud/estado-solicitud.component';
+import { TipoUsuarioComponent } from './components/configuracion/tipo-usuario/tipo-usuario.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProvinciaComponent,
     NavbarComponent,
-    PantallaOkComponent
+    HomeComponent,
+    EstadoSolicitudComponent,
+    TipoUsuarioComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule, 
-    HttpClientModule
+    HttpClientModule,
+    APP_ROUTING
   ],
   providers: [],
   bootstrap: [AppComponent]
