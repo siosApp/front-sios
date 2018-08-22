@@ -11,6 +11,9 @@ import { HomeComponent } from './components/home/home.component';
 import { EstadoSolicitudComponent } from './components/configuracion/estado-solicitud/estado-solicitud.component';
 import { TipoUsuarioComponent } from './components/configuracion/tipo-usuario/tipo-usuario.component';
 import { TipoRubroComponent } from './components/configuracion/tipo-rubro/tipo-rubro.component';
+import { MedioPagoComponent } from './components/configuracion/medio-pago/medio-pago.component';
+import { EstadoDestacadoComponent } from './components/configuracion/estado-destacado/estado-destacado.component';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import { TipoRubroComponent } from './components/configuracion/tipo-rubro/tipo-r
     EstadoSolicitudComponent,
     TipoUsuarioComponent,
     TipoRubroComponent
+    MedioPagoComponent,
+    EstadoDestacadoComponent
   ],
   imports: [
     BrowserModule,
