@@ -37,9 +37,10 @@ export class EstadoSolicitudComponent {
       });
     })
   }
-  // crearEstado(){
-
-  // }
+  abrirModal(){
+    this.form.reset();
+    $('#con-close-modal').modal('show');
+  }
   guardarEstado(){
     console.log("fuera del form");
     let nuevoNombre=this.form.controls['nombre'].value;
@@ -74,6 +75,9 @@ export class EstadoSolicitudComponent {
   }
   volver(){
     $('#danger-alert').modal('hide');
+  }
+  cancelar(){
+    this.estadoAEditar=null;
   }
   confirmarOperacion(){
     if(this.habilitaEstado){
