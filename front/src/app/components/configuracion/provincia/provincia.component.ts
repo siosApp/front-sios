@@ -44,8 +44,8 @@ export class ProvinciaComponent {
     
     let nuevoNombre=this.form.controls['nombre'].value;
     if(this.provinciaEditar!=null){
-      let estadoActualizado:Provincia= new Provincia(this.provinciaEditar.id,nuevoNombre,this.provinciaEditar.fechaBaja);
-      this.service.updateProvincia(estadoActualizado).subscribe( response =>{
+      let provinciaActualizado:Provincia= new Provincia(this.provinciaEditar.id,nuevoNombre,this.provinciaEditar.fechaBaja);
+      this.service.updateProvincia(provinciaActualizado).subscribe( response =>{
         this.provinciaEditar=null;
         $('#con-close-modal').modal('hide');
         this.service.getProvincias().subscribe((response:any) => this.provincias=response);
