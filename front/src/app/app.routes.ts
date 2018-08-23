@@ -6,6 +6,7 @@ import { ProvinciaComponent } from './components/configuracion/provincia/provinc
 import { TipoRubroComponent } from './components/configuracion/tipo-rubro/tipo-rubro.component';
 import { MedioPagoComponent } from './components/configuracion/medio-pago/medio-pago.component';
 import { EstadoDestacadoComponent } from './components/configuracion/estado-destacado/estado-destacado.component';
+import { RubroComponent } from './components/configuracion/rubro/rubro.component';
 
 const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'tipoUsuario', component: TipoUsuarioComponent },
     { path: 'tipoRubro', component: TipoRubroComponent },
     { path: 'provincia', component: ProvinciaComponent },
+    { path: 'rubro', component: RubroComponent },
     { path: 'medioPago', component: MedioPagoComponent },
     { path: 'estadoDestacado', component: EstadoDestacadoComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },

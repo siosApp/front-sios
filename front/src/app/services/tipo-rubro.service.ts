@@ -15,7 +15,11 @@ export class TipoRubroService {
     return this.http.get(url);
   }
   getTipoRubroById(id){
-    let url=`${URL_API}/tipoRubro?id=${id}`;
+    let url=`${URL_API}/tipoRubro/${id}`;
+    return this.http.get(url);
+  }
+  getTipoRubroByNombre(nombre){
+    let url=`${URL_API}/tipoRubro?nombreTipoRubro=${nombre}`;
     return this.http.get(url);
   }
   updateTipoRubro(tipoRubro:TipoRubro){

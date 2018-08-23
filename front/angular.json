@@ -31,7 +31,13 @@
                             "src/assets/css/pages.css",
                             "src/assets/css/menu.css",
                             "src/assets/css/responsive.css",
-                            "src/assets/plugins/bootstrap-sweetalert/sweet-alert.css"
+                            "src/assets/plugins/bootstrap-sweetalert/sweet-alert.css",
+                            "src/assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css",
+                            "src/assets/plugins/switchery/css/switchery.min.css",
+                            "src/assets/plugins/multiselect/css/multi-select.css",
+                            "src/assets/plugins/select2/css/select2.min.css",
+                            "src/assets/plugins/bootstrap-select/css/bootstrap-select.min.css",
+                            "src/assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css"
                         ],
                         "scripts": [
                             "src/assets/js/jquery.min.js",
@@ -47,6 +53,21 @@
                             "src/assets/js/modernizr.min.js",
                             "src/assets/plugins/bootstrap-sweetalert/sweet-alert.min.js",
                             "src/assets/pages/jquery.sweet-alert.init.js",
+                            "src/assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js",
+                            "src/assets/plugins/switchery/js/switchery.min.js",
+                            "src/assets/plugins/multiselect/js/jquery.multi-select.js",
+                            "src/assets/plugins/jquery-quicksearch/jquery.quicksearch.js",
+                            "src/assets/plugins/select2/js/select2.min.js",
+                            "src/assets/plugins/select2/js/select2.min.js",
+                            "src/assets/plugins/bootstrap-select/js/bootstrap-select.min.js",
+                            "src/assets/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js",
+                            "src/assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js",
+                            "src/assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js",
+                            "src/assets/plugins/autocomplete/jquery.mockjax.js",
+                            "src/assets/plugins/autocomplete/jquery.autocomplete.min.js",
+                            "src/assets/plugins/autocomplete/countries.js",
+                            "src/assets/pages/autocomplete.js",
+                            "src/assets/pages/jquery.form-advanced.init.js",
                             "src/assets/js/jquery.core.js",
                             "src/assets/js/jquery.app.js"
                         ]
