@@ -13,6 +13,7 @@ import { TipoUsuarioComponent } from './components/configuracion/tipo-usuario/ti
 import { TipoRubroComponent } from './components/configuracion/tipo-rubro/tipo-rubro.component';
 import { MedioPagoComponent } from './components/configuracion/medio-pago/medio-pago.component';
 import { EstadoDestacadoComponent } from './components/configuracion/estado-destacado/estado-destacado.component';
+import { RubroComponent } from './components/configuracion/rubro/rubro.component';
 
 
 @NgModule({
@@ -23,9 +24,10 @@ import { EstadoDestacadoComponent } from './components/configuracion/estado-dest
     HomeComponent,
     EstadoSolicitudComponent,
     TipoUsuarioComponent,
-    TipoRubroComponent
+    TipoRubroComponent,
     MedioPagoComponent,
-    EstadoDestacadoComponent
+    EstadoDestacadoComponent,
+    RubroComponent
   ],
   imports: [
     BrowserModule,
