@@ -23,6 +23,7 @@ const rutas_hijas: Routes =[
     { path: 'usuario', component: UsuarioComponent },
     { path: 'medioPago', component: MedioPagoComponent },
     { path: 'estadoDestacado', component: EstadoDestacadoComponent },
+    { path: 'estadoRequerimiento', component: EstadoRequerimientoComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
