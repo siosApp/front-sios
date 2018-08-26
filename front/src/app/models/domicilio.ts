@@ -1,0 +1,20 @@
+export class Domicilio{
+    id:string;
+    calle:string;
+    codigoPostal:string;
+    numero:number;
+    piso:number;
+    latitud:number;
+    longitud:number;
+    nombreLocalidad:string;
+    constructor(id,calle,codigoPostal,numero,piso,latitud,longitud,nombre){
+        this.id=id;
+        this.calle=calle;
+        this.codigoPostal=codigoPostal;
+        this.numero=numero;
+        this.piso=piso;
+        this.latitud=latitud;
+        this.longitud=longitud;
+        this.nombreLocalidad=nombre;
+    }
+}
