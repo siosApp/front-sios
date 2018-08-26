@@ -8,6 +8,7 @@ import { MedioPagoComponent } from './components/configuracion/medio-pago/medio-
 import { EstadoDestacadoComponent } from './components/configuracion/estado-destacado/estado-destacado.component';
 import { RubroComponent } from './components/configuracion/rubro/rubro.component';
 import { UsuarioComponent } from './components/configuracion/usuario/usuario.component';
+import { EstadoRequerimientoComponent } from './components/configuracion/estado-requerimiento/estado-requerimiento.component';
 
 const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'usuario', component: UsuarioComponent },
     { path: 'medioPago', component: MedioPagoComponent },
     { path: 'estadoDestacado', component: EstadoDestacadoComponent },
+    { path: 'estadoRequerimiento', component: EstadoRequerimientoComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
