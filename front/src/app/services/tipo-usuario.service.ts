@@ -14,6 +14,10 @@ export class TipoUsuarioService {
     let url=`${URL_API}/tipoUsuario/listAllTipoUsuario`;
     return this.http.get(url);
   }
+  getTipoUsuariosVigentes(){
+    let url=`${URL_API}/tipoUsuario/listTipoUsuarioVigente`;
+    return this.http.get(url);
+  }
   getTipoUsuarioById(id){
     let url=`${URL_API}/tipoUsuario?id=${id}`;
     return this.http.get(url);

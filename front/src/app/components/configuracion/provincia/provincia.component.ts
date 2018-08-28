@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProvinciaService } from '../../../services/provincia.service';
-import { Provincia } from '../../../models/Provincia';
+import { Provincia } from '../../../models/provincia';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { mensajeAlta,mensajeBaja } from '../../../utils/params';
 

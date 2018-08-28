@@ -1,0 +1,257 @@
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="card-box">
+            <h4 class="m-t-0 header-title"><b>Usuarios.</b></h4>
+            <p class="text-muted m-b-30 font-13">
+                Se muestran los distintos usuarios.
+            </p>
+            <div class="btn-group pull-right m-t-15">
+                <button type="button" class="btn btn-default" data-toggle="modal" (click)="abrirModal()" data-animation="slide" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">Añadir nuevo usuario <span class="m-l-5"><i class="fa fa-plus-circle"></i></span></button>
+            </div>
+            <table class="table table-bordered table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Es oferente?</th>
+                        <th>Sexo</th>
+                        <th>Mail</th>
+                        <th>Fecha de baja</th>
+                        <th>Tipo de Usuario</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios">
+                        <td>{{usuario.nombre}} {{usuario.apellido}}</td>
+                        <td>
+                            <div *ngIf="usuario.fechaNacimiento!=null">
+                                {{usuario.fechaNacimiento | date:'dd/MM/yyyy'}}
+                            </div>
+                            <div *ngIf="usuario.fechaNacimiento==null">
+                                -
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngIf="usuario.oferente">
+                                Si
+                            </div>
+                            <div *ngIf="!usuario.oferente">
+                                No
+                            </div>
+                        </td>
+                        <td>{{usuario.sexo}}</td>
+                        <td>{{usuario.mail}}</td>
+                        <td>
+                            <div *ngIf="usuario.fechaBaja!=null">
+                                {{usuario.fechaBaja | date:'dd/MM/yyyy'}}
+                            </div>
+                            <div *ngIf="usuario.fechaBaja==null">
+                                -
+                            </div>
+                        </td>
+                        <td>{{usuario.tipoUsuario}}</td>
+                        <td>
+                            <div class="button-list">
+                                <button class="btn btn-primary waves-effect waves-light" (click)="editarUsuario(usuario.id)" data-toggle="modal" data-target="#custom-width-modal" data-animation="slide" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">Editar</button>
+                                <button *ngIf="usuario.fechaBaja == null" class="btn btn-danger waves-effect waves-light" (click)="openAlert(usuario)">Dar de baja</button>
+                                <button *ngIf="usuario.fechaBaja != null" class="btn btn-danger waves-effect waves-light" (click)="openAlert(usuario)">Activar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <form [formGroup]="form" (ngSubmit)="guardarUsuario()">
+            <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Editar Tipo Usuario</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="field-1" class="control-label">Nombre</label>
+                                        <input type="text" class="form-control" id="field-1" formControlName="nombre" placeholder="Nombre">
+                                    </div>
+                                    <p style="color: red" *ngIf="form.get('nombre').errors?.required && form.get('nombre').touched">Campo obligatorio</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="field-7" class="control-label">Apellido</label>
+                                        <input type="text" class="form-control" id="field-7" formControlName="apellido" placeholder="Apellido">
+                                    </div>
+                                    <p style="color: red" *ngIf="form.get('apellido').errors?.required && form.get('apellido').touched">Campo obligatorio</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="field-2" class="control-label">Username</label>
+                                        <input type="text" class="form-control" id="field-2" formControlName="username" placeholder="Username">
+                                    </div>
+                                    <p style="color: red" *ngIf="form.get('username').errors?.required && form.get('username').touched">Campo obligatorio</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="field-5" class="control-label">Fecha Nacimiento</label>
+                                        <input type="date" class="form-control" id="field-5" formControlName="fechaNacimiento" placeholder="Fecha Nacimiento">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Sexo</label>
+                                        <p>
+                                            <input type="radio" value="Masculino" formControlName="sexo"> Masculino
+                                            <input type="radio" value="Femenino" formControlName="sexo"> Femenino
+                                            <input type="radio" value="Sin definir" formControlName="sexo"> Sin definir
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="control-label">Es Oferente?</label>
+                                        <p>
+                                            <input type="checkbox" formControlName="oferente">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div formGroupName="passwordFormGroup">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input class="form-control" type="password" name="password" formControlName="password">
+                                        </div>
+                                        <p style="color: red" *ngIf="passwordFormGroup.get('password').errors?.required && passwordFormGroup.get('password').touched">Campo obligatorio</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="repeatPassword">Reingrese Password</label>
+                                            <input class="form-control" type="password" name="repeatPassword" formControlName="confirmacion">
+                                        </div>
+                                        <p style="color: red" *ngIf="passwordFormGroup.get('confirmacion').errors?.required && passwordFormGroup.get('confirmacion').touched">Campo obligatorio</p>
+                                        <p style="color: red" *ngIf="passwordFormGroup.errors?.doesMatchPassword">Las contraseñas no coinciden.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="field-6" class="control-label">Mail</label>
+                                        <input type="email" class="form-control" id="field-6" formControlName="mail" placeholder="Mail">
+                                        <div *ngIf="form.get('mail').errors?.email">
+                                            <span style="color: red">Ingrese un mail correcto!</span>
+                                        </div>
+                                    </div>
+                                    <p style="color: red" *ngIf="form.get('mail').errors?.required && form.get('mail').touched">Campo obligatorio</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-2 col-form-label">Tipo de usuario</label>
+                                        <div class="col-8">
+                                            <select name="tipousuario" formControlName="tipoUsuario" class="form-control">
+                                            <option *ngFor="let tipo of tiposUsuarios" [ngValue]="tipo.nombreTipoUsuario">{{tipo.nombreTipoUsuario}}</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <p style="color: red" *ngIf="form.get('tipoUsuario').errors?.required && form.get('tipoUsuario').touched">Campo obligatorio</p>
+                                </div>
+                            </div>
+
+                            <div formGroupName="domicilioFormGroup">
+                                <div class="row">
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="calle" class="control-label">Calle</label>
+                                            <input type="text" class="form-control" id="calle" formControlName="calle" placeholder="Calle">
+                                        </div>
+                                        <p style="color: red" *ngIf="domicilioFormGroup.get('calle').errors?.required && form.get('calle').touched">Campo obligatorio</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="numero" class="control-label">Número</label>
+                                            <input type="text" class="form-control" id="numero" formControlName="numero" placeholder="Número">
+                                        </div>
+                                        <p style="color: red" *ngIf="domicilioFormGroup.get('numero').errors?.required && form.get('numero').touched">Campo obligatorio</p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="piso" class="control-label">Piso</label>
+                                            <input type="text" class="form-control" id="piso" formControlName="piso" placeholder="Piso">
+                                        </div>
+                                        <p style="color: red" *ngIf="domicilioFormGroup.get('piso').errors?.required && form.get('piso').touched">Campo obligatorio</p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="codigoPostal" class="control-label">Codigo Postal</label>
+                                            <input type="text" class="form-control" id="codigoPostal" formControlName="codigoPostal" placeholder="Código Postal">
+                                        </div>
+                                        <p style="color: red" *ngIf="domicilioFormGroup.get('codigoPostal').errors?.required && form.get('codigoPostal').touched">Campo obligatorio</p>
+                                    </div>
+                                    <!-- <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="col-2 col-form-label">Localidad</label>
+                                            <select name="tipousuario" formControlName="tipoUsuario" class="form-control">
+                                                    <option *ngFor="let tipo of tiposUsuarios" [ngValue]="tipo.nombreTipoUsuario">{{tipo.nombreTipoUsuario}}</option>
+                                            </select>
+                                        </div>
+                                        <p style="color: red" *ngIf="form.get('calle').errors?.required && form.get('calle').touched">Campo obligatorio</p>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button (click)="cancelar()" type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancelar</button>
+                            <button [disabled]="!form.valid" type="submit" class="btn btn-info waves-effect waves-light">Guardar cambios</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
+        <!-- /.modal -->
+
+    </div>
+</div>
+
+<div class="row">
+    <div id="danger-alert" style="display: none;">
+        <div class="sweet-alert showSweetAlert" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
+            <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
+            </div>
+            <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+            <div class="icon info" style="display: none;"></div>
+            <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
+                <div class="placeholder"></div>
+                <div class="fix"></div>
+            </div>
+            <div class="icon custom" style="display: none;"></div>
+            <h2>Estás seguro?</h2>
+            <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
+            <p>
+                <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
+                <button (click)="confirmarOperacion()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Ok!!</button>
+            </p>
+        </div>
+    </div>
+</div>
