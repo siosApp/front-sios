@@ -1,37 +1,39 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card-box">
-            <h4 class="m-t-0 header-title"><b>Estados Solicitud</b></h4>
+            <h4 class="m-t-0 header-title"><b>Rubros.</b></h4>
             <p class="text-muted m-b-30 font-13">
-                Se muestran los distintos estados posibles de una solicitud.
+                Se muestran los distintos rubros.
             </p>
             <div class="btn-group pull-right m-t-15">
-                <button type="button" class="btn btn-default" data-toggle="modal" (click)="abrirModal()" data-animation="slide" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">Añadir nuevo estado <span class="m-l-5"><i class="fa fa-plus-circle"></i></span></button>
+                <button type="button" class="btn btn-default" data-toggle="modal" (click)="abrirModal()" data-animation="slide" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">Añadir nuevo rubro <span class="m-l-5"><i class="fa fa-plus-circle"></i></span></button>
             </div>
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Nombre</th>
                         <th>Fecha de baja</th>
+                        <th>Tipo de Rubro</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let estado of estados">
-                        <td>{{estado.nombreEstadoSolicitud}}</td>
+                    <tr *ngFor="let rubro of rubros">
+                        <td>{{rubro.nombreRubro}}</td>
                         <td>
-                            <div *ngIf="estado.fechaBaja!=null">
-                                {{estado.fechaBaja | date:'dd/MM/yyyy'}}
+                            <div *ngIf="rubro.fechaBaja!=null">
+                                {{rubro.fechaBaja | date:'dd/MM/yyyy'}}
                             </div>
-                            <div *ngIf="estado.fechaBaja==null">
+                            <div *ngIf="rubro.fechaBaja==null">
                                 -
                             </div>
                         </td>
+                        <td>{{rubro.tipoRubro}}</td>
                         <td>
                             <div class="button-list">
-                                <button class="btn btn-primary waves-effect waves-light" (click)="editarEstado(estado.id)" data-toggle="modal" data-target="#con-close-modal" data-animation="slide" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">Editar</button>
-                                <button *ngIf="estado.fechaBaja == null" class="btn btn-danger waves-effect waves-light" (click)="openAlert(estado)">Dar de baja</button>
-                                <button *ngIf="estado.fechaBaja != null" class="btn btn-danger waves-effect waves-light" (click)="openAlert(estado)">Activar</button>
+                                <button class="btn btn-primary waves-effect waves-light" (click)="editarRubro(rubro.id)" data-toggle="modal" data-target="#con-close-modal" data-animation="slide" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">Editar</button>
+                                <button *ngIf="rubro.fechaBaja == null" class="btn btn-danger waves-effect waves-light" (click)="openAlert(rubro)">Dar de baja</button>
+                                <button *ngIf="rubro.fechaBaja != null" class="btn btn-danger waves-effect waves-light" (click)="openAlert(rubro)">Activar</button>
                             </div>
                         </td>
                     </tr>
@@ -42,13 +44,13 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <form [formGroup]="form" (ngSubmit)="guardarEstado()">
+        <form [formGroup]="form" (ngSubmit)="guardarRubro()">
             <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">Editar Estado</h4>
+                            <h4 class="modal-title">Editar Tipo Usuario</h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
@@ -56,13 +58,23 @@
                                     <div class="form-group">
                                         <label for="field-1" class="control-label">Nombre</label>
                                         <input type="text" class="form-control" id="field-1" formControlName="nombre" placeholder="Nuevo nombre">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-2 col-form-label">Tipo de Rubro</label>
+                                        <div class="col-8">
+                                            <select name="tipoRubro" formControlName="tipoRubro" class="form-control">
+                                              <option *ngFor="let tipo of tiposRubros" [ngValue]="tipo.nombreTipoRubro">{{tipo.nombreTipoRubro}}</option>
+                                          </select>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button (click)="cancelar()" type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-info waves-effect waves-light">Guardar cambios</button>
+                            <button [disabled]="!form.valid" type="submit" class="btn btn-info waves-effect waves-light">Guardar cambios</button>
                         </div>
                     </div>
                 </div>

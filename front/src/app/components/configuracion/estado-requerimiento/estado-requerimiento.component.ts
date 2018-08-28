@@ -1,25 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { EstadoSolicitudService } from '../../../services/estado-solicitud.service';
-import { EstadoSolicitud } from '../../../models/estado-solicitud';
+import { Component } from '@angular/core';
+import { EstadoRequerimientoService } from '../../../services/estado-requerimiento.service';
+import { EstadoRequerimiento } from '../../../models/estado-requerimiento';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { mensajeAlta,mensajeBaja } from '../../../utils/params';
 
 declare var $:any;
 
 @Component({
-  selector: 'app-estado-solicitud',
-  templateUrl: './estado-solicitud.component.html',
+  selector: 'app-estado-requerimiento',
+  templateUrl: './estado-requerimiento.component.html',
   styles: []
 })
-export class EstadoSolicitudComponent {
+export class EstadoRequerimientoComponent {
 
   habilitaEstado:boolean;
   mensaje:string;
   form:FormGroup;
-  estados:EstadoSolicitud[]=[];
-  estadoAEditar:EstadoSolicitud;
+  estados:EstadoRequerimiento[]=[];
+  estadoAEditar:EstadoRequerimiento;
+  estadosVigentes$: Object;
 
-  constructor(private service:EstadoSolicitudService) {
+  constructor(private service:EstadoRequerimientoService) {
     service.getEstados().subscribe((response:any)=>{
       this.estados=response;
       console.log(this.estados);
@@ -33,19 +34,18 @@ export class EstadoSolicitudComponent {
       this.estadoAEditar=response;
       console.log(this.estadoAEditar);
       this.form.setValue({
-        nombre: this.estadoAEditar.nombreEstadoSolicitud
+        nombre: this.estadoAEditar.nombreEstado
       });
     })
   }
-  abrirModal(){
-    this.form.reset();
-    $('#con-close-modal').modal('show');
-  }
+  // crearEstado(){
+
+  // }
   guardarEstado(){
     console.log("fuera del form");
     let nuevoNombre=this.form.controls['nombre'].value;
     if(this.estadoAEditar!=null){
-      let estadoActualizado:EstadoSolicitud= new EstadoSolicitud(this.estadoAEditar.id,nuevoNombre,this.estadoAEditar.fechaBaja);
+      let estadoActualizado:EstadoRequerimiento = new EstadoRequerimiento(this.estadoAEditar.id,nuevoNombre,this.estadoAEditar.fechaBaja);
       this.service.updateEstado(estadoActualizado).subscribe( response =>{
         this.estadoAEditar=null;
         $('#con-close-modal').modal('hide');
@@ -53,7 +53,7 @@ export class EstadoSolicitudComponent {
       });
     }
     else{
-      let nuevoEstado:EstadoSolicitud= new EstadoSolicitud(null,nuevoNombre,null);
+      let nuevoEstado:EstadoRequerimiento = new EstadoRequerimiento(null,nuevoNombre,null);
       this.service.crearEstado(nuevoEstado).subscribe(response=>{
         $('#con-close-modal').modal('hide');
         this.service.getEstados().subscribe((response:any) => this.estados=response);
@@ -61,10 +61,10 @@ export class EstadoSolicitudComponent {
     }
   }
   openAlert(estado){
-    if(estado.fechaBaja ==null){
-      this.estadoAEditar=estado;
-      this.mensaje=mensajeBaja;
-      this.habilitaEstado=false;
+    if(estado.fechaBaja == null){
+      this.estadoAEditar = estado;
+      this.mensaje = mensajeBaja;
+      this.habilitaEstado = false;
     }
     else{
       this.estadoAEditar=estado;
@@ -75,9 +75,6 @@ export class EstadoSolicitudComponent {
   }
   volver(){
     $('#danger-alert').modal('hide');
-  }
-  cancelar(){
-    this.estadoAEditar=null;
   }
   confirmarOperacion(){
     if(this.habilitaEstado){

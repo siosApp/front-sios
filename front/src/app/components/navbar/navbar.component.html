@@ -18,7 +18,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="javascript:void(0)"><i class="ti-user text-custom m-r-10"></i> Perfil</a></li>
                             <li class="divider"></li>
-                            <li><a href="javascript:void(0)"><i class="ti-power-off text-danger m-r-10"></i> Salir</a></li>
+                            <li><a href="javascript:void(0)" [routerLink]="['/login']"><i class="ti-power-off text-danger m-r-10"></i> Salir</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -51,13 +51,20 @@
                             <li>
                                 <ul>
                                     <li><a href="#" [routerLink]="['estadoSolicitud']">Estados Solicitud</a></li>
+                                    <li><a href="#" [routerLink]="['rubro']">Rubros</a></li>
+                                    <li><a href="#" [routerLink]="['tipoRubro']">Tipos de Rubro</a></li>
                                     <li><a href="#" [routerLink]="['tipoUsuario']">Tipos de Usuario</a></li>
+                                    <li><a href="#" [routerLink]="['usuario']">Usuario</a></li>
                                     <li><a href="#" [routerLink]="['provincia']">Provincia</a></li>
                                     <li><a href="#" [routerLink]="['medioPago']">Medios de Pago</a></li>
                                     <li><a href="#" [routerLink]="['estadoDestacado']">Estados Destacados</a></li>
+                                    <li><a href="#" [routerLink]="['estadoRequerimiento']">Estados Requerimiento</a></li>
                                 </ul>
                             </li>
                         </ul>
+                    </li>
+                    <li class="has-submenu pull-right" routerLinkActive="active">
+                        <a href="#" [routerLink]="['/login']"><i class="glyphicon glyphicon-user"></i>Iniciar sesión</a>
                     </li>
                 </ul>
                 <!-- End navigation menu        -->
