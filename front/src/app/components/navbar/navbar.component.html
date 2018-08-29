@@ -18,7 +18,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="javascript:void(0)"><i class="ti-user text-custom m-r-10"></i> Perfil</a></li>
                             <li class="divider"></li>
-                            <li><a href="javascript:void(0)"><i class="ti-power-off text-danger m-r-10"></i> Salir</a></li>
+                            <li><a href="javascript:void(0)" [routerLink]="['/login']"><i class="ti-power-off text-danger m-r-10"></i> Salir</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -61,6 +61,9 @@
                                 </ul>
                             </li>
                         </ul>
+                    </li>
+                    <li class="has-submenu pull-right" routerLinkActive="active">
+                        <a href="#" [routerLink]="['/login']"><i class="glyphicon glyphicon-user"></i>Iniciar sesión</a>
                     </li>
                 </ul>
                 <!-- End navigation menu        -->

@@ -16,6 +16,8 @@ import { EstadoDestacadoComponent } from './components/configuracion/estado-dest
 import { RubroComponent } from './components/configuracion/rubro/rubro.component';
 import { UsuarioComponent } from './components/configuracion/usuario/usuario.component';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
+import { LoginComponent } from './components/seguridad/login.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { DateValueAccessorModule } from 'angular-date-value-accessor';
     MedioPagoComponent,
     EstadoDestacadoComponent,
     RubroComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    LoginComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

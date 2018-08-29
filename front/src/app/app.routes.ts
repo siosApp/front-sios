@@ -8,8 +8,11 @@ import { MedioPagoComponent } from './components/configuracion/medio-pago/medio-
 import { EstadoDestacadoComponent } from './components/configuracion/estado-destacado/estado-destacado.component';
 import { RubroComponent } from './components/configuracion/rubro/rubro.component';
 import { UsuarioComponent } from './components/configuracion/usuario/usuario.component';
+import { LoginComponent } from './components/seguridad/login.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
-const routes: Routes = [
+
+const rutas_hijas: Routes =[
     { path: 'home', component: HomeComponent },
     { path: 'estadoSolicitud', component: EstadoSolicitudComponent },
     { path: 'tipoUsuario', component: TipoUsuarioComponent },
@@ -22,4 +25,11 @@ const routes: Routes = [
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
+const routes: Routes = [
+    { path: 'sios', component: LayoutComponent, children: rutas_hijas },
+    { path: 'login', component: LoginComponent },
+    { path: '**', pathMatch: 'full', redirectTo: 'sios' },
+];
+
 export const APP_ROUTING = RouterModule.forRoot(routes);
+
