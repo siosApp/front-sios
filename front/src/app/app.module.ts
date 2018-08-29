@@ -18,6 +18,7 @@ import { UsuarioComponent } from './components/configuracion/usuario/usuario.com
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
 import { LoginComponent } from './components/seguridad/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { RegistracionComponent } from './components/seguridad/registracion/registracion.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { LayoutComponent } from './components/layout/layout.component';
     RubroComponent,
     UsuarioComponent,
     LoginComponent,
-    LayoutComponent
+    LayoutComponent,
+    RegistracionComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ import { RubroComponent } from './components/configuracion/rubro/rubro.component
 import { UsuarioComponent } from './components/configuracion/usuario/usuario.component';
 import { LoginComponent } from './components/seguridad/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { RegistracionComponent } from './components/seguridad/registracion/registracion.component';
 
 
 const rutas_hijas: Routes =[
@@ -26,9 +27,10 @@ const rutas_hijas: Routes =[
 ];
 
 const routes: Routes = [
-    { path: 'sios', component: LayoutComponent, children: rutas_hijas },
+    { path: 'configuracion', component: LayoutComponent, children: rutas_hijas },
+    { path: 'registracion', component: RegistracionComponent},
     { path: 'login', component: LoginComponent },
-    { path: '**', pathMatch: 'full', redirectTo: 'sios' },
+    { path: '**', pathMatch: 'full', redirectTo: 'configuracion' },
 ];
 
 export const APP_ROUTING = RouterModule.forRoot(routes);

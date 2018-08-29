@@ -34,4 +34,8 @@ export class UsuarioService {
     let url= `${URL_API}/usuario/habilitarUsuario?id=${id}`;
     return this.http.put(url,null);
   }
+  validarUsuario(user,pass){
+    let url=`${URL_API}/usuario/loguearUsuario?username=${user}&password=${pass}`;
+    return this.http.get(url);
+  }
 }
