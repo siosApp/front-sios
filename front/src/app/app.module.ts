@@ -15,10 +15,31 @@ import { MedioPagoComponent } from './components/configuracion/medio-pago/medio-
 import { EstadoDestacadoComponent } from './components/configuracion/estado-destacado/estado-destacado.component';
 import { RubroComponent } from './components/configuracion/rubro/rubro.component';
 import { UsuarioComponent } from './components/configuracion/usuario/usuario.component';
-import { DateValueAccessorModule } from 'angular-date-value-accessor';
 import { LoginComponent } from './components/seguridad/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { RegistracionComponent } from './components/seguridad/registracion/registracion.component';
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedinLoginProvider,} from "angular-6-social-login";
+
+// Configs 
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+      [
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+	      provider: new FacebookLoginProvider("Your-Facebook-app-id")
+        },
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+	      provider: new GoogleLoginProvider("Your-Google-Client-Id")
+        },
+          {
+            id: LinkedinLoginProvider.PROVIDER_ID,
+            provider: new LinkedinLoginProvider("1098828800522-m2ig6bieilc3tpqvmlcpdvrpvn86q4ks.apps.googleusercontent.com")
+          },
+      ]
+  );
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -42,9 +63,14 @@ import { RegistracionComponent } from './components/seguridad/registracion/regis
     ReactiveFormsModule, 
     HttpClientModule,
     APP_ROUTING,
-    DateValueAccessorModule
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

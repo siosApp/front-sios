@@ -38,4 +38,8 @@ export class UsuarioService {
     let url=`${URL_API}/usuario/loguearUsuario?username=${user}&password=${pass}`;
     return this.http.get(url);
   }
+  existeUsuario(username){
+    let url=`${URL_API}/usuario/existeUsuario?username=${username}`;
+    return this.http.get(url);
+  }
 }
