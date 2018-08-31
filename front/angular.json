@@ -74,6 +74,8 @@
                             "src/assets/plugins/jquery.steps/js/jquery.steps.min.js",
                             "src/assets/plugins/jquery-validation/js/jquery.validate.min.js",
                             "src/assets/pages/jquery.wizard-init.js",
+                            "src/assets/plugins/notifyjs/js/notify.js",
+                            "src/assets/plugins/notifications/notify-metro.js",
                             "src/assets/js/jquery.core.js",
                             "src/assets/js/jquery.app.js"
                         ]

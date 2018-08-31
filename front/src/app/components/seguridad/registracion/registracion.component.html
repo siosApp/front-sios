@@ -1,0 +1,76 @@
+<div class="account-pages"></div>
+<div class="clearfix"></div>
+
+<div class="wrapper-page">
+    <div class="card-box">
+        <div class="panel-heading">
+            <h3 class="text-center"> Complete el siguiente formulario para poder registrarse en <strong class="text-custom">Sios</strong></h3>
+        </div>
+
+        <div class="panel-body">
+            <form [formGroup]="form" class="form-horizontal m-t-20" (ngSubmit)="crearUsuario()">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="field-2" class="control-label">Username</label>
+                            <input type="text" class="form-control" id="field-2" formControlName="username" placeholder="Username" (keyup)="existeUsuario()">
+                        </div>
+                        <p style="color: red" *ngIf="form.get('username').errors?.required && form.get('username').touched">Campo obligatorio</p>
+                        <p style="color: red" *ngIf="form.get('username').errors?.minlength">Mínimo 4 caracteres</p>
+                        <p style="color: red" *ngIf="existe">Éste usuario ya existe en el sistema</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="field-6" class="control-label">Mail</label>
+                            <input type="email" class="form-control" id="field-6" formControlName="mail" placeholder="Mail">
+                            <div *ngIf="form.get('mail').errors?.email">
+                                <span style="color: red">Ingrese un mail correcto!</span>
+                            </div>
+                        </div>
+                        <p style="color: red" *ngIf="form.get('mail').errors?.required && form.get('mail').touched">Campo obligatorio</p>
+                    </div>
+                </div>
+
+                <div formGroupName="passwordFormGroup">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input class="form-control" type="password" name="password" formControlName="password" placeholder="Password">
+                            </div>
+                            <p style="color: red" *ngIf="passwordFormGroup.get('password').errors?.required && passwordFormGroup.get('password').touched">Campo obligatorio</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="repeatPassword">Reingrese Password</label>
+                                <input class="form-control" type="password" name="repeatPassword" formControlName="confirmacion" placeholder="Reingrese su password">
+                            </div>
+                            <p style="color: red" *ngIf="passwordFormGroup.get('confirmacion').errors?.required && passwordFormGroup.get('confirmacion').touched">Campo obligatorio</p>
+                            <p style="color: red" *ngIf="passwordFormGroup.errors?.doesMatchPassword">Las contraseñas no coinciden.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group text-center m-t-40">
+                    <div class="col-xs-12">
+                        <button [disabled]="!esValido()" class="btn btn-pink btn-block text-uppercase waves-effect waves-light" type="submit">
+									Crear Usuario
+                                </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <p>
+                <a [routerLink]="['/login']" class="text-primary m-l-5"><b>Volver</b></a>
+            </p>
+        </div>
+    </div>
+</div>

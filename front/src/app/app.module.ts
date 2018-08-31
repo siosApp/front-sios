@@ -17,8 +17,30 @@ import { RubroComponent } from './components/configuracion/rubro/rubro.component
 import { UsuarioComponent } from './components/configuracion/usuario/usuario.component';
 import { LoginComponent } from './components/seguridad/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { RegistracionComponent } from './components/seguridad/registracion/registracion.component';
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedinLoginProvider,} from "angular-6-social-login";
 import { EstadoRequerimientoComponent } from './components/configuracion/estado-requerimiento/estado-requerimiento.component';
 
+// Configs 
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+      [
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+	      provider: new FacebookLoginProvider("2154755934762545")
+        },
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+	      provider: new GoogleLoginProvider("607176928872-nbmtt2ke370cvfsl3t4ei6e6dr2eecjj.apps.googleusercontent.com")
+        },
+          {
+            id: LinkedinLoginProvider.PROVIDER_ID,
+            provider: new LinkedinLoginProvider("1098828800522-m2ig6bieilc3tpqvmlcpdvrpvn86q4ks.apps.googleusercontent.com")
+          },
+      ]
+  );
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -32,19 +54,25 @@ import { EstadoRequerimientoComponent } from './components/configuracion/estado-
     MedioPagoComponent,
     EstadoDestacadoComponent,
     RubroComponent,
+    EstadoRequerimientoComponent,
     UsuarioComponent,
     LoginComponent,
-    LayoutComponent
-    RubroComponent,
-    EstadoRequerimientoComponent
+    LayoutComponent,
+    RegistracionComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule, 
     HttpClientModule,
-    APP_ROUTING
+    APP_ROUTING,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
