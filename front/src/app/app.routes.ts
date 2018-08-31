@@ -29,6 +29,7 @@ const rutas_hijas: Routes =[
 const routes: Routes = [
     { path: 'configuracion', component: LayoutComponent, children: rutas_hijas },
     { path: 'registracion', component: RegistracionComponent},
+    { path: 'registracion/:user/:email', component: RegistracionComponent},
     { path: 'login', component: LoginComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'configuracion' },
 ];

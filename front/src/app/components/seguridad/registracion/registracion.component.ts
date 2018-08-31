@@ -4,7 +4,7 @@ import { RegistrationValidator } from '../../../utils/validacion-asincrona';
 import { Usuario } from '../../../models/usuario';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 declare var $:any;
 @Component({
@@ -17,8 +17,14 @@ export class RegistracionComponent{
   form:FormGroup;
   passwordFormGroup:FormGroup;
   existe=false;
+  email:string;
+  username:string;
+  constructor(private router:Router,private fb:FormBuilder,private service:UsuarioService,private activated:ActivatedRoute) {
+    activated.params.subscribe(parametros=>{
+      this.email= parametros['email'];
+      this.username=parametros['user'];
+    })
 
-  constructor(private router:Router,private fb:FormBuilder,private service:UsuarioService) {
     this.passwordFormGroup=fb.group({
       password: ['',Validators.required],
       confirmacion: ['',Validators.required],
@@ -30,27 +36,33 @@ export class RegistracionComponent{
       mail: ['',[Validators.required,Validators.email]],
       passwordFormGroup: this.passwordFormGroup
     });
-    
+    if(this.email!=null){
+      this.existeUsuarioHelper(this.username);
+      this.form.patchValue({
+        mail: this.email,
+        username: this.username
+      })
+    }
   }
   existeUsuario(){
     let username:string=this.form.controls['username'].value;
     if(username.length>3){
-      this.service.existeUsuario(username).subscribe((response:any)=>{
-        let usuarioValidar=response;
-        console.log(usuarioValidar);
-        if(usuarioValidar.id!=null){
-          this.existe=true;
-        }
-        else{
-          this.existe=false;  
-        }
-      })
+      this.existeUsuarioHelper(username);
     }
     else{
       this.existe=false;  
-    }
-    console.log("Existe: ",this.existe);
-    
+    }    
+  }
+  existeUsuarioHelper(username){
+    this.service.existeUsuario(username).subscribe((response:any)=>{
+      let usuarioValidar=response;
+      if(usuarioValidar.id!=null){
+        this.existe=true;
+      }
+      else{
+        this.existe=false;  
+      }
+    })
   }
   esValido():boolean{
     if( this.form.valid && this.existe===false){
@@ -65,6 +77,7 @@ export class RegistracionComponent{
     let nuevoUsuario= new Usuario(null,null,null,null,mail,null,false,pass,null,null,username,null,null,null);
     this.service.crearUsuario(nuevoUsuario).subscribe((response:any)=>{
       this.router.navigate(['login']);
+      $.Notification.notify('success','top left','Felicitaciones! :)', 'Se ha registrado con éxito. Ingrese con su nuevo username y password')
     });
     console.log(this.form);
     
