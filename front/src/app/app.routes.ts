@@ -11,6 +11,7 @@ import { UsuarioComponent } from './components/configuracion/usuario/usuario.com
 import { LoginComponent } from './components/seguridad/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { RegistracionComponent } from './components/seguridad/registracion/registracion.component';
+import { EstadoRequerimientoComponent } from './components/configuracion/estado-requerimiento/estado-requerimiento.component';
 
 
 const rutas_hijas: Routes =[
@@ -23,6 +24,7 @@ const rutas_hijas: Routes =[
     { path: 'usuario', component: UsuarioComponent },
     { path: 'medioPago', component: MedioPagoComponent },
     { path: 'estadoDestacado', component: EstadoDestacadoComponent },
+    { path: 'estadoRequerimiento', component: EstadoRequerimientoComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
