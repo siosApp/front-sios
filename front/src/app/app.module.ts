@@ -20,6 +20,8 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { RegistracionComponent } from './components/seguridad/registracion/registracion.component';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedinLoginProvider,} from "angular-6-social-login";
 import { EstadoRequerimientoComponent } from './components/configuracion/estado-requerimiento/estado-requerimiento.component';
+import { DepartamentoComponent } from './components/configuracion/departamento/departamento.component';
+import { LocalidadComponent } from './components/configuracion/localidad/localidad.component';
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -58,7 +60,9 @@ export function getAuthServiceConfigs() {
     UsuarioComponent,
     LoginComponent,
     LayoutComponent,
-    RegistracionComponent
+    RegistracionComponent,
+    DepartamentoComponent,
+    LocalidadComponent
   ],
   imports: [
     BrowserModule,
