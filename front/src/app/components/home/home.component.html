@@ -1,21 +1,16 @@
-
 <div class="row">
-  <div class="col-sm-12">
-      <div class="card-box">
-
-
-          <div class="row">
-              <div class="col-md-6">
-                  <h4 class="m-t-0 header-title"><b>Filtro del Rubro </b></h4>
-                  <p class="text-muted m-b-30 font-13">
-                      A continuacion seleccione el filtro de los rubros y los tipos de rubros existentes para mejorar su busqueda.
-                  </p>
-
-                  <form [formGroup]="form" class="form-horizontal">
-                      <div class="form-group has-success">
-                          <label class="col-md-3 control-label" for="state-success">Tipo Rubro</label>
-                          <div class="col-md-6">
-                              <select class="form-control select2">
+    <div class="col-sm-12">
+        <div class="card-box">
+            <form [formGroup]="form" class="form-horizontal">
+                <div class="col-md-6">
+                    <h4 class="m-t-0 header-title"><b>Filtro del Rubro </b></h4>
+                    <p class="text-muted m-b-30 font-13">
+                        A continuacion seleccione el filtro de los rubros y los tipos de rubros existentes para mejorar su busqueda.
+                    </p>
+                    <div class="form-group has-success">
+                        <label class="col-md-3 control-label" for="state-success">Tipo Rubro</label>
+                        <div class="col-md-6">
+                            <select name="tipoRubro" formControlName="tipoRubro" class="form-control select2">
                                   <option>Seleccione</option>
                                   <option value="AK">Informatica</option>
                                   <option value="HI">Financiero</option>
@@ -25,13 +20,12 @@
                                   <option value="HI">Contruccion</option>
                                   <option value="AK">Plomeria</option>
                               </select>
-                          </div>
-                      </div>
-
-                      <div class="form-group has-success">
-                          <label class="col-md-3 control-label" for="state-success">Rubro</label>
-                          <div class="col-md-6">
-                              <select class="form-control select2">
+                        </div>
+                    </div>
+                    <div class="form-group has-success">
+                        <label class="col-md-3 control-label" for="state-success">Rubro</label>
+                        <div class="col-md-6">
+                            <select name="rubro" formControlName="rubro" class="form-control select2">
                                   <option>Seleccione</option>
                                   <option value="AK">Desarrollo Web</option>
                                   <option value="HI">Redes</option>
@@ -41,27 +35,18 @@
                                   <option value="HI">Programador Android</option>
                                   <option value="AK">Programador Mobile</option>
                               </select>
-                          </div>
-                      </div>
-
-
-
-
-                  </form>
-              </div>
-
-
-              <div class="col-md-6">
-                  <h4 class="m-t-0 header-title"><b>Filtro de Zona Geografica</b></h4>
-                  <p class="text-muted m-b-30 font-13">
-                      Seleccione en los siguientes campos los filtros de busqueda que usted desee obtener en las busquedas del sistema
-                  </p>
-
-                  <form [formGroup]="form" class="form-horizontal">
-                      <div class="form-group has-success">
-                          <label class="col-md-3 control-label" for="state-success">Provincia</label>
-                          <div class="col-md-6">
-                              <select class="form-control select2">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="m-t-0 header-title"><b>Filtro de Zona Geografica</b></h4>
+                    <p class="text-muted m-b-30 font-13">
+                        Seleccione en los siguientes campos los filtros de busqueda que usted desee obtener en las busquedas del sistema
+                    </p>
+                    <div class="form-group has-success">
+                        <label class="col-md-3 control-label" for="state-success">Provincia</label>
+                        <div class="col-md-6">
+                            <select name="provincia" formControlName="provincia" class="form-control select2">
                                   <option>Seleccione</option>
                                   <option value="AK">Mendoza</option>
                                   <option value="HI">San Luis</option>
@@ -71,13 +56,12 @@
                                   <option value="HI">Bs As</option>
                                   <option value="AK">Misiones</option>
                               </select>
-                          </div>
-                      </div>
-
-                      <div class="form-group has-success">
-                          <label class="col-md-3 control-label" for="state-success">Departamanto</label>
-                          <div class="col-md-6">
-                              <select class="form-control select2">
+                        </div>
+                    </div>
+                    <div class="form-group has-success">
+                        <label class="col-md-3 control-label" for="state-success">Departamanto</label>
+                        <div class="col-md-6">
+                            <select name="departamento" formControlName="departamento" class="form-control select2">
                                   <option>Seleccione</option>
                                   <option value="AK">Lavalle</option>
                                   <option value="HI">San Martin</option>
@@ -87,159 +71,149 @@
                                   <option value="HI">Gral Alvear</option>
                                   <option value="AK">Godoy Cruz</option>
                               </select>
-                          </div>
-                      </div>
-
-                      <div class="form-group has-success">
-                          <label class="col-md-3 control-label" for="state-success">Localidad</label>
-                          <div class="col-md-6">
-                              <select class="form-control select2">
+                        </div>
+                    </div>
+                    <div class="form-group has-success">
+                        <label class="col-md-3 control-label" for="state-success">Localidad</label>
+                        <div class="col-md-6">
+                            <select name="localidad" formControlName="localidad" class="form-control select2">
                                   <option>Seleccione</option>
                                   <option value="AK">Palmira</option>
                                   <option value="HI">El Central</option>
                                   <option value="AK">Chapanay</option>
                                   <option value="HI">Buen Orden</option>
                               </select>
-                          </div>
-                      </div>
-
-
-                  </form>
-
-
-
-
-              </div>
-             
-              <div class="form-group">
-                  <div class="col-md-offset-4 col-md-8">
-
-                      <button type="submit" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light m-b-30 btn-submit-form pull-right">Buscar</button>
-
-                  </div>
-              </div>
-              
-
-          </div>
-
-      </div>
-
-  </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-8">
+                        <button type="submit" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light m-b-30 btn-submit-form pull-right">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <div class="row">
-  <div class="col-sm-12">
-      <div class="card-box">
-          <h4 class="m-t-0 header-title"><b>Ultimos usuarios destacados en SIOS</b></h4>
-          <p class="text-muted m-b-30 font-13">En esta lista vera los ultimos usuarios destacados en nuestro sistema con la descripcion de lo que ofrece cada unos de ellos.</p>
+    <div class="col-sm-12">
+        <div class="card-box">
+            <h4 class="m-t-0 header-title"><b>Ultimos usuarios destacados en SIOS</b></h4>
+            <p class="text-muted m-b-30 font-13">En esta lista vera los ultimos usuarios destacados en nuestro sistema con la descripcion de lo que ofrece cada unos de ellos.</p>
 
-          <div>
-              <div class="media">
-                  <div class="media-left">
-                      <a href="#"> <img class="media-object img-circle" alt="64x64" src="src/assets/images/users/avatar-8.jpg" style="width: 64px; height: 64px;"> </a>
-                  </div>
-                  <div class="media-body">
-                      <h4 class="media-heading">Seba Ruiz - Desarrollados FrontEnd Angular</h4>
-                      <p>Se realiza todo tipo de diseño web a medida de lo que usted se merece, para que pueda poner a su empresa en lo maximo de la cima.</p>
-                      <p>Soy estudiante de ingenieria de sistemas de informacion y tengo 5 años de experiencia en el medio.</p>
-                  </div>
-                  <ul class="pager">
+            <div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#"> <img class="media-object img-circle" alt="64x64" src="src/assets/images/users/avatar-8.jpg" style="width: 64px; height: 64px;"> </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Seba Ruiz - Desarrollados FrontEnd Angular</h4>
+                        <p>Se realiza todo tipo de diseño web a medida de lo que usted se merece, para que pueda poner a su empresa en lo maximo de la cima.</p>
+                        <p>Soy estudiante de ingenieria de sistemas de informacion y tengo 5 años de experiencia en el medio.</p>
+                    </div>
+                    <ul class="pager">
 
-                      <li class="next">
-                          <a href="#">Mas Info →</a>
-                      </li>
-                  </ul>
-              </div>
-              <div class="media">
-                  <div class="media-left">
-                      <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-9.jpg" style="width: 64px; height: 64px;"> </a>
-                  </div>
-                  <div class="media-body">
-                      <h4 class="media-heading">Dante Canizo - Experto en Redes de Comunicacion</h4>
-                      <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-                      <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                  </div>
-                  <ul class="pager">
+                        <li class="next">
+                            <a href="#">Mas Info →</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-9.jpg" style="width: 64px; height: 64px;"> </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Dante Canizo - Experto en Redes de Comunicacion</h4>
+                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                            congue felis in faucibus.</p>
+                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                    </div>
+                    <ul class="pager">
 
-                      <li class="next">
-                          <a href="#">Mas Info →</a>
-                      </li>
-                  </ul>
-              </div>
-              <div class="media">
-                  <div class="media-left">
-                      <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-10.jpg" style="width: 64px; height: 64px;"> </a>
-                  </div>
-                  <div class="media-body">
-                      <h4 class="media-heading">Martin Castronovo - Desarrollador Java Spring</h4>
-                      <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-                      <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-
-
-                  </div>
-                  <ul class="pager">
-
-                      <li class="next">
-                          <a href="#">Mas Info →</a>
-                      </li>
-                  </ul>
-
-              </div>
-
-              <div class="media">
-                  <div class="media-left">
-                      <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-8.jpg" style="width: 64px; height: 64px;"> </a>
-                  </div>
-                  <div class="media-body">
-                      <h4 class="media-heading">David Roco - Preparo alumnos en Matematicas</h4>
-                      <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-                      <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                  </div>
-                  <ul class="pager">
-
-                      <li class="next">
-                          <a href="#">Mas Info →</a>
-                      </li>
-                  </ul>
-              </div>
-              <div class="media">
-                  <div class="media-left">
-                      <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-9.jpg" style="width: 64px; height: 64px;"> </a>
-                  </div>
-                  <div class="media-body">
-                      <h4 class="media-heading">Nico Gonzalez - Desarrollador C#</h4>
-                      <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-                      <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                  </div>
-                  <ul class="pager">
-
-                      <li class="next">
-                          <a href="#">Mas Info →</a>
-                      </li>
-                  </ul>
-              </div>
-              <div class="media">
-                  <div class="media-left">
-                      <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-10.jpg" style="width: 64px; height: 64px;"> </a>
-                  </div>
-                  <div class="media-body">
-                      <h4 class="media-heading">Bottom aligned media</h4>
-                      <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-                      <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                        <li class="next">
+                            <a href="#">Mas Info →</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-10.jpg" style="width: 64px; height: 64px;"> </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Martin Castronovo - Desarrollador Java Spring</h4>
+                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                            congue felis in faucibus.</p>
+                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
 
 
-                  </div>
-                  <ul class="pager">
+                    </div>
+                    <ul class="pager">
 
-                      <li class="next">
-                          <a href="#">Mas Info →</a>
-                      </li>
-                  </ul>
+                        <li class="next">
+                            <a href="#">Mas Info →</a>
+                        </li>
+                    </ul>
 
-              </div>
+                </div>
+
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-8.jpg" style="width: 64px; height: 64px;"> </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">David Roco - Preparo alumnos en Matematicas</h4>
+                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                            congue felis in faucibus.</p>
+                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                    </div>
+                    <ul class="pager">
+
+                        <li class="next">
+                            <a href="#">Mas Info →</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-9.jpg" style="width: 64px; height: 64px;"> </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Nico Gonzalez - Desarrollador C#</h4>
+                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                            congue felis in faucibus.</p>
+                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                    </div>
+                    <ul class="pager">
+
+                        <li class="next">
+                            <a href="#">Mas Info →</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-10.jpg" style="width: 64px; height: 64px;"> </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Bottom aligned media</h4>
+                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                            congue felis in faucibus.</p>
+                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
 
 
-          </div>
-      </div>
-  </div>
+                    </div>
+                    <ul class="pager">
+
+                        <li class="next">
+                            <a href="#">Mas Info →</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 </div>

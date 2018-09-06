@@ -65,7 +65,10 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="has-submenu pull-right" routerLinkActive="active">
+                    <li *ngIf="estaLogueado" class="has-submenu pull-right">
+                        <a href="#" (click)="cerrarSesion()"><i class="glyphicon glyphicon-off"></i>Cerrar sesión</a>
+                    </li>
+                    <li *ngIf="!estaLogueado" class="has-submenu pull-right">
                         <a href="#" [routerLink]="['/login']"><i class="glyphicon glyphicon-user"></i>Iniciar sesión</a>
                     </li>
                 </ul>

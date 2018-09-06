@@ -4,6 +4,7 @@ import { UsuarioService } from '../../services/usuario.service';
 import { Usuario } from '../../models/usuario';
 import { Router } from '@angular/router';
 import { AuthService, FacebookLoginProvider, GoogleLoginProvider, LinkedinLoginProvider } from 'angular-6-social-login';
+import { AutenticacionService } from '../../services/autenticacion.service';
 
 declare var $:any;
 @Component({
@@ -15,7 +16,8 @@ export class LoginComponent {
 
   form:FormGroup;
   usuario:Usuario;
-  constructor(private router:Router,private service:UsuarioService,private fb:FormBuilder,private socialAuthService: AuthService) { 
+  constructor(private router:Router,private service:UsuarioService,private fb:FormBuilder,private socialAuthService: AuthService,
+    private tokenService:AutenticacionService ) { 
     this.form=fb.group({
       username: ['',Validators.required],
       password: ['',Validators.required]
@@ -28,6 +30,7 @@ export class LoginComponent {
     this.service.validarUsuario(username,pass).subscribe( (response:any) =>{
       this.usuario=response;
       if(this.usuario.id !=null){
+        this.tokenService.guardarSesion(this.usuario.id);
         this.router.navigate(['inicio']);
       }
       else{
@@ -56,5 +59,8 @@ export class LoginComponent {
       }
     );
   }
-
+  cerrarSesion(){
+    this.tokenService.cerrarSesion();
+    this.router.navigate(['login']);
+  }
 }
