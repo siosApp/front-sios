@@ -14,6 +14,10 @@ export class TipoRubroService {
     let url=`${URL_API}/tipoRubro/listAllTipoRubro`;
     return this.http.get(url);
   }
+  getTipoRubrosVigentes(){
+    let url=`${URL_API}/tipoRubro/listTipoRubroVigente`;
+    return this.http.get(url);
+  }
   getTipoRubroById(id){
     let url=`${URL_API}/tipoRubro/${id}`;
     return this.http.get(url);

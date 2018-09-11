@@ -14,6 +14,10 @@ export class RubroService {
     let url=`${URL_API}/rubro/listAllRubro`;
     return this.http.get(url);
   }
+  getRubrosByTipoRubro(tipoRubro){
+    let url=`${URL_API}/rubro/listRubrosByTipoRubro?tipoRubro=${tipoRubro}`;
+    return this.http.get(url);
+  }
   getRubroById(id){
     let url=`${URL_API}/rubro?id=${id}`;
     return this.http.get(url);
@@ -28,9 +32,6 @@ export class RubroService {
   }
   crearRubro(rubro){
     let url=`${URL_API}/rubro/crearRubro`;
-    console.log("URL: ", url);
-    console.log("Rubro:",rubro);
-    
     return this.http.post(url,rubro); 
   }
   habilitarRubro(id){
