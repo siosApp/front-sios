@@ -46,7 +46,7 @@ export class RubroComponent {
       //$("#selectpicker").val(this.rubroAEditar.tipoRubro);
       this.form.setValue({
         nombre: this.rubroAEditar.nombreRubro,
-        tipoRubro: this.rubroAEditar.tipoRubro
+        tipoRubro: this.rubroAEditar.nombreTipoRubro
       });
     })
     

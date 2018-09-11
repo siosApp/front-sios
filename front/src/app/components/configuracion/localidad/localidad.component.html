@@ -1,105 +1,113 @@
-
 <div class="row">
-  <div class="col-sm-12">
-      <div class="card-box">
-          <h4 class="m-t-0 header-title"><b>Localidades.</b></h4>
-          <p class="text-muted m-b-30 font-13">
-              Se muestran las distintas localidades.
-          </p>
-          <div class="btn-group pull-right m-t-15">
-              <button type="button" class="btn btn-default" data-toggle="modal" (click)="abrirModal()" data-animation="slide" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">Añadir nueva localidad <span class="m-l-5"><i class="fa fa-plus-circle"></i></span></button>
-          </div>
-          <table class="table table-bordered table-striped">
-              <thead>
-                  <tr>
-                      <th>Nombre</th>
-                      <th>Fecha de baja</th>
-                      <th>departamento</th>
-                      <th>Opciones</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let localidad of localidades">
-                      <td>{{localidad.nombreLocalidad}}</td>
-                      <td>
-                          <div *ngIf="localidad.fechaBaja!=null">
-                              {{localidad.fechaBaja | date:'dd/MM/yyyy'}}
-                          </div>
-                          <div *ngIf="localidad.fechaBaja==null">
-                              -
-                          </div>
-                      </td>
-                      <td>{{localidad.nombreDepartamento}}</td>
-                      <td>
-                          <div class="button-list">
-                              <button class="btn btn-primary waves-effect waves-light" (click)="editarLocalidad(localidad.id)" data-toggle="modal" data-target="#con-close-modal" data-animation="slide" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">Editar</button>
-                              <button *ngIf="localidad.fechaBaja == null" class="btn btn-danger waves-effect waves-light" (click)="openAlert(localidad)">Dar de baja</button>
-                              <button *ngIf="localidad.fechaBaja != null" class="btn btn-danger waves-effect waves-light" (click)="openAlert(localidad)">Activar</button>
-                          </div>
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-  </div>
+    <div class="col-sm-12">
+        <div class="card-box">
+            <h4 class="m-t-0 header-title"><b>Localidades.</b></h4>
+            <p class="text-muted m-b-30 font-13">
+                Se muestran las distintas localidades.
+            </p>
+            <div class="btn-group pull-right m-t-15">
+                <button type="button" class="btn btn-default" data-toggle="modal" (click)="abrirModal()" data-animation="slide" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">Añadir nueva localidad <span class="m-l-5"><i class="fa fa-plus-circle"></i></span></button>
+            </div>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Fecha de baja</th>
+                        <th>departamento</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let localidad of localidades">
+                        <td>{{localidad.nombreLocalidad}}</td>
+                        <td>
+                            <div *ngIf="localidad.fechaBaja!=null">
+                                {{localidad.fechaBaja | date:'dd/MM/yyyy'}}
+                            </div>
+                            <div *ngIf="localidad.fechaBaja==null">
+                                -
+                            </div>
+                        </td>
+                        <td>{{localidad.departamento.nombreDepartamento}}</td>
+                        <!-- COMPLETAR-->
+                        <td>
+                            <div class="button-list">
+                                <button class="btn btn-primary waves-effect waves-light" (click)="editarLocalidad(localidad.id)" data-toggle="modal" data-target="#con-close-modal" data-animation="slide" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">Editar</button>
+                                <button *ngIf="localidad.fechaBaja == null" class="btn btn-danger waves-effect waves-light" (click)="openAlert(localidad)">Dar de baja</button>
+                                <button *ngIf="localidad.fechaBaja != null" class="btn btn-danger waves-effect waves-light" (click)="openAlert(localidad)">Activar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <div class="row">
-  <div class="col-sm-12">
-      <form [formGroup]="form" (ngSubmit)="guardarLocalidad()">
-          <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-              <div class="modal-dialog">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                          <h4 class="modal-title">Editar localidad</h4>
-                      </div>
-                      <div class="modal-body">
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label for="field-1" class="control-label">Nombre</label>
-                                      <input type="text" class="form-control" id="field-1" formControlName="nombre" placeholder="Nuevo nombre">
+    <div class="col-sm-12">
+        <form [formGroup]="form" (ngSubmit)="guardarLocalidad()">
+            <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Editar localidad</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="field-1" class="control-label">Nombre</label>
+                                        <input type="text" class="form-control" id="field-1" formControlName="nombre" placeholder="Nuevo nombre">
 
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="col-2 col-form-label">Departamento</label>
-                                      <div class="col-8">
-                                          <select name="departamento" formControlName="departamento" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-2 col-form-label">Provincia</label>
+                                        <div class="col-8">
+                                            <select name="provincia" (change)="getDepartamentosByProvincia()" formControlName="provincia" class="form-control">
+                                            <option *ngFor="let provincia of provincias" [ngValue]="provincia.nombreProvincia">{{provincia.nombreProvincia}}</option>
+                                      </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group" *ngIf="departamentos.length>0 || localidadAEditar?.departamento!=null">
+                                        <label class="col-2 col-form-label">Departamento</label>
+                                        <div class="col-8">
+                                            <select name="departamento" formControlName="departamento" class="form-control">
                                             <option *ngFor="let departamento of departamentos" [ngValue]="departamento.nombreDepartamento">{{departamento.nombreDepartamento}}</option>
                                         </select>
-
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="modal-footer">
-                          <button (click)="cancelar()" type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancelar</button>
-                          <button [disabled]="!form.valid" type="submit" class="btn btn-info waves-effect waves-light">Guardar cambios</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </form>
-      <!-- /.modal -->
-  </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button (click)="cancelar()" type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancelar</button>
+                            <button [disabled]="!form.valid" type="submit" class="btn btn-info waves-effect waves-light">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- /.modal -->
+    </div>
 </div>
 <div id="danger-alert" style="display: none;">
-  <div class="sweet-alert showSweetAlert" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
-      <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
-      </div>
-      <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
-      <div class="icon info" style="display: none;"></div>
-      <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
-          <div class="placeholder"></div>
-          <div class="fix"></div>
-      </div>
-      <div class="icon custom" style="display: none;"></div>
-      <h2>Estás seguro?</h2>
-      <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
-      <p>
-          <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
-          <button (click)="confirmarOperacion()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Ok!!</button>
-      </p>
-  </div>
+    <div class="sweet-alert showSweetAlert" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
+        <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
+        </div>
+        <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
+        </div>
+        <div class="icon custom" style="display: none;"></div>
+        <h2>Estás seguro?</h2>
+        <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
+        <p>
+            <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
+            <button (click)="confirmarOperacion()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Ok!!</button>
+        </p>
+    </div>
 </div>

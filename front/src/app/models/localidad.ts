@@ -1,12 +1,13 @@
+import { Departamento } from './departamento';
 export class Localidad{
     fechaBaja: Date;
     id: string;
     nombreLocalidad:string;
-    nombreDepartamento:string;
-    constructor(id,nombre,fechaBaja,nombreDepartamento){
+    departamento:Departamento;
+    constructor(id,nombre,fechaBaja,departamento){
         this.id=id;
         this.nombreLocalidad=nombre;
         this.fechaBaja=fechaBaja;
-        this.nombreDepartamento=nombreDepartamento;
+        this.departamento=departamento;
     }
 }

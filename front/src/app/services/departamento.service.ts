@@ -14,8 +14,9 @@ export class DepartamentoService {
     let url=`${URL_API}/departamento/listAllDepartamentos`;
     return this.http.get(url);
   }
-  getDepartamentosByProvincia(provincia){
-    let url=`${URL_API}/departamento/listDepartamentosVigente?provincia=${provincia}`;
+  getDepartamentosByProvincia(idProvincia){
+    //Le mando el id
+    let url=`${URL_API}/departamento/listDepartamentosVigente?provincia=${idProvincia}`;
     return this.http.get(url);
   }
   getDepartamentoById(id){
