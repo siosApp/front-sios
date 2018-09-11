@@ -3,11 +3,12 @@ export class Rubro{
     fechaBaja: Date;
     id: string;
     nombreRubro:string;
-    tipoRubro:string;
+    nombreTipoRubro:string;
     constructor(id,nombre,fechaBaja,tipoRubro){
         this.id=id;
         this.nombreRubro=nombre;
         this.fechaBaja=fechaBaja;
-        this.tipoRubro=tipoRubro;
+        this.nombreTipoRubro=tipoRubro;
     }
 }
+    

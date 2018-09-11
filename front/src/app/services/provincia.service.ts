@@ -14,6 +14,10 @@ export class ProvinciaService {
     let url=`${URL_API}/provincia/listAllProvincia`;
     return this.http.get(url);
   }
+  getProvinciasVigentes(){
+    let url=`${URL_API}/provincia/listProvinciaVigente`;
+    return this.http.get(url);
+  }
   getProvinciaById(id){
     let url=`${URL_API}/provincia?id=${id}`;
     return this.http.get(url);
