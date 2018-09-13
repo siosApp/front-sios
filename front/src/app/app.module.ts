@@ -23,6 +23,7 @@ import { EstadoRequerimientoComponent } from './components/configuracion/estado-
 import { DepartamentoComponent } from './components/configuracion/departamento/departamento.component';
 import { LocalidadComponent } from './components/configuracion/localidad/localidad.component';
 import { ForgotPasswordComponent } from './components/seguridad/forgot-password/forgot-password.component';
+import { RequerimientoComponent } from './components/requerimiento/requerimiento.component';
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -64,7 +65,8 @@ export function getAuthServiceConfigs() {
     RegistracionComponent,
     DepartamentoComponent,
     LocalidadComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    RequerimientoComponent
   ],
   imports: [
     BrowserModule,
