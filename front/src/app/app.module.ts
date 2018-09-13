@@ -22,6 +22,7 @@ import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLogi
 import { EstadoRequerimientoComponent } from './components/configuracion/estado-requerimiento/estado-requerimiento.component';
 import { DepartamentoComponent } from './components/configuracion/departamento/departamento.component';
 import { LocalidadComponent } from './components/configuracion/localidad/localidad.component';
+import { ForgotPasswordComponent } from './components/seguridad/forgot-password/forgot-password.component';
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -62,7 +63,8 @@ export function getAuthServiceConfigs() {
     LayoutComponent,
     RegistracionComponent,
     DepartamentoComponent,
-    LocalidadComponent
+    LocalidadComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

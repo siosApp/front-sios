@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/usuario';
 import { UsuarioService } from './usuario.service';
+import { URL_API } from '../utils/params';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticacionService {
 
-  constructor(private usuarioService:UsuarioService) { }
+  constructor(private usuarioService:UsuarioService,private http:HttpClient) { }
 
   isUsuarioLogueado():boolean{
     let usuario= localStorage.getItem("auth");
@@ -38,5 +40,9 @@ export class AutenticacionService {
       }
     })
     return false;
+  }
+  enviarMail(email){
+    let url=`${URL_API}/usuario/validarMail?mail=${email}`
+    return this.http.get(url);
   }
 }
