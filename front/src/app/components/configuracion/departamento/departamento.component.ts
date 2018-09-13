@@ -32,9 +32,8 @@ export class DepartamentoComponent {
     service.getDepartamentos().subscribe((response:any)=>{
       this.departamentos=response;
     })
-    provinciaService.getProvincias().subscribe( (response:any) =>{
+    provinciaService.getProvinciasVigentes().subscribe( (response:any) =>{
       this.provincias=response;
-      console.log(this.provincias);
     })
     this.form= new FormGroup({
       'nombre': new FormControl('',[Validators.required,Validators.minLength(3)]),
@@ -42,15 +41,11 @@ export class DepartamentoComponent {
     });
   }
   editarDepartamento(id){
-    console.log("formulario");
-    
-    console.log(this.form);
-    
     this.service.getDepartamentoById(id).subscribe( (response:any) =>{
       this.departamentoAEditar=response;
       this.form.setValue({
         nombre: this.departamentoAEditar.nombreDepartamento,
-        provincia: this.departamentoAEditar.nombreProvincia
+        provincia: this.departamentoAEditar.provincia.nombreProvincia
       });
     })
     

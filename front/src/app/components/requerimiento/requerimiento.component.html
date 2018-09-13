@@ -1,0 +1,107 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <h4 class="m-t-0 header-title"><b>Publique su Requisito</b></h4>
+                <p class="text-muted m-b-20 font-13">
+                    Agregue la descripcion del requerimiento que necesite, trate de ser especifico. Ademas, agregue un tiempo estimado que quiere que sea realizado su trabajo y el precio que esta dispuesto a pagar. Si lo desea podra adjuntar archivos para especificar sobre
+                    su requerimiento.
+                </p>
+
+                <div class="row">
+
+                    <div class="col-lg-9 col-md-8">
+                        <form [formGroup]="form" class="well">
+                            <span class="input-icon icon-right">
+                                  <textarea rows="2" class="form-control"
+                                            placeholder="Ingrese su requerimiento"></textarea>
+                              </span>
+
+
+                            <div class="p-t-10 pull-right">
+                                <a class="btn btn-sm btn-primary waves-effect waves-light" (click)="openAlert()">Publicar</a>
+                            </div>
+                            <ul class="nav nav-pills profile-pills m-t-10">
+                            </ul>
+
+                        </form>
+                        <form [formGroup]="form" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Tiempo estimado</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" placeholder="Ej: 2 dias" style="width:auto">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Disponible a pagar</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" placeholder="Ej: $1500" style="width:auto">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Seleccione archivos</label>
+                                <div class="col-md-10">
+                                    <input id="input-b5" name="input-b5[]" type="file" multiple>
+                                    <p class="text-muted m-b-20 font-13">
+                                        Para ayudar al trabajador, suba fotos o archivos con descripcion del trabajo para brindar mas detalles.
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end container -->
+
+
+
+<div id="danger-alert" style="display: none;">
+    <div class="sweet-alert showSweetAlert" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
+        <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
+        </div>
+        <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
+        </div>
+        <div class="icon custom" style="display: none;"></div>
+        <h2>Estás seguro?</h2>
+        <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
+        <p>
+            <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
+            <button (click)="confirmarOperacion()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Ok!!</button>
+        </p>
+    </div>
+</div>
+
+<div id="sa-warningt" style="display: none;">
+    <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
+        <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
+        </div>
+        <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
+        </div>
+        <div class="icon custom" style="display: none;"></div>
+        <h2>Buen Trabajo!</h2>
+        <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
+        <p>
+            <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancel</button>
+            <button (click)="confirmarOperacion()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
+        </p>
+    </div>
+</div>

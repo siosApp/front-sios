@@ -10,31 +10,17 @@
                     <div class="form-group has-success">
                         <label class="col-md-3 control-label" for="state-success">Tipo Rubro</label>
                         <div class="col-md-6">
-                            <select name="tipoRubro" formControlName="tipoRubro" class="form-control select2">
-                                  <option>Seleccione</option>
-                                  <option value="AK">Informatica</option>
-                                  <option value="HI">Financiero</option>
-                                  <option value="AK">Contable</option>
-                                  <option value="HI">Mecanica</option>
-                                  <option value="AK">Electricidad</option>
-                                  <option value="HI">Contruccion</option>
-                                  <option value="AK">Plomeria</option>
-                              </select>
+                            <select name="tipoRubro" formControlName="tipoRubro" class="form-control" (change)="getRubrosByTipoRubro()">
+                                <option *ngFor="let tipo of tiposRubros" [ngValue]="tipo.nombreTipoRubro">{{tipo.nombreTipoRubro}}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group has-success">
                         <label class="col-md-3 control-label" for="state-success">Rubro</label>
                         <div class="col-md-6">
-                            <select name="rubro" formControlName="rubro" class="form-control select2">
-                                  <option>Seleccione</option>
-                                  <option value="AK">Desarrollo Web</option>
-                                  <option value="HI">Redes</option>
-                                  <option value="AK">Programador Java</option>
-                                  <option value="HI">Programador .Net</option>
-                                  <option value="AK">Base de Datos</option>
-                                  <option value="HI">Programador Android</option>
-                                  <option value="AK">Programador Mobile</option>
-                              </select>
+                            <select name="rubro" formControlName="rubro" class="form-control">
+                                <option *ngFor="let rubro of rubros" [ngValue]="rubro.nombreRubro">{{rubro.nombreRubro}}</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -46,43 +32,25 @@
                     <div class="form-group has-success">
                         <label class="col-md-3 control-label" for="state-success">Provincia</label>
                         <div class="col-md-6">
-                            <select name="provincia" formControlName="provincia" class="form-control select2">
-                                  <option>Seleccione</option>
-                                  <option value="AK">Mendoza</option>
-                                  <option value="HI">San Luis</option>
-                                  <option value="AK">San Juan</option>
-                                  <option value="HI">Neuquen</option>
-                                  <option value="AK">Cordoba</option>
-                                  <option value="HI">Bs As</option>
-                                  <option value="AK">Misiones</option>
-                              </select>
+                            <select (change)="getDepartamentosByProvincia()" name="provincia" formControlName="provincia" class="form-control">
+                                <option *ngFor="let provincia of provincias" [ngValue]="provincia.nombreProvincia">{{provincia.nombreProvincia}}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group has-success">
-                        <label class="col-md-3 control-label" for="state-success">Departamanto</label>
+                        <label class="col-md-3 control-label" for="state-success">Departamento</label>
                         <div class="col-md-6">
-                            <select name="departamento" formControlName="departamento" class="form-control select2">
-                                  <option>Seleccione</option>
-                                  <option value="AK">Lavalle</option>
-                                  <option value="HI">San Martin</option>
-                                  <option value="AK">Maipu</option>
-                                  <option value="HI">Rodeo del Medio</option>
-                                  <option value="AK">Rodeo de la Cruz</option>
-                                  <option value="HI">Gral Alvear</option>
-                                  <option value="AK">Godoy Cruz</option>
-                              </select>
+                            <select (change)="getLocalidadesByDepartamento()" name="departamento" formControlName="departamento" class="form-control">
+                                <option *ngFor="let depto of departamentos" [ngValue]="depto.nombreDepartamento">{{depto.nombreDepartamento}}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group has-success">
                         <label class="col-md-3 control-label" for="state-success">Localidad</label>
                         <div class="col-md-6">
-                            <select name="localidad" formControlName="localidad" class="form-control select2">
-                                  <option>Seleccione</option>
-                                  <option value="AK">Palmira</option>
-                                  <option value="HI">El Central</option>
-                                  <option value="AK">Chapanay</option>
-                                  <option value="HI">Buen Orden</option>
-                              </select>
+                            <select name="localidad" formControlName="localidad" class="form-control">
+                                <option *ngFor="let localidad of localidades" [ngValue]="localidad">{{localidad.nombreLocalidad}}</option>
+                            </select>
                         </div>
                     </div>
                 </div>
