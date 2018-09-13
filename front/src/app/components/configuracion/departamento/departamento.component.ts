@@ -45,7 +45,7 @@ export class DepartamentoComponent {
       this.departamentoAEditar=response;
       this.form.setValue({
         nombre: this.departamentoAEditar.nombreDepartamento,
-        provincia: this.departamentoAEditar.nombreProvincia
+        provincia: this.departamentoAEditar.provincia.nombreProvincia
       });
     })
     

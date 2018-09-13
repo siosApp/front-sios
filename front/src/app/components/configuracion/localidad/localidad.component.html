@@ -13,7 +13,8 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Fecha de baja</th>
-                        <th>departamento</th>
+                        <th>Provincia</th>
+                        <th>Departamento</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
@@ -28,8 +29,8 @@
                                 -
                             </div>
                         </td>
+                        <td>{{localidad.departamento.provincia.nombreProvincia}}</td>
                         <td>{{localidad.departamento.nombreDepartamento}}</td>
-                        <!-- COMPLETAR-->
                         <td>
                             <div class="button-list">
                                 <button class="btn btn-primary waves-effect waves-light" (click)="editarLocalidad(localidad.id)" data-toggle="modal" data-target="#con-close-modal" data-animation="slide" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">Editar</button>
@@ -59,23 +60,21 @@
                                     <div class="form-group">
                                         <label for="field-1" class="control-label">Nombre</label>
                                         <input type="text" class="form-control" id="field-1" formControlName="nombre" placeholder="Nuevo nombre">
-
                                     </div>
                                     <div class="form-group">
                                         <label class="col-2 col-form-label">Provincia</label>
                                         <div class="col-8">
                                             <select name="provincia" (change)="getDepartamentosByProvincia()" formControlName="provincia" class="form-control">
-                                            <option *ngFor="let provincia of provincias" [ngValue]="provincia.nombreProvincia">{{provincia.nombreProvincia}}</option>
-                                      </select>
-
+                                                <option *ngFor="let provincia of provincias" [ngValue]="provincia.nombreProvincia">{{provincia.nombreProvincia}}</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="form-group" *ngIf="departamentos.length>0 || localidadAEditar?.departamento!=null">
+                                    <div class="form-group" *ngIf="showLocalidades">
                                         <label class="col-2 col-form-label">Departamento</label>
                                         <div class="col-8">
                                             <select name="departamento" formControlName="departamento" class="form-control">
-                                            <option *ngFor="let departamento of departamentos" [ngValue]="departamento.nombreDepartamento">{{departamento.nombreDepartamento}}</option>
-                                        </select>
+                                                <option *ngFor="let departamento of departamentos" [ngValue]="departamento.nombreDepartamento">{{departamento.nombreDepartamento}}</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +82,7 @@
                         </div>
                         <div class="modal-footer">
                             <button (click)="cancelar()" type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancelar</button>
-                            <button [disabled]="!form.valid" type="submit" class="btn btn-info waves-effect waves-light">Guardar cambios</button>
+                            <button [disabled]="!form.valid" type="submit" class="btn btn-info waves-effect waves-light buttonSubmit">Guardar cambios</button>
                         </div>
                     </div>
                 </div>

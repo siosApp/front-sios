@@ -22,6 +22,10 @@ export class ProvinciaService {
     let url=`${URL_API}/provincia?id=${id}`;
     return this.http.get(url);
   }
+  getProvinciaByNombre(nombre){
+    let url=`${URL_API}/provincia/nombre?nombre=${nombre}`;
+    return this.http.get(url);  
+  }
   updateProvincia(provincia:Provincia){
     let url=`${URL_API}/provincia/editarProvincia`;
     return this.http.put(url,provincia);

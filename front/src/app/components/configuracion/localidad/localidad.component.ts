@@ -1,6 +1,5 @@
 
 import { Component} from '@angular/core';
-
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { mensajeBaja, mensajeAlta } from '../../../utils/params';
 import { Departamento } from '../../../models/departamento';
@@ -9,6 +8,7 @@ import { Localidad } from '../../../models/localidad';
 import { LocalidadService } from '../../../services/localidad.service';
 import { Provincia } from '../../../models/provincia';
 import { ProvinciaService } from '../../../services/provincia.service';
+import { log } from 'util';
 
 
 declare var $ : any;
@@ -27,6 +27,7 @@ export class LocalidadComponent {
   departamentoSeleccionado:Departamento;
   departamentos:Departamento[]=[];
   provincias:Provincia[];
+  showLocalidades=false;
 
   constructor(private service:LocalidadService,private departamentoService:DepartamentoService,private provinciaService:ProvinciaService) {
     service.getLocalidades().subscribe((response:any)=>{
@@ -35,33 +36,43 @@ export class LocalidadComponent {
     provinciaService.getProvinciasVigentes().subscribe((res:any)=>{
       this.provincias=res;
     })
+    departamentoService.getDepartamentos().subscribe((res:any)=>{
+      this.departamentos=res;
+    })
     this.form= new FormGroup({
       'nombre': new FormControl('',[Validators.required,Validators.minLength(3)]),
       'departamento': new FormControl('',Validators.required),
       'provincia': new FormControl('',Validators.required)
     });
   }
+
   editarLocalidad(id){
+    this.showLocalidades=true;
     this.service.getLocalidadById(id).subscribe( (response:Localidad) =>{
-      console.log(response);
       this.localidadAEditar = response;
-        this.form.patchValue({
-          nombre: this.localidadAEditar.nombreLocalidad,
-          provincia: this.localidadAEditar.departamento.nombreProvincia,
-          departamento: this.localidadAEditar.departamento.nombreDepartamento
-        });
+      console.log("Localidad: ",this.localidadAEditar);
       
-    })
-    
+      this.form.setValue({
+        nombre: this.localidadAEditar.nombreLocalidad,
+        departamento: this.localidadAEditar.departamento.nombreDepartamento,
+        provincia: this.localidadAEditar.departamento.provincia.nombreProvincia
+      });
+      
+    }) 
   }
   abrirModal(){
     this.form.reset();
     $('#con-close-modal').modal('show');
   }
+
   guardarLocalidad(){
+    this.showLocalidades=false;
     let nuevoNombre = this.form.controls['nombre'].value;
-    let idDepartamento = this.form.controls['departamento'].value;
-    this.departamentoService.getDepartamentoById(idDepartamento).subscribe((depto:Departamento)=>{
+    let provincia = this.form.controls['provincia'].value;
+    let departamento = this.form.controls['departamento'].value;
+    console.log("Id depto: ",departamento);
+    
+    this.departamentoService.getDepartamentoByNombreAndProvincia(departamento,provincia).subscribe((depto:Departamento)=>{
       if(this.localidadAEditar != null){
         let localidadActualizada : Localidad = new Localidad(this.localidadAEditar.id,nuevoNombre,this.localidadAEditar.fechaBaja,depto);
         this.service.updateLocalidad(localidadActualizada).subscribe( response =>{
@@ -78,12 +89,24 @@ export class LocalidadComponent {
         })
       }
     })
-  }
-  getDepartamentosByProvincia(){
-    console.log("cmabiando..");    
-    this.departamentoService.getDepartamentosByProvincia(provincia).subscribe((res:any)=>{
+    this.departamentoService.getDepartamentos().subscribe((res:any)=>{
       this.departamentos=res;
     })
+  }
+  getDepartamentosByProvincia(){
+    if(this.form.updateOn == "submit"){
+      console.log("Te cagué jajaja");
+      
+    }
+    let submit; 
+      this.showLocalidades=true;
+      let provincia=this.form.controls['provincia'].value;
+      console.log("Provincia: ",provincia);
+      this.provinciaService.getProvinciaByNombre(provincia).subscribe((provinciaResponse:Provincia)=>{
+        this.departamentoService.getDepartamentosByProvincia(provinciaResponse.id).subscribe((res:any)=>{
+          this.departamentos=res;
+        })
+      })
   }
   openAlert(departamento){
     if(departamento.fechaBaja == null){
@@ -102,6 +125,10 @@ export class LocalidadComponent {
     $('#danger-alert').modal('hide');
   }
   cancelar(){
+    this.departamentoService.getDepartamentos().subscribe((res:any)=>{
+      this.departamentos=res;
+    })
+    this.showLocalidades=false;
     this.localidadAEditar=null;
   }
   confirmarOperacion(){
