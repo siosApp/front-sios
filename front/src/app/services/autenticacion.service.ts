@@ -45,4 +45,8 @@ export class AutenticacionService {
     let url=`${URL_API}/usuario/validarMail?mail=${email}`
     return this.http.get(url);
   }
+  cambiarContrasena(mail,password,codigo){
+    let url=`${URL_API}/usuario/change?mail=${mail}&password=${password}&codigo=${codigo}`;
+    return this.http.post(url,null);
+  }
 }

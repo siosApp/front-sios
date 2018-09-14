@@ -30,18 +30,18 @@
                         Seleccione en los siguientes campos los filtros de busqueda que usted desee obtener en las busquedas del sistema
                     </p>
                     <div class="form-group has-success">
-                        <label class="col-md-3 control-label" for="state-success">Provincia</label>
-                        <div class="col-md-6">
-                            <select (change)="getDepartamentosByProvincia()" name="provincia" formControlName="provincia" class="form-control">
+                        <label class="col-2 col-form-label">Provincia</label>
+                        <div class="col-8">
+                            <select name="provincia" (change)="getDepartamentosByProvincia()" formControlName="provincia" class="form-control">
                                 <option *ngFor="let provincia of provincias" [ngValue]="provincia.nombreProvincia">{{provincia.nombreProvincia}}</option>
                             </select>
                         </div>
                     </div>
-                    <div class="form-group has-success">
-                        <label class="col-md-3 control-label" for="state-success">Departamento</label>
-                        <div class="col-md-6">
-                            <select (change)="getLocalidadesByDepartamento()" name="departamento" formControlName="departamento" class="form-control">
-                                <option *ngFor="let depto of departamentos" [ngValue]="depto.nombreDepartamento">{{depto.nombreDepartamento}}</option>
+                    <div class="form-group has-success" *ngIf="showLocalidades">
+                        <label class="col-2 col-form-label">Departamento</label>
+                        <div class="col-8">
+                            <select name="departamento" formControlName="departamento" class="form-control">
+                                <option *ngFor="let departamento of departamentos" [ngValue]="departamento.nombreDepartamento">{{departamento.nombreDepartamento}}</option>
                             </select>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         <label class="col-md-3 control-label" for="state-success">Localidad</label>
                         <div class="col-md-6">
                             <select name="localidad" formControlName="localidad" class="form-control">
-                                <option *ngFor="let localidad of localidades" [ngValue]="localidad">{{localidad.nombreLocalidad}}</option>
+                                <option *ngFor="let localidad of localidades" [ngValue]="localidad.nombreLocalidad">{{localidad.nombreLocalidad}}</option>
                             </select>
                         </div>
                     </div>

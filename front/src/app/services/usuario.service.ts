@@ -42,4 +42,8 @@ export class UsuarioService {
     let url=`${URL_API}/usuario/existeUsuario?username=${username}`;
     return this.http.get(url);
   }
+  existeMail(mail){
+    let url=`${URL_API}/usuario/existeMail?mail=${mail}`;
+    return this.http.get(url);
+  }
 }

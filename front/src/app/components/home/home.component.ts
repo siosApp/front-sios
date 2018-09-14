@@ -25,6 +25,7 @@ export class HomeComponent{
   departamentos:Departamento[];
   localidades:Localidad[];
   rubros:Rubro[];
+  showLocalidades=false;
   constructor(private fb:FormBuilder,private tipoRubroService:TipoRubroService,
     private provinciaService:ProvinciaService,private rubroService:RubroService,
     private departamentoService:DepartamentoService,private localidadService:LocalidadService) {
