@@ -65,6 +65,11 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="has-submenu" routerLinkActive="active">
+                        
+                        <a *ngIf="estaLogueado" href="#" [routerLink]="['publicarRequerimiento']"><i class="fa fa-object-group"></i>Publicar Requerimiento</a>
+                        <a *ngIf="!estaLogueado" href="#" [routerLink]="['/login']"><i class="fa fa-object-group"></i>Publicar Requerimiento</a>
+                    </li>
                     <li *ngIf="estaLogueado" class="has-submenu pull-right">
                         <a href="#" (click)="cerrarSesion()"><i class="glyphicon glyphicon-off"></i>Cerrar sesión</a>
                     </li>
