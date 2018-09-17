@@ -19,6 +19,7 @@ export class RegistracionComponent{
   existe=false;
   email:string;
   username:string;
+  mailExistente=false;
   constructor(private router:Router,private fb:FormBuilder,private service:UsuarioService,private activated:ActivatedRoute) {
     activated.params.subscribe(parametros=>{
       this.email= parametros['email'];
@@ -53,6 +54,7 @@ export class RegistracionComponent{
       this.existe=false;  
     }    
   }
+  
   existeUsuarioHelper(username){
     this.service.existeUsuario(username).subscribe((response:any)=>{
       let usuarioValidar=response;
@@ -64,8 +66,28 @@ export class RegistracionComponent{
       }
     })
   }
+  existeMail(){
+    if(this.form.get('mail').errors == null){
+      let mail:string=this.form.controls['mail'].value;
+        this.existeMailHelper(mail);
+    }
+    else{
+      this.existe=false;  
+    }    
+  }
+  existeMailHelper(mail){
+    this.service.existeMail(mail).subscribe((response:any)=>{
+      let usuarioValidar=response;
+      if(usuarioValidar.id!=null){
+        this.mailExistente=true;
+      }
+      else{
+        this.mailExistente=false;  
+      }
+    })
+  }
   esValido():boolean{
-    if( this.form.valid && this.existe===false){
+    if( this.form.valid && this.existe===false && this.mailExistente ===false){
       return true;
     }
     return false;

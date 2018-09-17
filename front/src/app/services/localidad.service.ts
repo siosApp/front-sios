@@ -14,8 +14,8 @@ export class LocalidadService {
     let url=`${URL_API}/localidad/listAllLocalidades`;
     return this.http.get(url);
   }
-  getLocalidadesByDepartamento(departamento){
-    let url=`${URL_API}/localidad/listLocalidadesVigente?departamento=${departamento}`;//Recordar que le estoy pasando un ID.
+  getLocalidadesByProvinciaAndDepartamento(provincia,departamento){
+    let url=`${URL_API}/localidad/listLocalidades?provincia=${provincia}&departamento=${departamento}`;
     return this.http.get(url);
   }
   getLocalidadById(id){

@@ -5,6 +5,8 @@ import { RequerimientoService } from '../../services/requerimiento.service';
 import { Requerimiento } from '../../models/requerimiento';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AutenticacionService } from '../../services/autenticacion.service';
+import { FormGroup } from '@angular/forms';
+
 
 declare var $:any;
 @Component({
