@@ -30,6 +30,7 @@ export class TipoRubroComponent {
   editarTipoRubro(id){
     this.service.getTipoRubroById(id).subscribe( (response:any) =>{
       this.tipoRubroAEditar=response;
+      console.log(this.tipoRubroAEditar);
       this.form.setValue({
         nombre: this.tipoRubroAEditar.nombreTipoRubro
       });
@@ -41,6 +42,8 @@ export class TipoRubroComponent {
   }
   guardarTipoRubro(){
     let nuevoNombre=this.form.controls['nombre'].value;
+    console.log("Tipo rubro: ",this.tipoRubroAEditar);
+    
     if(this.tipoRubroAEditar!=null){
       let tipoRubroActualizado:TipoRubro= new TipoRubro(this.tipoRubroAEditar.id,nuevoNombre,this.tipoRubroAEditar.fechaBaja);
       this.service.updateTipoRubro(tipoRubroActualizado).subscribe( response =>{
@@ -50,6 +53,8 @@ export class TipoRubroComponent {
       });
     }
     else{
+      console.log("1111");
+      
       let nuevoTipoRubro:TipoRubro= new TipoRubro(null,nuevoNombre,null);
       this.service.crearTipoRubro(nuevoTipoRubro).subscribe(response=>{
         $('#con-close-modal').modal('hide');
@@ -71,6 +76,7 @@ export class TipoRubroComponent {
     $('#danger-alert').modal('show');
   }
   volver(){
+    this.tipoRubroAEditar=null;
     $('#danger-alert').modal('hide');
   }
   cancelar(){
