@@ -57,21 +57,24 @@ export class DepartamentoComponent {
   guardarDepartamento(){
     let nuevoNombre=this.form.controls['nombre'].value;
     let provincia=this.form.controls['provincia'].value;
-    if(this.departamentoAEditar!=null){
-      let departamentoActualizado:Departamento = new Departamento(this.departamentoAEditar.id,nuevoNombre,this.departamentoAEditar.fechaBaja,provincia);
-      this.service.updateDepartamento(departamentoActualizado).subscribe( response =>{
-        this.departamentoAEditar=null;
-        $('#con-close-modal').modal('hide');
-        this.service.getDepartamentos().subscribe((response:any) => this.departamentos=response);
-      });
-    }
-    else{
-      let nuevoDepartamento:Departamento = new Departamento(null,nuevoNombre,null,provincia);
-      this.service.crearDepartamento(nuevoDepartamento).subscribe(response=>{
-        $('#con-close-modal').modal('hide');
-        this.service.getDepartamentos().subscribe((response:any) => this.departamentos=response);
-      })
-    }
+    this.provinciaService.getProvinciaByNombre(provincia).subscribe((res:any)=>{
+      if(this.departamentoAEditar!=null){
+        let departamentoActualizado:Departamento = new Departamento(this.departamentoAEditar.id,nuevoNombre,this.departamentoAEditar.fechaBaja,res);
+        this.service.updateDepartamento(departamentoActualizado).subscribe( response =>{
+          this.departamentoAEditar=null;
+          $('#con-close-modal').modal('hide');
+          this.service.getDepartamentos().subscribe((response:any) => this.departamentos=response);
+        });
+      }
+      else{
+        let nuevoDepartamento:Departamento = new Departamento(null,nuevoNombre,null,res);
+        this.service.crearDepartamento(nuevoDepartamento).subscribe(response=>{
+          $('#con-close-modal').modal('hide');
+          this.service.getDepartamentos().subscribe((response:any) => this.departamentos=response);
+        })
+      }
+    })
+    
   }
   openAlert(provincia){
     if(provincia.fechaBaja == null){
@@ -87,6 +90,7 @@ export class DepartamentoComponent {
     $('#danger-alert').modal('show');
   }
   volver(){
+    this.departamentoAEditar=null;
     $('#danger-alert').modal('hide');
   }
   cancelar(){
