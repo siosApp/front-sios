@@ -24,6 +24,7 @@ import { DepartamentoComponent } from './components/configuracion/departamento/d
 import { LocalidadComponent } from './components/configuracion/localidad/localidad.component';
 import { ForgotPasswordComponent } from './components/seguridad/forgot-password/forgot-password.component';
 import { RequerimientoComponent } from './components/requerimiento/requerimiento.component';
+import { RecoverPasswordComponent } from './components/seguridad/recover-password/recover-password.component';
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -66,7 +67,8 @@ export function getAuthServiceConfigs() {
     DepartamentoComponent,
     LocalidadComponent,
     ForgotPasswordComponent,
-    RequerimientoComponent
+    RequerimientoComponent,
+    RecoverPasswordComponent
   ],
   imports: [
     BrowserModule,
