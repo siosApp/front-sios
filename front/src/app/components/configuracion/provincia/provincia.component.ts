@@ -3,6 +3,7 @@ import { ProvinciaService } from '../../../services/provincia.service';
 import { Provincia } from '../../../models/provincia';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { mensajeAlta,mensajeBaja } from '../../../utils/params';
+import { log } from 'util';
 
 declare var $:any;
 
@@ -22,7 +23,6 @@ export class ProvinciaComponent {
   constructor(private service:ProvinciaService) {
     service.getProvincias().subscribe((response:any)=>{
       this.provincias=response;
-      console.log(this.provincias);
     })
     this.form= new FormGroup({
       'nombre': new FormControl('',[Validators.required,Validators.minLength(3)]),
@@ -31,23 +31,20 @@ export class ProvinciaComponent {
   editarProvincia(id){
     this.service.getProvinciaById(id).subscribe( (response:any) =>{
       this.provinciaEditar=response;
-      console.log(this.provinciaEditar);
       this.form.setValue({
         nombre: this.provinciaEditar.nombreProvincia
       });
     })
   }
-  // crearEstado(){
 
-  // }
 
   abrirModal(){
     this.form.reset();
     $('#con-close-modal').modal('show');
   }
   guardarProvincia(){
-    
     let nuevoNombre=this.form.controls['nombre'].value;
+    console.log("Provincia Editar: ",this.provinciaEditar);
     if(this.provinciaEditar!=null){
       let provinciaActualizado:Provincia= new Provincia(this.provinciaEditar.id,nuevoNombre,this.provinciaEditar.fechaBaja);
       this.service.updateProvincia(provinciaActualizado).subscribe( response =>{
@@ -80,6 +77,11 @@ export class ProvinciaComponent {
   volver(){
     this.provinciaEditar=null;
     $('#danger-alert').modal('hide');
+  }
+  abrirModal(){
+    this.form.reset();
+    this.provinciaEditar=null;
+    $('#con-close-modal').modal('show');
   }
   confirmarOperacion(){
     if(this.habilitaEstado){
