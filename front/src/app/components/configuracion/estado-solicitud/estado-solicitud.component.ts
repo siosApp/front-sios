@@ -28,6 +28,7 @@ export class EstadoSolicitudComponent {
       'nombre': new FormControl('',[Validators.required,Validators.minLength(3)]),
     });
   }
+  
   editarEstado(id){
     this.service.getEstadoById(id).subscribe( (response:any) =>{
       this.estadoAEditar=response;
@@ -74,6 +75,7 @@ export class EstadoSolicitudComponent {
     $('#danger-alert').modal('show');
   }
   volver(){
+    this.estadoAEditar=null;
     $('#danger-alert').modal('hide');
   }
   cancelar(){
