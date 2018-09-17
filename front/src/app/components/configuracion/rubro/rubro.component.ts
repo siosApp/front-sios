@@ -51,10 +51,7 @@ export class RubroComponent {
     })
     
   }
-  abrirModal(){
-    this.form.reset();
-    $('#con-close-modal').modal('show');
-  }
+  
   guardarRubro(){
     let nuevoNombre=this.form.controls['nombre'].value;
     let tipoRubro=this.form.controls['tipoRubro'].value;
@@ -87,7 +84,13 @@ export class RubroComponent {
     }
     $('#danger-alert').modal('show');
   }
+
+  abrirModal(){
+    this.form.reset();
+    $('#con-close-modal').modal('show');
+  }
   volver(){
+    this.rubroAEditar=null;
     $('#danger-alert').modal('hide');
   }
   cancelar(){

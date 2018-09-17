@@ -40,6 +40,11 @@ export class ProvinciaComponent {
   // crearEstado(){
 
   // }
+
+  abrirModal(){
+    this.form.reset();
+    $('#con-close-modal').modal('show');
+  }
   guardarProvincia(){
     
     let nuevoNombre=this.form.controls['nombre'].value;
@@ -73,6 +78,7 @@ export class ProvinciaComponent {
     $('#danger-alert').modal('show');
   }
   volver(){
+    this.provinciaEditar=null;
     $('#danger-alert').modal('hide');
   }
   confirmarOperacion(){
