@@ -14,6 +14,10 @@ export class RubroService {
     let url=`${URL_API}/rubro/listAllRubro`;
     return this.http.get(url);
   }
+  getRubrosVigentes(){
+    let url=`${URL_API}/rubro/listRubroVigente`;
+    return this.http.get(url);
+  }
   getRubrosByTipoRubro(tipoRubro){
     let url=`${URL_API}/rubro/listRubrosByTipoRubro?tipoRubro=${tipoRubro}`;
     return this.http.get(url);

@@ -15,6 +15,7 @@ import { EstadoRequerimientoComponent } from './components/configuracion/estado-
 import { DepartamentoComponent } from './components/configuracion/departamento/departamento.component';
 import { LocalidadComponent } from './components/configuracion/localidad/localidad.component';
 import { ForgotPasswordComponent } from './components/seguridad/forgot-password/forgot-password.component';
+import { RecoverPasswordComponent } from './components/seguridad/recover-password/recover-password.component';
 
 
 const rutas_hijas: Routes =[
@@ -36,6 +37,7 @@ const rutas_hijas: Routes =[
 const routes: Routes = [
     { path: 'configuracion', component: LayoutComponent, children: rutas_hijas },
     { path: 'registracion', component: RegistracionComponent},
+    { path: 'newPassword/:codigo', component: RecoverPasswordComponent},
     { path: 'forgotPassword', component: ForgotPasswordComponent},
     { path: 'registracion/:user/:email', component: RegistracionComponent},
     { path: 'login', component: LoginComponent },

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { mensajeRequerimiento } from '../../utils/params';
 import { FormGroup } from '@angular/forms';
 
 declare var $:any;
