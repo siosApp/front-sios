@@ -20,17 +20,19 @@ export class LoginComponent {
     private tokenService:AutenticacionService ) { 
     this.form=fb.group({
       username: ['',Validators.required],
-      password: ['',Validators.required]
+      password: ['',Validators.required],
+      recordarme: ['']
     })
   }
 
   loguearUsuario(){
     let username=this.form.controls['username'].value;
     let pass=this.form.controls['password'].value;
+    let recordarme=this.form.controls['recordarme'].value == ''?false:true;    
     this.service.validarUsuario(username,pass).subscribe( (response:any) =>{
       this.usuario=response;
       if(this.usuario.id !=null){
-        this.tokenService.guardarSesion(this.usuario.id);
+        this.tokenService.guardarSesion(recordarme,this.usuario.id);
         this.router.navigate(['inicio']);
       }
       else{
@@ -45,12 +47,11 @@ export class LoginComponent {
     }else if(socialPlatform == "google"){
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
     } else if (socialPlatform == "linkedin") {
-      socialPlatformProvider = LinkedinLoginProvider.PROVIDER_ID;
+      //socialPlatformProvider = LinkedinLoginProvider.PROVIDER_ID;
     }
     
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log(socialPlatform+" sign in data : " , userData);
         // Now sign-in with userData
         // ...
         let email=userData.email;

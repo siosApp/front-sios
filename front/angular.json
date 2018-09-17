@@ -76,8 +76,11 @@
                             "src/assets/pages/jquery.wizard-init.js",
                             "src/assets/plugins/notifyjs/js/notify.js",
                             "src/assets/plugins/notifications/notify-metro.js",
+                            "src/assets/plugins/bootstrap-inputmask/bootstrap-inputmask.min.js",
+                            "src/assets/plugins/autoNumeric/autoNumeric.js",
                             "src/assets/js/jquery.core.js",
                             "src/assets/js/jquery.app.js"
+                            
                         ]
                     },
                     "configurations": {

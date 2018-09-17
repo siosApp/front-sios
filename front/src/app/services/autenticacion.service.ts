@@ -18,7 +18,18 @@ export class AutenticacionService {
     }
     return false;
   }
-  guardarSesion(auth){
+  isRecordarSesion():boolean{
+    let recordarme=localStorage.getItem("recordar");
+    if(recordarme == 'true'){
+      return true;
+    }
+    else if (recordarme == 'false'){
+      return false;
+    }
+    return 'logout';
+  }
+  guardarSesion(recordarme,auth){
+    localStorage.setItem('recordar',recordarme);
     localStorage.setItem('auth',auth);
   }
   getUsuarioLogueado():Usuario{
@@ -30,6 +41,7 @@ export class AutenticacionService {
     return null;
   }
   cerrarSesion(){
+    localStorage.removeItem('recordar');
     localStorage.removeItem('auth');
   }
   isUsuarioAdmin():boolean{
@@ -44,5 +56,9 @@ export class AutenticacionService {
   enviarMail(email){
     let url=`${URL_API}/usuario/validarMail?mail=${email}`
     return this.http.get(url);
+  }
+  cambiarContrasena(mail,password,codigo){
+    let url=`${URL_API}/usuario/change?mail=${mail}&password=${password}&codigo=${codigo}`;
+    return this.http.post(url,null);
   }
 }
