@@ -70,8 +70,6 @@ export class LocalidadComponent {
     let nuevoNombre = this.form.controls['nombre'].value;
     let provincia = this.form.controls['provincia'].value;
     let departamento = this.form.controls['departamento'].value;
-    console.log("Id depto: ",departamento);
-    
     this.departamentoService.getDepartamentoByNombreAndProvincia(departamento,provincia).subscribe((depto:Departamento)=>{
       if(this.localidadAEditar != null){
         let localidadActualizada : Localidad = new Localidad(this.localidadAEditar.id,nuevoNombre,this.localidadAEditar.fechaBaja,depto);
@@ -122,6 +120,7 @@ export class LocalidadComponent {
     $('#danger-alert').modal('show');
   }
   volver(){
+    this.localidadAEditar=null;
     $('#danger-alert').modal('hide');
   }
   cancelar(){

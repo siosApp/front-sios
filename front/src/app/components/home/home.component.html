@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card-box">
-            <form [formGroup]="form" class="form-horizontal">
+            <form [formGroup]="form" class="form-horizontal" (ngSubmit)="buscarOferentes()">
                 <div class="col-md-6">
                     <h4 class="m-t-0 header-title"><b>Filtro del Rubro </b></h4>
                     <p class="text-muted m-b-30 font-13">
@@ -11,6 +11,7 @@
                         <label class="col-md-3 control-label" for="state-success">Tipo Rubro</label>
                         <div class="col-md-6">
                             <select name="tipoRubro" formControlName="tipoRubro" class="form-control" (change)="getRubrosByTipoRubro()">
+                                <option selected="selected">Seleccione</option>                                
                                 <option *ngFor="let tipo of tiposRubros" [ngValue]="tipo.nombreTipoRubro">{{tipo.nombreTipoRubro}}</option>
                             </select>
                         </div>
@@ -19,6 +20,7 @@
                         <label class="col-md-3 control-label" for="state-success">Rubro</label>
                         <div class="col-md-6">
                             <select name="rubro" formControlName="rubro" class="form-control">
+                                <option selected="selected">Seleccione</option>
                                 <option *ngFor="let rubro of rubros" [ngValue]="rubro.nombreRubro">{{rubro.nombreRubro}}</option>
                             </select>
                         </div>
@@ -30,27 +32,36 @@
                         Seleccione en los siguientes campos los filtros de busqueda que usted desee obtener en las busquedas del sistema
                     </p>
                     <div class="form-group has-success">
-                        <label class="col-2 col-form-label">Provincia</label>
-                        <div class="col-8">
+                        <label class="col-md-3 control-label" for="state-success">Provincia</label>
+                        <div class="col-md-6">
                             <select name="provincia" (change)="getDepartamentosByProvincia()" formControlName="provincia" class="form-control">
+                                <option selected="selected">Seleccione</option>
                                 <option *ngFor="let provincia of provincias" [ngValue]="provincia.nombreProvincia">{{provincia.nombreProvincia}}</option>
                             </select>
                         </div>
                     </div>
-                    <div class="form-group has-success" *ngIf="showLocalidades">
-                        <label class="col-2 col-form-label">Departamento</label>
-                        <div class="col-8">
+                    <div class="form-group has-success" (change)="getLocalidadesByDepartamento()" *ngIf="showDepartamentos">
+                        <label class="col-md-3 control-label" for="state-success">Departamento</label>
+                        <div class="col-md-6">
                             <select name="departamento" formControlName="departamento" class="form-control">
+                                <option selected="selected">Seleccione</option>
                                 <option *ngFor="let departamento of departamentos" [ngValue]="departamento.nombreDepartamento">{{departamento.nombreDepartamento}}</option>
                             </select>
                         </div>
                     </div>
-                    <div class="form-group has-success">
+                    <div class="form-group has-success" *ngIf="showLocalidades">
                         <label class="col-md-3 control-label" for="state-success">Localidad</label>
                         <div class="col-md-6">
                             <select name="localidad" formControlName="localidad" class="form-control">
+                                <option selected="selected">Seleccione</option>
                                 <option *ngFor="let localidad of localidades" [ngValue]="localidad.nombreLocalidad">{{localidad.nombreLocalidad}}</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group has-error" *ngIf="!showLocalidades && showDepartamentos && form.controls['departamento'].value!= 'Seleccione'">
+                        <label class="col-md-3 control-label">Error</label>
+                        <div class="col-md-6">
+                            <p class="alert-danger"> No existen localidades para éste departamento.</p>
                         </div>
                     </div>
                 </div>
@@ -69,118 +80,21 @@
         <div class="card-box">
             <h4 class="m-t-0 header-title"><b>Ultimos usuarios destacados en SIOS</b></h4>
             <p class="text-muted m-b-30 font-13">En esta lista vera los ultimos usuarios destacados en nuestro sistema con la descripcion de lo que ofrece cada unos de ellos.</p>
-
-            <div>
+            <div *ngFor="let oferente of oferentes">
                 <div class="media">
                     <div class="media-left">
                         <a href="#"> <img class="media-object img-circle" alt="64x64" src="src/assets/images/users/avatar-8.jpg" style="width: 64px; height: 64px;"> </a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Seba Ruiz - Desarrollados FrontEnd Angular</h4>
-                        <p>Se realiza todo tipo de diseño web a medida de lo que usted se merece, para que pueda poner a su empresa en lo maximo de la cima.</p>
-                        <p>Soy estudiante de ingenieria de sistemas de informacion y tengo 5 años de experiencia en el medio.</p>
+                        <h4 class="media-heading">oferente.nombre ,oferente.apellido - oferente.rubro[0].nombreRubro</h4>
+                        <p>oferente.rubro[0].descripcion</p>
                     </div>
                     <ul class="pager">
-
                         <li class="next">
                             <a href="#">Mas Info →</a>
                         </li>
                     </ul>
                 </div>
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-9.jpg" style="width: 64px; height: 64px;"> </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Dante Canizo - Experto en Redes de Comunicacion</h4>
-                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                            congue felis in faucibus.</p>
-                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                    </div>
-                    <ul class="pager">
-
-                        <li class="next">
-                            <a href="#">Mas Info →</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-10.jpg" style="width: 64px; height: 64px;"> </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Martin Castronovo - Desarrollador Java Spring</h4>
-                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                            congue felis in faucibus.</p>
-                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-
-
-                    </div>
-                    <ul class="pager">
-
-                        <li class="next">
-                            <a href="#">Mas Info →</a>
-                        </li>
-                    </ul>
-
-                </div>
-
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-8.jpg" style="width: 64px; height: 64px;"> </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">David Roco - Preparo alumnos en Matematicas</h4>
-                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                            congue felis in faucibus.</p>
-                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                    </div>
-                    <ul class="pager">
-
-                        <li class="next">
-                            <a href="#">Mas Info →</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-9.jpg" style="width: 64px; height: 64px;"> </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Nico Gonzalez - Desarrollador C#</h4>
-                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                            congue felis in faucibus.</p>
-                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                    </div>
-                    <ul class="pager">
-
-                        <li class="next">
-                            <a href="#">Mas Info →</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle" alt="64x64" src="~/Content/assets/images/users/avatar-10.jpg" style="width: 64px; height: 64px;"> </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Bottom aligned media</h4>
-                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                            congue felis in faucibus.</p>
-                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-
-
-                    </div>
-                    <ul class="pager">
-
-                        <li class="next">
-                            <a href="#">Mas Info →</a>
-                        </li>
-                    </ul>
-
-                </div>
-
-
             </div>
         </div>
     </div>
