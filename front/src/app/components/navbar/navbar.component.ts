@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styles: []
 })
 export class NavbarComponent {
-
+  
   estaLogueado:boolean=false;
   constructor(private tokenService:AutenticacionService,private router:Router) {
     if(tokenService.isUsuarioLogueado()){
