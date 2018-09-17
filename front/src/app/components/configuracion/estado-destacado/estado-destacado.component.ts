@@ -71,8 +71,15 @@ export class EstadoDestacadoComponent {
     $('#danger-alert').modal('show');
   }
   volver(){
+    this.estadoDestacadooEditar=null;
     $('#danger-alert').modal('hide');
   }
+
+  abrirModal(){
+    this.form.reset();
+    $('#con-close-modal').modal('show');
+  }
+
   confirmarOperacion(){
     if(this.habilitaEstadoDestacado){
       this.service.habilitarEstadoDestacado(this.estadoDestacadooEditar.id).subscribe(()=>{

@@ -37,6 +37,11 @@ export class ProvinciaComponent {
     })
   }
 
+
+  abrirModal(){
+    this.form.reset();
+    $('#con-close-modal').modal('show');
+  }
   guardarProvincia(){
     let nuevoNombre=this.form.controls['nombre'].value;
     console.log("Provincia Editar: ",this.provinciaEditar);

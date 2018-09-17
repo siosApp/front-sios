@@ -143,6 +143,7 @@ export class UsuarioComponent{
     $('#danger-alert').modal('show');
   }
   volver(){
+    this.usuarioAEditar=null;
     $('#danger-alert').modal('hide');
   }
   cancelar(){

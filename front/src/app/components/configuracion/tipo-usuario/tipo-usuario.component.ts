@@ -72,6 +72,7 @@ export class TipoUsuarioComponent{
     $('#danger-alert').modal('show');
   }
   volver(){
+    this.tipoUsuarioAEditar=null;
     $('#danger-alert').modal('hide');
   }
   cancelar(){

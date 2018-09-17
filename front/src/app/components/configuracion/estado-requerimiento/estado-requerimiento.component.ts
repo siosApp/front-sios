@@ -74,7 +74,12 @@ export class EstadoRequerimientoComponent {
     $('#danger-alert').modal('show');
   }
   volver(){
+    this.estadoAEditar=null;
     $('#danger-alert').modal('hide');
+  }
+  abrirModal(){
+    this.form.reset();
+    $('#con-close-modal').modal('show');
   }
   confirmarOperacion(){
     if(this.habilitaEstado){

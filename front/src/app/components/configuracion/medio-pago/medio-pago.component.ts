@@ -36,6 +36,11 @@ export class MedioPagoComponent {
       });
     })
   }
+
+  abrirModal(){
+    this.form.reset();
+    $('#con-close-modal').modal('show');
+  }
   
   guardarMedioPago(){
     
@@ -70,6 +75,7 @@ export class MedioPagoComponent {
     $('#danger-alert').modal('show');
   }
   volver(){
+    this.medioPagoEditar=null;
     $('#danger-alert').modal('hide');
   }
   confirmarOperacion(){
