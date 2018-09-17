@@ -43,7 +43,7 @@
 <div class="row">
     <div class="col-sm-12">
         <form [formGroup]="form" (ngSubmit)="guardarTipoRubro()">
-            <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div id="con-close-modal" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -72,7 +72,7 @@
     </div>
 </div>
 <div id="danger-alert" style="display: none;">
-    <div class="sweet-alert showSweetAlert" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
+    <div class="sweet-alert showSweetAlert" data-backdrop="static" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
         <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
         </div>
         <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
