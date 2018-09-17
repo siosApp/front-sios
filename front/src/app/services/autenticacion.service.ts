@@ -18,7 +18,7 @@ export class AutenticacionService {
     }
     return false;
   }
-  isRecordarSesion():boolean{
+  isRecordarSesion(){
     let recordarme=localStorage.getItem("recordar");
     if(recordarme == 'true'){
       return true;
@@ -32,13 +32,26 @@ export class AutenticacionService {
     localStorage.setItem('recordar',recordarme);
     localStorage.setItem('auth',auth);
   }
-  getUsuarioLogueado():Usuario{
+  getUsuarioLogueado():any{
     let id=localStorage.getItem("auth");
     let usuario:Usuario;
-    this.usuarioService.getUsuarioById(id).subscribe((response:Usuario)=>{
-      return response;
+    console.log("coso",id);
+    
+    this.usuarioService.getUsuarioById(id).subscribe((res:any)=>{
+      return res;
     });
-    return null;
+    
+    // if(id!=null){
+    //   this.usuarioService.getUsuarioById(id).subscribe((response:Usuario)=>{
+    //     console.log(response);
+        
+    //    return response;
+    //   });
+    // }
+    // else {
+    //   return null;
+    // }
+    // //return usuario;
   }
   cerrarSesion(){
     localStorage.removeItem('recordar');
