@@ -36,8 +36,6 @@ export class ProvinciaComponent {
       });
     })
   }
-
-
   
   guardarProvincia(){
     let nuevoNombre=this.form.controls['nombre'].value;
