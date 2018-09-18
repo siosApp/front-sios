@@ -77,6 +77,7 @@ export class EstadoDestacadoComponent {
 
   abrirModal(){
     this.form.reset();
+    this.estadoDestacadooEditar=null;
     $('#con-close-modal').modal('show');
   }
 
