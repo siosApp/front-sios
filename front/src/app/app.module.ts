@@ -25,6 +25,7 @@ import { LocalidadComponent } from './components/configuracion/localidad/localid
 import { ForgotPasswordComponent } from './components/seguridad/forgot-password/forgot-password.component';
 import { RequerimientoComponent } from './components/requerimiento/requerimiento.component';
 import { RecoverPasswordComponent } from './components/seguridad/recover-password/recover-password.component';
+import { TarifaComponent } from './components/configuracion/tarifa/tarifa.component';
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -68,7 +69,8 @@ export function getAuthServiceConfigs() {
     LocalidadComponent,
     ForgotPasswordComponent,
     RequerimientoComponent,
-    RecoverPasswordComponent
+    RecoverPasswordComponent,
+    TarifaComponent
   ],
   imports: [
     BrowserModule,
