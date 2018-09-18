@@ -26,6 +26,7 @@ import { ForgotPasswordComponent } from './components/seguridad/forgot-password/
 import { RequerimientoComponent } from './components/requerimiento/requerimiento.component';
 import { RecoverPasswordComponent } from './components/seguridad/recover-password/recover-password.component';
 import { TarifaComponent } from './components/configuracion/tarifa/tarifa.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -70,7 +71,8 @@ export function getAuthServiceConfigs() {
     ForgotPasswordComponent,
     RequerimientoComponent,
     RecoverPasswordComponent,
-    TarifaComponent
+    TarifaComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
