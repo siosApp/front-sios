@@ -39,6 +39,7 @@ export class MedioPagoComponent {
 
   abrirModal(){
     this.form.reset();
+    this.medioPagoEditar=null;
     $('#con-close-modal').modal('show');
   }
   
