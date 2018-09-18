@@ -22,7 +22,7 @@ import { Tarifa } from '../models/tarifa';
         return this.http.get(url);
       }
       updateTarifa(tarifa:Tarifa){
-        let url=`${URL_API}/tarifa/editarTarifa?idTarifa=${tarifa.id}`;
+        let url=`${URL_API}/tarifa/editarTarifa?idTarifa=${tarifa.id}&montoTarifa=${tarifa.montoTarifa}`;
         return this.http.put(url,null);
       }
 
