@@ -79,6 +79,7 @@ export class EstadoRequerimientoComponent {
   }
   abrirModal(){
     this.form.reset();
+    this.estadoAEditar=null;
     $('#con-close-modal').modal('show');
   }
   confirmarOperacion(){
