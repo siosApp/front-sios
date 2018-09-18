@@ -18,6 +18,7 @@ import { ForgotPasswordComponent } from './components/seguridad/forgot-password/
 import { RequerimientoComponent } from './components/requerimiento/requerimiento.component';
 import { RecoverPasswordComponent } from './components/seguridad/recover-password/recover-password.component';
 import { TarifaComponent } from './components/configuracion/tarifa/tarifa.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 
 
@@ -36,17 +37,18 @@ const rutas_hijas: Routes =[
     { path: 'localidad', component: LocalidadComponent },
     { path: 'publicarRequerimiento', component: RequerimientoComponent },
     { path: 'tarifa', component: TarifaComponent },
+    { path: 'perfil', component: PerfilComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
 const routes: Routes = [
-    { path: 'configuracion', component: LayoutComponent, children: rutas_hijas },
+    { path: 'sios', component: LayoutComponent, children: rutas_hijas },
     { path: 'registracion', component: RegistracionComponent},
     { path: 'newPassword/:codigo', component: RecoverPasswordComponent},
     { path: 'forgotPassword', component: ForgotPasswordComponent},
     { path: 'registracion/:user/:email', component: RegistracionComponent},
     { path: 'login', component: LoginComponent },
-    { path: '**', pathMatch: 'full', redirectTo: 'configuracion' },
+    { path: '**', pathMatch: 'full', redirectTo: 'sios' },
 ];
 
 export const APP_ROUTING = RouterModule.forRoot(routes);
