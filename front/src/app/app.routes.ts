@@ -17,6 +17,7 @@ import { LocalidadComponent } from './components/configuracion/localidad/localid
 import { ForgotPasswordComponent } from './components/seguridad/forgot-password/forgot-password.component';
 import { RequerimientoComponent } from './components/requerimiento/requerimiento.component';
 import { RecoverPasswordComponent } from './components/seguridad/recover-password/recover-password.component';
+import { TarifaComponent } from './components/configuracion/tarifa/tarifa.component';
 
 
 
@@ -34,6 +35,7 @@ const rutas_hijas: Routes =[
     { path: 'departamento', component: DepartamentoComponent },
     { path: 'localidad', component: LocalidadComponent },
     { path: 'publicarRequerimiento', component: RequerimientoComponent },
+    { path: 'tarifa', component: TarifaComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
