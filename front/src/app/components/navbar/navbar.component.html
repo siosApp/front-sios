@@ -45,7 +45,7 @@
                     <li class="has-submenu" routerLinkActive="active">
                         <a href="#" [routerLink]="['home']"><i class="md md-shopping-cart"></i>Home</a>
                     </li>
-                    <li class="has-submenu" routerLinkActive="active">
+                    <li class="has-submenu" routerLinkActive="active" *ngIf="esAdministrador">
                         <a href="#"><i class="fa fa-cog"></i>Configuración</a>
                         <ul class="submenu megamenu">
                             <li>
@@ -67,12 +67,12 @@
                         </ul>
                     </li>
                     <li class="has-submenu" routerLinkActive="active">
-                        
+
                         <a *ngIf="estaLogueado" href="#" [routerLink]="['publicarRequerimiento']"><i class="fa fa-object-group"></i>Publicar Requerimiento</a>
                         <a *ngIf="!estaLogueado" href="#" [routerLink]="['/login']"><i class="fa fa-object-group"></i>Publicar Requerimiento</a>
                     </li>
                     <li *ngIf="estaLogueado" class="has-submenu pull-right">
-                        <a href="#" (click)="cerrarSesion()"><i class="glyphicon glyphicon-off"></i>Cerrar sesión</a>
+                        <a href="#" (click)="cerrarSesion()" title="Cerrar Sesion"><i class="glyphicon glyphicon-off"></i>{{this.username}}</a>
                     </li>
                     <li *ngIf="!estaLogueado" class="has-submenu pull-right">
                         <a href="#" [routerLink]="['/login']"><i class="glyphicon glyphicon-user"></i>Iniciar sesión</a>

@@ -3,6 +3,7 @@ import { Usuario } from '../models/usuario';
 import { UsuarioService } from './usuario.service';
 import { URL_API } from '../utils/params';
 import { HttpClient } from '@angular/common/http';
+import { log } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -57,14 +58,18 @@ export class AutenticacionService {
     localStorage.removeItem('recordar');
     localStorage.removeItem('auth');
   }
-  isUsuarioAdmin():boolean{
+  isUsuarioAdmin(){
     let id=localStorage.getItem("auth");
     this.usuarioService.getUsuarioById(id).subscribe((response:Usuario)=>{
-      if(response.tipoUsuario == "Administrador"){
+      console.log("Usuario: ",response.tipoUsuario);
+      let tipoUsuario =response.tipoUsuario;
+      if(tipoUsuario === "Administrador"){
         return true;
       }
+      else{
+        return false;
+      }
     })
-    return false;
   }
   enviarMail(email){
     let url=`${URL_API}/usuario/validarMail?mail=${email}`
