@@ -14,8 +14,7 @@ export class RecoverPasswordComponent  {
 
   form:FormGroup;
   passwordFormGroup:FormGroup;
-  codigo:string
-  constructor(private router:Router,private fb:FormBuilder,private activatedRouter:ActivatedRoute,private authService:AutenticacionService) {
+  constructor(private router:Router,private fb:FormBuilder,private authService:AutenticacionService) {
     this.passwordFormGroup=fb.group({
       password: ['',Validators.required],
       confirmacion: ['',Validators.required],
@@ -27,11 +26,11 @@ export class RecoverPasswordComponent  {
       'codigo': new FormControl('',Validators.required),
       'passwordFormGroup': this.passwordFormGroup
     })
-    activatedRouter.params.subscribe((parametros:any)=>{
-      this.form.patchValue({
-        codigo: parametros['codigo']
-      })
-    })
+    // activatedRouter.params.subscribe((parametros:any)=>{
+    //   this.form.patchValue({
+    //     codigo: parametros['codigo']
+    //   })
+    // })
     
    }
    cambiarContrasena(){

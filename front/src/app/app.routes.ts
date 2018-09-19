@@ -44,7 +44,7 @@ const rutas_hijas: Routes =[
 const routes: Routes = [
     { path: 'sios', component: LayoutComponent, children: rutas_hijas },
     { path: 'registracion', component: RegistracionComponent},
-    { path: 'newPassword/:codigo', component: RecoverPasswordComponent},
+    { path: 'newPassword', component: RecoverPasswordComponent},
     { path: 'forgotPassword', component: ForgotPasswordComponent},
     { path: 'registracion/:user/:email', component: RegistracionComponent},
     { path: 'login', component: LoginComponent },
