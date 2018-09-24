@@ -1,152 +1,241 @@
 <div class="row">
-            <div class="col-md-4 col-lg-3">
-                <div class="profile-detail card-box">
-                    <div>
-                        <img src="/assets/images/users/avatar-2.jpg" class="img-circle" alt="profile-image">
-
-                        <ul class="list-inline status-list m-t-20">
-                            <li>
-                                <h3 class="text-primary m-b-5">456</h3>
-                                <p class="text-muted">Trabajos Realizador</p>
-                            </li>
-
-                            <li>
-                                <h3 class="text-success m-b-5">20</h3>
-                                <p class="text-muted">En curso</p>
-                            </li>
-                        </ul>
-
-                        <button type="button" class="btn btn-primary btn-custom btn-rounded waves-effect waves-light">Mas Info</button>
-
-                        <hr>
-                        <h4 class="text-uppercase font-600">Sobre Mi</h4>
-                        <p class="text-muted font-13 m-b-30">
-                            Hola soy Seba Ruiz, soy desarrollador FrontEnd Angular con 5 años de experiencia. Te aseguro que no te vas a arrepentir
-                        </p>
-
-                        <div class="text-left">
-                            <p class="text-muted font-13"><strong>Nombre :</strong> <span class="m-l-15">Seba Ruiz</span></p>
-
-                            <p class="text-muted font-13"><strong>Mobil :</strong><span class="m-l-15">(123) 123 1234</span></p>
-
-                            <p class="text-muted font-13"><strong>Email :</strong> <span class="m-l-15">seba.lruiz@gmail.com</span></p>
-
-                            <p class="text-muted font-13"><strong>Localizacion :</strong> <span class="m-l-15">Mendoza</span></p>
-
-                        </div>
-
-
-                       
-                    </div>
-
-                </div>
-
-                <div class="card-box">
-                    <h4 class="m-t-0 m-b-20 header-title"><b>Usuarios a los que trabajaste <span class="text-muted">(154)</span></b></h4>
-
-                    <div class="friend-list">
-                        <a href="#">
-                            <img src="/assets/images/users/avatar-1.jpg" class="img-circle thumb-md" alt="friend">
-                        </a>
-
-                        <a href="#">
-                            <img src="/assets/images/users/avatar-2.jpg" class="img-circle thumb-md" alt="friend">
-                        </a>
-
-                        <a href="#">
-                            <img src="/assets/images/users/avatar-3.jpg" class="img-circle thumb-md" alt="friend">
-                        </a>
-
-                        <a href="#">
-                            <img src="/assets/images/users/avatar-4.jpg" class="img-circle thumb-md" alt="friend">
-                        </a>
-
-                        <a href="#">
-                            <img src="/assets/images/users/avatar-5.jpg" class="img-circle thumb-md" alt="friend">
-                        </a>
-
-                        <a href="#">
-                            <img src="/assets/images/users/avatar-6.jpg" class="img-circle thumb-md" alt="friend">
-                        </a>
-
-                        <a href="#">
-                            <img src="/assets/images/users/avatar-7.jpg" class="img-circle thumb-md" alt="friend">
-                        </a>
-
-                        <a href="#" class="text-center">
-                            <span class="extra-number">+89</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-			<div class="row">
-			<div class="col-sm-8">
-				<div class="card-box">
-					<h4 class="m-t-0 header-title"><b>Mi perfil</b></h4>
-					<p class="text-muted m-b-30 font-13">
-						Complete su perfil rellenando todos los casilleros del siguiente formulario
-					</p>
-					<div class="row">
-						<div class="col-md-10">
-							<form [formGroup]="form" class="form-horizontal" role="form">
-								<div class="form-group">
-									<label class="col-md-2 control-label" for="state-success">Nombre</label>
-									<div class="col-md-10">
-										<input type="text" id="state-success" name="state-success" class="form-control" placeholder="Ingrese su nombre">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-2 control-label">Apellido</label>
-									<div class="col-md-10">
-										<input type="text" class="form-control" placeholder="Ingrese su apellido">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-2 control-label" for="example-email">Email</label>
-									<div class="col-md-10">
-										<input type="email" id="example-email" name="example-email" class="form-control" placeholder="Ingrese su mail">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-2 control-label" for="example-email">Nombre de usuario</label>
-									<div class="col-md-10">
-										<input type="text" id="example-email" name="example-email" class="form-control" placeholder="Ingrese su nombre de usuario">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-2 control-label" for="example-email">Fecha de Nacimiento</label>
-									<div class="col-md-10">
-										<input type="date" id="example-email" name="example-email" class="form-control">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-2 control-label">Sexo</label>
-									<div class="col-sm-10">
-										<select class="form-control">
-											<option>Hombre</option>
-											<option>Mujer</option>
-											<option>Indefinido</option>
-										</select>
-										
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-2 control-label">Breve descripcion</label>
-									<div class="col-md-10">
-										<textarea class="form-control" rows="5"></textarea>
-									</div>
-								</div>
-								
-
-
-							</form>
-						</div>
-
-						
-					</div>
+	<div class="col-md-4 col-lg-3">
+		<div class="profile-detail card-box">
+			<div>
+				<img src="/assets/images/users/avatar-2.jpg" class="img-circle" alt="profile-image">
+				<br>
+				<div class="fileupload btn btn-instagram waves-effect waves-light">
+					<span><i class="fa fa-instagram"></i></span>
+					<input type="file" class="upload">
 				</div>
+
+				<ul class="list-inline status-list m-t-20">
+					<li>
+						<h3 class="text-primary m-b-5">456</h3>
+						<p class="text-muted">Trabajos Realizador</p>
+					</li>
+
+					<li>
+						<h3 class="text-success m-b-5">20</h3>
+						<p class="text-muted">En curso</p>
+					</li>
+				</ul>
+
+				<button type="button" class="btn btn-primary btn-custom btn-rounded waves-effect waves-light">Ofrece tus servicios</button>
+
+				<hr>
 			</div>
 		</div>
 
-            
+		
+	</div>
+	<div class="row">
+	<div class="col-sm-8">
+		<div class="card-box">
+			<h4 class="m-t-0 header-title"><b>Mi perfil</b></h4>
+			<p class="text-muted m-b-30 font-13">
+				Complete su perfil rellenando todos los casilleros del siguiente formulario
+			</p>
+			<div class="row">
+				<div class="col-md-10">
+					<form [formGroup]="form" (ngSubmit)="guardarPerfil()" class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="state-success">Nombre</label>
+							<div class="col-md-10">
+								<input type="text"  formControlName="nombre" class="form-control" placeholder="Ingrese su nombre">
+								<p style="color: red" *ngIf="form.get('nombre').errors?.required && form.get('nombre').touched">Campo obligatorio</p>
+							</div>
+							
+						</div>
+						
+						<div class="form-group">
+							<label class="col-md-2 control-label">Apellido</label>
+							<div class="col-md-10">
+								<input type="text"  formControlName="apellido" class="form-control" placeholder="Ingrese su apellido">
+								<p style="color: red" *ngIf="form.get('apellido').errors?.required && form.get('apellido').touched">Campo obligatorio</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="example-email">Email</label>
+							<div class="col-md-10">
+								<input type="email"  formControlName="mail"  class="form-control" placeholder="Ingrese su mail">
+								<p style="color: red" *ngIf="form.get('mail').errors?.required && form.get('mail').touched">Campo obligatorio</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="example-email">Nombre de usuario</label>
+							<div class="col-md-10">
+								<input type="text"  formControlName="username" disabled class="form-control" placeholder="Ingrese su nombre de usuario">
+								<p style="color: red" *ngIf="form.get('username').errors?.required && form.get('username').touched">Campo obligatorio</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="example-email">Fecha de Nacimiento</label>
+							<div class="col-md-10">
+								<input type="date" formControlName="fechaNacimiento" class="form-control">
+								<p style="color: red" *ngIf="form.get('fechaNacimiento').errors?.required && form.get('fechaNacimiento').touched">Campo obligatorio</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Sexo</label>
+							<div class="col-sm-10">
+								<select class="form-control" formControlName="sexo">
+									<option>Hombre</option>
+									<option>Mujer</option>
+									<option>Indefinido</option>
+								</select>
+								<p style="color: red" *ngIf="form.get('sexo').errors?.required && form.get('sexo').touched">Campo obligatorio</p>
+							</div>
+						</div>
+						
+						<div formGroupName="passwordFormGroup">
+							<div class="form-group">
+								
+								<label class="col-md-2 control-label" for="example-email">Password</label>	
+								<div class="col-md-10">
+									<input class="form-control" type="password" formControlName="password" placeholder="Password">
+									<p style="color: red" *ngIf="passwordFormGroup.get('password').errors?.required && passwordFormGroup.get('password').touched">Campo obligatorio</p>
+								</div>
+							</div>
+
+							<div class="form-group">
+								
+								<label class="col-md-2 control-label" for="example-email">Reingrese</label>	
+								<div class="col-md-10">
+									<input class="form-control" type="password" formControlName="confirmacion" placeholder="Reingrese Password">
+									<p style="color: red" *ngIf="passwordFormGroup.get('confirmacion').errors?.required && passwordFormGroup.get('confirmacion').touched">Campo obligatorio</p>
+									<p style="color: red" *ngIf="passwordFormGroup.errors?.doesMatchPassword">Las contraseñas no coinciden.</p>
+								</div>
+							</div>
+						</div>
+						
+						
+						<h4 class="m-t-0 header-title"><b>Domicilio</b></h4>
+						<p class="text-muted m-b-30 font-13">
+							Complete su domicilio para asegurar que lo encuentren rapidamente.
+						</p>
+						
+
+						<div formGroupName="domicilioForm">
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="example-email">Calle</label>
+							<div class="col-md-10">
+								<input type="text" formControlName="domicilioCalle" class="form-control" placeholder="Ingrese calle o barrio">
+								<p style="color: red" *ngIf="form.get('domicilioCalle').errors?.required && form.get('domicilioCalle').touched">Campo obligatorio</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="example-email">Numero</label>
+							<div class="col-md-10">
+								<input type="number" formControlName="domicilioNumero" class="form-control" placeholder="Ingrese numero">
+								<p style="color: red" *ngIf="form.get('domicilioNumero').errors?.required && form.get('domicilioNumero').touched">Campo obligatorio</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="example-email">Piso</label>
+							<div class="col-md-10">
+								<input type="number" formControlName="domicilioPiso" class="form-control" placeholder="Ingrese piso">
+								<p style="color: red" *ngIf="form.get('domicilioPiso').errors?.required && form.get('domicilioPiso').touched">Campo obligatorio</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="example-email">Cod Postal</label>
+							<div class="col-md-10">
+								<input type="number" formControlName="codPostal" class="form-control" placeholder="Ingrese codigo postal">
+								<p style="color: red" *ngIf="form.get('codPostal').errors?.required && form.get('codPostal').touched">Campo obligatorio</p>
+							</div>
+						</div>
+					</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="state-success">Provincia</label>
+							<div class="col-md-6">
+								<select name="provincia" (change)="getDepartamentosByProvincia()" formControlName="provincia" class="form-control">
+									<option value="" disabled>Seleccione</option>
+									<option *ngFor="let provincia of provincias" [ngValue]="provincia.nombreProvincia">{{provincia.nombreProvincia}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group" (change)="getLocalidadesByDepartamento()" *ngIf="showDepartamentos">
+							<label class="col-md-2 control-label" for="state-success">Departamento</label>
+							<div class="col-md-6">
+								<select name="departamento" formControlName="departamento" class="form-control">
+									<option value="" disabled>Seleccione</option>
+									<option *ngFor="let departamento of departamentos" [ngValue]="departamento.nombreDepartamento">{{departamento.nombreDepartamento}}</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group" *ngIf="showLocalidades">
+							<label class="col-md-2 control-label" for="state-success">Localidad</label>
+							<div class="col-md-6">
+								<select name="localidad" formControlName="localidad" class="form-control">
+									<option value="" disabled>Seleccione</option>
+									<option *ngFor="let localidad of localidades" [ngValue]="localidad.nombreLocalidad">{{localidad.nombreLocalidad}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group has-error" *ngIf="!showLocalidades && showDepartamentos && form.controls['departamento'].value != 'Seleccione'">
+							<label class="col-md-3 control-label">Error</label>
+							<div class="col-md-6">
+								<p class="alert-danger"> No existen localidades para éste departamento.</p>
+							</div>
+						</div>
+						<div class="form-group pull-right" >
+							<label class="col-md-3 control-label"></label>
+							<div class="col-md-8">
+							  <input  (click)="openAlert()" class="btn btn-primary" value="Guardar">
+							  
+							</div>
+						  </div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+</div>
+
+
+<form [formGroup]="form" class="well" (ngSubmit)="guardarPerfil()">
+<div id="sa-warningt" style="display: none;">
+<div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
+	<div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
+	</div>
+	<div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+	<div class="icon info" style="display: none;"></div>
+	<div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
+		<div class="placeholder"></div>
+		<div class="fix"></div>
+	</div>
+	<div class="icon custom" style="display: none;"></div>
+	<h2>Buen Trabajo!</h2>
+	<p class="lead text-muted" style="display: block;">{{mensaje}}</p>
+	<p>
+		<button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancel</button>
+		<button (click)="openAlert01()" type="submit" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
+	</p>
+</div>
+</div>
+
+</form>
+
+<div id="sa-warningt01" style="display: none;">
+<div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
+<div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
+</div>
+<div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+<div class="icon info" style="display: none;"></div>
+<div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
+	<div class="placeholder"></div>
+	<div class="fix"></div>
+</div>
+<div class="icon custom" style="display: none;"></div>
+<h2>Éxito!</h2>
+<p class="lead text-muted" style="display: block;">{{mensaje}}</p>
+<p>
+	<button (click)="volver01()" [routerLink]="['/home']" class="confirm btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Ok</button>
+	
+</p>
+</div>
+</div> 
