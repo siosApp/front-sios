@@ -27,6 +27,14 @@ import { RequerimientoComponent } from './components/requerimiento/requerimiento
 import { RecoverPasswordComponent } from './components/seguridad/recover-password/recover-password.component';
 import { TarifaComponent } from './components/configuracion/tarifa/tarifa.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+//Firebase 
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule,AngularFireStorage,AngularFireUploadTask } from 'angularfire2/storage';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+import { ProbarFirebaseComponent } from './components/testing/probar-firebase/probar-firebase.component';
+import { PruebaComponent } from './components/testing/prueba.component';
+import { UploadComponent } from './components/testing/probar-firebase/upload.component';
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -72,14 +80,21 @@ export function getAuthServiceConfigs() {
     RequerimientoComponent,
     RecoverPasswordComponent,
     TarifaComponent,
-    PerfilComponent
+    PerfilComponent,
+    ProbarFirebaseComponent,
+    PruebaComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule, 
     HttpClientModule,
     APP_ROUTING,
-    SocialLoginModule
+    SocialLoginModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    // To initialize AngularFire
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
     {
