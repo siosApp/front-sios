@@ -10,7 +10,7 @@ import { DepartamentoService } from '../../services/departamento.service';
 import { Departamento } from '../../models/departamento';
 import { LocalidadService } from '../../services/localidad.service';
 import { Localidad } from '../../models/localidad';
-import { mensajePerfil } from '../../utils/params';
+import { mensajePerfil, mensajeGuardar } from '../../utils/params';
 import { Domicilio } from '../../models/domicilio';
 
 declare var $:any;
@@ -46,12 +46,6 @@ export class PerfilComponent {
   fechaUltimoIngreso: Date;
   oferente:boolean;
 
-
-
-
-
-
-  
   constructor(private service:UsuarioService, private fb:FormBuilder,
               private provinciaService:ProvinciaService,
               private departamentoService:DepartamentoService,
@@ -69,7 +63,6 @@ export class PerfilComponent {
         domicilioNumero: ['',Validators.required],
         domicilioPiso: ['',Validators.required],
         codPostal: ['',Validators.required],
-
 
       });
 
@@ -196,9 +189,6 @@ export class PerfilComponent {
     let domicilio;
     
 
-   
-  console.log(localidad.id);
-
     if (this.usuarioAEditar.domicilio!=null){
       domicilio = new Domicilio(this.usuarioAEditar.domicilio.id, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,null,null,null);
     }else{
@@ -211,7 +201,7 @@ export class PerfilComponent {
     let idusuario = localStorage.getItem("auth"); 
 
     let usuarioActualizado = new Usuario(idusuario,fechaBaja,fechaNacimiento ,
-      fechaUltimoIngreso,mail,nombre,oferente,password,sexo, tipousuario, username ,null ,apellido, domicilio
+      fechaUltimoIngreso,mail,nombre,oferente,password,sexo, tipousuario, username ,this.usuarioAEditar.usuarioRubros ,apellido, domicilio
                                   );      
       
     console.log(usuarioActualizado);
@@ -232,10 +222,18 @@ export class PerfilComponent {
     this.mensaje = mensajePerfil;
     $('#sa-warningt01').modal('show');
   }
+  openAlert02(){
+    this.mensaje = mensajeGuardar;
+    $('#danger-alert').modal('show');
+  }
   volver(){
     $('#sa-warningt').modal('hide');
   }
   volver01(){
     $('#sa-warningt01').modal('hide');
+    $('#sa-warningt').modal('hide');
+  }
+  volver02(){
+    $('#danger-alert').modal('hide');
   }
 }

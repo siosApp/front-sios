@@ -20,8 +20,8 @@
 						<p class="text-muted">En curso</p>
 					</li>
 				</ul>
-
-				<button type="button" class="btn btn-primary btn-custom btn-rounded waves-effect waves-light">Ofrece tus servicios</button>
+				
+				<button type="button" (click)="openAlert02()" class="btn btn-primary btn-custom btn-rounded waves-effect waves-light">Ofrece tus servicios</button>
 
 				<hr>
 			</div>
@@ -221,21 +221,44 @@
 </form>
 
 <div id="sa-warningt01" style="display: none;">
-<div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
-<div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
+	<div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true"
+	 data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
+		<div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
+		</div>
+		<div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+		<div class="icon info" style="display: none;"></div>
+		<div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span
+			 class="line long animateSuccessLong"></span>
+			<div class="placeholder"></div>
+			<div class="fix"></div>
+		</div>
+		<div class="icon custom" style="display: none;"></div>
+		<h2>Éxito!</h2>
+		<p class="lead text-muted" style="display: block;">{{mensaje}}</p>
+		<p>
+			<button (click)="volver01()" class="confirm btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Ok</button>
+
+		</p>
+	</div>
 </div>
-<div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
-<div class="icon info" style="display: none;"></div>
-<div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
-	<div class="placeholder"></div>
-	<div class="fix"></div>
+
+
+<div id="danger-alert" style="display: none;">
+    <div class="sweet-alert showSweetAlert" data-backdrop="static" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
+        <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
+        </div>
+        <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
+        </div>
+        <div class="icon custom" style="display: none;"></div>
+        <h2>Estás seguro?</h2>
+        <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
+        <p>
+            <button (click)="volver02()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
+            <button (click)="volver02()" [routerLink]="['/sios/agregarRubro']"  class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Ok!!</button>
+        </p>
+    </div>
 </div>
-<div class="icon custom" style="display: none;"></div>
-<h2>Éxito!</h2>
-<p class="lead text-muted" style="display: block;">{{mensaje}}</p>
-<p>
-	<button (click)="volver01()" [routerLink]="['/home']" class="confirm btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Ok</button>
-	
-</p>
-</div>
-</div> 
