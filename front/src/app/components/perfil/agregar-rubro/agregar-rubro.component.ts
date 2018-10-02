@@ -7,6 +7,9 @@ import { Rubro } from '../../../models/rubro';
 import { Usuario } from '../../../models/usuario';
 import { UsuarioService } from '../../../services/usuario.service';
 import { UsuarioRubro } from '../../../models/usuario-rubro';
+import { mensajeRubro} from '../../../utils/params';
+
+declare var $:any;
 
 @Component({
   selector: 'app-agregar-rubro',
@@ -22,7 +25,7 @@ export class AgregarRubroComponent implements OnInit {
   showRubros=false;
   usuarioAEditar:Usuario;
   rubrosDeUsuario:UsuarioRubro[];
-
+  mensaje:string;
 
   constructor(private tipoRubroService:TipoRubroService,private rubroService:RubroService, private fb:FormBuilder, private service:UsuarioService) { 
 
@@ -42,8 +45,7 @@ export class AgregarRubroComponent implements OnInit {
     this.service.getUsuarioById(idusuario).subscribe( (response:any) =>{
       this.usuarioAEditar=response;
       this.rubrosDeUsuario = this.usuarioAEditar.usuarioRubros;
-
-
+      
     });
 
     this.setValueDefault(); 
@@ -71,6 +73,22 @@ export class AgregarRubroComponent implements OnInit {
       })
     }
     
+  }
+
+
+  openAlert(){
+    this.mensaje = mensajeRubro;
+    $('#sa-warningt').modal('show');
+  }
+  abrirModal(){
+    $('#custom-width-modal').modal('show');
+  }
+  abrirExperiencia(){
+    $('#custom-width-modal01').modal('show');
+  }
+
+  volver(){
+    $('#sa-warningt').modal('hide');
   }
 
 guardarTipoRubro(){

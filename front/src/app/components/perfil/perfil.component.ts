@@ -201,10 +201,10 @@ export class PerfilComponent {
     let idusuario = localStorage.getItem("auth"); 
 
     let usuarioActualizado = new Usuario(idusuario,fechaBaja,fechaNacimiento ,
-      fechaUltimoIngreso,mail,nombre,oferente,password,sexo, tipousuario, username ,this.usuarioAEditar.usuarioRubros ,apellido, domicilio
+      fechaUltimoIngreso,mail,nombre,oferente,password,sexo, tipousuario, username ,null ,apellido, domicilio
                                   );      
       
-    console.log(usuarioActualizado);
+   // console.log(usuarioActualizado);
 
 
       this.service.updateUsuario(usuarioActualizado).subscribe(response=>{
