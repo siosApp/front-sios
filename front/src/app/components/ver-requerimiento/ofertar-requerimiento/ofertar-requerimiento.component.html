@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-12">
-        <h4 class="page-header">Oferta sobre el requerimiento del usuario</h4>
+        <h4 class="page-header"><li><a href="#">Seba Ruiz</a> realizo un pedido de requerimiento que se detalla a continuacion</li> </h4>
     </div>
 </div>
 
@@ -42,6 +42,7 @@
         </div>
         
     </div>
+    
     <div class="col-lg-8">
         <form [formGroup]="form" class="well">
             <span class="input-icon icon-right">
@@ -49,16 +50,56 @@
                           placeholder="Descripcion de tu oferta"></textarea>
             </span>
             <div class="p-t-10 pull-right">
-                <a class="btn btn-sm btn-primary waves-effect waves-light">Enviar</a>
+                <a  (click)="openAlert()" class="btn btn-sm btn-primary waves-effect waves-light">Enviar</a>
             </div>
             <ul class="nav nav-pills profile-pills m-t-10">
-                <!-- <li>
-                    <a href="#"><i class="fa fa-user"></i></a>
-                </li> -->
-               
+                             
             </ul>
     
         </form>
     </div>
+    <div class="col-lg-4">
+        <div class="panel panel-color panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Archivo Adjunto</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    Aqui encontraras si <b>Seba Ruiz</b> a adjuntado algun archivo con mas detalles de su requerimiento:
+                    <br>
+                    <li><a href="#">Archivo.jpg</a></li>
+                </p>
+            </div>
+        </div>
+        
+    </div>
     
 </div>
+
+<form [formGroup]="form" class="well" (ngSubmit)="guardarOferta()">
+    <div id="sa-warningt" style="display: none;">
+        <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
+            <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
+            </div>
+            <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+            <div class="icon info" style="display: none;"></div>
+            <div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
+                <div class="placeholder"></div>
+                <div class="fix"></div>
+            </div>
+            <div class="icon custom" style="display: none;"></div>
+            <h2>Buen Trabajo!</h2>
+            <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
+            <p>
+                <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancel</button>
+                <button type="submit" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
+            </p>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+

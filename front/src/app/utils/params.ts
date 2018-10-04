@@ -6,3 +6,4 @@ export const mensajeGuardadoRequerimiento="Se publico su requerimiento!";
 export const mensajePerfil ="Estas a punto de guardar tus datos";
 export const mensajeGuardar ="No has guardado tus datos, deseas pasar al la pantalla de rubros?";
 export const mensajeRubro ="Deseas agregar este rubro a tu perfil?";
+export const mensajeOferta ="Desea enviar su oferta? Recuerde que su oferta es anonima!";
