@@ -89,11 +89,9 @@
                         <h4 class="media-heading">oferente.nombre ,oferente.apellido - oferente.rubro[0].nombreRubro</h4>
                         <p>oferente.rubro[0].descripcion</p>
                     </div>
-                    <ul class="pager">
-                        <li class="next">
-                            <a href="#">Mas Info →</a>
-                        </li>
-                    </ul>
+                    <button [routerLink]="['/sios/solicitarTrabajo',oferente.idUsuario]" type="button" class="btn btn-default btn-rounded pull-right waves-effect waves-light">Solicitar Trabajo
+                        <span class="btn-label btn-label-right"><i class="fa fa-arrow-right"></i></span>
+                    </button>
                 </div>
             </div>
         </div>

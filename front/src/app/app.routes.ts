@@ -19,11 +19,12 @@ import { RequerimientoComponent } from './components/requerimiento/requerimiento
 import { RecoverPasswordComponent } from './components/seguridad/recover-password/recover-password.component';
 import { TarifaComponent } from './components/configuracion/tarifa/tarifa.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
-
+import { SolicitarTrabajoComponent } from './components/home/solicitar-trabajo.component';
 
 
 const rutas_hijas: Routes =[
     { path: 'home', component: HomeComponent },
+    { path: 'solicitarTrabajo/:id', component: SolicitarTrabajoComponent },
     { path: 'estadoSolicitud', component: EstadoSolicitudComponent },
     { path: 'tipoUsuario', component: TipoUsuarioComponent },
     { path: 'tipoRubro', component: TipoRubroComponent },

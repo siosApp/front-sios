@@ -32,9 +32,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule,AngularFireStorage,AngularFireUploadTask } from 'angularfire2/storage';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
-import { ProbarFirebaseComponent } from './components/testing/probar-firebase/probar-firebase.component';
-import { PruebaComponent } from './components/testing/prueba.component';
-import { UploadComponent } from './components/testing/probar-firebase/upload.component';
+import { SolicitarTrabajoComponent } from './components/home/solicitar-trabajo.component';
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -81,9 +79,7 @@ export function getAuthServiceConfigs() {
     RecoverPasswordComponent,
     TarifaComponent,
     PerfilComponent,
-    ProbarFirebaseComponent,
-    PruebaComponent,
-    UploadComponent
+    SolicitarTrabajoComponent
   ],
   imports: [
     BrowserModule,
