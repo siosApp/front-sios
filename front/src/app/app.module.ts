@@ -28,6 +28,8 @@ import { RecoverPasswordComponent } from './components/seguridad/recover-passwor
 import { TarifaComponent } from './components/configuracion/tarifa/tarifa.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { AgregarRubroComponent } from './components/perfil/agregar-rubro/agregar-rubro.component';
+import { VerRequerimientoComponent } from './components/ver-requerimiento/ver-requerimiento.component';
+import { OfertarRequerimientoComponent } from './components/ver-requerimiento/ofertar-requerimiento/ofertar-requerimiento.component';
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -74,7 +76,9 @@ export function getAuthServiceConfigs() {
     RecoverPasswordComponent,
     TarifaComponent,
     PerfilComponent,
-    AgregarRubroComponent
+    AgregarRubroComponent,
+    VerRequerimientoComponent,
+    OfertarRequerimientoComponent
   ],
   imports: [
     BrowserModule,

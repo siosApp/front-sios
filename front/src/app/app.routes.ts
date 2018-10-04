@@ -20,6 +20,8 @@ import { RecoverPasswordComponent } from './components/seguridad/recover-passwor
 import { TarifaComponent } from './components/configuracion/tarifa/tarifa.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { AgregarRubroComponent } from './components/perfil/agregar-rubro/agregar-rubro.component';
+import { VerRequerimientoComponent } from './components/ver-requerimiento/ver-requerimiento.component';
+import { OfertarRequerimientoComponent } from './components/ver-requerimiento/ofertar-requerimiento/ofertar-requerimiento.component';
 
 
 
@@ -40,6 +42,8 @@ const rutas_hijas: Routes =[
     { path: 'tarifa', component: TarifaComponent },
     { path: 'perfil', component: PerfilComponent },
     { path: 'agregarRubro', component: AgregarRubroComponent },
+    { path: 'verRequerimiento', component: VerRequerimientoComponent },
+    { path: 'ofertarRequerimiento', component: OfertarRequerimientoComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 

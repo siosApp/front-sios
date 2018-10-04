@@ -10,9 +10,9 @@
             <!-- End Logo container-->
 
 
-            <div class="menu-extras">
+            <div *ngIf="estaLogueado" class="menu-extras">
 
-                <ul class="nav navbar-nav navbar-right pull-right">
+                <ul  class="nav navbar-nav navbar-right pull-right">
                     <li class="dropdown navbar-c-items">
                         <a href="#" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-cog"></i></a>
                         <ul class="dropdown-menu">
@@ -67,10 +67,29 @@
                         </ul>
                     </li>
                     <li class="has-submenu" routerLinkActive="active">
+                        <a href="#"><i class="fa fa-object-group"></i>Requerimiento</a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li>
+                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['publicarRequerimiento']">Publicar Requerimiento</a>
+                                        <a *ngIf="!estaLogueado" href="#" [routerLink]="['/login']">Publicar Requerimiento</a>
+                                    </li>
+                                    <li><a [routerLink]="['verRequerimiento']">Ver Requerimientos</a></li>
+                                   
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+
+                    <!-- <li class="has-submenu" routerLinkActive="active">
 
                         <a *ngIf="estaLogueado" href="#" [routerLink]="['publicarRequerimiento']"><i class="fa fa-object-group"></i>Publicar Requerimiento</a>
                         <a *ngIf="!estaLogueado" href="#" [routerLink]="['/login']"><i class="fa fa-object-group"></i>Publicar Requerimiento</a>
-                    </li>
+                    </li> -->
                     <li *ngIf="estaLogueado" class="has-submenu pull-right">
                         <a href="#" (click)="cerrarSesion()" title="Cerrar Sesion"><i class="glyphicon glyphicon-off"></i>{{this.username}}</a>
                     </li>
