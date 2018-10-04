@@ -134,6 +134,8 @@ export class HomeComponent{
     this.usuarioService.getOferentes(tipoRubro,rubro,provincia,departamento,localidad).subscribe((res:any)=>{
       console.log("Buscando oferentes..",res);
       this.oferentes=res;
+      console.log("Oferentes: ",this.oferentes);
+      
     })
   }
 }

@@ -1,3 +1,14 @@
+#Instrucciones para correr el proyecto.
+Primero que nada: 
+1. npm install
+Para instalar las dependencias de las redes sociales: 
+1. npm install --save angular-6-social-login
+Para Firebase: 
+1. npm install firebase-tools -g
+2. npm install angularfire2 firebase --save
+
+Done! A correr el proyecto, muchachos!
+
 # Front
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.5.
