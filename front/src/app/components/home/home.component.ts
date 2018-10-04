@@ -14,6 +14,8 @@ import { Usuario } from '../../models/usuario';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 import { AutenticacionService } from '../../services/autenticacion.service';
+import { UsuarioDestacado } from '../../models/usuarioDestacado';
+import { log } from 'util';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +33,7 @@ export class HomeComponent{
   rubros:Rubro[];
   showLocalidades=false;
   showDepartamentos=false;
-  oferentes:any[];
+  oferentes:UsuarioDestacado[];
   constructor(private fb:FormBuilder,private tipoRubroService:TipoRubroService,
     private provinciaService:ProvinciaService,private rubroService:RubroService,
     private departamentoService:DepartamentoService,private localidadService:LocalidadService,
@@ -54,9 +56,7 @@ export class HomeComponent{
       this.rubros=res;
     })
     this.setValueDefault();
-    let recordarme=authService.isRecordarSesion();
-    console.log("Recordarme: ",recordarme);
-    
+    let recordarme=authService.isRecordarSesion();    
     if(recordarme==false){
       setTimeout(()=>{
       authService.cerrarSesion();
@@ -113,7 +113,6 @@ export class HomeComponent{
     if(provincia != 'Seleccione' && departamento!='Seleccione' && departamento != ''){
       this.showLocalidades=true;
       this.localidadService.getLocalidadesByProvinciaAndDepartamento(provincia,departamento).subscribe((res:any)=>{
-        console.log(res);
         if(res.length == 0){          
           this.showLocalidades=false;
         }
@@ -127,12 +126,13 @@ export class HomeComponent{
     }
   }
   buscarOferentes(){
-    let rubro=this.form.controls['rubro'].value === 'Seleccione'? null: this.form.controls['rubro'].value;
-    let tipoRubro=this.form.controls['tipoRubro'].value === 'Seleccione'? null:this.form.controls['tipoRubro'].value;
-    let provincia=this.form.controls['provincia'].value === 'Seleccione'? null: this.form.controls['provincia'].value;
-    let departamento=this.form.controls['departamento'].value === 'Seleccione'? null: this.form.controls['departamento'].value;
-    let localidad=this.form.controls['localidad'].value === 'Seleccione'? null: this.form.controls['localidad'].value;
+    let rubro=this.form.controls['rubro'].value === 'Seleccione'? "null":this.form.controls['rubro'].value;
+    let tipoRubro=this.form.controls['tipoRubro'].value === 'Seleccione'? "null":this.form.controls['tipoRubro'].value;
+    let provincia=this.form.controls['provincia'].value === 'Seleccione'? "null":this.form.controls['provincia'].value;
+    let departamento=this.form.controls['departamento'].value === 'Seleccione'? "null":this.form.controls['departamento'].value;
+    let localidad=this.form.controls['localidad'].value === 'Seleccione'? "null":this.form.controls['localidad'].value;
     this.usuarioService.getOferentes(tipoRubro,rubro,provincia,departamento,localidad).subscribe((res:any)=>{
+      console.log("Buscando oferentes..",res);
       this.oferentes=res;
       console.log("Oferentes: ",this.oferentes);
       
