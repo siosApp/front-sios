@@ -30,6 +30,13 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { AgregarRubroComponent } from './components/perfil/agregar-rubro/agregar-rubro.component';
 import { VerRequerimientoComponent } from './components/ver-requerimiento/ver-requerimiento.component';
 import { OfertarRequerimientoComponent } from './components/ver-requerimiento/ofertar-requerimiento/ofertar-requerimiento.component';
+//Firebase 
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule,AngularFireStorage,AngularFireUploadTask } from 'angularfire2/storage';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+import { SolicitarTrabajoComponent } from './components/home/solicitar-trabajo.component';
+
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -79,13 +86,18 @@ export function getAuthServiceConfigs() {
     AgregarRubroComponent,
     VerRequerimientoComponent,
     OfertarRequerimientoComponent
+    SolicitarTrabajoComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule, 
     HttpClientModule,
     APP_ROUTING,
-    SocialLoginModule
+    SocialLoginModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    // To initialize AngularFire
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
     {

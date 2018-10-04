@@ -22,11 +22,12 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { AgregarRubroComponent } from './components/perfil/agregar-rubro/agregar-rubro.component';
 import { VerRequerimientoComponent } from './components/ver-requerimiento/ver-requerimiento.component';
 import { OfertarRequerimientoComponent } from './components/ver-requerimiento/ofertar-requerimiento/ofertar-requerimiento.component';
-
+import { SolicitarTrabajoComponent } from './components/home/solicitar-trabajo.component';
 
 
 const rutas_hijas: Routes =[
     { path: 'home', component: HomeComponent },
+    { path: 'solicitarTrabajo/:id', component: SolicitarTrabajoComponent },
     { path: 'estadoSolicitud', component: EstadoSolicitudComponent },
     { path: 'tipoUsuario', component: TipoUsuarioComponent },
     { path: 'tipoRubro', component: TipoRubroComponent },
