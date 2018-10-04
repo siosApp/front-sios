@@ -27,12 +27,16 @@ import { RequerimientoComponent } from './components/requerimiento/requerimiento
 import { RecoverPasswordComponent } from './components/seguridad/recover-password/recover-password.component';
 import { TarifaComponent } from './components/configuracion/tarifa/tarifa.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { AgregarRubroComponent } from './components/perfil/agregar-rubro/agregar-rubro.component';
+import { VerRequerimientoComponent } from './components/ver-requerimiento/ver-requerimiento.component';
+import { OfertarRequerimientoComponent } from './components/ver-requerimiento/ofertar-requerimiento/ofertar-requerimiento.component';
 //Firebase 
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule,AngularFireStorage,AngularFireUploadTask } from 'angularfire2/storage';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { SolicitarTrabajoComponent } from './components/home/solicitar-trabajo.component';
+
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -79,6 +83,9 @@ export function getAuthServiceConfigs() {
     RecoverPasswordComponent,
     TarifaComponent,
     PerfilComponent,
+    AgregarRubroComponent,
+    VerRequerimientoComponent,
+    OfertarRequerimientoComponent
     SolicitarTrabajoComponent
   ],
   imports: [

@@ -39,9 +39,9 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input class="form-control" type="password" name="password" formControlName="password" placeholder="Password">
+                                <input class="form-control" type="password" name="password" formControlName="password" placeholder="Password" required pattern=".{6,}" > 
                             </div>
-                            <p style="color: red" *ngIf="passwordFormGroup.get('password').errors?.required && passwordFormGroup.get('password').touched">Campo obligatorio</p>
+                            <p style="color: red" *ngIf="passwordFormGroup.get('password').errors?.required && passwordFormGroup.get('password').touched">Campo obligatorio, debe tener al menos 6 caracteres</p>
                         </div>
                     </div>
                     <div class="row">

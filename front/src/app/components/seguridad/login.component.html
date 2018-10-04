@@ -18,7 +18,7 @@
 
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <input class="form-control" type="password" placeholder="Password" formControlName="password">
+                        <input class="form-control" type="password" placeholder="Password" formControlName="password" required pattern=".{6,}" oninvalid="setCustomValidity('Campo obligatorio, debe contener minimo 6 caracteres')">
                     </div>
                 </div>
 
@@ -26,7 +26,7 @@
                     <div class="col-xs-12">
                         <div class="checkbox checkbox-primary">
                             <input id="checkbox-signup" formControlName="recordarme" type="checkbox">
-                            <label for="checkbox-signup"> Recordarme </label>
+                            <label for="checkbox-signup"> Manterme activo! </label>
                         </div>
 
                     </div>
