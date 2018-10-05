@@ -31,7 +31,7 @@ export class HomeComponent{
   rubros:Rubro[];
   showLocalidades=false;
   showDepartamentos=false;
-  oferentes:Usuario[];
+  oferentes:any[];
   constructor(private fb:FormBuilder,private tipoRubroService:TipoRubroService,
     private provinciaService:ProvinciaService,private rubroService:RubroService,
     private departamentoService:DepartamentoService,private localidadService:LocalidadService,
@@ -127,13 +127,15 @@ export class HomeComponent{
     }
   }
   buscarOferentes(){
-    let rubro=this.form.controls['rubro'].value;
-    let tipoRubro=this.form.controls['tipoRubro'].value;
-    let provincia=this.form.controls['provincia'].value;
-    let departamento=this.form.controls['departamento'].value;
-    let localidad=this.form.controls['localidad'].value;
+    let rubro=this.form.controls['rubro'].value === 'Seleccione'? null: this.form.controls['rubro'].value;
+    let tipoRubro=this.form.controls['tipoRubro'].value === 'Seleccione'? null:this.form.controls['tipoRubro'].value;
+    let provincia=this.form.controls['provincia'].value === 'Seleccione'? null: this.form.controls['provincia'].value;
+    let departamento=this.form.controls['departamento'].value === 'Seleccione'? null: this.form.controls['departamento'].value;
+    let localidad=this.form.controls['localidad'].value === 'Seleccione'? null: this.form.controls['localidad'].value;
     this.usuarioService.getOferentes(tipoRubro,rubro,provincia,departamento,localidad).subscribe((res:any)=>{
       this.oferentes=res;
+      console.log("Oferentes: ",this.oferentes);
+      
     })
   }
 }

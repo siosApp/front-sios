@@ -1,0 +1,110 @@
+<div class="container">
+  <div class="btn-group pull-right m-t-15">
+      <button type="button" (click)="volverAlHome()" class="btn btn-default dropdown-toggle waves-effect waves-light" >Volver a la página anterior <span class="m-l-5"><i class="fa  fa-level-up"></i></span></button>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+        <form [formGroup]="solicitudForm"  (ngSubmit)="guardarSolicitud()">
+        <div class="card-box">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="p-20">
+                      <h4 class="m-t-0 header-title" ><b>Creando solicitud de trabajo.</b></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <div class="p-20">
+                      <div class="m-t-20">
+                          <h5><b>Oferente que se hará cargo de la tarea:</b></h5>
+                          <!-- <div class="col-md-6 col-lg-4">
+                            <div class="card-box"> -->
+                              <div class="contact-card">
+                                <a class="pull-left">
+                                  <img class="img-circle" src="assets/images/users/avatar-2.jpg" alt="">
+                                </a>
+                                <div class="member-info">
+                                  <h4 class="m-t-0 m-b-5 header-title"><b>{{oferente?.apellido}}, {{oferente?.nombre}}</b></h4>
+                                  <p class="text-muted" *ngIf="oferente.usuarioRubros !=null && oferente?.usuarioRubros.length>0">{{oferente?.usuarioRubros[0].rubro.nombreRubro}}</p>
+                                  <p class="text-dark"><i class="md md-business m-r-10"></i><small>{{oferente?.mail}}</small></p>
+                                </div>
+                              </div>
+                            <!-- </div>
+                          </div> -->
+                        </div>
+                  </div>
+              </div>
+          </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="p-20">
+                        <div class="m-t-20">
+                            <h5><b>Descripción</b></h5>
+                            <p class="text-muted m-b-15 font-13">
+                                Describa el trabajo a solicitar al oferente..
+                            </p>
+                            <textarea id="textarea" formControlName="descripcion" name="descripcion" class="form-control" maxlength="225" rows="2" placeholder="El límite de la descripcion es de 255 caracteres"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <div class="p-20">
+                      <div class="m-t-20">
+                        <h5><b>Opcional</b></h5>
+                        <p class="text-muted m-b-15 font-13">
+                            Puede adjuntar un archivo que describa la tarea a solicitar. Sólo se permiten imágenes  con formato .jpeg/.png, o documentos con formato PDF
+                        </p>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="p-20">
+                       
+                        <div class="m-t-20">
+                            <input  type="file" class="filestyle" formControlName="archivoUno" name="archivoUno"  data-icon="false" data-buttonname="btn-white" (change)="addFile($event,0)">
+                            <div *ngIf="this.solicitudForm.controls['archivoUno'].value != ''">{{uploadPercent | async | number:'1.0-0'}} % subido</div>
+                        </div>
+                        <!--                        
+                        <div class="m-t-20">
+                            <input  type="file" class="filestyle" formControlName="archivoDos" name="archivoDos"  data-icon="false" data-buttonname="btn-white" (change)="addFile($event,1)">
+                            <div *ngIf="this.solicitudForm.controls['archivoDos'].value !='' && !this.solicitudForm.controls['archivoTres'].touched">{{uploadPercent | async | number:'1.0-0'}} % subido</div>
+                        </div>
+                       
+                        <div class="m-t-20">
+                            <input  type="file" class="filestyle" formControlName="archivoTres" name="archivoTres"  data-icon="false" data-buttonname="btn-white" (change)="addFile($event,2)">
+                            <div *ngIf="this.solicitudForm.controls['archivoTres'].value !='' && !this.solicitudForm.controls['archivoCuatro'].touched">{{uploadPercent | async | number:'1.0-0'}} % subido</div>
+                        </div>
+                       
+                        <div class="m-t-20">
+                            <input  type="file" class="filestyle" formControlName="archivoCuatro" name="archivoCuatro"  data-icon="false" data-buttonname="btn-white" (change)="addFile($event,3)">
+                            <div *ngIf="this.solicitudForm.controls['archivoCuarto'].value !='' && !this.solicitudForm.controls['archivoQuinto'].touched">{{uploadPercent | async | number:'1.0-0'}} % subido</div>
+                        </div>
+                       
+                        <div class="m-t-20">
+                            <input  type="file" class="filestyle" formControlName="archivoQuinto" name="archivoQuinto"  data-icon="false" data-buttonname="btn-white" (change)="addFile($event,4)">
+                            <div *ngIf="this.solicitudForm.controls['archivoQuinto'].value !=''">{{uploadPercent | async | number:'1.0-0'}} % subido</div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="p-20">
+                        <div class="m-t-20">
+                            <button type="submit" class="btn btn-success btn-custom btn-rounded waves-effect waves-light pull-right">
+                                <span class="btn-label"><i class="fa fa fa-signing fa-2x"></i></span>
+                                Generar Solicitud!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+</div>

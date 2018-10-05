@@ -47,7 +47,7 @@ export class UsuarioService {
     return this.http.get(url);
   }
   getOferentes(tipoRubro,rubro,provincia,departamento,localidad){
-    let url=`${URL_API}/usuario/oferentes?tipoRubro=${tipoRubro}&rubro=${rubro}&provincia=${provincia}&departamento=${departamento}&localidad=${localidad}`;
+    let url=`${URL_API}/usuarioDestacado/listOferentesDestacados?tipoRubro=${tipoRubro}&rubro=${rubro}&provincia=${provincia}&departamento=${departamento}&localidad=${localidad}`;
     return this.http.get(url);
   }
 }
