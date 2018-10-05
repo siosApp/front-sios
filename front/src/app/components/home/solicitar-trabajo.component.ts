@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { UsuarioService } from '../../services/usuario.service';
 import { Usuario } from '../../models/usuario';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { FileService, ArchivoAdjunto } from '../../services/file.service';
+import { FileService } from '../../services/file.service';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { finalize, map } from 'rxjs/operators';
@@ -41,7 +41,7 @@ export class SolicitarTrabajoComponent {
       'descripcion': new FormControl('',Validators.required),
       'archivoUno' : new FormControl('',Validators.required),
       'archivoDos' : new FormControl('',Validators.required),
-      'archivoTres' : new FormControl('',Validators.required),
+      'archivoTres' : new FormControl('',Validators.required), 
       'archivoCuarto' : new FormControl('',Validators.required),
       'archivoQuinto' : new FormControl('',Validators.required)
     })
@@ -122,3 +122,4 @@ export class SolicitarTrabajoComponent {
    return id;
   }
 }
+export interface ArchivoAdjunto { id:string;filePath:string;fileURL:string,fileName:string}
