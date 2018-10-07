@@ -85,7 +85,7 @@ export function getAuthServiceConfigs() {
     PerfilComponent,
     AgregarRubroComponent,
     VerRequerimientoComponent,
-    OfertarRequerimientoComponent
+    OfertarRequerimientoComponent,
     SolicitarTrabajoComponent
   ],
   imports: [

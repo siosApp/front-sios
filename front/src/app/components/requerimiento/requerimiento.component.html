@@ -1,10 +1,7 @@
-
-
-
 <div class="col-lg-2"></div>
 <div class="row">
     <div class="col-lg-8">
-            <form [formGroup]="form" class="well" >
+            <form [formGroup]="form" (ngSubmit)="guardarRequerimiento()" class="well" >
             <div class="card-box">
                     
             <h5 class="text-muted text-uppercase m-t-0 m-b-20"><b>Publique su requerimiento</b></h5>
@@ -14,7 +11,7 @@
             
             <div class="form-group m-b-20">
                 <label>Titulo <span class="text-danger">*</span></label>
-                <input type="text" formControlName="titulo" class="form-control" placeholder="ej, Necesito albañil...">
+                <input type="text" formControlName="titulo" class="form-control" placeholder="Ej: Necesito albañil...">
                 <span class="font-13 text-muted">El título debe ser breve y conciso!</span>
             </div>
             <p style="color: red" *ngIf="form.get('titulo').errors?.required && form.get('titulo').touched">Campo obligatorio</p>
@@ -46,45 +43,21 @@
             <div class="form-group">
                     <label class="control-label">Seleccione Archivo</label>
                     <p class="text-muted m-b-15 font-13">
-                            Agregue archivos para completar el detalle de la descripcion
+                            Puede subir un archivo para detallar mejor aún el requerimiento. 
                      </p>
-                    <input type="file" class="filestyle" data-buttonname="btn-white" multiple>
+                    <input type="file" class="filestyle" formControlName="archivoUno" name="archivoUno" data-buttonname="btn-white" (change)="addFile($event,0)">
+                    <div *ngIf="this.form.controls['archivoUno'].value != ''">{{uploadPercent | async | number:'1.0-0'}} % subido</div>
             </div>
 
             <div class="form-group">
-                <button [disabled]="!form.valid" (click)="openAlert()" class="btn btn-success btn-custom waves-effect waves-light pull-right">Publicar</button>
+                <button [disabled]="!form.valid" class="btn btn-success btn-custom waves-effect waves-light pull-right">Publicar</button>
             </div>
         
         </div>
     </form>
     </div> 
 </div>
-    <form [formGroup]="form" class="well" (ngSubmit)="guardarRequerimiento()">
-    <div id="sa-warningt" style="display: none;">
-        <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
-            <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
-            </div>
-            <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
-            <div class="icon info" style="display: none;"></div>
-            <div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
-                <div class="placeholder"></div>
-                <div class="fix"></div>
-            </div>
-            <div class="icon custom" style="display: none;"></div>
-            <h2>Buen Trabajo!</h2>
-            <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
-            <p>
-                <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancel</button>
-                <button (click)="openAlert01()" type="submit" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
-            </p>
-        </div>
-    </div>
-
-</form>
-
-
-
-<div id="sa-warningt01" style="display: none;">
+<!-- <div id="sa-warningt01" style="display: none;">
     <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
         <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
         </div>
@@ -99,26 +72,24 @@
         <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
         <p>
             <button (click)="volver01()" [routerLink]="['home']" class="confirm btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Ok</button>
-            
         </p>
     </div>
-</div> 
-
-
-<div id="sa-warningt02" style="display: none;">
-<div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -163px;">
-    <div class="icon error" style="display: none;">
-        <span class="x-mark">
-            <span class="line left"></span>
-            <span class="line right"></span>
-        </span>
-    </div>
-    <div class="icon warning" style="display: none;">
-        <span class="body"></span> 
-        <span class="dot"></span>
-    </div> 
-    <div class="icon info" style="display: none;"></div>
-       <div class="icon success" style="display: none;"> 
+</div>  -->
+<!-- 
+<div id="sa-warningt" style="display: none;">
+    <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -163px;">
+        <div class="icon error" style="display: none;">
+            <span class="x-mark">
+                <span class="line left"></span>
+                <span class="line right"></span>
+            </span>
+        </div>
+        <div class="icon warning" style="display: none;">
+            <span class="body"></span> 
+            <span class="dot"></span>
+        </div> 
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success" style="display: none;"> 
             <span class="line tip"></span>
             <span class="line long"></span>
             <div class="placeholder"></div>
@@ -128,11 +99,11 @@
             <div class="placeholder"></div>
             <div class="fix"></div>
         </div>
-          
-           <h2>Éxito!</h2>
-           <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
-           <p>
-           <button class="cancel btn btn-lg btn-white btn-md waves-effect btn-default" tabindex="2" style="display: none;">Cancel</button>
-            <button (click)="volver01()" [routerLink]="['home']" class="confirm btn btn-lg btn-primary" tabindex="1" style="display: inline-block;">OK</button></p>
-        </div>
+        <h2>Éxito!</h2>
+        <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
+        <p>
+            <button class="cancel btn btn-lg btn-white btn-md waves-effect btn-default" tabindex="2" style="display: none;">Cancel</button>
+            <button (click)="volver01()" [routerLink]="['home']" class="confirm btn btn-lg btn-primary" tabindex="1" style="display: inline-block;">OK</button>
+        </p>
     </div>
+</div> -->

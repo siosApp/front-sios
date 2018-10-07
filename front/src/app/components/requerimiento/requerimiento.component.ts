@@ -5,6 +5,13 @@ import { RequerimientoService } from '../../services/requerimiento.service';
 import { Requerimiento } from '../../models/requerimiento';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AutenticacionService } from '../../services/autenticacion.service';
+import { Observable } from 'rxjs';
+import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { ArchivoAdjunto } from '../home/solicitar-trabajo.component';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { finalize, map } from 'rxjs/operators';
+import { UsuarioService } from '../../services/usuario.service';
+import { Router } from '@angular/router';
 
 declare var $:any;
 @Component({
@@ -13,75 +20,103 @@ declare var $:any;
   styles: []
 })
 
-export class RequerimientoComponent implements OnInit {
+export class RequerimientoComponent{
 
+  files:string[]=[];
   mensaje:string;
   form:FormGroup;
   usuarioLogueado:string;
   requerimiento:Requerimiento[]=[];
-    
-  constructor(private service:RequerimientoService,private autserv:AutenticacionService) {
-      
+  archivosCollection: AngularFirestoreCollection<ArchivoAdjunto>;
+  uploadPercent:Observable<number>;
+  idArchivo:any;
+
+  //Hay que hacer un refactor sobre esto de Firebase. Tiene que estar en un servicio.
+  constructor(private service:RequerimientoService,private autserv:AutenticacionService,private afStorage: AngularFireStorage,
+    private afs: AngularFirestore,private usuarioService:UsuarioService,private router:Router) {
+    this.archivosCollection = this.afs.collection<ArchivoAdjunto>('archivos'); 
     this.form= new FormGroup({
       'descripcion': new FormControl('',[Validators.required,Validators.minLength(3)]),
       'precioApagar': new FormControl('',[Validators.required,Validators.minLength(2)]),
       'tiempoEstimado': new FormControl('',[Validators.required,Validators.minLength(1)]),
       'titulo': new FormControl('',[Validators.required,Validators.minLength(1)]),
+      'archivoUno': new FormControl('',Validators.required)
     });
   }
   
-  
-  guardarRequerimiento(){
-    
-    let descripcion=this.form.controls['descripcion'].value;
-    let fechaPublicacion = new Date();
-    let precioApagar = this.form.controls['precioApagar'].value;
-    let tiempoEstimado = this.form.controls['tiempoEstimado'].value;
-    let titulo =this.form.controls['titulo'].value;
-    
-    let idusuario = localStorage.getItem("auth"); 
-    let nuevoRequerimiento = new Requerimiento(null,titulo,descripcion,fechaPublicacion,precioApagar,idusuario ,tiempoEstimado);      
-      
-      this.service.crearRequerimiento(nuevoRequerimiento).subscribe(response=>{
-        $('#sa-warningt').modal('hide');
-        console.log(nuevoRequerimiento);
+  addFile(event,index){
+    let file=event.target.files[0];
+    console.log("file: ",file);
+    if(file.type === "image/jpeg" || file.type === "image/png" || file.type === "application/pdf" || file.size <= 5000000){
+      this.idArchivo=this.subirArchivo(file);
+      this.files[0]=this.idArchivo;      
+    }
+    else{
+      $.Notification.notify('error','top left', 'Error', 'Archivo excede los 5 mb o formato inválido.');
+      this.form.controls['archivoUno'].setValue("");
+    }
+  }
+  subirArchivo(archivo){
+    //Tener en cuenta que las imagenes que sean de perfil conviene guardarlas en una carpeta 'perfil'
+    //Y los demás doc que vengan adjuntos de una solicitud de trabajo o de publicar un requerimiento, que estén en una carpeta 'doc'
+    let path = `doc/${new Date().getTime()}_${archivo.name}`;
+    const fileRef = this.afStorage.ref(path);
+    // main task
+    let task = this.afStorage.upload(path, archivo);
+    this.afStorage.upload(path, archivo);
+    let id;
+    if(this.idArchivo!=null){
+      id=this.idArchivo;
+    }
+    else{
+      id= this.afs.createId();
+    }
+    this.uploadPercent = task.percentageChanges();
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        // The above step returns an observable which can be subscribed to fetch the data within it
+        let downloadURL= fileRef.getDownloadURL();
+        downloadURL.subscribe(data => {
+          // storing downloadURL as imageURL
+          const fileURL = data;
+          // storing image path in firestore
+          const filePath = path;
+          // Image name fetched from ngModel on 'imageNm' field
+          const fileName = archivo.name;
+          // To store timestamp of the image before being inserted in firestore
+          //const maintTs = Date.now();
+          const file: ArchivoAdjunto = { id, filePath, fileURL, fileName};
+          //Creando coleccion..
+          this.archivosCollection.doc(id).set(file);
+        });
       })
-    
+   ).subscribe();
+   return id;
   }
-
-
-  volver(){
-    $('#sa-warningt').modal('hide');
+  guardarRequerimiento(){
+    let idUsuario = localStorage.getItem("auth"); 
+    //Refactor sobre esto. Los componentes no tienen que acceder al localStorage. Solamente debería hacerlo servicio.
+    this.usuarioService.getUsuarioById(idUsuario).subscribe((usuarioRes:any)=>{
+      let requerimiento ={
+        id:null,
+        fechaPublicacion: Date.now(),
+        descripcion: this.form.controls['descripcion'].value,
+        idUsuario: idUsuario,
+        nombreEstadoRequerimiento: 'Activo',
+        precioAPagar: this.form.controls['precioApagar'].value,
+        tiempoEstimado: this.form.controls['tiempoEstimado'].value,
+        titulo: this.form.controls['titulo'].value, 
+        urlArchivos: this.files
+      }        
+      this.service.crearRequerimiento(requerimiento).subscribe(response=>{
+        // $('#sa-warningt').modal('hide');
+        console.log("Requerimiento: ",requerimiento);
+        $.Notification.notify('success','top left', 'Exito', 'Se ha guardado satisfactoriamente su requerimiento.');
+        this.form.reset();
+        this.router.navigate(['/sios/home']);
+      })
+  })    
+       
   }
-  volver01(){
-    $('#sa-warningt02').modal('hide');
-  }
-
-
-  openAlert(){
-    this.mensaje = mensajeRequerimiento;
-    $('#sa-warningt').modal('show');
-  }
-  
-  openAlert01(){
-    this.mensaje = mensajeGuardadoRequerimiento;
-    $('#sa-warningt02').modal('show');
-  }
-  
-  
-  confirmarOperacion(){
-    
-    this.volver();
-  }
-  
-  
-  
-  ngOnInit() {
-  }
-
-
-
-
-
 
 }

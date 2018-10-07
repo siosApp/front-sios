@@ -11,13 +11,8 @@ import { Requerimiento } from '../models/requerimiento';
   
     constructor(private http:HttpClient) { }
   
-   
     crearRequerimiento(requerimiento){
-            
       let url=`${URL_API}/requerimiento/publicarRequerimiento`;
-      
-      //console.log(requerimiento);
-            
       return this.http.post(url,requerimiento); 
     }
   }
