@@ -25,6 +25,9 @@ export class VerSolicitudComponent implements OnInit {
   openAlert01(){
     $('#danger-alert').modal('show');
   }
+  openAlert03(){
+    $('#finalizarSolicitud').modal('show');
+  }
   volver(){
     $('#sa-warningt').modal('hide');
   }
@@ -35,6 +38,9 @@ export class VerSolicitudComponent implements OnInit {
     $('#custom-width-modal01').modal('hide');
   }
 
+  volver03(){
+    $('#finalizarSolicitud').modal('hide');
+  }
 
   ngOnInit() {
   }
