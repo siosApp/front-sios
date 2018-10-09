@@ -27,6 +27,7 @@ export class SolicitarTrabajoComponent {
   archivosCollection: AngularFirestoreCollection<ArchivoAdjunto>;
   uploadPercent:Observable<number>;
   idArchivo:any;
+  
   constructor(private usuarioService:UsuarioService,private afStorage: AngularFireStorage,private afs: AngularFirestore,
     private location:Location,private activatedRoute:ActivatedRoute,
     private fileService:FileService,private solicitudService:SolicitarTrabajoService) {
