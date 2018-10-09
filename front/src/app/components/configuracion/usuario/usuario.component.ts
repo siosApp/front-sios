@@ -110,11 +110,11 @@ export class UsuarioComponent{
       piso: this.domicilioFormGroup.controls['piso'].value,
       latitud: null,//this.domicilioFormGroup.controls['latitud'].value,
       longitud: null,//this.domicilioFormGroup.controls['longitud'].value,
-      nombreLocalidad: null//this.domicilioFormGroup.controls['nombre'].value,
+      idLocalidad: null//this.domicilioFormGroup.controls['nombre'].value,
     }
     // let domicilio= new Domicilio(null,calle,codigoPostal,numero,piso,latitud,longitud,nombre);    
     if(this.usuarioAEditar!=null){
-      let usuarioActualizado= new Usuario(this.usuarioAEditar.id,this.usuarioAEditar.fechaBaja,nacimiento,this.usuarioAEditar.fechaUltIngreso,mail,nuevoNombre,oferente,password,sexo,tipoUsuario,username,null,apellido,null);
+      let usuarioActualizado= new Usuario(this.usuarioAEditar.id,this.usuarioAEditar.fechaBaja,nacimiento,this.usuarioAEditar.fechaUltIngreso,mail,nuevoNombre,oferente,password,sexo,tipoUsuario,username,null,apellido,null,this.usuarioAEditar.imagen);
       this.service.updateUsuario(usuarioActualizado).subscribe( response =>{
         this.usuarioAEditar=null;
         $('#custom-width-modal').modal('hide');
@@ -122,7 +122,7 @@ export class UsuarioComponent{
       });
     }
     else{
-      let nuevoUsuario= new Usuario(null,null,nacimiento,null,mail,nuevoNombre,oferente,password,sexo,tipoUsuario,username,null,apellido,null);
+      let nuevoUsuario= new Usuario(null,null,nacimiento,null,mail,nuevoNombre,oferente,password,sexo,tipoUsuario,username,null,apellido,null,null);
       this.service.crearUsuario(nuevoUsuario).subscribe(response=>{
         $('#custom-width-modal').modal('hide');
         this.service.getUsuarios().subscribe((response:any) => this.usuarios=response);

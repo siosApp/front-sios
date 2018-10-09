@@ -2,32 +2,27 @@
 	<div class="col-md-4 col-lg-3">
 		<div class="profile-detail card-box">
 			<div>
-				<img src="/assets/images/users/avatar-2.jpg" class="img-circle" alt="profile-image">
+				<img [src]=" usuarioAEditar |noimage" class="img-circle" alt="profile-image">
+				<!-- Acá se tiene que cambiar por usuario.imagenm pero no como esta modelado aun desde el backend.. -->
 				<br>
-				<div class="fileupload btn btn-instagram waves-effect waves-light">
-					<span><i class="fa fa-instagram"></i></span>
-					<input type="file" class="upload">
+				<div class="fileupload btn btn-instagram waves-effect waves-light" (click)="abrirModalImagen()">
+					<span>Cambiar Foto Perfil!</span>
+					<!-- <input type="file" class="upload" (change)="addFile($event,0)"> -->
 				</div>
-
 				<ul class="list-inline status-list m-t-20">
 					<li>
-						<h3 class="text-primary m-b-5">456</h3>
-						<p class="text-muted">Trabajos Realizador</p>
+						<h3 class="text-primary m-b-5">456</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
+						<p class="text-muted">Trabajos Realizados</p>
 					</li>
-
 					<li>
-						<h3 class="text-success m-b-5">20</h3>
+						<h3 class="text-success m-b-5">20</h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
 						<p class="text-muted">En curso</p>
 					</li>
 				</ul>
-				
-				<button type="button" (click)="openAlert02()" class="btn btn-primary btn-custom btn-rounded waves-effect waves-light">Ofrece tus servicios</button>
-
+				<button type="button" (click)="irAPantallaOferente()" class="btn btn-primary btn-custom btn-rounded waves-effect waves-light">Ofrece tus servicios</button>
 				<hr>
 			</div>
 		</div>
-
-		
 	</div>
 	<div class="row">
 	<div class="col-sm-8">
@@ -38,7 +33,7 @@
 			</p>
 			<div class="row">
 				<div class="col-md-10">
-					<form [formGroup]="form" (ngSubmit)="guardarPerfil()" class="form-horizontal" role="form">
+					<form [formGroup]="form" (ngSubmit)="confirmarGuardar()" class="form-horizontal" role="form">
 						<div class="form-group">
 							<label class="col-md-2 control-label" for="state-success">Nombre</label>
 							<div class="col-md-10">
@@ -121,36 +116,36 @@
 							<label class="col-md-2 control-label" for="example-email">Calle</label>
 							<div class="col-md-10">
 								<input type="text" formControlName="domicilioCalle" class="form-control" placeholder="Ingrese calle o barrio">
-								<p style="color: red" *ngIf="form.get('domicilioCalle').errors?.required && form.get('domicilioCalle').touched">Campo obligatorio</p>
+								<p style="color: red" *ngIf="domicilioForm.get('domicilioCalle').errors?.required && domicilioForm.get('domicilioCalle').touched">Campo obligatorio</p>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label" for="example-email">Numero</label>
 							<div class="col-md-10">
 								<input type="number" formControlName="domicilioNumero" class="form-control" placeholder="Ingrese numero">
-								<p style="color: red" *ngIf="form.get('domicilioNumero').errors?.required && form.get('domicilioNumero').touched">Campo obligatorio</p>
+								<p style="color: red" *ngIf="domicilioForm.get('domicilioNumero').errors?.required && domicilioForm.get('domicilioNumero').touched">Campo obligatorio</p>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label" for="example-email">Piso</label>
 							<div class="col-md-10">
 								<input type="number" formControlName="domicilioPiso" class="form-control" placeholder="Ingrese piso">
-								<p style="color: red" *ngIf="form.get('domicilioPiso').errors?.required && form.get('domicilioPiso').touched">Campo obligatorio</p>
+								<p style="color: red" *ngIf="domicilioForm.get('domicilioPiso').errors?.required && domicilioForm.get('domicilioPiso').touched">Campo obligatorio</p>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label" for="example-email">Cod Postal</label>
 							<div class="col-md-10">
 								<input type="number" formControlName="codPostal" class="form-control" placeholder="Ingrese codigo postal">
-								<p style="color: red" *ngIf="form.get('codPostal').errors?.required && form.get('codPostal').touched">Campo obligatorio</p>
+								<p style="color: red" *ngIf="domicilioForm.get('codPostal').errors?.required && domicilioForm.get('codPostal').touched">Campo obligatorio</p>
 							</div>
 						</div>
-					</div>
+						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label" for="state-success">Provincia</label>
 							<div class="col-md-6">
 								<select name="provincia" (change)="getDepartamentosByProvincia()" formControlName="provincia" class="form-control">
-									<option value="" disabled>Seleccione</option>
+									<option selected="selected">Seleccione</option>
 									<option *ngFor="let provincia of provincias" [ngValue]="provincia.nombreProvincia">{{provincia.nombreProvincia}}</option>
 								</select>
 							</div>
@@ -159,7 +154,7 @@
 							<label class="col-md-2 control-label" for="state-success">Departamento</label>
 							<div class="col-md-6">
 								<select name="departamento" formControlName="departamento" class="form-control">
-									<option value="" disabled>Seleccione</option>
+									<option selected="selected">Seleccione</option>
 									<option *ngFor="let departamento of departamentos" [ngValue]="departamento.nombreDepartamento">{{departamento.nombreDepartamento}}</option>
 								</select>
 							</div>
@@ -169,7 +164,7 @@
 							<label class="col-md-2 control-label" for="state-success">Localidad</label>
 							<div class="col-md-6">
 								<select name="localidad" formControlName="localidad" class="form-control">
-									<option value="" disabled>Seleccione</option>
+									<option selected="selected">Seleccione</option>
 									<option *ngFor="let localidad of localidades" [ngValue]="localidad.nombreLocalidad">{{localidad.nombreLocalidad}}</option>
 								</select>
 							</div>
@@ -183,11 +178,10 @@
 						<div class="form-group pull-right" >
 							<label class="col-md-3 control-label"></label>
 							<div class="col-md-8">
-							  <input  (click)="openAlert()" class="btn btn-primary" value="Guardar">
-							  
+							  <!-- <input (click)="openAlert()" class="btn btn-primary" value="Guardar"> -->
+							  <button type="submit" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Guardar</button>
 							</div>
-						  </div>
-						
+						</div>
 					</form>
 				</div>
 			</div>
@@ -196,52 +190,28 @@
 </div>
 </div>
 
-
-<form [formGroup]="form" class="well" (ngSubmit)="guardarPerfil()">
+<!-- <form [formGroup]="form" class="well" (ngSubmit)="guardarPerfil()"> -->
 <div id="sa-warningt" style="display: none;">
-<div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
-	<div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
-	</div>
-	<div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
-	<div class="icon info" style="display: none;"></div>
-	<div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
-		<div class="placeholder"></div>
-		<div class="fix"></div>
-	</div>
-	<div class="icon custom" style="display: none;"></div>
-	<h2>Buen Trabajo!</h2>
-	<p class="lead text-muted" style="display: block;">{{mensaje}}</p>
-	<p>
-		<button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancel</button>
-		<button (click)="openAlert01()" type="submit" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
-	</p>
-</div>
-</div>
-
-</form>
-
-<div id="sa-warningt01" style="display: none;">
-	<div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true"
-	 data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
+	<div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
 		<div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
 		</div>
 		<div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
 		<div class="icon info" style="display: none;"></div>
-		<div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span
-			 class="line long animateSuccessLong"></span>
+		<div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
 			<div class="placeholder"></div>
 			<div class="fix"></div>
 		</div>
 		<div class="icon custom" style="display: none;"></div>
-		<h2>Éxito!</h2>
+		<h2>Buen Trabajo!</h2>
 		<p class="lead text-muted" style="display: block;">{{mensaje}}</p>
 		<p>
-			<button (click)="volver01()" class="confirm btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Ok</button>
-
+			<button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
+			<button (click)="guardarPerfil()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Guardar datos</button>
 		</p>
 	</div>
 </div>
 
+<!-- </form> -->
 
 <div id="danger-alert" style="display: none;">
     <div class="sweet-alert showSweetAlert" data-backdrop="static" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
@@ -257,8 +227,31 @@
         <h2>Estás seguro?</h2>
         <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
         <p>
-            <button (click)="volver02()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
-            <button (click)="volver02()" [routerLink]="['/sios/agregarRubro']"  class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Ok!!</button>
+            <button (click)="volverAlPerfil()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Volver</button>
+            <button (click)="irAPageAgregarRubro()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Seguir de todas formas.</button>
         </p>
     </div>
 </div>
+
+<!-- Modal Imagen -->
+<div id="imagen-modal" class="modal fade" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog">
+		<div class="modal-content p-0 b-0">
+			<div class="panel panel-color panel-primary">
+				<div class="panel-heading">
+					<button type="button" class="close m-t-5" data-dismiss="modal" aria-hidden="true">×</button>
+					<h3 class="panel-title">Seleccionar foto de perfil</h3>
+				</div>
+				<div class="panel-body">
+					<div class="profile-detail card-box">
+						<img [src]="usuarioAEditar |noimage" id="fotoPerfil" class="img-circle" alt="profile-image"/>	
+						<input type="file" class="upload" (change)="addFile($event,0)" />
+					</div>
+					<p>
+						<button (click)="cerrarModalImagen()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect pull-right">Volver al perfil</button>
+					</p>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

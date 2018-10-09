@@ -6,8 +6,8 @@ export class Domicilio{
     piso:number;
     latitud:number;
     longitud:number;
-    nombreLocalidad:string;
-    constructor(id,calle,codigoPostal,numero,piso,latitud,longitud,nombre){
+    idLocalidad:string;
+    constructor(id,calle,codigoPostal,numero,piso,latitud,longitud,localidad){
         this.id=id;
         this.calle=calle;
         this.codigoPostal=codigoPostal;
@@ -15,6 +15,6 @@ export class Domicilio{
         this.piso=piso;
         this.latitud=latitud;
         this.longitud=longitud;
-        this.nombreLocalidad=nombre;
+        this.idLocalidad=localidad;
     }
 }

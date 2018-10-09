@@ -42,4 +42,8 @@ export class RubroService {
     let url= `${URL_API}/rubro/habilitarRubro?id=${id}`;
     return this.http.put(url,null);
   }
+  addOrEliminarCertificado(idUsuarioRubro,certificado){
+    let url=`${URL_API}/rubro/anadirOrEliminarCertificado?idUsuarioRubro=${idUsuarioRubro}`;
+    return this.http.post(url,certificado);
+  }
 }

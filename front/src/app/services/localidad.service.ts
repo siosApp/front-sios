@@ -18,6 +18,10 @@ export class LocalidadService {
     let url=`${URL_API}/localidad/listLocalidades?provincia=${provincia}&departamento=${departamento}`;
     return this.http.get(url);
   }
+  getLocalidadesByNombreAndProvinciaAndDepartamento(nombre,provincia,departamento){
+    let url=`${URL_API}/localidad/localidad?nombreLocalidad=${nombre}&provincia=${provincia}&departamento=${departamento}`;
+    return this.http.get(url);
+  }
   getLocalidadById(id){
     let url=`${URL_API}/localidad?id=${id}`;
     return this.http.get(url);
@@ -34,11 +38,14 @@ export class LocalidadService {
     let url=`${URL_API}/localidad/crearLocalidad`;
     console.log("URL: ", url);
     console.log("Localidad:",localidad);
-    
     return this.http.post(url,localidad); 
   }
   habilitarLocalidad(id){
     let url= `${URL_API}/localidad/habilitarLocalidad?id=${id}`;
     return this.http.put(url,null);
+  }
+  getLocalidadByDomicilio(id){
+    let url=`${URL_API}/localidad/domicilio?id=${id}`;
+    return this.http.get(url);
   }
 }
