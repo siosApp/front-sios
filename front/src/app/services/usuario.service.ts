@@ -51,4 +51,12 @@ export class UsuarioService {
     let url=`${URL_API}/usuarioDestacado/listOferentesDestacados?tipoRubro=${tipoRubro}&rubro=${rubro}&provincia=${provincia}&departamento=${departamento}&localidad=${localidad}`;
     return this.http.get(url);
   }
+  agregarRubro(usuario,rubro,tipoRubro){
+    let url=`${URL_API}/usuario/addRubro?idUsuario=${usuario}&rubro=${rubro}&tipoRubro=${tipoRubro}`;
+    return this.http.post(url,null);
+  }
+  eliminarRubro(usuario,usuarioRubro){
+    let url=`${URL_API}/usuario/deleteRubro?idUsuario=${usuario}&usuarioRubro=${usuarioRubro}`;
+    return this.http.post(url,null);
+  }
 }

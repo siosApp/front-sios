@@ -36,6 +36,7 @@ import { AngularFireStorageModule,AngularFireStorage,AngularFireUploadTask } fro
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { SolicitarTrabajoComponent } from './components/home/solicitar-trabajo.component';
+import { NoimagePipe } from './pipes/noimage.pipe';
 
 
 // Configs 
@@ -86,7 +87,8 @@ export function getAuthServiceConfigs() {
     AgregarRubroComponent,
     VerRequerimientoComponent,
     OfertarRequerimientoComponent,
-    SolicitarTrabajoComponent
+    SolicitarTrabajoComponent,
+    NoimagePipe
   ],
   imports: [
     BrowserModule,

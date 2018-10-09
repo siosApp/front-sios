@@ -12,6 +12,11 @@ import { LocalidadService } from '../../services/localidad.service';
 import { Localidad } from '../../models/localidad';
 import { mensajePerfil, mensajeGuardar } from '../../utils/params';
 import { Domicilio } from '../../models/domicilio';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
+import { finalize, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 declare var $:any;
 @Component({
@@ -28,45 +33,34 @@ export class PerfilComponent {
   form:FormGroup;
   passwordFormGroup:FormGroup;
   domicilioForm:FormGroup;
-  localidades:Localidad[];
-  departamentos:Departamento[];
+  localidades:Localidad[]=[];
+  departamentos:Departamento[]=[];
   showDepartamentos=false;
   showLocalidades=false;
-
   mensaje:string;
+  files:string[]=[];
+  imagenesCollections: AngularFirestoreCollection<Imagen>;
+  uploadPercent:Observable<number>;
+  idImagen:any;
 
-  idUsuario:string;
-  fechaNacimiento:Date;
-  mail:string;
-  nombre:string;
-  sexo:string;
-  username:string;
-  apellido:string;
-  password: string;
-  fechaUltimoIngreso: Date;
-  oferente:boolean;
-
-  constructor(private service:UsuarioService, private fb:FormBuilder,
+  constructor(private service:UsuarioService, private fb:FormBuilder,private router:Router,
               private provinciaService:ProvinciaService,
               private departamentoService:DepartamentoService,
-              private localidadService:LocalidadService
-    ) {
+              private localidadService:LocalidadService,private afStorage: AngularFireStorage,
+              private afs: AngularFirestore) {
+      this.imagenesCollections=this.afs.collection<Imagen>('perfil');               
       this.passwordFormGroup=fb.group({
         password: ['',Validators.required],
         confirmacion: ['',Validators.required],
       },{
         validator: RegistrationValidator.validate.bind(this)
       });
-
       this.domicilioForm=fb.group({
         domicilioCalle: ['',Validators.required],
         domicilioNumero: ['',Validators.required],
         domicilioPiso: ['',Validators.required],
         codPostal: ['',Validators.required],
-
       });
-
-
       this.form= new FormGroup({
         'nombre': new FormControl('',Validators.required),
         'apellido': new FormControl('',Validators.required),
@@ -74,28 +68,61 @@ export class PerfilComponent {
         'username': new FormControl('',Validators.required),
         'fechaNacimiento': new FormControl('',Validators.required),
         'sexo': new FormControl('',Validators.required),
-        'domicilioCalle': new FormControl('',Validators.required),
-        'domicilioNumero': new FormControl('',Validators.required),
-        'domicilioPiso': new FormControl('',Validators.required),
-        'codPostal': new FormControl('',Validators.required),
         'provincia': new FormControl('',Validators.required),
         'departamento': new FormControl('',Validators.required),
         'localidad': new FormControl('',Validators.required),
         'passwordFormGroup': this.passwordFormGroup,
         'domicilioForm': this.domicilioForm
       });
-    
-     let idusuario = localStorage.getItem("auth");
+    //Traer todos los datos!
+    this.setValuesSelectDefault();
+    let idusuario = localStorage.getItem("auth");
     this.service.getUsuarioById(idusuario).subscribe( (response:any) =>{
+      //Si tiene domicilio
       this.usuarioAEditar=response;
-      const nacimiento= new Date(this.usuarioAEditar.fechaNacimiento);
-      const nacimientoTransform = nacimiento.toISOString().substring(0, 10);
-      
+      if(response.domicilio !== null){
+        this.setPerfilConDomicilio(response);
+      }
+      else{
+        this.setPerfilSinDomicilio(response);
+      }
+    });
+    provinciaService.getProvinciasVigentes().subscribe((response:any)=>{
+      this.provincias=response;
+    });
+    
+  }
+  setValuesSelectDefault(){
+    this.form.patchValue({
+      provincia: 'Seleccione',
+      departamento: 'Seleccione',
+      localidad: 'Seleccione'
+    })
+   
+  }
+  setPerfilConDomicilio(response){
+    this.localidadService.getLocalidadByDomicilio(response.domicilio.id).subscribe((localidadRes:Localidad)=>{
       this.passwordFormGroup.patchValue({
         password:response.password,
-        confirmacion:response.password,
+        confirmacion:response.password
       })
-      
+      const nacimiento= new Date(response.fechaNacimiento);
+      const nacimientoTransform = nacimiento.toISOString().substring(0, 10);
+      this.departamentoService.getDepartamentosByProvincia(localidadRes.departamento.provincia.id).subscribe((res:any)=>{
+        this.departamentos=res;
+        this.showDepartamentos=true;
+      })
+      this.localidadService.getLocalidadesByProvinciaAndDepartamento(localidadRes.departamento.provincia.nombreProvincia,localidadRes.departamento.nombreDepartamento)
+      .subscribe((res:any)=>{
+        this.localidades=res;
+        this.showLocalidades=true;
+      })
+      this.domicilioForm.patchValue({
+        domicilioCalle: response.domicilio.calle ,
+        domicilioNumero: response.domicilio.numero,
+        codPostal: response.domicilio.codigoPostal,
+        domicilioPiso: response.domicilio.piso
+      })
       this.form.patchValue({
         nombre: response.nombre,
         mail: response.mail,
@@ -103,26 +130,27 @@ export class PerfilComponent {
         apellido:response.apellido,
         username:response.username,
         fechaNacimiento:nacimientoTransform,
-
+        provincia:localidadRes.departamento.provincia.nombreProvincia,
+        departamento:localidadRes.departamento.nombreDepartamento,
+        localidad:localidadRes.nombreLocalidad
       })
-      
-      if (this.usuarioAEditar.domicilio!= null){
-      
-
-      this.domicilioForm.patchValue({
-        domicilioCalle: this.usuarioAEditar.domicilio.calle === null ? '' : this.usuarioAEditar.domicilio.calle ,
-        domicilioNumero: this.usuarioAEditar.domicilio.numero === null ? '' : this.usuarioAEditar.domicilio.numero,
-        domicilioPiso: this.usuarioAEditar.domicilio.piso === null ? '' : this.usuarioAEditar.domicilio.piso,
-        codPostal: this.usuarioAEditar.domicilio.codigoPostal === null ? '' : this.usuarioAEditar.domicilio.codigoPostal,
-      })
-    }
-
-  });
-  provinciaService.getProvinciasVigentes().subscribe((response:any)=>{
-    this.provincias=response;
-  });
- 
-  
+    });
+  }
+  setPerfilSinDomicilio(response){
+    this.passwordFormGroup.patchValue({
+      password:response.password,
+      confirmacion:response.password
+    })
+    const nacimiento= new Date(response.fechaNacimiento);
+    const nacimientoTransform = nacimiento.toISOString().substring(0, 10);
+    this.form.patchValue({
+      nombre: response.nombre,
+      mail: response.mail,
+      sexo: response.sexo,
+      apellido:response.apellido,
+      username:response.username,
+      fechaNacimiento:nacimientoTransform
+    })
   }
 
   getDepartamentosByProvincia(){
@@ -151,7 +179,6 @@ export class PerfilComponent {
     if(provincia != 'Seleccione' && departamento!='Seleccione' && departamento != ''){
       this.showLocalidades=true;
       this.localidadService.getLocalidadesByProvinciaAndDepartamento(provincia,departamento).subscribe((res:any)=>{
-        
         if(res.length == 0){          
           this.showLocalidades=false;
         }
@@ -164,10 +191,73 @@ export class PerfilComponent {
       this.showLocalidades=false;
     }
   }
+  addFile(event,index){
+    let file=event.target.files[0];
+    console.log("file: ",file);
+    if(file.type === "image/jpeg" || file.type === "image/png" ||file.size <= 2000000){
+      this.idImagen=this.subirArchivo(file);
+      this.files[0]=this.idImagen;
+      this.usuarioAEditar.imagen= this.idImagen;
+      //Insertando imagen en el HTML
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        $('#fotoPerfil')
+        .attr('src', URL.createObjectURL(event.target.files[0]));       
+      };      
+    }
+    else{
+      $.Notification.notify('error','top left', 'Error', 'Archivo excede los 5 mb o formato inválido.');
+      this.form.controls['archivoUno'].setValue("");
+    }
+  }
 
+  abrirModalImagen(){
+    $("#imagen-modal").modal("show");
+  }
+  cerrarModalImagen(){
+    $("#imagen-modal").modal("hide");
+  }
+  subirArchivo(imagen){
+    //Tener en cuenta que las imagenes que sean de perfil conviene guardarlas en una carpeta 'perfil'
+    //Y los demás doc que vengan adjuntos de una solicitud de trabajo o de publicar un requerimiento, que estén en una carpeta 'doc'
+    let path = `perfil/${new Date().getTime()}_${imagen.name}`;
+    const fileRef = this.afStorage.ref(path);
+    // main task
+    let task = this.afStorage.upload(path, imagen);
+    this.afStorage.upload(path, imagen);
+    let id;
+    if(this.idImagen!=null){
+      id=this.idImagen;
+    }
+    else{
+      id= this.afs.createId();
+    }
+    this.uploadPercent = task.percentageChanges();
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        // The above step returns an observable which can be subscribed to fetch the data within it
+        let downloadURL= fileRef.getDownloadURL();
+        downloadURL.subscribe(data => {
+          // storing downloadURL as imageURL
+          const imageURL = data;
+          // storing image path in firestore
+          const imagePath = path;
+          // Image name fetched from ngModel on 'imageNm' field
+          const imageName = imagen.name;
+          // To store timestamp of the image before being inserted in firestore
+          //const maintTs = Date.now();
+          const file: Imagen = { id, imagePath, imageURL, imageName};
+          //Creando coleccion..
+          this.imagenesCollections.doc(id).set(file);
+        });
+      })
+   ).subscribe();
+   return id;
+  }
 
   guardarPerfil(){
-    
+    console.log(" usuario", this.usuarioAEditar);
     let nombre=this.form.controls['nombre'].value;
     let apellido=this.form.controls['apellido'].value;
     let mail=this.form.controls['mail'].value;
@@ -188,52 +278,56 @@ export class PerfilComponent {
     let tipousuario = this.usuarioAEditar.tipoUsuario;
     let domicilio;
     
-
-    if (this.usuarioAEditar.domicilio!=null){
-      domicilio = new Domicilio(this.usuarioAEditar.domicilio.id, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,null,null,null);
-    }else{
-      domicilio = new Domicilio(null, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,null,null,null);
-    }
-   
-    
-    // this.domicilio.nombreLocalidad = localidad;
-
-    let idusuario = localStorage.getItem("auth"); 
-
-    let usuarioActualizado = new Usuario(idusuario,fechaBaja,fechaNacimiento ,
-      fechaUltimoIngreso,mail,nombre,oferente,password,sexo, tipousuario, username ,null ,apellido, domicilio
-                                  );      
-      
-   // console.log(usuarioActualizado);
-
-
+    this.localidadService.getLocalidadesByNombreAndProvinciaAndDepartamento(localidad,provincia,departamento).subscribe((localidadRes:Localidad)=>{
+      if (this.usuarioAEditar.domicilio!=null){
+        domicilio = new Domicilio(this.usuarioAEditar.domicilio.id, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,null,null,localidadRes.id);
+      }else{
+        domicilio = new Domicilio(null, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,null,null,localidadRes.id);
+      }
+      console.log("Domicilio: ",domicilio);
+      let idusuario = localStorage.getItem("auth"); 
+      let usuarioActualizado = new Usuario(idusuario,fechaBaja,fechaNacimiento ,
+      fechaUltimoIngreso,mail,nombre,oferente,password,sexo, tipousuario, username ,null ,apellido, domicilio,this.idImagen);  
+      console.log("Usuario: ",usuarioActualizado);
       this.service.updateUsuario(usuarioActualizado).subscribe(response=>{
-      // $('#sa-warningt').modal('hide');
-        
+        $('#sa-warningt').modal('hide');
+        this.router.navigate(['/sios/home']);
       })
-    
+    })
   }
-
-  openAlert(){
+  hayCambiosEnPerfil(){
+    if (this.form.touched){
+      return true;
+    }
+    return false
+  }
+  confirmarGuardar(){
     this.mensaje = mensajePerfil;
     $('#sa-warningt').modal('show');
   }
-  openAlert01(){
-    this.mensaje = mensajePerfil;
-    $('#sa-warningt01').modal('show');
+  irAPantallaOferente(){
+    if(this.hayCambiosEnPerfil()){
+      this.mensaje = mensajeGuardar;
+      $('#danger-alert').modal('show');
+    }
+    else{
+      this.irAPageAgregarRubro();
+    }
   }
-  openAlert02(){
-    this.mensaje = mensajeGuardar;
-    $('#danger-alert').modal('show');
+  irAPageAgregarRubro(){
+    $('#danger-alert').modal('hide');
+    this.router.navigate(['/sios/agregarRubro']);
   }
   volver(){
     $('#sa-warningt').modal('hide');
   }
-  volver01(){
-    $('#sa-warningt01').modal('hide');
-    $('#sa-warningt').modal('hide');
-  }
-  volver02(){
+  // volver01(){
+  //   $('#sa-warningt01').modal('hide');
+  //   $('#sa-warningt').modal('hide');
+  // }
+  volverAlPerfil(){
     $('#danger-alert').modal('hide');
   }
 }
+
+export interface Imagen { id:string;imagePath:string;imageURL:string,imageName:string}

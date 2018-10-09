@@ -96,7 +96,7 @@ export class RegistracionComponent{
     let username=this.form.controls['username'].value;
     let mail=this.form.controls['mail'].value;
     let pass=this.passwordFormGroup.controls['password'].value;
-    let nuevoUsuario= new Usuario(null,null,null,null,mail,null,false,pass,null,null,username,null,null,null);
+    let nuevoUsuario= new Usuario(null,null,null,null,mail,null,false,pass,null,null,username,null,null,null,null);
     this.service.crearUsuario(nuevoUsuario).subscribe((response:any)=>{
       this.router.navigate(['login']);
       $.Notification.notify('success','top left','Felicitaciones! :)', 'Se ha registrado con éxito. Ingrese con su nuevo username y password')
