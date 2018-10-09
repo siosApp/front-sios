@@ -23,6 +23,7 @@ import { AgregarRubroComponent } from './components/perfil/agregar-rubro/agregar
 import { VerRequerimientoComponent } from './components/ver-requerimiento/ver-requerimiento.component';
 import { OfertarRequerimientoComponent } from './components/ver-requerimiento/ofertar-requerimiento/ofertar-requerimiento.component';
 import { SolicitarTrabajoComponent } from './components/home/solicitar-trabajo.component';
+import { VerSolicitudComponent } from './components/ver-solicitud/ver-solicitud.component';
 
 
 const rutas_hijas: Routes =[
@@ -44,6 +45,7 @@ const rutas_hijas: Routes =[
     { path: 'perfil', component: PerfilComponent },
     { path: 'agregarRubro', component: AgregarRubroComponent },
     { path: 'verRequerimiento', component: VerRequerimientoComponent },
+    { path: 'verSolicitud', component: VerSolicitudComponent },
     { path: 'ofertarRequerimiento', component: OfertarRequerimientoComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
