@@ -14,9 +14,10 @@ export class NoimagePipe implements PipeTransform {
     this.imagenesCollections=this.afs.collection<Imagen>('perfil'); 
   }
 
-  transform(usuario): string {
+  transform(usuarios): string {
+  if(usuarios!==null && usuarios.length>0){ 
+    let usuario=usuarios[0];
     console.log("Usuario Editar: ",usuario);
-    
     if(usuario != undefined && usuario !== null && usuario.imagen !==null && usuario.imagen !==undefined && usuario.imagen !== ''){
       //Traer imagen de firebase
       console.log("Image id: ",usuario.imagen);
@@ -27,8 +28,11 @@ export class NoimagePipe implements PipeTransform {
       return 'assets/images/noimage.png';
     }
   }
+    else{
+      return 'assets/images/noimage.png';
+    }
+  }
   buscar(usuario){
-    
     let file= this.afs.collection('perfil', ref => ref.where('id', '==', usuario.imagen)).valueChanges();
     console.log("Ejecutando pipe: ",file);
     
