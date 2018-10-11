@@ -2,7 +2,7 @@
 	<div class="col-md-4 col-lg-3">
 		<div class="profile-detail card-box">
 			<div>
-				<img [src]=" usuarioAEditar |noimage" class="img-circle" alt="profile-image">
+				<img [src]="imagenUrl" id="fotoPerfil" class="img-circle" alt="profile-image">
 				<!-- Acá se tiene que cambiar por usuario.imagenm pero no como esta modelado aun desde el backend.. -->
 				<br>
 				<div class="fileupload btn btn-instagram waves-effect waves-light" (click)="abrirModalImagen()">
@@ -244,14 +244,15 @@
 				</div>
 				<div class="panel-body">
 					<div class="profile-detail card-box">
-						<img [src]="usuarioAEditar |noimage" id="fotoPerfil" class="img-circle" alt="profile-image"/>	
+						<img [src]="imagenUrl" id="fotoPerfilModal" class="img-circle" alt="profile-image"/>	
 						<input type="file" class="upload" (change)="addFile($event,0)" />
 					</div>
 					<p>
-						<button (click)="cerrarModalImagen()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect pull-right">Volver al perfil</button>
+						<button (click)="cerrarModalImagen()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect pull-right">Guardar y volver</button>
 					</p>
 				</div>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+</div>
+<!-- /.modal -->

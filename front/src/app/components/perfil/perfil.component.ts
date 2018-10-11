@@ -38,17 +38,19 @@ export class PerfilComponent {
   showDepartamentos=false;
   showLocalidades=false;
   mensaje:string;
-  files:string[]=[];
   imagenesCollections: AngularFirestoreCollection<Imagen>;
   uploadPercent:Observable<number>;
   idImagen:any;
-
+  imagenUrl:string;
+  eventImage:any;
+  
   constructor(private service:UsuarioService, private fb:FormBuilder,private router:Router,
               private provinciaService:ProvinciaService,
               private departamentoService:DepartamentoService,
               private localidadService:LocalidadService,private afStorage: AngularFireStorage,
               private afs: AngularFirestore) {
-      this.imagenesCollections=this.afs.collection<Imagen>('perfil');               
+      this.imagenesCollections=this.afs.collection<Imagen>('perfil'); 
+      this.imagenUrl='assets/images/noimage.png';              
       this.passwordFormGroup=fb.group({
         password: ['',Validators.required],
         confirmacion: ['',Validators.required],
@@ -86,11 +88,23 @@ export class PerfilComponent {
       else{
         this.setPerfilSinDomicilio(response);
       }
+      this.cargarImagen(response);
     });
     provinciaService.getProvinciasVigentes().subscribe((response:any)=>{
       this.provincias=response;
     });
-    
+  }
+  cargarImagen(user){
+    if(user.imagen !=null && user.imagen !== ""){
+      //Buscar en Firebase
+      this.imagenesCollections = this.afs.collection<Imagen>('perfil', ref => ref.where('id', '==', user.imagen));
+      let images = this.imagenesCollections.valueChanges();
+      images.subscribe((res:any)=> {
+        console.log("Res: ",res);
+        this.imagenUrl=res[0].imageURL;
+      })
+      
+    }
   }
   setValuesSelectDefault(){
     this.form.patchValue({
@@ -98,7 +112,6 @@ export class PerfilComponent {
       departamento: 'Seleccione',
       localidad: 'Seleccione'
     })
-   
   }
   setPerfilConDomicilio(response){
     this.localidadService.getLocalidadByDomicilio(response.domicilio.id).subscribe((localidadRes:Localidad)=>{
@@ -195,15 +208,15 @@ export class PerfilComponent {
     let file=event.target.files[0];
     console.log("file: ",file);
     if(file.type === "image/jpeg" || file.type === "image/png" ||file.size <= 2000000){
-      this.idImagen=this.subirArchivo(file);
-      this.files[0]=this.idImagen;
-      this.usuarioAEditar.imagen= this.idImagen;
+      //this.idImagen=this.subirArchivo(file);
+      //this.usuarioAEditar.imagen=this.idImagen;
       //Insertando imagen en el HTML
+      this.eventImage=file;
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        $('#fotoPerfil')
-        .attr('src', URL.createObjectURL(event.target.files[0]));       
+        $('#fotoPerfil').attr('src', URL.createObjectURL(event.target.files[0]));
+        $('#fotoPerfilModal').attr('src', URL.createObjectURL(event.target.files[0]));              
       };      
     }
     else{
@@ -216,6 +229,10 @@ export class PerfilComponent {
     $("#imagen-modal").modal("show");
   }
   cerrarModalImagen(){
+    if(this.eventImage!=null){
+      this.idImagen=this.subirArchivo(this.eventImage);
+      this.usuarioAEditar.imagen=this.idImagen;
+    }
     $("#imagen-modal").modal("hide");
   }
   subirArchivo(imagen){
@@ -227,8 +244,8 @@ export class PerfilComponent {
     let task = this.afStorage.upload(path, imagen);
     this.afStorage.upload(path, imagen);
     let id;
-    if(this.idImagen!=null){
-      id=this.idImagen;
+    if(this.usuarioAEditar.imagen !=null && this.usuarioAEditar.imagen !=""){
+      id=this.usuarioAEditar.imagen;
     }
     else{
       id= this.afs.createId();
@@ -287,7 +304,7 @@ export class PerfilComponent {
       console.log("Domicilio: ",domicilio);
       let idusuario = localStorage.getItem("auth"); 
       let usuarioActualizado = new Usuario(idusuario,fechaBaja,fechaNacimiento ,
-      fechaUltimoIngreso,mail,nombre,oferente,password,sexo, tipousuario, username ,null ,apellido, domicilio,this.idImagen);  
+      fechaUltimoIngreso,mail,nombre,oferente,password,sexo, tipousuario, username ,null ,apellido, domicilio,this.usuarioAEditar.imagen);  
       console.log("Usuario: ",usuarioActualizado);
       this.service.updateUsuario(usuarioActualizado).subscribe(response=>{
         $('#sa-warningt').modal('hide');
@@ -296,7 +313,7 @@ export class PerfilComponent {
     })
   }
   hayCambiosEnPerfil(){
-    if (this.form.touched){
+    if (this.form.touched || this.eventImage != null){
       return true;
     }
     return false
