@@ -51,11 +51,17 @@ export class AgregarRubroComponent{
       'nombreCertificado': new FormControl('',[Validators.required,Validators.minLength(8)]),
       'archivo': new FormControl('',Validators.required)
     })
+    this.experienciaForm=new FormGroup({
+      'descripcion': new FormControl('',Validators.required)
+    })
     this.form=fb.group({
       'rubro': new FormControl(''),
       'tipoRubro': new FormControl('')
     });
 
+    this.buscarRubros();
+  }
+  buscarRubros(){
     let idusuario = localStorage.getItem("auth");
     this.service.getUsuarioById(idusuario).subscribe( (response:any) =>{
       this.usuarioAEditar=response;
@@ -64,7 +70,6 @@ export class AgregarRubroComponent{
       this.setValueDefault(); 
     });
   }
-
   setValueDefault(){
     this.form.patchValue({
       rubro: 'Seleccione',
@@ -99,6 +104,7 @@ export class AgregarRubroComponent{
   abrirExperiencia(rubros){
     $('#custom-width-modal01').modal('show');
     this.experiencias=rubros.experiencias;
+    this.usuarioRubro=rubros;
   }
 
   volver(){
@@ -128,7 +134,6 @@ export class AgregarRubroComponent{
   guardarCertificado(){
     if(this.certificadoForm.valid){
       let nombre=this.certificadoForm.controls['nombreCertificado'].value;
-      console.log("file: ",this.files[0]);
       let idArchivo=this.subirArchivo(this.files[0]);
       let certificado={
         id:null,
@@ -136,44 +141,62 @@ export class AgregarRubroComponent{
         fechaCertificado: Date.now(),
         idAdjunto: idArchivo
       }
-      console.log("rubro seleccionado: ",this.usuarioRubro);
       this.rubroService.addOrEliminarCertificado(this.usuarioRubro.id,certificado).subscribe((usuarioRubro:UsuarioRubro)=>{
         this.certificados=usuarioRubro.certificados;
         this.certificadoForm.reset();
+        this.buscarRubros();
       })
     }
+  }
+  volverAPageAgregarRubro(){
+    $("#custom-width-modal01").modal("hide");
+    $("#custom-width-modal").modal("hide");
+    this.buscarRubros();
+  }
+  guardarExperiencia(){
+    if(this.experienciaForm.valid){
+      let descripcion=this.experienciaForm.controls['descripcion'].value;
+      let experiencia={
+        id:null,
+        descripcion: descripcion,
+        fechaDesde: Date.now(),
+        fechaHassta: Date.now()
+      }
+      this.rubroService.addOrEliminarExperiencia(this.usuarioRubro.id,experiencia).subscribe((usuarioRubro:UsuarioRubro)=>{
+        this.experiencias=usuarioRubro.experiencias;
+        this.experienciaForm.reset();
+        this.buscarRubros();
+      })
+    }
+  }
+  eliminarExperiencia(experiencia){
+    this.rubroService.addOrEliminarExperiencia(this.usuarioRubro.id,experiencia).subscribe((usuarioRubro:UsuarioRubro)=>{
+      this.experiencias=usuarioRubro.experiencias;
+    })
+    this.buscarRubros();
+    
   }
   eliminarCertificado(certificado){
     this.rubroService.addOrEliminarCertificado(this.usuarioRubro.id,certificado).subscribe((usuarioRubro:UsuarioRubro)=>{
       this.certificados=usuarioRubro.certificados;
     })
+    this.buscarRubros();
   }
   descargarArchivo(id){
     let imageURL: Observable<string | null>;
     let file= this.afs.collection('certificados', ref => ref.where('id', '==', id)).valueChanges();
     file.subscribe((doc:any)=>{
-      console.log("File: ",doc);
-      
       let file:any= this.afStorage.ref('certificados/'+doc[0].filePath).getDownloadURL();
       file.then(downloadURL => {
           const imageUrl = downloadURL;
-          console.log('URL:' + imageUrl);
       });
-      // let task:any=ref.put(file);
-      // ref.snapshot.ref.getDownloadURL().then(downloadURL => {
-      //   const imageUrl = downloadURL;
-      //   console.log('URL:' + imageUrl);
-      // });
-      //imageURL = ref.getDownloadURL();
     })
-    //const uploadTask=file.
-    
+
   }
   //Firebase
   addFile(event,index){
     let file=event.target.files[0];
     if(file.type === "image/jpeg" || file.type === "image/png" || file.type === "application/pdf" || file.size <= 5000000){
-      //this.idArchivo=this.subirArchivo(file);
       this.files[0]=file;     
     }
     else{

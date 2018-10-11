@@ -46,4 +46,8 @@ export class RubroService {
     let url=`${URL_API}/rubro/anadirOrEliminarCertificado?idUsuarioRubro=${idUsuarioRubro}`;
     return this.http.post(url,certificado);
   }
+  addOrEliminarExperiencia(idUsuarioRubro,experiencia){
+    let url=`${URL_API}/rubro/anadirOrEliminarExperiencia?idUsuarioRubro=${idUsuarioRubro}`;
+    return this.http.post(url,experiencia);
+  }
 }
