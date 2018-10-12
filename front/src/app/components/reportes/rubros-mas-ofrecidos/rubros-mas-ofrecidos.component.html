@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-sm-12">
+      
+
+      <h4 class="page-title">Los 3 Rubros mas Ofrecidos</h4>
+      <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li class="active">Rubros</li>
+      </ol>
+  </div>
+</div>
+ 
+<div>
+  <div style="display: block">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
+  <button (click)="randomize()" class="btn btn-primary waves-effect waves-light btn-xs">Actualizar</button>
+</div>
+
+
+
+ <!-- <div class="row">
+<div class="col-lg-6">
+  <div class="card-box">
+      <h4 class="m-t-0 m-b-30 header-title"><b>Rubros mas Ofrecidos</b></h4>
+
+      <div id="Chart"></div>
+  </div>
+</div>
+</div> -->

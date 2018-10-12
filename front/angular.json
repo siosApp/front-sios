@@ -44,6 +44,7 @@
                         "scripts": [
                             "src/assets/js/jquery.min.js",
                             "src/assets/js/bootstrap.min.js",
+                            "node_modules/chart.js/src/chart.js",
                             "src/assets/js/detect.js",
                             "src/assets/js/fastclick.js",
                             "src/assets/js/jquery.slimscroll.js",
@@ -78,6 +79,7 @@
                             "src/assets/plugins/notifications/notify-metro.js",
                             "src/assets/plugins/bootstrap-inputmask/bootstrap-inputmask.min.js",
                             "src/assets/plugins/autoNumeric/autoNumeric.js",
+                            
                             "src/assets/js/jquery.core.js",
                             "src/assets/js/jquery.app.js"
                             
