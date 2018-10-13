@@ -10,60 +10,79 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
             <div *ngIf="estaLogueado" class="menu-extras">
 
                     <ul class="nav navbar-nav navbar-right pull-right">
                         
-                        <li class="dropdown navbar-c-items">
-                            <a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-                                <i class="icon-bell"></i> <span class="badge badge-xs badge-danger">3</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-lg">
-                                <li class="notifi-title"><span class="label label-default pull-right">Nuevas 3</span>Notificaciones</li>
-                                <li class="list-group slimscroll-noti notification-list">
-                                   <!-- list item-->
-                                   <a [routerLink]="['verSolicitud']" class="list-group-item">
-                                      <div class="media">
-                                         <div class="pull-left p-r-10">
-                                            <em class="fa fa-diamond noti-primary"></em>
-                                         </div>
-                                         <div class="media-body">
-                                            <h5 class="media-heading">Tienes nuevas solicitudes</h5>
-                                            <p class="m-0">
-                                                <small>Consultalas desde aqui!</small>
-                                            </p>
-                                         </div>
-                                      </div>
-                                   </a>
-                            </ul>
-                        </li>
+                            <li class="dropdown navbar-c-items">
+                                    <a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+                                        <i class="icon-bell"></i> <span class="badge badge-xs badge-danger">3</span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-lg">
+                                        <li class="notifi-title"><span class="label label-default pull-right">Nuevas 3</span>Notificaciones</li>
+                                        <li class="list-group slimscroll-noti notification-list">
+                                          
+                                           <a [routerLink]="['verSolicitud']" class="list-group-item">
+                                              <div class="media">
+                                                 <div class="pull-left p-r-10">
+                                                    <em class="fa fa-diamond noti-primary"></em>
+                                                 </div>
+                                                 <div class="media-body">
+                                                    <h5 class="media-heading">Tienes nuevas solicitudes</h5>
+                                                    <p class="m-0">
+                                                        <small>Consultalas desde aqui!</small>
+                                                    </p>
+                                                 </div>
+                                              </div>
+                                           </a>
+                                    </ul>
+                                </li>
 
                         <li class="dropdown navbar-c-items">
+                            <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
                             
-                            <ul class="nav navbar-nav navbar-right pull-right">
-                                    <li class="dropdown navbar-c-items">
-                                        <a href="#" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown"
-                                            aria-expanded="true"><i class="fa fa-cog"></i></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="javascript:void(0)" [routerLink]="['perfil']"><i class="ti-user text-custom m-r-10"></i>
-                                                    Perfil</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="javascript:void(0)" [routerLink]="['/login']"><i class="ti-power-off text-danger m-r-10"></i>
-                                                    Salir</a></li>
-                                        </ul>
-                                    </li>
+                            <ul class="dropdown-menu dropdown-menu-lg">
+                                    <li class="notifi-title"><span class="label label-default pull-right"></span>{{this.username}}</li>
+                                    <li class="list-group slimscroll-noti notification-list">
+                                      
+                                       <a [routerLink]="['perfil']" class="list-group-item">
+                                          <div class="media">
+                                             <div class="pull-left p-r-10">
+                                                <em class="fa fa-user-plus noti-primary"></em>
+                                             </div>
+                                             <div class="media-body">
+                                                <h5 class="media-heading">Ver Perfil</h5>
+                                                <p class="m-0">
+                                                    <small>Vea y edite su perfil</small>
+                                                </p>
+                                             </div>
+                                          </div>
+                                       </a>
+                                       <a (click)="abrirModal()" class="list-group-item">
+                                            <div class="media">
+                                               <div class="pull-left p-r-10">
+                                                  <em class="fa fa-power-off noti-danger"></em>
+                                               </div>
+                                               <div class="media-body">
+                                                  <h5 class="media-heading">Salir</h5>
+                                                  <p class="m-0">
+                                                      <small>Salir de su cuenta</small>
+                                                  </p>
+                                               </div>
+                                            </div>
+                                         </a>
                                 </ul>
+                            
+                            <!-- <ul class="dropdown-menu">
+                                    <li><a href="javascript:void(0)" [routerLink]="['perfil']"><i class="ti-user text-custom m-r-10"></i>
+                                        Perfil</a></li>
+                                
+                                
+                                <li class="divider"></li>
+                                
+                                <li><a (click)="cerrarSesion()" href="javascript:void(0)" [routerLink]="['/home']"><i class="ti-power-off text-danger m-r-10"></i>
+                                    Salir</a></li>
+                            </ul> -->
                         </li>
                     </ul>
                     <div class="menu-item">
@@ -90,72 +109,66 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
             <!-- <div *ngIf="estaLogueado" class="menu-extras">
-                
-                <li class="dropdown navbar-c-items pull-right">
-                    <a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
-                        aria-expanded="true">
-                        <i class="icon-bell"></i> <span class="badge badge-xs badge-danger">3</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-lg">
-                        <li class="notifi-title"><span class="label label-default pull-right">New 3</span>Notification</li>
-                        <li class="list-group slimscroll-noti notification-list">
-                           
-                            <a href="javascript:void(0);" class="list-group-item">
-                                <div class="media">
-                                    <div class="pull-left p-r-10">
-                                        <em class="fa fa-diamond noti-primary"></em>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="media-heading">A new order has been placed A new order has been
-                                            placed</h5>
-                                        <p class="m-0">
-                                            <small>There are new settings available</small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                           
-                        </li>
+
+                    <ul class="nav navbar-nav navbar-right pull-right">
                         
+                        <li class="dropdown navbar-c-items">
+                            <a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+                                <i class="icon-bell"></i> <span class="badge badge-xs badge-danger">3</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-lg">
+                                <li class="notifi-title"><span class="label label-default pull-right">Nuevas 3</span>Notificaciones</li>
+                                <li class="list-group slimscroll-noti notification-list">
+                                  
+                                   <a [routerLink]="['verSolicitud']" class="list-group-item">
+                                      <div class="media">
+                                         <div class="pull-left p-r-10">
+                                            <em class="fa fa-diamond noti-primary"></em>
+                                         </div>
+                                         <div class="media-body">
+                                            <h5 class="media-heading">Tienes nuevas solicitudes</h5>
+                                            <p class="m-0">
+                                                <small>Consultalas desde aqui!</small>
+                                            </p>
+                                         </div>
+                                      </div>
+                                   </a>
+                            </ul>
+                        </li>
+                        <li class="dropdown navbar-c-items">
+                            
+                                <ul class="nav navbar-nav navbar-right pull-right">
+                                       
+                                                <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="src/assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
+                                                <ul class="dropdown-menu">
+                                                        <li><a href="javascript:void(0)" [routerLink]="['perfil']"><i class="ti-user text-custom m-r-10"></i>
+                                                            Perfil</a></li>
+                                                    
+                                                    
+                                                    <li class="divider"></li>
+                                                    
+                                                    <li><a href="javascript:void(0)" [routerLink]="['/login']"><i class="ti-power-off text-danger m-r-10"></i>
+                                                        Salir</a></li>
+                                                </ul>
+                                            
+                                    </ul>
+                            </li>
+                        
+
+                       
                     </ul>
-                </li>
-                <ul class="nav navbar-nav navbar-right pull-right">
-                    <li class="dropdown navbar-c-items">
-                        <a href="#" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown"
-                            aria-expanded="true"><i class="fa fa-cog"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)" [routerLink]="['perfil']"><i class="ti-user text-custom m-r-10"></i>
-                                    Perfil</a></li>
-                            <li class="divider"></li>
-                            <li><a href="javascript:void(0)" [routerLink]="['/login']"><i class="ti-power-off text-danger m-r-10"></i>
-                                    Salir</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <div class="menu-item">
-                    <a class="navbar-toggle">
-                        <div class="lines">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </a>
-                </div>
-            </div> -->
+                    <div class="menu-item">
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                    </div>
+                </div> -->
+
 
         </div>
     </div>
@@ -165,10 +178,10 @@
                 <!-- Navigation Menu-->
                 <ul class="navigation-menu">
                     <li class="has-submenu" routerLinkActive="active">
-                        <a href="#" [routerLink]="['home']"><i class="md md-shopping-cart"></i>Home</a>
+                        <a href="#" [routerLink]="['home']"><i class="fa fa-home"></i>Home</a>
                     </li>
-                    <li class="has-submenu" routerLinkActive="active" *ngIf="esAdministrador">
-                        <a href="#"><i class="fa fa-cog"></i>Configuración</a>
+                    <li   class="has-submenu" routerLinkActive="active" *ngIf="esAdministrador">
+                        <a *ngIf="estaLogueado" href="#"><i class="fa fa-cog"></i>Configuración</a>
                         <ul class="submenu megamenu">
                             <li>
                                 <ul>
@@ -206,16 +219,62 @@
                         </ul>
                     </li>
 
+                    <li class="has-submenu" *ngIf="estaLogueado" routerLinkActive="active">
+                        <a href="#"><i class="fa fa-area-chart"></i>Reportes</a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li>
+                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['trabajos-realizados']">Trabajos Realizados</a>
+                                        
+                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['calificaciones']">Calificaciones</a>
+                                       
+                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['rubros-mas-demandados']">Rubros mas Demandados</a>
+                                      
+                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['rubros-mas-ofrecidos']">Rubros mas Ofrecidos</a>
+                                       
+
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
 
 
 
-                    <!-- <li class="has-submenu" routerLinkActive="active">
+                    <!-- <li class="has-submenu pull-right" *ngIf="estaLogueado">
+                        <a href="#"><i class="fa  fa-area-chart"></i>Informes</a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li>
+                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['trabajos-realizados']">Trabajos Realizados</a>
+                                        <a *ngIf="!estaLogueado" href="#" [routerLink]="['/login']">Trabajos Realizados</a>
 
-                        <a *ngIf="estaLogueado" href="#" [routerLink]="['publicarRequerimiento']"><i class="fa fa-object-group"></i>Publicar Requerimiento</a>
-                        <a *ngIf="!estaLogueado" href="#" [routerLink]="['/login']"><i class="fa fa-object-group"></i>Publicar Requerimiento</a>
+                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['calificaciones']">Calificaciones</a>
+                                        <a *ngIf="!estaLogueado" href="#" [routerLink]="['/login']">Calificaciones</a>
+
+                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['rubros-mas-demandados']">Rubros mas Demandados</a>
+                                        <a *ngIf="!estaLogueado" href="#" [routerLink]="['/login']">Rubros mas Demandados</a>
+
+                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['rubros-mas-ofrecidos']">Rubros mas Ofrecidos</a>
+                                        <a *ngIf="!estaLogueado" href="#" [routerLink]="['/login']">Rubros mas Ofrecidos</a>
+
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
                     </li> -->
-                    <li *ngIf="estaLogueado" class="has-submenu pull-right">
-                        <a href="#" (click)="cerrarSesion()" title="Cerrar Sesion"><i class="glyphicon glyphicon-off"></i>{{this.username}}</a>
+
+
+
+
+
+
+                    <li *ngIf="!estaLogueado" class="has-submenu pull-right">
+                        <a href="#"  [routerLink]="['/registracion']" title="Registrarse"><i class="fa fa-user-plus"></i>Registrarse</a>
                     </li>
                     <li *ngIf="!estaLogueado" class="has-submenu pull-right">
                         <a href="#" [routerLink]="['/login']"><i class="glyphicon glyphicon-user"></i>Iniciar sesión</a>
@@ -228,3 +287,27 @@
     </div>
     <!-- end navbar-custom -->
 </div>
+
+
+
+
+
+<div id="danger-alert" style="display: none;">
+        <div class="sweet-alert showSweetAlert" data-backdrop="static" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
+            <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
+            </div>
+            <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+            <div class="icon info" style="display: none;"></div>
+            <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
+                <div class="placeholder"></div>
+                <div class="fix"></div>
+            </div>
+            <div class="icon custom" style="display: none;"></div>
+            <h2>Estás seguro?</h2>
+            <p class="lead text-muted" style="display: block;">Desea cerrar sesion? si te arrepentis clic en "Volver".</p>
+            <p>
+                <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Volver</button>
+                <button (click)="cerrarSesion()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Seguir de todas formas.</button>
+            </p>
+        </div>
+    </div>

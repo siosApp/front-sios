@@ -3,7 +3,7 @@ import { AutenticacionService } from '../../services/autenticacion.service';
 import { Router } from '@angular/router';
 import { log } from 'util';
 import { UsuarioService } from '../../services/usuario.service';
-
+declare var $:any;
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -47,5 +47,13 @@ export class NavbarComponent {
   cerrarSesion(){
     this.estaLogueado=false;
     this.tokenService.cerrarSesion();
+    $("#danger-alert").modal("hide");
+  }
+
+  abrirModal(){
+    $("#danger-alert").modal("show");
+  }
+  volver(){
+    $("#danger-alert").modal("hide");
   }
 }

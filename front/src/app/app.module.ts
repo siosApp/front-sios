@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ChartsModule } from 'ng2-charts';
+
 
 import { AppComponent } from './app.component';
 import { ProvinciaComponent } from './components/configuracion/provincia/provincia.component';
@@ -38,6 +40,10 @@ import { environment } from '../environments/environment';
 import { SolicitarTrabajoComponent } from './components/home/solicitar-trabajo.component';
 import { NoimagePipe } from './pipes/noimage.pipe';
 import { VerSolicitudComponent } from './components/ver-solicitud/ver-solicitud.component';
+import { TrabajosRealizadosComponent } from './components/reportes/trabajos-realizados/trabajos-realizados.component';
+import { CalificacionesComponent } from './components/reportes/calificaciones/calificaciones.component';
+import { RubrosMasDemandadosComponent } from './components/reportes/rubros-mas-demandados/rubros-mas-demandados.component';
+import { RubrosMasOfrecidosComponent } from './components/reportes/rubros-mas-ofrecidos/rubros-mas-ofrecidos.component';
 
 
 
@@ -91,7 +97,11 @@ export function getAuthServiceConfigs() {
     OfertarRequerimientoComponent,
     SolicitarTrabajoComponent,
     NoimagePipe,
-    VerSolicitudComponent
+    VerSolicitudComponent,
+    TrabajosRealizadosComponent,
+    CalificacionesComponent,
+    RubrosMasDemandadosComponent,
+    RubrosMasOfrecidosComponent
   ],
   imports: [
     BrowserModule,
@@ -101,6 +111,7 @@ export function getAuthServiceConfigs() {
     SocialLoginModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
+    ChartsModule,
     // To initialize AngularFire
     AngularFireModule.initializeApp(environment.firebase)
   ],
