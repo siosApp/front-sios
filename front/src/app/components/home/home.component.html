@@ -75,7 +75,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="oferentes != null && oferentes.length > 0">
     <div class="col-sm-12">
         <div class="card-box">
             <h4 class="m-t-0 header-title"><b>Ultimos usuarios destacados en SIOS</b></h4>
@@ -83,13 +83,12 @@
             <div *ngFor="let oferente of oferentes">
                 <div class="media">
                     <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle" alt="64x64" [src]="" style="width: 64px; height: 64px;"> </a>
+                        <img class="media-object img-circle" alt="64x64" [src]="oferente | noimage" style="width: 64px; height: 64px;">
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">{{oferente.nombre}} ,{{oferente.apellido}} - {{oferente.rubros[0].nombreRubro}}</h4>
+                        <h4 class="media-heading">{{oferente.nombre}} {{oferente.apellido}} - {{oferente.rubros[0].nombreRubro}}</h4>
                         <p>{{oferente.rubros[0].descripcion}}</p>
                     </div>
-
                     <button [routerLink]="['/sios/solicitarTrabajo',oferente.idUsuario]" type="button" class="btn btn-default btn-rounded pull-right waves-effect waves-light">Solicitar Trabajo
                         <span class="btn-label btn-label-right"><i class="fa fa-arrow-right"></i></span>
                     </button>
