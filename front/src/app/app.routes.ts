@@ -49,6 +49,7 @@ const rutas_hijas: Routes =[
     { path: 'perfil', component: PerfilComponent },
     { path: 'agregarRubro', component: AgregarRubroComponent },
     { path: 'verRequerimiento', component: VerRequerimientoComponent },
+    { path: 'ofertarRequerimiento', component: OfertarRequerimientoComponent },
     { path: 'verSolicitud', component: VerSolicitudComponent },
     { path: 'calificaciones', component: CalificacionesComponent },
     { path: 'rubros-mas-demandados', component: RubrosMasDemandadosComponent },
