@@ -37,9 +37,10 @@ export class AgregarRubroComponent{
   archivosCollection: AngularFirestoreCollection<ArchivoAdjunto>;
   files:string[]=[];
   usuarioRubro:UsuarioRubro;
+  habilitaButtonVisualizar=true;
+
   constructor(private tipoRubroService:TipoRubroService,private rubroService:RubroService, private fb:FormBuilder, private service:UsuarioService,
     private afStorage: AngularFireStorage,private afs: AngularFirestore) { 
-
     this.archivosCollection = this.afs.collection<ArchivoAdjunto>('certificados'); 
     tipoRubroService.getTipoRubrosVigentes().subscribe((response:any)=>{
       this.tiposRubros=response;
@@ -141,11 +142,13 @@ export class AgregarRubroComponent{
         fechaCertificado: Date.now(),
         idAdjunto: idArchivo
       }
-      this.rubroService.addOrEliminarCertificado(this.usuarioRubro.id,certificado).subscribe((usuarioRubro:UsuarioRubro)=>{
-        this.certificados=usuarioRubro.certificados;
-        this.certificadoForm.reset();
-        this.buscarRubros();
-      })
+      setTimeout(()=>{
+        this.rubroService.addOrEliminarCertificado(this.usuarioRubro.id,certificado).subscribe((usuarioRubro:UsuarioRubro)=>{
+          this.certificados=usuarioRubro.certificados;
+          this.certificadoForm.reset();
+          this.buscarRubros();
+        })
+      },5000)
     }
   }
   volverAPageAgregarRubro(){
@@ -183,15 +186,16 @@ export class AgregarRubroComponent{
     this.buscarRubros();
   }
   descargarArchivo(id){
-    let imageURL: Observable<string | null>;
-    let file= this.afs.collection('certificados', ref => ref.where('id', '==', id)).valueChanges();
-    file.subscribe((doc:any)=>{
-      let file:any= this.afStorage.ref('certificados/'+doc[0].filePath).getDownloadURL();
-      file.then(downloadURL => {
-          const imageUrl = downloadURL;
-      });
-    })
-
+    this.habilitaButtonVisualizar=false;
+    this.archivosCollection = this.afs.collection<ArchivoAdjunto>('doc', ref => ref.where('id', '==', id));
+      setTimeout(()=>{
+        let files = this.archivosCollection.valueChanges();
+        files.subscribe((res:any)=> {
+          console.log(res[0].fileURL);
+          window.open(res[0].fileURL);
+          this.habilitaButtonVisualizar=true;
+        })
+      }, 4000);
   }
   //Firebase
   addFile(event,index){

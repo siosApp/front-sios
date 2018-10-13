@@ -145,7 +145,7 @@
                                               <td>{{certificado.nombreCertificado}}</td>
                                               <td>
                                                 <div class="button-list">
-                                                    <button (click)="descargarArchivo(certificado.idAdjunto)" class="btn btn-primary waves-effect waves-light btn-xs">Descargar</button>
+                                                    <button [disabled]="!habilitaButtonVisualizar" (click)="descargarArchivo(certificado.idAdjunto)" class="btn btn-primary waves-effect waves-light btn-xs">Visualizar</button>
                                                     <button (click)="eliminarCertificado(certificado)" class="btn btn-danger waves-effect waves-light btn-xs">Eliminar</button>
                                                 </div>
                                             </td>
