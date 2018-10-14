@@ -4,6 +4,8 @@ export class UsuarioDestacado {
     idUsuario:string;
     nombre:string;
     apellido:string;
+    imagen:string;
     domicilio:Domicilio;
     rubros:Rubro[];
+    experiencia:string;
 }

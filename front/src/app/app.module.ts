@@ -40,10 +40,12 @@ import { environment } from '../environments/environment';
 import { SolicitarTrabajoComponent } from './components/home/solicitar-trabajo.component';
 import { NoimagePipe } from './pipes/noimage.pipe';
 import { VerSolicitudComponent } from './components/ver-solicitud/ver-solicitud.component';
+import { ImagenComponent } from './components/home/imagen/imagen.component';
 import { TrabajosRealizadosComponent } from './components/reportes/trabajos-realizados/trabajos-realizados.component';
 import { CalificacionesComponent } from './components/reportes/calificaciones/calificaciones.component';
 import { RubrosMasDemandadosComponent } from './components/reportes/rubros-mas-demandados/rubros-mas-demandados.component';
 import { RubrosMasOfrecidosComponent } from './components/reportes/rubros-mas-ofrecidos/rubros-mas-ofrecidos.component';
+
 
 
 
@@ -98,6 +100,7 @@ export function getAuthServiceConfigs() {
     SolicitarTrabajoComponent,
     NoimagePipe,
     VerSolicitudComponent,
+    ImagenComponent,
     TrabajosRealizadosComponent,
     CalificacionesComponent,
     RubrosMasDemandadosComponent,
