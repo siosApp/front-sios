@@ -38,6 +38,7 @@ import { environment } from '../environments/environment';
 import { SolicitarTrabajoComponent } from './components/home/solicitar-trabajo.component';
 import { NoimagePipe } from './pipes/noimage.pipe';
 import { VerSolicitudComponent } from './components/ver-solicitud/ver-solicitud.component';
+import { ImagenComponent } from './components/home/imagen/imagen.component';
 
 
 
@@ -91,7 +92,8 @@ export function getAuthServiceConfigs() {
     OfertarRequerimientoComponent,
     SolicitarTrabajoComponent,
     NoimagePipe,
-    VerSolicitudComponent
+    VerSolicitudComponent,
+    ImagenComponent
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,9 @@ import { Router } from '@angular/router';
 import { AutenticacionService } from '../../services/autenticacion.service';
 import { UsuarioDestacado } from '../../models/usuarioDestacado';
 import { log } from 'util';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { Imagen } from '../perfil/perfil.component';
 
 @Component({
   selector: 'app-home',
@@ -34,10 +37,13 @@ export class HomeComponent{
   showLocalidades=false;
   showDepartamentos=false;
   oferentes:UsuarioDestacado[];
+  imagenesCollections: AngularFirestoreCollection<Imagen>;
   constructor(private fb:FormBuilder,private tipoRubroService:TipoRubroService,
     private provinciaService:ProvinciaService,private rubroService:RubroService,
     private departamentoService:DepartamentoService,private localidadService:LocalidadService,
-    private usuarioService:UsuarioService,private router:Router,private authService:AutenticacionService) {
+    private usuarioService:UsuarioService,private router:Router,private authService:AutenticacionService,
+    private afStorage: AngularFireStorage,private afs: AngularFirestore) {
+    this.imagenesCollections=this.afs.collection<Imagen>('perfil'); 
     this.form= new FormGroup({
       'rubro': new FormControl('',[Validators.required,Validators.minLength(3)]),
       'tipoRubro': new FormControl('',Validators.required),
@@ -132,10 +138,10 @@ export class HomeComponent{
     let departamento=this.form.controls['departamento'].value === 'Seleccione'? "null":this.form.controls['departamento'].value;
     let localidad=this.form.controls['localidad'].value === 'Seleccione'? "null":this.form.controls['localidad'].value;
     this.usuarioService.getOferentes(tipoRubro,rubro,provincia,departamento,localidad).subscribe((res:any)=>{
-      console.log("Buscando oferentes..",res);
       this.oferentes=res;
-      console.log("Oferentes: ",this.oferentes);
+      console.log("Oferentes: ",this.oferentes[0]);
       
     })
   }
+
 }
