@@ -24,6 +24,10 @@ import { VerRequerimientoComponent } from './components/ver-requerimiento/ver-re
 import { OfertarRequerimientoComponent } from './components/ver-requerimiento/ofertar-requerimiento/ofertar-requerimiento.component';
 import { SolicitarTrabajoComponent } from './components/home/solicitar-trabajo.component';
 import { VerSolicitudComponent } from './components/ver-solicitud/ver-solicitud.component';
+import { CalificacionesComponent } from './components/reportes/calificaciones/calificaciones.component';
+import { RubrosMasDemandadosComponent } from './components/reportes/rubros-mas-demandados/rubros-mas-demandados.component';
+import { RubrosMasOfrecidosComponent } from './components/reportes/rubros-mas-ofrecidos/rubros-mas-ofrecidos.component';
+import { TrabajosRealizadosComponent } from './components/reportes/trabajos-realizados/trabajos-realizados.component';
 
 
 const rutas_hijas: Routes =[
@@ -45,8 +49,12 @@ const rutas_hijas: Routes =[
     { path: 'perfil', component: PerfilComponent },
     { path: 'agregarRubro', component: AgregarRubroComponent },
     { path: 'verRequerimiento', component: VerRequerimientoComponent },
-    { path: 'verSolicitud', component: VerSolicitudComponent },
     { path: 'ofertarRequerimiento', component: OfertarRequerimientoComponent },
+    { path: 'verSolicitud', component: VerSolicitudComponent },
+    { path: 'calificaciones', component: CalificacionesComponent },
+    { path: 'rubros-mas-demandados', component: RubrosMasDemandadosComponent },
+    { path: 'rubros-mas-ofrecidos', component: RubrosMasOfrecidosComponent },
+    { path: 'trabajos-realizados', component: TrabajosRealizadosComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
