@@ -11,6 +11,7 @@ import { finalize, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { SolicitarTrabajoService } from '../../services/solicitar-trabajo.service';
 import { Archivo } from '../../models/archivo';
+import { Imagen } from '../perfil/perfil.component';
 
 declare var $:any;
 @Component({
@@ -27,14 +28,19 @@ export class SolicitarTrabajoComponent {
   archivosCollection: AngularFirestoreCollection<ArchivoAdjunto>;
   uploadPercent:Observable<number>;
   idArchivo:any;
-  
+  urlImagen:string;
+  imagenesCollections: AngularFirestoreCollection<Imagen>;
   constructor(private usuarioService:UsuarioService,private afStorage: AngularFireStorage,private afs: AngularFirestore,
     private location:Location,private activatedRoute:ActivatedRoute,
     private fileService:FileService,private solicitudService:SolicitarTrabajoService) {
+    this.urlImagen="assets/images/noimage.png";
     activatedRoute.params.subscribe((parametros:any)=>{
       usuarioService.getUsuarioById(parametros['id']).subscribe((usuarioRes:any)=>{
         console.log("Oferente: ",usuarioRes);
         this.oferente=usuarioRes;
+        if(this.oferente.imagen!=null){
+          this.setFotoPerfil(this.oferente.imagen);
+        }
       })
     })
     this.archivosCollection = this.afs.collection<ArchivoAdjunto>('archivos');
@@ -46,8 +52,16 @@ export class SolicitarTrabajoComponent {
       'archivoCuarto' : new FormControl('',Validators.required),
       'archivoQuinto' : new FormControl('',Validators.required)
     })
+   
   }
-
+  setFotoPerfil(idUsuario){
+    let url='assets/images/download.png';
+    this.imagenesCollections = this.afs.collection<Imagen>('perfil', ref => ref.where('id', '==', idUsuario));
+    let images = this.imagenesCollections.valueChanges();
+    images.subscribe((res:any)=> {
+        this.urlImagen=res[0].imageURL;
+    })  
+  }
   volverAlHome(){
     this.location.back();
   }
