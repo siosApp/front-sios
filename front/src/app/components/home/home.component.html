@@ -86,7 +86,14 @@
                         <app-imagen [usuario]="oferente"></app-imagen>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">{{oferente.nombre}} {{oferente.apellido}} - {{oferente.rubros[0].nombreRubro}}</h4>
+                        <h4 class="media-heading">
+                            <div *ngIf="oferente.nombre && oferente.apellido">
+                                {{oferente.nombre}} {{oferente.apellido}} 
+                            </div>
+                            <div *ngIf="oferente.nombre==null || oferente.apellido==null">
+                                {{oferente.username}}
+                            </div>                            
+                             {{oferente.rubros[0].nombreRubro}}</h4>
                         <p>{{oferente.experiencia}}</p>
                     </div>
                     <button [routerLink]="['/sios/solicitarTrabajo',oferente.idUsuario]" type="button" class="btn btn-default btn-rounded pull-right waves-effect waves-light">Solicitar Trabajo
