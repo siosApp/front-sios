@@ -1,7 +1,5 @@
 <div class="row">
     <div class="col-sm-12">
-  
-  
       <h4 class="page-title">Los 4 Rubros mas Demandados</h4>
       <ol class="breadcrumb">
         <li><a href="#">Home</a></li>
@@ -9,8 +7,7 @@
       </ol>
     </div>
   </div>
-  
-  
+  <form [formGroup]="reporteForm" (ngSubmit)="generarReporte()">
   <div class="row">
       <div class="col-sm-12">
           <div class="card-box">
@@ -24,25 +21,17 @@
                       </p>
                   </div>
                   <div class="col-xs-12">
-                      
-                      
                       <label>Desde</label>
                       <div class="input-group m-b-15">
-                          <input type="date" class="form-control" style="width: 200px;">
+                          <input type="date" formControlName="fechaDesde" name="fechaDesde" class="form-control" style="width: 200px;">
                       </div><!-- input-group -->
-                    
-  
-                   
                         <label>Hasta</label>
                         <div class="input-group m-b-15">
-                            <input type="date" class="form-control" style="width: 200px;">
+                          <input type="date" formControlName="fechaHasta" name="fechaHasta" class="form-control" style="width: 200px;">
                         </div><!-- input-group -->
-                      
-                      
                       <div>
-                        <button (click)="randomize()" class="btn btn-primary waves-effect waves-light btn-xs">Actualizar</button>
+                        <button type="submit" class="btn btn-primary waves-effect waves-light btn-xs">Actualizar</button>
                       </div>
-            
                       <div>
                         <div style="display: block">
                             <canvas 
@@ -54,17 +43,12 @@
                             (chartHover)="chartHovered($event)" 
                             (chartClick)="chartClicked($event)"></canvas>
                         </div>
-            
                       </div>
-            
-            
-            
-            
-                    </div>
-  
+                  </div>
               </div>
-            </div>
           </div>
         </div>
+      </div>
+    </form>
   
   

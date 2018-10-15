@@ -39,7 +39,7 @@
                                 </li>
 
                         <li class="dropdown navbar-c-items">
-                            <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
+                            <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img [src]="urlImage" alt="user-img" class="img-circle"> </a>
                             
                             <ul class="dropdown-menu dropdown-menu-lg">
                                     <li class="notifi-title"><span class="label label-default pull-right"></span>{{this.username}}</li>
@@ -267,12 +267,6 @@
                             </li>
                         </ul>
                     </li> -->
-
-
-
-
-
-
                     <li *ngIf="!estaLogueado" class="has-submenu pull-right">
                         <a href="#"  [routerLink]="['/registracion']" title="Registrarse"><i class="fa fa-user-plus"></i>Registrarse</a>
                     </li>
