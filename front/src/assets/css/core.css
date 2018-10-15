@@ -32,6 +32,14 @@ body {
   box-shadow: -2px 3px 25px rgba(0, 0, 0, 0.02);
   color: #797979;
 }
+
+/* Background Images */
+.bg-img-1 {
+  background: url("src/assets/images/login/bg.jpg") no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
 html {
   position: relative;
   min-height: 100%;
@@ -479,6 +487,9 @@ a:focus {
 .close {
   opacity: .6;
 }
+
+
+
 /* Background colors */
 .bg-custom {
   background-color: #5fbeaa !important;

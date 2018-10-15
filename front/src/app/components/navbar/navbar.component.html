@@ -307,7 +307,7 @@
             <p class="lead text-muted" style="display: block;">Desea cerrar sesion? si te arrepentis clic en "Volver".</p>
             <p>
                 <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Volver</button>
-                <button (click)="cerrarSesion()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Seguir de todas formas.</button>
+                <button (click)="cerrarSesion()" [routerLink]="['/home']" routerLinkActive="router-link-active"  class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Seguir de todas formas.</button>
             </p>
         </div>
     </div>
