@@ -13,4 +13,8 @@ export class SolicitarTrabajoService {
     let url=`${URL_API}/solicitud/solicitarServicio`;
     return this.http.post(url,solicitud);
   }
+  getSolicitudesPendientesPorUsuario(idUsuario){
+    let url=`${URL_API}/solicitud/solicitudesPendientesPorUsuario?idUsuario=${idUsuario}`;
+    return this.http.get(url);
+  }
 }
