@@ -50,4 +50,8 @@ export class RubroService {
     let url=`${URL_API}/rubro/anadirOrEliminarExperiencia?idUsuarioRubro=${idUsuarioRubro}`;
     return this.http.post(url,experiencia);
   }
+  getRubrosMasDemandados(fechaDesde,fechaHasta){
+    let url=`${URL_API}/rubro/rubrosMasDemandados?fechaDesde=${fechaDesde}&fechaHasta=${fechaHasta}`;
+    return this.http.get(url);
+  }
 }

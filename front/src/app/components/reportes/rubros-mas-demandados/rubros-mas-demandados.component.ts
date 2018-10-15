@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { RubroService } from '../../../services/rubro.service';
 
 @Component({
   selector: 'app-rubros-mas-demandados',
@@ -6,6 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./rubros-mas-demandados.component.css']
 })
 export class RubrosMasDemandadosComponent   {
+
+  reporteForm:FormGroup;
+
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true
@@ -21,6 +26,22 @@ export class RubrosMasDemandadosComponent   {
     {data: [20, 67, 87, 54, 86, 34, 78], label: 'Carpinteria'}
   ];
  
+  constructor(private rubroService:RubroService){
+    this.reporteForm= new FormGroup({
+      'fechaDesde': new FormControl('',Validators.required),
+      'fechaHasta': new FormControl('',Validators.required)
+    })
+  }
+
+  generarReporte(){
+    //obtener fechas y generar reporte.
+    let fechaDesde=this.reporteForm.controls['fechaDesde'].value;
+    let fechaHasta=this.reporteForm.controls['fechaHasta'].value;
+    this.rubroService.getRubrosMasDemandados(fechaDesde,fechaHasta).subscribe((reporteResponse:any)=>{
+      this.randomize();
+      console.log("Respuesta reporte: ",reporteResponse);
+    })
+  }
   // events
   public chartClicked(e:any):void {
     console.log(e);
