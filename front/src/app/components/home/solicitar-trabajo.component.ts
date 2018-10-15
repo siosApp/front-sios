@@ -52,6 +52,13 @@ export class SolicitarTrabajoComponent {
     this.location.back();
   }
 
+  abrirModal(){
+    $('#sa-warningt').modal('show');
+  }
+  volver(){
+    $('#sa-warningt').modal('hide');
+  }
+
   addFile(event,index){
     let file=event.target.files[0];
     console.log("file: ",file);
@@ -122,5 +129,10 @@ export class SolicitarTrabajoComponent {
    ).subscribe();
    return id;
   }
+
+  
 }
+
+
+
 export interface ArchivoAdjunto { id:string;filePath:string;fileURL:string,fileName:string}
