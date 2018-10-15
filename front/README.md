@@ -2,11 +2,13 @@
 Primero que nada: 
 1. npm install
 Para instalar las dependencias de las redes sociales: 
-1. npm install --save angular-6-social-login
+2. npm install --save angular-6-social-login
 Para Firebase: 
-1. npm install firebase-tools -g
-2. npm install angularfire2 firebase --save
-
+3. npm install firebase-tools -g
+4. npm install angularfire2 firebase --save
+Para los reportes:
+5. npm install ng2-charts --save
+6. npm install chart.js --save
 Done! A correr el proyecto, muchachos!
 
 # Front
