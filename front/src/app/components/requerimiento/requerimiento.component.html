@@ -1,7 +1,28 @@
-<div class="col-lg-2"></div>
+
+
+
+<div class="col-md-4 col-lg-3">
+		<div class="profile-detail card-box">
+			<div>
+			
+				<ul class="list-inline status-list m-t-20">
+					<li>
+						<h3 class="text-primary m-b-5">Recuerda acualizar tu domicilio en tu perfil.</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
+						<!-- <p class="text-muted">Trabajos Realizados</p> -->
+					</li>
+					<li>
+						<h3 class="text-success m-b-5"><a class="md-2x md-location-on"></a></h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
+						<!-- <p class="text-muted">En curso</p> -->
+					</li>
+				</ul>
+				<button type="button" [routerLink]="['/sios/perfil']"  class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Ir a Perfil</button>
+				<hr>
+			</div>
+		</div>
+	</div>
 <div class="row">
     <div class="col-lg-8">
-            <form [formGroup]="form" (ngSubmit)="guardarRequerimiento()" class="well" >
+            <form [formGroup]="form" (ngSubmit)="abrirModal()" class="well" >
             <div class="card-box">
                     
             <h5 class="text-muted text-uppercase m-t-0 m-b-20"><b>Publique su requerimiento</b></h5>
@@ -47,17 +68,20 @@
                      </p>
                     <input type="file" class="filestyle" formControlName="archivoUno" name="archivoUno" data-buttonname="btn-white" (change)="addFile($event,0)">
                     <div *ngIf="this.form.controls['archivoUno'].value != ''">{{uploadPercent | async | number:'1.0-0'}} % subido</div>
-            </div>
+            
+                    <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-custom waves-effect waves-light pull-right">Publicar</button>
+                        </div>
+                </div>
 
-            <div class="form-group">
-                <button [disabled]="!form.valid" class="btn btn-success btn-custom waves-effect waves-light pull-right">Publicar</button>
-            </div>
+            
         
         </div>
     </form>
     </div> 
 </div>
-<!-- <div id="sa-warningt01" style="display: none;">
+
+<div id="sa-warningt01" style="display: none;">
     <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
         <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
         </div>
@@ -69,13 +93,13 @@
         </div>
         <div class="icon custom" style="display: none;"></div>
         <h2>Éxito!</h2>
-        <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
+        <p class="lead text-muted" style="display: block;">Publicacion Realizada</p>
         <p>
-            <button (click)="volver01()" [routerLink]="['home']" class="confirm btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Ok</button>
+            <button (click)="volver()" class="confirm btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Ok</button>
         </p>
     </div>
-</div>  -->
-<!-- 
+</div> 
+
 <div id="sa-warningt" style="display: none;">
     <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -163px;">
         <div class="icon error" style="display: none;">
@@ -99,11 +123,11 @@
             <div class="placeholder"></div>
             <div class="fix"></div>
         </div>
-        <h2>Éxito!</h2>
-        <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
+        <h2>Todo listo!</h2>
+        <p class="lead text-muted" style="display: block;">Desea publicar su requerimiento.</p>
         <p>
-            <button class="cancel btn btn-lg btn-white btn-md waves-effect btn-default" tabindex="2" style="display: none;">Cancel</button>
-            <button (click)="volver01()" [routerLink]="['home']" class="confirm btn btn-lg btn-primary" tabindex="1" style="display: inline-block;">OK</button>
+            <button class="cancel btn btn-lg btn-white btn-md waves-effect btn-default" tabindex="2">Cancel</button>
+            <button (click)="guardarRequerimiento()" class="confirm btn btn-lg btn-primary" tabindex="1" style="display: inline-block;">OK</button>
         </p>
     </div>
-</div> -->
+</div> 

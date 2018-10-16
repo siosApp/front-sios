@@ -42,37 +42,52 @@
         </div>
         
     </div>
-    
-    <div class="col-lg-8">
+    <div class="col-lg-4">
+            <div class="panel panel-color panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Archivo Adjunto</h3>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        Aqui encontraras si <b>Seba Ruiz</b> a adjuntado algun archivo con mas detalles de su requerimiento:
+                        <br>
+                        <li><a href="#">Archivo.jpg</a></li>
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+    <div class="col-lg-12">
         <form [formGroup]="form" class="well">
             <span class="input-icon icon-right">
                 <textarea rows="2" class="form-control"
                           placeholder="Descripcion de tu oferta"></textarea>
             </span>
+            
+            <br>
+                    <label class="col-md-10 control-label">Precio de oferta</label>
+                    
+                    <div class="col-md-4 control-label">
+                            <input type="number"  class="form-control" placeholder="0">
+                    </div>
+                    <label class="col-md-10 control-label" >Tiempo de oferta en dias</label>
+                    <div class="col-md-4 control-label">
+                    
+                    <input type="number" class="form-control " style="widows: 20px;" placeholder="30">
+                </div>
+                    
             <div class="p-t-10 pull-right">
                 <a  (click)="openAlert()" class="btn btn-sm btn-primary waves-effect waves-light">Enviar</a>
             </div>
             <ul class="nav nav-pills profile-pills m-t-10">
-                             
             </ul>
-    
         </form>
-    </div>
-    <div class="col-lg-4">
-        <div class="panel panel-color panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Archivo Adjunto</h3>
-            </div>
-            <div class="panel-body">
-                <p>
-                    Aqui encontraras si <b>Seba Ruiz</b> a adjuntado algun archivo con mas detalles de su requerimiento:
-                    <br>
-                    <li><a href="#">Archivo.jpg</a></li>
-                </p>
-            </div>
-        </div>
         
+
+
+
     </div>
+    
     
 </div>
 
