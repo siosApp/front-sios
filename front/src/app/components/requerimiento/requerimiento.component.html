@@ -7,7 +7,7 @@
 			
 				<ul class="list-inline status-list m-t-20">
 					<li>
-						<h3 class="text-primary m-b-5">Recuerda acualizar tu domicilio en tu perfil.</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
+						<h3 class="text-primary m-b-5">Recuerda actualizar tu domicilio en tu perfil.</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
 						<!-- <p class="text-muted">Trabajos Realizados</p> -->
 					</li>
 					<li>
@@ -67,6 +67,16 @@
                             Puede subir un archivo para detallar mejor aún el requerimiento. 
                      </p>
                     <input type="file" class="filestyle" formControlName="archivoUno" name="archivoUno" data-buttonname="btn-white" (change)="addFile($event,0)">
+                    <br>
+                    
+                    
+                    <div *ngIf="this.form.controls['archivoUno'].value != ''" class="progress m-b-5">
+                        <div class="progress-bar progress-bar-purple wow animated progress-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"  style="width: 100%;">
+                            <span class="sr-only">{{uploadPercent | async | number:'1.0-0'}}% Complete</span>
+                        </div>
+                    </div>
+
+
                     <div *ngIf="this.form.controls['archivoUno'].value != ''">{{uploadPercent | async | number:'1.0-0'}} % subido</div>
             
                     <div class="form-group">
