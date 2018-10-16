@@ -274,6 +274,8 @@ export class PerfilComponent {
   }
 
   guardarPerfil(){
+    console.log(" se ejecuto guardar");
+
     console.log(" usuario", this.usuarioAEditar);
     let nombre=this.form.controls['nombre'].value;
     let apellido=this.form.controls['apellido'].value;
@@ -295,6 +297,7 @@ export class PerfilComponent {
     let tipousuario = this.usuarioAEditar.tipoUsuario;
     let domicilio;
     
+    // si alguno de estos tres campos es distinto de null se ejecuta el metodo
     this.localidadService.getLocalidadesByNombreAndProvinciaAndDepartamento(localidad,provincia,departamento).subscribe((localidadRes:Localidad)=>{
       if (this.usuarioAEditar.domicilio!=null){
         domicilio = new Domicilio(this.usuarioAEditar.domicilio.id, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,null,null,localidadRes.id);
@@ -318,6 +321,20 @@ export class PerfilComponent {
     }
     return false
   }
+
+  validarTodosLosCamposDelDomicilio() {
+    console.log("this.form.controls['provincia'].value == Seleccione", this.domicilioForm.touched );
+    console.log("this.form.controls['provincia'].value == Seleccione", this.form.controls['provincia'].touched && this.form.controls['provincia'].value == "Seleccione");
+    if(this.domicilioForm.touched || this.form.controls['provincia'].touched && this.form.controls['provincia'].value == "Seleccione") {
+      if(!this.domicilioForm.valid || this.form.controls['provincia'].value == "Seleccione") {
+        console.log(" el formulario domicilio no es valido ");
+        $('#domicilio-invalido').modal('show');
+        return;
+      } 
+    }
+    this.confirmarGuardar()
+  }
+
   confirmarGuardar(){
     this.mensaje = mensajePerfil;
     $('#sa-warningt').modal('show');
@@ -337,6 +354,10 @@ export class PerfilComponent {
   }
   volver(){
     $('#sa-warningt').modal('hide');
+  }
+
+  volverDomicilioInvalido(){
+    $('#domicilio-invalido').modal('hide');
   }
   // volver01(){
   //   $('#sa-warningt01').modal('hide');
