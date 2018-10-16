@@ -15,4 +15,9 @@ import { Requerimiento } from '../models/requerimiento';
       let url=`${URL_API}/requerimiento/publicarRequerimiento`;
       return this.http.post(url,requerimiento); 
     }
+
+    getRequerimientosActivos(){
+      let url=`${URL_API}/requerimiento/getRequerimientosActivos`;
+      return this.http.get(url);
+    }
   }
