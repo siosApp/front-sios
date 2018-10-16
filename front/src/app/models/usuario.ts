@@ -17,9 +17,10 @@ export class Usuario {
     username:string;
     apellido:string;
     domicilio:Domicilio;
-    
+    experiencia:string;
+
     constructor(id:string,fechaBaja:Date,fechaNacimiento:Date,fechaUltIngreso:Date,mail:string,nombre:string,oferente:boolean,password:string,
-        sexo:string,tipoUsuario:string,username:string,usuarioRubros:UsuarioRubro[],apellido:string,domicilio:Domicilio,imagen){
+        sexo:string,tipoUsuario:string,username:string,usuarioRubros:UsuarioRubro[],apellido:string,domicilio:Domicilio,imagen,experiencia){
     this.apellido=apellido;
     this.fechaBaja=fechaBaja;
     this.id=id
@@ -36,6 +37,7 @@ export class Usuario {
     this.apellido=apellido;
     this.domicilio=domicilio;
     this.imagen=imagen;
+    this.experiencia=experiencia;
     }
 
 }
