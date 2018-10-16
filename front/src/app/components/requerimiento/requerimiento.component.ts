@@ -117,14 +117,12 @@ export class RequerimientoComponent{
         descripcion: this.form.controls['descripcion'].value,
         idUsuario: idUsuario,
         nombreEstadoRequerimiento: 'Activo',
-        precioAPagar: this.form.controls['precioApagar'].value,
+        precioApagar: this.form.controls['precioApagar'].value,
         tiempoEstimado: this.form.controls['tiempoEstimado'].value,
         titulo: this.form.controls['titulo'].value, 
         urlArchivos: this.files
       }        
       this.service.crearRequerimiento(requerimiento).subscribe(response=>{
-        // $('#sa-warningt').modal('hide');
-        //console.log("Requerimiento: ",requerimiento);
         //$.Notification.notify('success','top left', 'Exito', 'Se ha guardado satisfactoriamente su requerimiento.');
         this.form.reset();
         //this.router.navigate(['/sios/home']);
@@ -133,7 +131,5 @@ export class RequerimientoComponent{
 
       })
   })    
-       
   }
-
 }

@@ -114,7 +114,7 @@ export class UsuarioComponent{
     }
     // let domicilio= new Domicilio(null,calle,codigoPostal,numero,piso,latitud,longitud,nombre);    
     if(this.usuarioAEditar!=null){
-      let usuarioActualizado= new Usuario(this.usuarioAEditar.id,this.usuarioAEditar.fechaBaja,nacimiento,this.usuarioAEditar.fechaUltIngreso,mail,nuevoNombre,oferente,password,sexo,tipoUsuario,username,null,apellido,null,this.usuarioAEditar.imagen);
+      let usuarioActualizado= new Usuario(this.usuarioAEditar.id,this.usuarioAEditar.fechaBaja,nacimiento,this.usuarioAEditar.fechaUltIngreso,mail,nuevoNombre,oferente,password,sexo,tipoUsuario,username,null,apellido,null,this.usuarioAEditar.imagen,null);
       this.service.updateUsuario(usuarioActualizado).subscribe( response =>{
         this.usuarioAEditar=null;
         $('#custom-width-modal').modal('hide');
@@ -122,7 +122,7 @@ export class UsuarioComponent{
       });
     }
     else{
-      let nuevoUsuario= new Usuario(null,null,nacimiento,null,mail,nuevoNombre,oferente,password,sexo,tipoUsuario,username,null,apellido,null,null);
+      let nuevoUsuario= new Usuario(null,null,nacimiento,null,mail,nuevoNombre,oferente,password,sexo,tipoUsuario,username,null,apellido,null,null,null);
       this.service.crearUsuario(nuevoUsuario).subscribe(response=>{
         $('#custom-width-modal').modal('hide');
         this.service.getUsuarios().subscribe((response:any) => this.usuarios=response);

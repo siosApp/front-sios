@@ -1,123 +1,100 @@
 <div class="container">
-  <!-- <div class="btn-group pull-right m-t-15">
-      <button type="button" (click)="volverAlHome()" class="btn btn-default dropdown-toggle waves-effect waves-light" >Volver a la página anterior <span class="m-l-5"><i class="fa  fa-level-up"></i></span></button>
-  </div> -->
   <div class="row">
         <div class="col-sm-2"></div>
     <div class="col-sm-8">
-        <form [formGroup]="solicitudForm"  (ngSubmit)="guardarSolicitud()">
-        <div class="card-box">
-            <div class="row">
-                <div class="col-md-12">
-                    
-                      <h4 class="m-t-0 header-title" ><b>Cree una solicitud de trabajo para {{oferente?.nombre}} {{oferente?.apellido}}</b></h4>
-                      <p class="text-muted m-b-30 font-13">
-                        Complete la descripcion del trabajo que necesita con el mayor detalle posible y como forma opcional agregue un archivo adjunto para agregar mas detalle a su descripcion!
-                    </p>
-                   
-             <div class="col-lg-1"></div>
-             <div class="col-lg-10">
-
-                    <div class="card-box p-b-0">
-                        
-                        <a href="javascript:;" class="center-block text-center text-dark">
-                            <img src="assets/images/users/avatar-7.jpg"
-                                 class="thumb-lg img-thumbnail img-circle" alt="">
-                            <div class="h5 m-b-0"><strong> {{oferente?.nombre}} {{oferente?.apellido}}</strong></div>
-                        </a>
-                        <div class="bg-custom pull-in-card p-20 widget-box-two m-b-0 m-t-30 list-inline text-center row">
-                            <div class="col-xs-4">
-                                <h4 class="text-white m-0 font-600">{{oferente?.usuarioRubros[0].rubro.nombreRubro}}</h4>
-                                <p class="text-white m-b-0"></p>
-                            </div>
-                            <div class="col-xs-4">
-                                <h4 class="text-white m-0 font-600">Experiencia</h4>
-                                <p class="text-white m-b-0">Aca va la experiencia</p>
-                            </div>
-                            <div class="col-xs-4">
-                                <h4 class="text-white m-0 font-600">{{oferente?.mail}}</h4>
-                                <p class="text-white m-b-0"></p>
+        <form [formGroup]="solicitudForm" (ngSubmit)="abrirModal()">
+            <div class="card-box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="m-t-0 header-title" ><b>Cree una solicitud de trabajo para {{oferente?.nombre}} {{oferente?.apellido}}</b></h4>
+                        <p class="text-muted m-b-30 font-13">
+                            Complete la descripcion del trabajo que necesita con el mayor detalle posible y como forma opcional agregue un archivo adjunto para agregar mas detalle a su descripcion!
+                        </p>
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <div class="card-box p-b-0">
+                                <a href="javascript:;" class="center-block text-center text-dark">
+                                    <img [src]="urlImagen"
+                                            class="thumb-lg img-thumbnail img-circle" alt="">
+                                    <div class="h5 m-b-0"><strong> {{oferente?.nombre}} {{oferente?.apellido}}</strong></div>
+                                </a>
+                                <div class="bg-custom pull-in-card p-20 widget-box-two m-b-0 m-t-30 list-inline text-center row">
+                                    <div class="col-xs-4">
+                                        <h4 class="text-white m-0 font-600">{{oferente?.usuarioRubros[0].rubro.nombreRubro}}</h4>
+                                        <p class="text-white m-b-0"></p>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <h4 class="text-white m-0 font-600">Experiencia</h4>
+                                        <p class="text-white m-b-0">{{oferente?.experiencia}}</p>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <h4 class="text-white m-0 font-600">{{oferente?.mail}}</h4>
+                                        <p class="text-white m-b-0"></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            </div>
-
-
-
-            <div class="col-sm-2 col-lg-12 col-md-2">
-                    <div class="panel panel-border panel-warning">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Describa el trabajo a solicitar al oferente</h3>
-                        </div>
-                        <div class="panel-body">
-                            
-                                <textarea id="textarea" formControlName="descripcion" name="descripcion" class="form-control" maxlength="225" rows="2" placeholder="Ingrese su descripcion"></textarea>
-                            <p>
-                                <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-
-
                 <div class="col-sm-2 col-lg-12 col-md-2">
+                        <div class="panel panel-border panel-warning">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Describa el trabajo a solicitar al oferente</h3>
+                            </div>
+                            <div class="panel-body">
+                                    <textarea id="textarea" formControlName="descripcion" name="descripcion" class="form-control" maxlength="225" rows="2" placeholder="Ingrese su descripcion"></textarea>
+                                <p>
+                                    <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-lg-12 col-md-2">
                         <div class="panel panel-border panel-danger">
                             <div class="panel-heading">
                                 <h3 class="panel-title">OPCIONAL</h3>
                             </div>
                             <div class="panel-body">
-                                
-                                    
                                 <p>
                                     De manera opcional puede seleccionar un archhivo para ampliar el detalle de su solicitud y asi ofrecerle mas imformacion a {{oferente?.nombre}}
                                 </p>
                                 <div class="m-t-20">
-                                        <input  type="file" class="filestyle" formControlName="archivoUno" name="archivoUno"  data-icon="false" data-buttonname="btn-white" (change)="addFile($event,0)">
-                                        <div *ngIf="this.solicitudForm.controls['archivoUno'].value != ''">{{uploadPercent | async | number:'1.0-0'}} % subido</div>
-                                    </div>
-
+                                    <input  type="file" class="filestyle" formControlName="archivoUno" name="archivoUno"  data-icon="false" data-buttonname="btn-white" (change)="addFile($event,0)">
+                                </div>
                             </div>
                         </div>
                     </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="p-20">
-                        <div class="m-t-20">
-                            <button (click)="abrirModal()" class="btn btn-primary btn-rounded waves-effect waves-light pull-right">
-                                Solicitar</button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="p-20">
+                            <div class="m-t-20">
+                                <button type="submit" class="btn btn-primary btn-rounded waves-effect waves-light pull-right">
+                                    Solicitar</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div> 
-        </div>
+                </div> 
+            </div>
         </form>
     </div>
 </div>
 </div>
-
-
-<form [formGroup]="form" class="well" (ngSubmit)="guardarOferta()">
-        <div id="sa-warningt" style="display: none;">
-            <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
-                <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
-                </div>
-                <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
-                <div class="icon info" style="display: none;"></div>
-                <div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
-                    <div class="placeholder"></div>
-                    <div class="fix"></div>
-                </div>
-                <div class="icon custom" style="display: none;"></div>
-                <h2>Buen Trabajo!</h2>
-                <p class="lead text-muted" style="display: block;">Deseas enviar crear una solicitud para {{oferente?.nombre}} {{oferente?.apellido}} </p>
-                <p>
-                    <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancel</button>
-                    <button type="submit" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
-                </p>
-            </div>
+<div id="sa-warningt" style="display: none;">
+    <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
+        <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
         </div>
-    </form>
+        <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
+        </div>
+        <div class="icon custom" style="display: none;"></div>
+        <h2>Buen Trabajo!</h2>
+        <p class="lead text-muted" style="display: block;">Deseas enviar crear una solicitud para {{oferente?.nombre}} {{oferente?.apellido}} </p>
+        <p>
+            <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancel</button>
+            <button (click)="guardarSolicitud()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
+        </p>
+    </div>
+</div>

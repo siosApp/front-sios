@@ -45,6 +45,7 @@ import { TrabajosRealizadosComponent } from './components/reportes/trabajos-real
 import { CalificacionesComponent } from './components/reportes/calificaciones/calificaciones.component';
 import { RubrosMasDemandadosComponent } from './components/reportes/rubros-mas-demandados/rubros-mas-demandados.component';
 import { RubrosMasOfrecidosComponent } from './components/reportes/rubros-mas-ofrecidos/rubros-mas-ofrecidos.component';
+import { NombreUserComponent } from './components/ver-requerimiento/nombre-user.component';
 
 
 
@@ -104,7 +105,8 @@ export function getAuthServiceConfigs() {
     TrabajosRealizadosComponent,
     CalificacionesComponent,
     RubrosMasDemandadosComponent,
-    RubrosMasOfrecidosComponent
+    RubrosMasOfrecidosComponent,
+    NombreUserComponent
   ],
   imports: [
     BrowserModule,
