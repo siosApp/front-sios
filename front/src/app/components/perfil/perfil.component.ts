@@ -100,7 +100,6 @@ export class PerfilComponent {
       this.imagenesCollections = this.afs.collection<Imagen>('perfil', ref => ref.where('id', '==', user.imagen));
       let images = this.imagenesCollections.valueChanges();
       images.subscribe((res:any)=> {
-        console.log("Res: ",res);
         this.imagenUrl=res[0].imageURL;
       })
       
@@ -206,7 +205,6 @@ export class PerfilComponent {
   }
   addFile(event,index){
     let file=event.target.files[0];
-    console.log("file: ",file);
     if(file.type === "image/jpeg" || file.type === "image/png" ||file.size <= 2000000){
       //this.idImagen=this.subirArchivo(file);
       //this.usuarioAEditar.imagen=this.idImagen;
@@ -274,9 +272,6 @@ export class PerfilComponent {
   }
 
   guardarPerfil(){
-    console.log(" se ejecuto guardar");
-
-    console.log(" usuario", this.usuarioAEditar);
     let nombre=this.form.controls['nombre'].value;
     let apellido=this.form.controls['apellido'].value;
     let mail=this.form.controls['mail'].value;
@@ -304,11 +299,9 @@ export class PerfilComponent {
       }else{
         domicilio = new Domicilio(null, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,null,null,localidadRes.id);
       }
-      console.log("Domicilio: ",domicilio);
       let idusuario = localStorage.getItem("auth"); 
       let usuarioActualizado = new Usuario(idusuario,fechaBaja,fechaNacimiento ,
       fechaUltimoIngreso,mail,nombre,oferente,password,sexo, tipousuario, username ,null ,apellido, domicilio,this.usuarioAEditar.imagen,null);  
-      console.log("Usuario: ",usuarioActualizado);
       this.service.updateUsuario(usuarioActualizado).subscribe(response=>{
         $('#sa-warningt').modal('hide');
         this.router.navigate(['/sios/home']);
@@ -323,16 +316,19 @@ export class PerfilComponent {
   }
 
   validarTodosLosCamposDelDomicilio() {
-    console.log("this.form.controls['provincia'].value == Seleccione", this.domicilioForm.touched );
-    console.log("this.form.controls['provincia'].value == Seleccione", this.form.controls['provincia'].touched && this.form.controls['provincia'].value == "Seleccione");
     if(this.domicilioForm.touched || this.form.controls['provincia'].touched && this.form.controls['provincia'].value == "Seleccione") {
       if(!this.domicilioForm.valid || this.form.controls['provincia'].value == "Seleccione") {
-        console.log(" el formulario domicilio no es valido ");
         $('#domicilio-invalido').modal('show');
-        return;
+        return true;
       } 
     }
-    this.confirmarGuardar()
+  }
+
+  guardarDatosPerfil() {
+    if (this.validarTodosLosCamposDelDomicilio()){
+      return
+    }
+    this.confirmarGuardar();
   }
 
   confirmarGuardar(){
@@ -340,6 +336,9 @@ export class PerfilComponent {
     $('#sa-warningt').modal('show');
   }
   irAPantallaOferente(){
+    if (this.validarTodosLosCamposDelDomicilio()){
+      return
+    }
     if(this.hayCambiosEnPerfil()){
       this.mensaje = mensajeGuardar;
       $('#danger-alert').modal('show');
