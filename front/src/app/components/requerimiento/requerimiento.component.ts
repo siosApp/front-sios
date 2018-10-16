@@ -117,7 +117,7 @@ export class RequerimientoComponent{
         descripcion: this.form.controls['descripcion'].value,
         idUsuario: idUsuario,
         nombreEstadoRequerimiento: 'Activo',
-        precioAPagar: this.form.controls['precioApagar'].value,
+        precioApagar: this.form.controls['precioApagar'].value,
         tiempoEstimado: this.form.controls['tiempoEstimado'].value,
         titulo: this.form.controls['titulo'].value, 
         urlArchivos: this.files
@@ -131,7 +131,5 @@ export class RequerimientoComponent{
 
       })
   })    
-       
   }
-
 }
