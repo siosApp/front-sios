@@ -304,7 +304,7 @@ export class PerfilComponent {
       console.log("Domicilio: ",domicilio);
       let idusuario = localStorage.getItem("auth"); 
       let usuarioActualizado = new Usuario(idusuario,fechaBaja,fechaNacimiento ,
-      fechaUltimoIngreso,mail,nombre,oferente,password,sexo, tipousuario, username ,null ,apellido, domicilio,this.usuarioAEditar.imagen);  
+      fechaUltimoIngreso,mail,nombre,oferente,password,sexo, tipousuario, username ,null ,apellido, domicilio,this.usuarioAEditar.imagen,null);  
       console.log("Usuario: ",usuarioActualizado);
       this.service.updateUsuario(usuarioActualizado).subscribe(response=>{
         $('#sa-warningt').modal('hide');

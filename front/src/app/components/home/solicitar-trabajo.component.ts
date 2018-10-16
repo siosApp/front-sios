@@ -27,9 +27,10 @@ export class SolicitarTrabajoComponent {
   solicitudForm:FormGroup;
   archivosCollection: AngularFirestoreCollection<ArchivoAdjunto>;
   uploadPercent:Observable<number>;
-  idArchivo:any;
   urlImagen:string;
   imagenesCollections: AngularFirestoreCollection<Imagen>;
+  file:any;
+
   constructor(private usuarioService:UsuarioService,private afStorage: AngularFireStorage,private afs: AngularFirestore,
     private location:Location,private activatedRoute:ActivatedRoute,
     private fileService:FileService,private solicitudService:SolicitarTrabajoService) {
@@ -52,8 +53,8 @@ export class SolicitarTrabajoComponent {
       'archivoCuarto' : new FormControl('',Validators.required),
       'archivoQuinto' : new FormControl('',Validators.required)
     })
-   
   }
+
   setFotoPerfil(idUsuario){
     let url='assets/images/download.png';
     this.imagenesCollections = this.afs.collection<Imagen>('perfil', ref => ref.where('id', '==', idUsuario));
@@ -62,6 +63,7 @@ export class SolicitarTrabajoComponent {
         this.urlImagen=res[0].imageURL;
     })  
   }
+
   volverAlHome(){
     this.location.back();
   }
@@ -69,16 +71,15 @@ export class SolicitarTrabajoComponent {
   abrirModal(){
     $('#sa-warningt').modal('show');
   }
+
   volver(){
     $('#sa-warningt').modal('hide');
   }
 
   addFile(event,index){
     let file=event.target.files[0];
-    console.log("file: ",file);
     if(file.type === "image/jpeg" || file.type === "image/png" || file.type === "application/pdf" || file.size <= 5000000){
-      this.idArchivo=this.subirArchivo(file);
-      this.files[0]=this.idArchivo;      
+      this.file=file;
     }
     else{
       $.Notification.notify('error','top left', 'Error', 'Archivo excede los 5 mb o formato inválido.');
@@ -90,21 +91,31 @@ export class SolicitarTrabajoComponent {
     let idLogueado= localStorage.getItem("auth");
     let descripcion= this.solicitudForm.controls['descripcion'].value;
     //Guardando archivos en Firebase..
-    this.usuarioService.getUsuarioById(idLogueado).subscribe((usuarioRes:any)=>{
+    if(this.file!=null){
+      let idArchivo=this.subirArchivo(this.file);
+      this.files.push(idArchivo);
+    }
+    setTimeout(()=>{
+      this.usuarioService.getUsuarioById(idLogueado).subscribe((usuarioRes:any)=>{
         let solicitud ={
           id:null,
           fechaSolicitud: Date.now(),
           descripcion: descripcion,
-          nombreEstadoSolicitud: "Activo",
+          nombreEstadoSolicitud: "Creada",
           urlArchivos: this.files,
           usuarioDemandante: usuarioRes.username, 
           usuarioOferente: this.oferente.username
-        }        
+        }
+        console.log("Solicitud: ",solicitud);
+                
         this.solicitudService.crearSolicitud(solicitud).subscribe((res:any)=>{
           console.log("Mensaje: ",res);
+          $('#sa-warningt').modal('hide');
           this.location.back();
         })
-    })
+      })
+    },4000);
+    
   }
   subirArchivo(archivo){
     //Tener en cuenta que las imagenes que sean de perfil conviene guardarlas en una carpeta 'perfil'
@@ -114,13 +125,8 @@ export class SolicitarTrabajoComponent {
     // main task
     let task = this.afStorage.upload(path, archivo);
     this.afStorage.upload(path, archivo);
-    let id;
-    if(this.idArchivo!=null){
-      id=this.idArchivo;
-    }
-    else{
-      id= this.afs.createId();
-    }
+    let id=this.afs.createId();
+    
     this.uploadPercent = task.percentageChanges();
     task.snapshotChanges().pipe(
       finalize(() => {
