@@ -111,7 +111,7 @@ export class RequerimientoComponent{
       this.service.crearRequerimiento(requerimiento).subscribe(response=>{
         // $('#sa-warningt').modal('hide');
         console.log("Requerimiento: ",requerimiento);
-        $.Notification.notify('success','top left', 'Exito', 'Se ha guardado satisfactoriamente su requerimiento.');
+        //$.Notification.notify('success','top left', 'Exito', 'Se ha guardado satisfactoriamente su requerimiento.');
         this.form.reset();
         this.router.navigate(['/sios/home']);
       })
