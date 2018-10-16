@@ -71,6 +71,9 @@ export class RequerimientoComponent{
     else{
       id= this.afs.createId();
     }
+
+
+
     this.uploadPercent = task.percentageChanges();
     task.snapshotChanges().pipe(
       finalize(() => {
@@ -93,6 +96,17 @@ export class RequerimientoComponent{
    ).subscribe();
    return id;
   }
+
+
+
+  abrirModal(){
+    $('#sa-warningt').modal('show');
+  }
+  volver(){
+    $('#sa-warningt01').modal('hide');
+    this.router.navigate(['/sios/home']);
+  }
+
   guardarRequerimiento(){
     let idUsuario = localStorage.getItem("auth"); 
     //Refactor sobre esto. Los componentes no tienen que acceder al localStorage. Solamente debería hacerlo servicio.
@@ -110,10 +124,13 @@ export class RequerimientoComponent{
       }        
       this.service.crearRequerimiento(requerimiento).subscribe(response=>{
         // $('#sa-warningt').modal('hide');
-        console.log("Requerimiento: ",requerimiento);
-        $.Notification.notify('success','top left', 'Exito', 'Se ha guardado satisfactoriamente su requerimiento.');
+        //console.log("Requerimiento: ",requerimiento);
+        //$.Notification.notify('success','top left', 'Exito', 'Se ha guardado satisfactoriamente su requerimiento.');
         this.form.reset();
-        this.router.navigate(['/sios/home']);
+        //this.router.navigate(['/sios/home']);
+        $('#sa-warningt').modal('hide');
+        $('#sa-warningt01').modal('show');
+
       })
   })    
        
