@@ -1,4 +1,25 @@
-<div class="col-lg-2"></div>
+
+
+
+<div class="col-md-4 col-lg-3">
+		<div class="profile-detail card-box">
+			<div>
+			
+				<ul class="list-inline status-list m-t-20">
+					<li>
+						<h3 class="text-primary m-b-5">Recuerda acualizar tu domicilio en tu perfil.</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
+						<!-- <p class="text-muted">Trabajos Realizados</p> -->
+					</li>
+					<li>
+						<h3 class="text-success m-b-5"><a class="md-2x md-location-on"></a></h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
+						<!-- <p class="text-muted">En curso</p> -->
+					</li>
+				</ul>
+				<button type="button" [routerLink]="['/sios/perfil']"  class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Ir a Perfil</button>
+				<hr>
+			</div>
+		</div>
+	</div>
 <div class="row">
     <div class="col-lg-8">
             <form [formGroup]="form" (ngSubmit)="guardarRequerimiento()" class="well" >
@@ -47,11 +68,13 @@
                      </p>
                     <input type="file" class="filestyle" formControlName="archivoUno" name="archivoUno" data-buttonname="btn-white" (change)="addFile($event,0)">
                     <div *ngIf="this.form.controls['archivoUno'].value != ''">{{uploadPercent | async | number:'1.0-0'}} % subido</div>
-            </div>
+            
+                    <div class="form-group">
+                            <button [disabled]="!form.valid" class="btn btn-primary btn-custom waves-effect waves-light pull-right">Publicar</button>
+                        </div>
+                </div>
 
-            <div class="form-group">
-                <button [disabled]="!form.valid" class="btn btn-success btn-custom waves-effect waves-light pull-right">Publicar</button>
-            </div>
+            
         
         </div>
     </form>
