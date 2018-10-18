@@ -20,4 +20,12 @@ import { Requerimiento } from '../models/requerimiento';
       let url=`${URL_API}/requerimiento/getRequerimientosActivos`;
       return this.http.get(url);
     }
+    getRequerimientoById(id){
+      let url=`${URL_API}/requerimiento/findRequerimientoById?idRequerimiento=${id}`;
+      return this.http.get(url);
+    }
+    ofertarRequerimiento(ofertaRequerimiento){
+      let url=`${URL_API}/requerimiento/ofertarRequerimiento`;
+      return this.http.post(url,ofertaRequerimiento);
+    }
   }
