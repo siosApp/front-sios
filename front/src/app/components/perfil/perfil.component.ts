@@ -100,7 +100,6 @@ export class PerfilComponent {
       this.imagenesCollections = this.afs.collection<Imagen>('perfil', ref => ref.where('id', '==', user.imagen));
       let images = this.imagenesCollections.valueChanges();
       images.subscribe((res:any)=> {
-        console.log("Res: ",res);
         this.imagenUrl=res[0].imageURL;
       })
       
@@ -206,7 +205,6 @@ export class PerfilComponent {
   }
   addFile(event,index){
     let file=event.target.files[0];
-    console.log("file: ",file);
     if(file.type === "image/jpeg" || file.type === "image/png" ||file.size <= 2000000){
       //this.idImagen=this.subirArchivo(file);
       //this.usuarioAEditar.imagen=this.idImagen;
@@ -274,7 +272,6 @@ export class PerfilComponent {
   }
 
   guardarPerfil(){
-    console.log(" usuario", this.usuarioAEditar);
     let nombre=this.form.controls['nombre'].value;
     let apellido=this.form.controls['apellido'].value;
     let mail=this.form.controls['mail'].value;
@@ -295,17 +292,16 @@ export class PerfilComponent {
     let tipousuario = this.usuarioAEditar.tipoUsuario;
     let domicilio;
     
+    // si alguno de estos tres campos es distinto de null se ejecuta el metodo
     this.localidadService.getLocalidadesByNombreAndProvinciaAndDepartamento(localidad,provincia,departamento).subscribe((localidadRes:Localidad)=>{
       if (this.usuarioAEditar.domicilio!=null){
         domicilio = new Domicilio(this.usuarioAEditar.domicilio.id, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,null,null,localidadRes.id);
       }else{
         domicilio = new Domicilio(null, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,null,null,localidadRes.id);
       }
-      console.log("Domicilio: ",domicilio);
       let idusuario = localStorage.getItem("auth"); 
       let usuarioActualizado = new Usuario(idusuario,fechaBaja,fechaNacimiento ,
       fechaUltimoIngreso,mail,nombre,oferente,password,sexo, tipousuario, username ,null ,apellido, domicilio,this.usuarioAEditar.imagen,null);  
-      console.log("Usuario: ",usuarioActualizado);
       this.service.updateUsuario(usuarioActualizado).subscribe(response=>{
         $('#sa-warningt').modal('hide');
         this.router.navigate(['/sios/home']);
@@ -318,11 +314,31 @@ export class PerfilComponent {
     }
     return false
   }
+
+  validarTodosLosCamposDelDomicilio() {
+    if(this.domicilioForm.touched || this.form.controls['provincia'].touched && this.form.controls['provincia'].value == "Seleccione") {
+      if(!this.domicilioForm.valid || this.form.controls['provincia'].value == "Seleccione") {
+        $('#domicilio-invalido').modal('show');
+        return true;
+      } 
+    }
+  }
+
+  guardarDatosPerfil() {
+    if (this.validarTodosLosCamposDelDomicilio()){
+      return
+    }
+    this.confirmarGuardar();
+  }
+
   confirmarGuardar(){
     this.mensaje = mensajePerfil;
     $('#sa-warningt').modal('show');
   }
   irAPantallaOferente(){
+    if (this.validarTodosLosCamposDelDomicilio()){
+      return
+    }
     if(this.hayCambiosEnPerfil()){
       this.mensaje = mensajeGuardar;
       $('#danger-alert').modal('show');
@@ -337,6 +353,10 @@ export class PerfilComponent {
   }
   volver(){
     $('#sa-warningt').modal('hide');
+  }
+
+  volverDomicilioInvalido(){
+    $('#domicilio-invalido').modal('hide');
   }
   // volver01(){
   //   $('#sa-warningt01').modal('hide');
