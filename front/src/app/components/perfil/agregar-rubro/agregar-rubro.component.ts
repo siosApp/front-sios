@@ -13,6 +13,8 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { ArchivoAdjunto } from '../../home/solicitar-trabajo.component';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { NgxNotificationService } from 'ngx-notification';
+
 declare var $:any;
 
 @Component({
@@ -29,6 +31,7 @@ export class AgregarRubroComponent{
   tiposRubros:TipoRubro[];
   rubros:Rubro[];
   showRubros=false;
+  mensajeRubroEliminado=true;
   usuarioAEditar:Usuario;
   rubrosDeUsuario:UsuarioRubro[];
   mensaje:string;
@@ -40,7 +43,7 @@ export class AgregarRubroComponent{
   habilitaButtonVisualizar=true;
 
   constructor(private tipoRubroService:TipoRubroService,private rubroService:RubroService, private fb:FormBuilder, private service:UsuarioService,
-    private afStorage: AngularFireStorage,private afs: AngularFirestore) { 
+    private afStorage: AngularFireStorage,private afs: AngularFirestore, private ngxNotificationService: NgxNotificationService) { 
     this.archivosCollection = this.afs.collection<ArchivoAdjunto>('certificados'); 
     tipoRubroService.getTipoRubrosVigentes().subscribe((response:any)=>{
       this.tiposRubros=response;
@@ -101,6 +104,7 @@ export class AgregarRubroComponent{
     $('#custom-width-modal').modal('show');
     this.certificados=rubro.certificados;
     this.usuarioRubro=rubro;
+    this.mensajeRubroEliminado = false;
   }
   abrirExperiencia(rubros){
     $('#custom-width-modal01').modal('show');
@@ -124,11 +128,12 @@ export class AgregarRubroComponent{
       this.showRubros=false;
     });
   }
+
   eliminarRubro(id){
     let idUsuario= localStorage.getItem("auth");//Esta muy asqueroso esto, deberia algun dia poder hacer andar ese servicio de autenticacion
     this.service.eliminarRubro(idUsuario,id).subscribe((res:Usuario)=>{
       this.rubrosDeUsuario=res.usuarioRubros;
-      $.Notification.notify('success','top left', 'Exito', 'Se ha eliminado el rubro.');
+      this.ngxNotificationService.sendMessage('Se elimino el rubro exitosamente!', 'success', 'bottom');
     })
   }
 
@@ -204,7 +209,7 @@ export class AgregarRubroComponent{
       this.files[0]=file;     
     }
     else{
-      $.Notification.notify('error','top left', 'Error', 'Archivo excede los 5 mb o posee un formato inválido.');
+      this.ngxNotificationService.sendMessage('Archivo excede los 5 mb o posee un formato inválido.', 'danger', 'bottom');
       this.form.controls['archivo'].setValue("");
     }
   }

@@ -65,11 +65,14 @@
                                             <div class="button-list">
                                                 <button (click)="abrirModalCertificado(usuarioRubro)" class="btn btn-primary waves-effect waves-light btn-xs" data-toggle="modal" data-animation="slide" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">Certificados</button>
                                                 <button (click)="abrirExperiencia(usuarioRubro)" class="btn btn-primary waves-effect waves-light btn-xs" >Experiencia</button>
-                                                <button (click)="eliminarRubro(usuarioRubro.id)" class="btn btn-danger waves-effect waves-light btn-xs" >Baja</button>
+                                                <button (click)="mensajeRubroEliminado = true && eliminarRubro(usuarioRubro.id)" class="btn btn-danger waves-effect waves-light btn-xs" >Baja</button>
                                             </div>
+                                            
                                         </td>
                                       </tr>
+                                      
                                   </tbody>
+                                  <lib-ngx-notification hidden = {{mensajeRubroEliminado}} class="mensaje-rubro-eliminado" ></lib-ngx-notification>
                               </table>
                           </div>
                       </div>
@@ -111,6 +114,7 @@
                             <button (click)="volverAPageAgregarRubro()" type="button" class="close" aria-hidden="true">×</button>
                             <h4 class="modal-title">Agregar Certificado</h4>
                         </div>
+                        
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -159,6 +163,7 @@
                             <button (click)="volverAPageAgregarRubro()" type="button" class="btn btn-default waves-effect">Cancelar</button>
                             <button [disabled]="!certificadoForm.valid" type="submit" class="btn btn-info waves-effect waves-light">Agregar</button>
                         </div>
+                        <lib-ngx-notification></lib-ngx-notification>
                     </div>
                 </div>
             </div>
