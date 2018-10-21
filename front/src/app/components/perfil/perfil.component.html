@@ -15,17 +15,37 @@
 				</div>
 				<ul class="list-inline status-list m-t-20">
 					<li>
-						<h3 class="text-primary m-b-5">456</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
+						<h3 class="text-danger m-b-5">4</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
 						<p class="text-muted">Trabajos Realizados</p>
 					</li>
 					<li>
-						<h3 class="text-success m-b-5">20</h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
+						<h3 class="text-danger m-b-5">2</h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
 						<p class="text-muted">En curso</p>
 					</li>
 				</ul>
 				<button type="button" (click)="irAPantallaOferente()" class="btn btn-primary btn-custom btn-rounded waves-effect waves-light">Ofrece tus servicios</button>
 				<hr>
 			</div>
+			<div>
+				
+				
+				<ul class="list-inline status-list m-t-20">
+					<li>
+						<h3 class="text-primary m-b-5">Destacarme!</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
+						<p class="text-muted">Aprovecha los Beneficios de aparecer primero en las busquedas cuando los usuarios filtren en tu zona.</p>
+					</li>
+					<li>
+						<h3 class="text-success m-b-5">Mas trabajos!</h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
+						<p class="text-muted">Al destacarte las solicitudes de trabajo aumentaran considerablemente!</p>
+					</li>
+				</ul>
+				<button type="button" [routerLink]="['/sios/destacar-perfil']" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Destacarme</button>
+				<hr>
+			</div>
+
+
+
+
 		</div>
 	</div>
 	<div class="row">

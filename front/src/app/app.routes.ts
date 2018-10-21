@@ -28,6 +28,7 @@ import { CalificacionesComponent } from './components/reportes/calificaciones/ca
 import { RubrosMasDemandadosComponent } from './components/reportes/rubros-mas-demandados/rubros-mas-demandados.component';
 import { RubrosMasOfrecidosComponent } from './components/reportes/rubros-mas-ofrecidos/rubros-mas-ofrecidos.component';
 import { TrabajosRealizadosComponent } from './components/reportes/trabajos-realizados/trabajos-realizados.component';
+import { DestacarPerfilComponent } from './components/perfil/destacar-perfil/destacar-perfil.component';
 
 
 const rutas_hijas: Routes =[
@@ -55,6 +56,7 @@ const rutas_hijas: Routes =[
     { path: 'rubros-mas-demandados', component: RubrosMasDemandadosComponent },
     { path: 'rubros-mas-ofrecidos', component: RubrosMasOfrecidosComponent },
     { path: 'trabajos-realizados', component: TrabajosRealizadosComponent },
+    { path: 'destacar-perfil', component: DestacarPerfilComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 

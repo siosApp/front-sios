@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col-sm-12">
         <h4 class="page-title">Solicitudes</h4>
@@ -35,6 +36,226 @@
                     <!-- Se muestra si es una solicitud aceptada -->
                     <div *ngIf="solicitud.nombreEstadoSolicitud === 'Aceptada'">
                         <a (click)="finalizarSolicitud(solicitud)" class="table-action-btn" style="cursor:pointer;"><i class="md md-spellcheck" title="Finalizar Solicitud"></i></a>
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="page-title">Solicitudes</h4>
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Solicitudes</li>
+                </ol>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-8">
+
+                <div class="card-box m-b-10">
+                    <div class="table-box opport-box">
+                        <div class="table-detail checkbx-detail">
+                            <div class="checkbox checkbox-primary m-r-15">
+                                <input id="checkbox1" type="checkbox">
+                                <label for="checkbox1"></label>
+                            </div>
+                        </div>
+
+                        <div class="table-detail">
+                            <div class="member-info">
+                                <h4 class="m-t-0"><b>Ramiro Perez </b></h4>
+                                <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted"> Desarollador Web</span></p>
+                                <p class="text-dark m-b-0"><b>Activo: </b> <span class="text-muted"> hace 2 horas</span></p>
+                            </div>
+                        </div>
+
+                        <div class="table-detail">
+                            <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted"> rperez@gmail.com</span></p>
+                            <p class="text-dark m-b-0"><b>Contacto:</b> <span class="text-muted">26123567324</span></p>
+                        </div>
+
+                        <div class="table-detail lable-detail">
+                            <span class="label label-info">PENDIENTE</span>
+                        </div>
+
+                        <div class="table-detail table-actions-bar">
+                            <a (click)="openAlert02()" class="table-action-btn"><i class="md md-assignment" title="Detalle de la Solicitud"></i></a>
+                            <a (click)="openAlert()" class="table-action-btn"><i class="md md-done" title="Aceptar Solicitud"></i></a>
+                            <a (click)="openAlert01()" class="table-action-btn"><i class="md md-close" title="Rechazar Solicitud"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card-box m-b-10">
+                    <div class="table-box opport-box">
+                        <div class="table-detail checkbx-detail">
+                            <div class="checkbox checkbox-primary m-r-15">
+                                <input id="checkbox2" type="checkbox">
+                                <label for="checkbox2"></label>
+                            </div>
+                        </div>
+
+                        <div class="table-detail">
+                            <div class="member-info">
+                                <h4 class="m-t-0"><b>Segio Fredes </b></h4>
+                                <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted"> Desarrollador Web</span></p>
+                                <p class="text-dark m-b-0"><b>Activo: </b> <span class="text-muted"> hace 6 horas</span></p>
+                            </div>
+                        </div>
+
+                        <div class="table-detail">
+                            <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted"> fredes@gmail.com</span></p>
+                            <p class="text-dark m-b-0"><b>Contacto:</b> <span class="text-muted">2634568734</span></p>
+                        </div>
+
+                        <div class="table-detail lable-detail">
+                            <span class="label label-info">PENDIENTE</span>
+                        </div>
+
+                        <div class="table-detail table-actions-bar">
+                            <a href="#" class="table-action-btn"><i class="md md-assignment" title="Detalle de la Solicitud"></i></a>
+                            <a href="#" class="table-action-btn"><i class="md md-done" title="Aceptar Solicitud"></i></a>
+                            <a href="#" class="table-action-btn"><i class="md md-close" title="Rechazar Solicitud"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="card-box m-b-10">
+                    <div class="table-box opport-box">
+                        <div class="table-detail checkbx-detail">
+                            <div class="checkbox checkbox-primary m-r-15">
+                                <input id="checkbox3" type="checkbox">
+                                <label for="checkbox3"></label>
+                            </div>
+                        </div>
+
+                        <div class="table-detail">
+                            <div class="member-info">
+                                <h4 class="m-t-0"><b>Nico Gonzalez </b></h4>
+                                <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted"> Albañil</span></p>
+                                <p class="text-dark m-b-0"><b>Activo: </b> <span class="text-muted"> hace 10 horas</span></p>
+                            </div>
+                        </div>
+
+                        <div class="table-detail">
+                            <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted"> nico22utn@gmail.com</span></p>
+                            <p class="text-dark m-b-0"><b>Contacto:</b> <span class="text-muted"> 2614529678</span></p>
+                        </div>
+
+                        <div class="table-detail lable-detail">
+                            <span class="label label-info">PENDIENTE</span>
+                        </div>
+
+                        <div class="table-detail table-actions-bar">
+                            <a href="#" class="table-action-btn"><i class="md md-assignment" title="Detalle de la Solicitud"></i></a>
+                            <a href="#" class="table-action-btn"><i class="md md-done" title="Aceptar Solicitud"></i></a>
+                            <a href="#" class="table-action-btn"><i class="md md-close" title="Rechazar Solicitud"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="card-box m-b-10">
+                    <div class="table-box opport-box">
+                        <div class="table-detail checkbx-detail">
+                            <div class="checkbox checkbox-primary m-r-15">
+                                <input id="checkbox4" type="checkbox">
+                                <label for="checkbox4"></label>
+                            </div>
+                        </div>
+
+                        <div class="table-detail">
+                            <div class="member-info">
+                                <h4 class="m-t-0"><b>David Roco </b></h4>
+                                <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted"> Desarrollador AngularJS Ssr</span></p>
+                                <p class="text-dark m-b-0"><b>Activo: </b> <span class="text-muted"> hace 5 horas</span></p>
+                            </div>
+                        </div>
+
+                        <div class="table-detail">
+                            <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted"> david.roco84@gmail.com</span></p>
+                            <p class="text-dark m-b-0"><b>Contacto:</b> <span class="text-muted"> 2614059872</span></p>
+                        </div>
+
+                        <div class="table-detail lable-detail">
+                            <span class="label label-danger">EN PROGRESO</span>
+                        </div>
+
+                        <div class="table-detail table-actions-bar">
+                            <a href="#" class="table-action-btn"><i class="md md-assignment" title="Detalle de la Solicitud"></i></a>
+                            <a (click)="openAlert03()" class="table-action-btn"><i class="md md-spellcheck" title="Finalizar Solicitud"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="card-box">
+                    <div class="table-box opport-box">
+                        <div class="table-detail checkbx-detail">
+                            <div class="checkbox checkbox-primary m-r-15">
+                                <input id="checkbox5" type="checkbox">
+                                <label for="checkbox5"></label>
+                            </div>
+                        </div>
+
+                        <div class="table-detail">
+                            <div class="member-info">
+                                <h4 class="m-t-0"><b>Jose Perez </b></h4>
+                                <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted"> Desarrollador AngularJS Ssr</span></p>
+                                <p class="text-dark m-b-0"><b>Activo: </b> <span class="text-muted"> hace 8 horas</span></p>
+                            </div>
+                        </div>
+
+                        <div class="table-detail">
+                            <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted"> jose.perez@gmail.com</span></p>
+                            <p class="text-dark m-b-0"><b>Contacto:</b> <span class="text-muted"> 2634225896</span></p>
+                        </div>
+
+                        <div class="table-detail lable-detail">
+                            <span class="label label-warning">FINALIZADA</span>
+                            <p></p>
+                            <p class="text-dark m-b-5"><b>Calificacion: </b> <span class="text-muted">5</span></p>
+                        </div>
+
+                        <div class="table-detail table-actions-bar">
+                            <a href="#" class="table-action-btn"><i class="md md-assignment" title="Detalle de la Solicitud"></i></a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="profile-detail card-box">
+                    <h3 class="text-primary m-b-5">Solicitudes!</h3>
+                    <div >
+                        <p class="text-muted">Tienes 3 solicitudes pendientes</p>
+                    </div>
+                    
+                </div>
+                <div class="col-md-12">
+                    <div class="profile-detail card-box">
+                       
+                        <div>
+                            
+                            
+                            <ul class="list-inline status-list m-t-20">
+                                <li>
+                                    <h3 class="text-primary m-b-5">Destacarme!</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
+                                    <p class="text-muted">Aprovecha los Beneficios de aparecer primero en las busquedas cuando los usuarios filtren en tu zona.</p>
+                                </li>
+                                <li>
+                                    <h3 class="text-success m-b-5">Mas trabajos!</h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
+                                    <p class="text-muted">Al destacarte las solicitudes de trabajo aumentaran considerablemente!</p>
+                                </li>
+                            </ul>
+                            <button type="button" [routerLink]="['/sios/destacar-perfil']" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Destacarme</button>
+                            <hr>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -115,6 +336,25 @@
                                     <label for="field-1" class="control-label">Archivo Adjunto:</label>
                                     <label ><span>Aqui se muestra si el usuario agrego un archivo de detalle: </span> </label>
                                     <li><a (click)="visualizarArchivo()" style="cursor: pointer;">Visualizar Archivo</a></li>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <label for="field-1" class="control-label">Descripcion:</label>
+                                                <label ><span>Necesito que me desarrolles una aplicacion para controlar el stock de un local de insumos informaticos y que genere alertas cuando existe mercaderia inexistente </span> </label>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-md-9">
+                                                <div class="form-group">
+                                                    <label for="field-1" class="control-label">Archivo Adjunto:</label>
+                                                    <label ><span>Aqui se muestra si el usuario agrego un archivo de detalle: </span> </label>
+                                                    <li><a href="#">detalle.txt</a></li>
+                                                </div>
+                                                
+                                            </div>
+                                        
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-9" *ngIf="!tieneArchivo">
