@@ -18,6 +18,10 @@ export class UsuarioService {
     let url=`${URL_API}/usuario?id=${id}`;
     return this.http.get(url);
   }
+  getUsuarioByUsername(username){
+    let url=`${URL_API}/usuario/username?username=${username}`;
+    return this.http.get(url);
+  }
   updateUsuario(usuario:Usuario){
     let url=`${URL_API}/usuario/editarUsuario`;
     return this.http.put(url,usuario);
