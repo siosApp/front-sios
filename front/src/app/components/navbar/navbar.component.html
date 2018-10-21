@@ -1,40 +1,49 @@
 <div id="topnav">
     <div class="topbar-main">
         <div class="container">
-
             <!-- Logo container-->
             <div class="logo">
-                <a href="index.html" class="logo"><span>Si<i class="md md-album"></i>s</span></a>
+                <a class="logo"><span>Si<i class="md md-album"></i>s</span></a>
             </div>
             <!-- End Logo container-->
-
-
-
             <div *ngIf="estaLogueado" class="menu-extras">
 
                     <ul class="nav navbar-nav navbar-right pull-right">
                         
                             <li class="dropdown navbar-c-items">
-                                    <a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-                                        <i class="icon-bell"></i> <span class="badge badge-xs badge-danger">3</span>
+                                    <a  data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+                                        <i class="icon-bell"></i> <span class="badge badge-xs badge-danger">{{cantidadNotificacionesSolicitudes}}</span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-lg">
-                                        <li class="notifi-title"><span class="label label-default pull-right">Nuevas 3</span>Notificaciones</li>
+                                        <li class="notifi-title"><span class="label label-default pull-right">Pendientes {{cantidadNotificacionesSolicitudes}}</span>Notificaciones</li>
                                         <li class="list-group slimscroll-noti notification-list">
-                                          
-                                           <a [routerLink]="['verSolicitud']" class="list-group-item">
-                                              <div class="media">
-                                                 <div class="pull-left p-r-10">
-                                                    <em class="fa fa-diamond noti-primary"></em>
-                                                 </div>
-                                                 <div class="media-body">
-                                                    <h5 class="media-heading">Tienes nuevas solicitudes</h5>
-                                                    <p class="m-0">
-                                                        <small>Consultalas desde aqui!</small>
-                                                    </p>
-                                                 </div>
-                                              </div>
-                                           </a>
+                                            <div *ngIf="cantidadNotificacionesSolicitudes > 0">
+                                                <a [routerLink]="['verSolicitud']" class="list-group-item">
+                                                    <div class="media">
+                                                        <div class="pull-left p-r-10">
+                                                            <em class="fa fa-diamond noti-primary"></em>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h5 class="media-heading">Tienes nuevas solicitudes</h5>
+                                                            <p class="m-0">
+                                                                <small>Consultalas desde aqui!</small>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div *ngIf="cantidadNotificacionesSolicitudes === 0">
+                                                <a class="list-group-item">
+                                                <div class="media">
+                                                    <div class="pull-left p-r-10">
+                                                        <em class="fa fa-diamond noti-primary"></em>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h5 class="media-heading">No tienes solicitudes por el momento</h5>
+                                                    </div>
+                                                </div>
+                                                </a>
+                                            </div>
                                     </ul>
                                 </li>
 
@@ -114,7 +123,7 @@
                     <ul class="nav navbar-nav navbar-right pull-right">
                         
                         <li class="dropdown navbar-c-items">
-                            <a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+                            <a  data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
                                 <i class="icon-bell"></i> <span class="badge badge-xs badge-danger">3</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-lg">
@@ -178,38 +187,38 @@
                 <!-- Navigation Menu-->
                 <ul class="navigation-menu">
                     <li class="has-submenu" routerLinkActive="active">
-                        <a href="#" [routerLink]="['home']"><i class="fa fa-home"></i>Home</a>
+                        <a [routerLink]="['home']" style="cursor: pointer;"><i class="fa fa-home"></i>Home</a>
                     </li>
                     <li   class="has-submenu" routerLinkActive="active" *ngIf="esAdministrador">
-                        <a *ngIf="estaLogueado" href="#"><i class="fa fa-cog"></i>Configuración</a>
+                        <a *ngIf="estaLogueado" style="cursor: pointer;"><i class="fa fa-cog"></i>Configuración</a>
                         <ul class="submenu megamenu">
                             <li>
                                 <ul>
-                                    <li><a href="#" [routerLink]="['estadoSolicitud']">Estados Solicitud</a></li>
-                                    <li><a href="#" [routerLink]="['rubro']">Rubros</a></li>
-                                    <li><a href="#" [routerLink]="['tipoRubro']">Tipos de Rubro</a></li>
-                                    <li><a href="#" [routerLink]="['tipoUsuario']">Tipos de Usuario</a></li>
-                                    <li><a href="#" [routerLink]="['usuario']">Usuario</a></li>
-                                    <li><a href="#" [routerLink]="['provincia']">Provincia</a></li>
-                                    <li><a href="#" [routerLink]="['medioPago']">Medios de Pago</a></li>
-                                    <li><a href="#" [routerLink]="['estadoDestacado']">Estados Destacados</a></li>
-                                    <li><a href="#" [routerLink]="['estadoRequerimiento']">Estados Requerimiento</a></li>
-                                    <li><a href="#" [routerLink]="['departamento']">Departamentos</a></li>
-                                    <li><a href="#" [routerLink]="['localidad']">Localidades</a></li>
-                                    <li><a href="#" [routerLink]="['tarifa']">Tarifas</a></li>
+                                    <li><a  [routerLink]="['estadoSolicitud']">Estados Solicitud</a></li>
+                                    <li><a  [routerLink]="['rubro']">Rubros</a></li>
+                                    <li><a  [routerLink]="['tipoRubro']">Tipos de Rubro</a></li>
+                                    <li><a  [routerLink]="['tipoUsuario']">Tipos de Usuario</a></li>
+                                    <li><a  [routerLink]="['usuario']">Usuario</a></li>
+                                    <li><a  [routerLink]="['provincia']">Provincia</a></li>
+                                    <li><a  [routerLink]="['medioPago']">Medios de Pago</a></li>
+                                    <li><a  [routerLink]="['estadoDestacado']">Estados Destacados</a></li>
+                                    <li><a  [routerLink]="['estadoRequerimiento']">Estados Requerimiento</a></li>
+                                    <li><a  [routerLink]="['departamento']">Departamentos</a></li>
+                                    <li><a  [routerLink]="['localidad']">Localidades</a></li>
+                                    <li><a  [routerLink]="['tarifa']">Tarifas</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
                     <li class="has-submenu" routerLinkActive="active">
-                        <a href="#"><i class="fa fa-object-group"></i>Requerimiento</a>
+                        <a ><i class="fa fa-object-group" style="cursor: pointer;"></i>Requerimiento</a>
                         <ul class="submenu megamenu">
                             <li>
                                 <ul>
                                     <li>
-                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['publicarRequerimiento']">Publicar
+                                        <a *ngIf="estaLogueado"  [routerLink]="['publicarRequerimiento']">Publicar
                                             Requerimiento</a>
-                                        <a *ngIf="!estaLogueado" href="#" [routerLink]="['/login']">Publicar
+                                        <a *ngIf="!estaLogueado"  [routerLink]="['/login']">Publicar
                                             Requerimiento</a>
                                     </li>
                                     <li><a [routerLink]="['verRequerimiento']">Ver Requerimientos</a></li>
@@ -220,18 +229,18 @@
                     </li>
 
                     <li class="has-submenu" *ngIf="estaLogueado" routerLinkActive="active">
-                        <a href="#"><i class="fa fa-area-chart"></i>Reportes</a>
+                        <a  style="cursor: pointer;"><i class="fa fa-area-chart"></i>Reportes</a>
                         <ul class="submenu megamenu">
                             <li>
                                 <ul>
                                     <li>
-                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['trabajos-realizados']">Trabajos Realizados</a>
+                                        <a *ngIf="estaLogueado"  [routerLink]="['trabajos-realizados']">Trabajos Realizados</a>
                                         
-                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['calificaciones']">Calificaciones</a>
+                                        <a *ngIf="estaLogueado"  [routerLink]="['calificaciones']">Calificaciones</a>
                                        
-                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['rubros-mas-demandados']">Rubros mas Demandados</a>
+                                        <a *ngIf="estaLogueado"  [routerLink]="['rubros-mas-demandados']">Rubros mas Demandados</a>
                                       
-                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['rubros-mas-ofrecidos']">Rubros mas Ofrecidos</a>
+                                        <a *ngIf="estaLogueado"  [routerLink]="['rubros-mas-ofrecidos']">Rubros mas Ofrecidos</a>
                                        
 
                                     </li>
@@ -244,22 +253,22 @@
 
 
                     <!-- <li class="has-submenu pull-right" *ngIf="estaLogueado">
-                        <a href="#"><i class="fa  fa-area-chart"></i>Informes</a>
+                        <a ><i class="fa  fa-area-chart"></i>Informes</a>
                         <ul class="submenu megamenu">
                             <li>
                                 <ul>
                                     <li>
-                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['trabajos-realizados']">Trabajos Realizados</a>
-                                        <a *ngIf="!estaLogueado" href="#" [routerLink]="['/login']">Trabajos Realizados</a>
+                                        <a *ngIf="estaLogueado"  [routerLink]="['trabajos-realizados']">Trabajos Realizados</a>
+                                        <a *ngIf="!estaLogueado"  [routerLink]="['/login']">Trabajos Realizados</a>
 
-                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['calificaciones']">Calificaciones</a>
-                                        <a *ngIf="!estaLogueado" href="#" [routerLink]="['/login']">Calificaciones</a>
+                                        <a *ngIf="estaLogueado"  [routerLink]="['calificaciones']">Calificaciones</a>
+                                        <a *ngIf="!estaLogueado"  [routerLink]="['/login']">Calificaciones</a>
 
-                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['rubros-mas-demandados']">Rubros mas Demandados</a>
-                                        <a *ngIf="!estaLogueado" href="#" [routerLink]="['/login']">Rubros mas Demandados</a>
+                                        <a *ngIf="estaLogueado"  [routerLink]="['rubros-mas-demandados']">Rubros mas Demandados</a>
+                                        <a *ngIf="!estaLogueado"  [routerLink]="['/login']">Rubros mas Demandados</a>
 
-                                        <a *ngIf="estaLogueado" href="#" [routerLink]="['rubros-mas-ofrecidos']">Rubros mas Ofrecidos</a>
-                                        <a *ngIf="!estaLogueado" href="#" [routerLink]="['/login']">Rubros mas Ofrecidos</a>
+                                        <a *ngIf="estaLogueado"  [routerLink]="['rubros-mas-ofrecidos']">Rubros mas Ofrecidos</a>
+                                        <a *ngIf="!estaLogueado"  [routerLink]="['/login']">Rubros mas Ofrecidos</a>
 
                                     </li>
 
@@ -268,10 +277,10 @@
                         </ul>
                     </li> -->
                     <li *ngIf="!estaLogueado" class="has-submenu pull-right">
-                        <a href="#"  [routerLink]="['/registracion']" title="Registrarse"><i class="fa fa-user-plus"></i>Registrarse</a>
+                        <a   [routerLink]="['/registracion']" title="Registrarse"><i class="fa fa-user-plus"></i>Registrarse</a>
                     </li>
                     <li *ngIf="!estaLogueado" class="has-submenu pull-right">
-                        <a href="#" [routerLink]="['/login']"><i class="glyphicon glyphicon-user"></i>Iniciar sesión</a>
+                        <a  [routerLink]="['/login']"><i class="glyphicon glyphicon-user"></i>Iniciar sesión</a>
                     </li>
                 </ul>
                 <!-- End navigation menu        -->
@@ -287,21 +296,21 @@
 
 
 <div id="danger-alert" style="display: none;">
-        <div class="sweet-alert showSweetAlert" data-backdrop="static" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
-            <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
-            </div>
-            <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
-            <div class="icon info" style="display: none;"></div>
-            <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
-                <div class="placeholder"></div>
-                <div class="fix"></div>
-            </div>
-            <div class="icon custom" style="display: none;"></div>
-            <h2>Estás seguro?</h2>
-            <p class="lead text-muted" style="display: block;">Desea cerrar sesion? si te arrepentis clic en "Volver".</p>
-            <p>
-                <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Volver</button>
-                <button (click)="cerrarSesion()" [routerLink]="['/home']" routerLinkActive="router-link-active"  class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Seguir de todas formas.</button>
-            </p>
+    <div class="sweet-alert showSweetAlert" data-backdrop="static" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
+        <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
         </div>
+        <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
+        </div>
+        <div class="icon custom" style="display: none;"></div>
+        <h2>Estás seguro?</h2>
+        <p class="lead text-muted" style="display: block;">Desea cerrar sesion? si te arrepentis clic en "Volver".</p>
+        <p>
+            <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Volver</button>
+            <button (click)="cerrarSesion()" [routerLink]="['/home']" routerLinkActive="router-link-active"  class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Seguir de todas formas.</button>
+        </p>
     </div>
+</div>

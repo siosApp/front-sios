@@ -69,11 +69,11 @@ export class SolicitarTrabajoComponent {
   }
 
   abrirModal(){
-    $('#sa-warningt').modal('show');
+    $('#crearSolicitud').modal('show');
   }
 
   volver(){
-    $('#sa-warningt').modal('hide');
+    $('#crearSolicitud').modal('hide');
   }
 
   addFile(event,index){
@@ -110,7 +110,7 @@ export class SolicitarTrabajoComponent {
                 
         this.solicitudService.crearSolicitud(solicitud).subscribe((res:any)=>{
           console.log("Mensaje: ",res);
-          $('#sa-warningt').modal('hide');
+          $('#crearSolicitud').modal('hide');
           this.location.back();
         })
       })
