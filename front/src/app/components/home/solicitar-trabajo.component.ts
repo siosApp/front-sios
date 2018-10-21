@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { SolicitarTrabajoService } from '../../services/solicitar-trabajo.service';
 import { Archivo } from '../../models/archivo';
 import { Imagen } from '../perfil/perfil.component';
+import { NgxNotificationService } from 'ngx-notification';
 
 declare var $:any;
 @Component({
@@ -33,7 +34,7 @@ export class SolicitarTrabajoComponent {
 
   constructor(private usuarioService:UsuarioService,private afStorage: AngularFireStorage,private afs: AngularFirestore,
     private location:Location,private activatedRoute:ActivatedRoute,
-    private fileService:FileService,private solicitudService:SolicitarTrabajoService) {
+    private fileService:FileService,private solicitudService:SolicitarTrabajoService, private ngxNotificationService: NgxNotificationService) {
     this.urlImagen="assets/images/noimage.png";
     activatedRoute.params.subscribe((parametros:any)=>{
       usuarioService.getUsuarioById(parametros['id']).subscribe((usuarioRes:any)=>{
@@ -76,13 +77,17 @@ export class SolicitarTrabajoComponent {
     $('#crearSolicitud').modal('hide');
   }
 
+  notificarArchivoNoPermitido() {
+  	this.ngxNotificationService.sendMessage('Archivo excede los 5 mb o el formato es inválido.', 'danger', 'bottom');
+  }
+
   addFile(event,index){
     let file=event.target.files[0];
     if(file.type === "image/jpeg" || file.type === "image/png" || file.type === "application/pdf" || file.size <= 5000000){
       this.file=file;
     }
     else{
-      $.Notification.notify('error','top left', 'Error', 'Archivo excede los 5 mb o formato inválido.');
+      this.notificarArchivoNoPermitido();
       this.solicitudForm.controls['archivoUno'].setValue("");
     }
   }

@@ -19,6 +19,7 @@ import { log } from 'util';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Imagen } from '../perfil/perfil.component';
+import { NgxNotificationService } from 'ngx-notification';
 
 @Component({
   selector: 'app-home',
@@ -144,4 +145,10 @@ export class HomeComponent{
     })
   }
 
+  verificarUsuarioAutenticado() {
+    let idusuario = localStorage.getItem("auth");
+    if (idusuario != null) {
+      return true;
+    }
+  }
 }

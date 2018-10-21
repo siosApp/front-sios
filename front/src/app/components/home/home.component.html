@@ -130,10 +130,14 @@
                         <a href="#" class="btn btn-sm btn-primary waves-effect waves-light">Email</a>
                     </div> -->
 
-                    <div class="table-detail table-actions-bar">
-                        <!-- <a href="#" class="table-action-btn"><i class="md md-edit"></i></a> -->
+                    <div *ngIf="verificarUsuarioAutenticado(); else notShown" class="table-detail table-actions-bar">
                         <a href="#" [routerLink]="['/sios/solicitarTrabajo',oferente.idUsuario]" class="btn btn-info waves-effect waves-light"><i class="fa fa-ticket"></i>  Solicitar Trabajo</a>
                     </div>
+                    <ng-template #notShown>
+                        <div class="table-detail table-actions-bar">
+                            <a (click)="mostrarMensajeDeLoginRequerido()" href="#" [routerLink]="['/login']" class="btn btn-info waves-effect waves-light"><i class="fa fa-ticket"></i>  Solicitar Trabajo</a>
+                        </div>
+                    </ng-template>
                 </div>
             </div>
         </div>

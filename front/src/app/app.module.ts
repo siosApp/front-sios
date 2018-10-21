@@ -32,6 +32,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { AgregarRubroComponent } from './components/perfil/agregar-rubro/agregar-rubro.component';
 import { VerRequerimientoComponent } from './components/ver-requerimiento/ver-requerimiento.component';
 import { OfertarRequerimientoComponent } from './components/ver-requerimiento/ofertar-requerimiento/ofertar-requerimiento.component';
+import { NgxNotificationComponent } from 'ngx-notification';
 //Firebase 
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule,AngularFireStorage,AngularFireUploadTask } from 'angularfire2/storage';
@@ -110,7 +111,8 @@ export function getAuthServiceConfigs() {
     RubrosMasOfrecidosComponent,
     NombreUserComponent,
     UsuarioItemComponent,
-    DestacarPerfilComponent
+    DestacarPerfilComponent,
+    NgxNotificationComponent
   ],
   imports: [
     BrowserModule,
