@@ -5,6 +5,7 @@ import { Usuario } from '../../models/usuario';
 import { Router } from '@angular/router';
 import { AuthService, FacebookLoginProvider, GoogleLoginProvider, LinkedinLoginProvider } from 'angular-6-social-login';
 import { AutenticacionService } from '../../services/autenticacion.service';
+import { NgxNotificationService } from 'ngx-notification';
 
 declare var $:any;
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent {
   form:FormGroup;
   usuario:Usuario;
   constructor(private router:Router,private service:UsuarioService,private fb:FormBuilder,private socialAuthService: AuthService,
-    private tokenService:AutenticacionService ) { 
+    private tokenService:AutenticacionService, private ngxNotificationService: NgxNotificationService ) { 
     this.form=fb.group({
       username: ['',Validators.required],
       password: ['',Validators.required],
@@ -25,6 +26,10 @@ export class LoginComponent {
     })
   }
 
+  sendNotification() {
+    console.log("holaaaaaa")
+  	this.ngxNotificationService.sendMessage('El usuario/contraseña es incorrecto/a', 'danger', 'bottom');
+  }
   loguearUsuario(){
     let username=this.form.controls['username'].value;
     let pass=this.form.controls['password'].value;
@@ -36,7 +41,7 @@ export class LoginComponent {
         this.router.navigate(['inicio']);
       }
       else{
-        $.Notification.notify('error','top left', 'Error', 'Usuario y/o contraseña inválidos.');
+        this.sendNotification();
       }
     })
   }
