@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-destacar-perfil',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DestacarPerfilComponent implements OnInit {
 
-  constructor() { }
+  constructor(private usuarioService:UsuarioService) { }
 
   ngOnInit() {
   }
 
+  destacarPerfil(){
+    let id= localStorage.getItem("auth");
+    let datosMercadoPago ={
+      title: 'Prueba',
+      quantity: 1,
+      currency_id: 'ARG',
+      unit_price: 0,
+      idUsuario: id,
+      idMedioPago: null,
+    }
+    this.usuarioService.destacarPerfil(datosMercadoPago).subscribe((respuesta:any)=>{
+      console.log("Url: ",respuesta);
+      
+    })
+  }
 }

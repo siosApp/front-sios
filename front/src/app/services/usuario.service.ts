@@ -63,4 +63,8 @@ export class UsuarioService {
     let url=`${URL_API}/usuario/deleteRubro?idUsuario=${usuario}&usuarioRubro=${usuarioRubro}`;
     return this.http.post(url,null);
   }
+  destacarPerfil(mercadoPago){
+    let url= `${URL_API}/reservasService/pago/mercadopago`;
+    return this.http.post(url,mercadoPago);
+  }
 }

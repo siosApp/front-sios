@@ -83,6 +83,8 @@ export class SolicitarTrabajoComponent {
 
   addFile(event,index){
     let file=event.target.files[0];
+    console.log("File: ",file);
+    
     if(file.type === "image/jpeg" || file.type === "image/png" || file.type === "application/pdf" || file.size <= 5000000){
       this.file=file;
     }
