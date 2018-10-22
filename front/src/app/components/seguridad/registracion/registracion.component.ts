@@ -98,11 +98,13 @@ export class RegistracionComponent{
     let pass=this.passwordFormGroup.controls['password'].value;
     let nuevoUsuario= new Usuario(null,null,null,null,mail,null,false,pass,null,null,username,null,null,null,null,null);
     this.service.crearUsuario(nuevoUsuario).subscribe((response:any)=>{
-      this.router.navigate(['login']);
-      $.Notification.notify('success','top left','Felicitaciones! :)', 'Se ha registrado con éxito. Ingrese con su nuevo username y password')
+      $('#registracion-completa').modal('show');
     });
-    console.log(this.form);
-    
+  }
+
+  terminar() {
+    $('#registracion-completa').modal('hide');
+    this.router.navigate(['login']);
   }
 
 }

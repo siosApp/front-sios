@@ -5,6 +5,7 @@ import { log } from 'util';
 import { UsuarioService } from '../../services/usuario.service';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { Imagen } from '../perfil/perfil.component';
+import { SolicitarTrabajoService } from '../../services/solicitar-trabajo.service';
 declare var $:any;
 @Component({
   selector: 'app-navbar',
@@ -18,9 +19,10 @@ export class NavbarComponent {
   username:any;
   urlImage:string;
   imagenesCollections: AngularFirestoreCollection<Imagen>;
+  cantidadNotificacionesSolicitudes:number;
 
   constructor(private usuarioService:UsuarioService,private tokenService:AutenticacionService,private router:Router,
-    private afs: AngularFirestore) {
+    private afs: AngularFirestore,private solicitudService:SolicitarTrabajoService) {
     if(tokenService.isUsuarioLogueado()){
       this.estaLogueado=true;
     }
@@ -28,7 +30,15 @@ export class NavbarComponent {
     this.setFotoPerfil();
     this.isUsuarioAdmin();
     this.getUsername();
+    this.setCantidadSolicitudesPendientes();
   }
+  setCantidadSolicitudesPendientes(){
+    let id=localStorage.getItem("auth");
+    this.solicitudService.getCantidadSolicitudesPendientesPorUsuario(id).subscribe((solicitudRes:any)=>{
+      this.cantidadNotificacionesSolicitudes=solicitudRes;
+    })
+  }
+
   isUsuarioAdmin(){
     let id=localStorage.getItem("auth");
     if(id!=null){

@@ -17,6 +17,8 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { NgxNotificationService } from 'ngx-notification';
+
 
 declare var $:any;
 @Component({
@@ -48,7 +50,7 @@ export class PerfilComponent {
               private provinciaService:ProvinciaService,
               private departamentoService:DepartamentoService,
               private localidadService:LocalidadService,private afStorage: AngularFireStorage,
-              private afs: AngularFirestore) {
+              private afs: AngularFirestore, private ngxNotificationService: NgxNotificationService) {
       this.imagenesCollections=this.afs.collection<Imagen>('perfil'); 
       this.imagenUrl='assets/images/noimage.png';              
       this.passwordFormGroup=fb.group({
@@ -203,6 +205,9 @@ export class PerfilComponent {
       this.showLocalidades=false;
     }
   }
+  mostrarMensajeArchivoIncorrecto() {
+  	this.ngxNotificationService.sendMessage('Archivo excede los 5 mb o posee un formato inválido.', 'danger', 'bottom');
+  }
   addFile(event,index){
     let file=event.target.files[0];
     if(file.type === "image/jpeg" || file.type === "image/png" ||file.size <= 2000000){
@@ -218,7 +223,8 @@ export class PerfilComponent {
       };      
     }
     else{
-      $.Notification.notify('error','top left', 'Error', 'Archivo excede los 5 mb o formato inválido.');
+      this.mostrarMensajeArchivoIncorrecto();
+      //this.ngxNotificationService.sendMessage('Archivo excede los 5 mb o posee un formato inválido.', 'success', 'bottom');
       this.form.controls['archivoUno'].setValue("");
     }
   }

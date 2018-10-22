@@ -1,353 +1,187 @@
 
-
-  
-        <div class="row">
-            <div class="col-sm-12">
-                <h4 class="page-title">Solicitudes</h4>
-                <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li class="active">Solicitudes</li>
-                </ol>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-lg-8">
-
-                <div class="card-box m-b-10">
-                    <div class="table-box opport-box">
-                        <div class="table-detail checkbx-detail">
-                            <div class="checkbox checkbox-primary m-r-15">
-                                <input id="checkbox1" type="checkbox">
-                                <label for="checkbox1"></label>
-                            </div>
-                        </div>
-
-                        <div class="table-detail">
-                            <div class="member-info">
-                                <h4 class="m-t-0"><b>Ramiro Perez </b></h4>
-                                <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted"> Desarollador Web</span></p>
-                                <p class="text-dark m-b-0"><b>Activo: </b> <span class="text-muted"> hace 2 horas</span></p>
-                            </div>
-                        </div>
-
-                        <div class="table-detail">
-                            <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted"> rperez@gmail.com</span></p>
-                            <p class="text-dark m-b-0"><b>Contacto:</b> <span class="text-muted">26123567324</span></p>
-                        </div>
-
-                        <div class="table-detail lable-detail">
-                            <span class="label label-info">PENDIENTE</span>
-                        </div>
-
-                        <div class="table-detail table-actions-bar">
-                            <a (click)="openAlert02()" class="table-action-btn"><i class="md md-assignment" title="Detalle de la Solicitud"></i></a>
-                            <a (click)="openAlert()" class="table-action-btn"><i class="md md-done" title="Aceptar Solicitud"></i></a>
-                            <a (click)="openAlert01()" class="table-action-btn"><i class="md md-close" title="Rechazar Solicitud"></i></a>
-                        </div>
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title">Solicitudes</h4>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/sios/home']">Home</a></li>
+            <li class="active">Solicitudes</li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card-box m-b-10" *ngFor="let solicitud of solicitudes">
+            <div class="table-box opport-box">
+                <div class="table-detail">
+                    <div class="member-info">
+                        <h4 class="m-t-0"><b>{{solicitud.descripcion}}</b></h4>
+                        <app-usuario-item [username]="solicitud.usuarioDemandante"></app-usuario-item>
+                        <!-- Se muestra si el estado de la solicitud es finalizada -->
+                        <p class="text-dark m-b-5"><b>Calificacion: </b> <span class="text-muted">5</span></p>
                     </div>
                 </div>
-
-
-                <div class="card-box m-b-10">
-                    <div class="table-box opport-box">
-                        <div class="table-detail checkbx-detail">
-                            <div class="checkbox checkbox-primary m-r-15">
-                                <input id="checkbox2" type="checkbox">
-                                <label for="checkbox2"></label>
-                            </div>
-                        </div>
-
-                        <div class="table-detail">
-                            <div class="member-info">
-                                <h4 class="m-t-0"><b>Segio Fredes </b></h4>
-                                <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted"> Desarrollador Web</span></p>
-                                <p class="text-dark m-b-0"><b>Activo: </b> <span class="text-muted"> hace 6 horas</span></p>
-                            </div>
-                        </div>
-
-                        <div class="table-detail">
-                            <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted"> fredes@gmail.com</span></p>
-                            <p class="text-dark m-b-0"><b>Contacto:</b> <span class="text-muted">2634568734</span></p>
-                        </div>
-
-                        <div class="table-detail lable-detail">
-                            <span class="label label-info">PENDIENTE</span>
-                        </div>
-
-                        <div class="table-detail table-actions-bar">
-                            <a href="#" class="table-action-btn"><i class="md md-assignment" title="Detalle de la Solicitud"></i></a>
-                            <a href="#" class="table-action-btn"><i class="md md-done" title="Aceptar Solicitud"></i></a>
-                            <a href="#" class="table-action-btn"><i class="md md-close" title="Rechazar Solicitud"></i></a>
-                        </div>
-                    </div>
+                <div class="table-detail lable-detail">
+                    <span class="label label-info">{{solicitud.nombreEstadoSolicitud | uppercase}}</span>
                 </div>
-
-
-
-                <div class="card-box m-b-10">
-                    <div class="table-box opport-box">
-                        <div class="table-detail checkbx-detail">
-                            <div class="checkbox checkbox-primary m-r-15">
-                                <input id="checkbox3" type="checkbox">
-                                <label for="checkbox3"></label>
-                            </div>
-                        </div>
-
-                        <div class="table-detail">
-                            <div class="member-info">
-                                <h4 class="m-t-0"><b>Nico Gonzalez </b></h4>
-                                <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted"> Albañil</span></p>
-                                <p class="text-dark m-b-0"><b>Activo: </b> <span class="text-muted"> hace 10 horas</span></p>
-                            </div>
-                        </div>
-
-                        <div class="table-detail">
-                            <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted"> nico22utn@gmail.com</span></p>
-                            <p class="text-dark m-b-0"><b>Contacto:</b> <span class="text-muted"> 2614529678</span></p>
-                        </div>
-
-                        <div class="table-detail lable-detail">
-                            <span class="label label-info">PENDIENTE</span>
-                        </div>
-
-                        <div class="table-detail table-actions-bar">
-                            <a href="#" class="table-action-btn"><i class="md md-assignment" title="Detalle de la Solicitud"></i></a>
-                            <a href="#" class="table-action-btn"><i class="md md-done" title="Aceptar Solicitud"></i></a>
-                            <a href="#" class="table-action-btn"><i class="md md-close" title="Rechazar Solicitud"></i></a>
-                        </div>
-                    </div>
+                <div class="table-detail lable-detail">
+                    <a (click)="abrirDetalleSolicitud(solicitud)" class="table-action-btn" style="cursor:pointer;"><i class="md md-assignment" title="Detalle de la Solicitud"></i></a>
                 </div>
-
-
-
-                <div class="card-box m-b-10">
-                    <div class="table-box opport-box">
-                        <div class="table-detail checkbx-detail">
-                            <div class="checkbox checkbox-primary m-r-15">
-                                <input id="checkbox4" type="checkbox">
-                                <label for="checkbox4"></label>
-                            </div>
-                        </div>
-
-                        <div class="table-detail">
-                            <div class="member-info">
-                                <h4 class="m-t-0"><b>David Roco </b></h4>
-                                <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted"> Desarrollador AngularJS Ssr</span></p>
-                                <p class="text-dark m-b-0"><b>Activo: </b> <span class="text-muted"> hace 5 horas</span></p>
-                            </div>
-                        </div>
-
-                        <div class="table-detail">
-                            <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted"> david.roco84@gmail.com</span></p>
-                            <p class="text-dark m-b-0"><b>Contacto:</b> <span class="text-muted"> 2614059872</span></p>
-                        </div>
-
-                        <div class="table-detail lable-detail">
-                            <span class="label label-danger">EN PROGRESO</span>
-                        </div>
-
-                        <div class="table-detail table-actions-bar">
-                            <a href="#" class="table-action-btn"><i class="md md-assignment" title="Detalle de la Solicitud"></i></a>
-                            <a (click)="openAlert03()" class="table-action-btn"><i class="md md-spellcheck" title="Finalizar Solicitud"></i></a>
-                        </div>
+                <div class="table-detail table-actions-bar">
+                    <!-- Independientemente del estado se muestra -->
+                    <!-- Se muestra si es una solicitud creada -->
+                    <div *ngIf="solicitud.nombreEstadoSolicitud === 'Creada'">
+                        <a (click)="aceptarSolicitud(solicitud)" class="table-action-btn" style="cursor:pointer;"><i class="md md-done" title="Aceptar Solicitud"></i></a>
+                        <a (click)="rechazarSolicitud(solicitud)" class="table-action-btn" style="cursor:pointer;"><i class="md md-close" title="Rechazar Solicitud"></i></a>
                     </div>
-                </div>
-
-
-
-                <div class="card-box">
-                    <div class="table-box opport-box">
-                        <div class="table-detail checkbx-detail">
-                            <div class="checkbox checkbox-primary m-r-15">
-                                <input id="checkbox5" type="checkbox">
-                                <label for="checkbox5"></label>
-                            </div>
-                        </div>
-
-                        <div class="table-detail">
-                            <div class="member-info">
-                                <h4 class="m-t-0"><b>Jose Perez </b></h4>
-                                <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted"> Desarrollador AngularJS Ssr</span></p>
-                                <p class="text-dark m-b-0"><b>Activo: </b> <span class="text-muted"> hace 8 horas</span></p>
-                            </div>
-                        </div>
-
-                        <div class="table-detail">
-                            <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted"> jose.perez@gmail.com</span></p>
-                            <p class="text-dark m-b-0"><b>Contacto:</b> <span class="text-muted"> 2634225896</span></p>
-                        </div>
-
-                        <div class="table-detail lable-detail">
-                            <span class="label label-warning">FINALIZADA</span>
-                            <p></p>
-                            <p class="text-dark m-b-5"><b>Calificacion: </b> <span class="text-muted">5</span></p>
-                        </div>
-
-                        <div class="table-detail table-actions-bar">
-                            <a href="#" class="table-action-btn"><i class="md md-assignment" title="Detalle de la Solicitud"></i></a>
-                            
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-lg-4">
-                <div class="profile-detail card-box">
-                    <h3 class="text-primary m-b-5">Solicitudes!</h3>
-                    <div >
-                        <p class="text-muted">Tienes 3 solicitudes pendientes</p>
-                    </div>
-                    
-                </div>
-                <div class="col-md-12">
-                    <div class="profile-detail card-box">
-                       
-                        <div>
-                            
-                            
-                            <ul class="list-inline status-list m-t-20">
-                                <li>
-                                    <h3 class="text-primary m-b-5">Destacarme!</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
-                                    <p class="text-muted">Aprovecha los Beneficios de aparecer primero en las busquedas cuando los usuarios filtren en tu zona.</p>
-                                </li>
-                                <li>
-                                    <h3 class="text-success m-b-5">Mas trabajos!</h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
-                                    <p class="text-muted">Al destacarte las solicitudes de trabajo aumentaran considerablemente!</p>
-                                </li>
-                            </ul>
-                            <button type="button" [routerLink]="['/sios/destacar-perfil']" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Destacarme</button>
-                            <hr>
-                        </div>
-            
-            
-            
-            
+                    <!-- Se muestra si es una solicitud aceptada -->
+                    <div *ngIf="solicitud.nombreEstadoSolicitud === 'Aceptada'">
+                        <a (click)="finalizarSolicitud(solicitud)" class="table-action-btn" style="cursor:pointer;"><i class="md md-spellcheck" title="Finalizar Solicitud"></i></a>
                     </div>
                 </div>
             </div>
-
-        </div>
-
-
-            <div id="sa-warningt" style="display: none;">
-                <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
-                    <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
-                    </div>
-                    <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
-                    <div class="icon info" style="display: none;"></div>
-                    <div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
-                        <div class="placeholder"></div>
-                        <div class="fix"></div>
-                    </div>
-                    <div class="icon custom" style="display: none;"></div>
-                    <h2>Deseas aceptar esta solicitud?</h2>
-                    <p class="lead text-muted" style="display: block;">Al aceptar esta solicitud se le enviara una notificacion al cliente y la solicitud pasara a estado en progreso</p>
-                    <p>
-                        <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
-                        <button type="submit" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
-                    </p>
-                </div>
-            </div>
-        
-
-       
-        <div id="danger-alert" style="display: none;">
-            <div class="sweet-alert showSweetAlert" tabindex="-1" data-backdrop="static" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
-                <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
-                </div>
-                <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
-                <div class="icon info" style="display: none;"></div>
-                <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
-                    <div class="placeholder"></div>
-                    <div class="fix"></div>
-                </div>
-                <div class="icon custom" style="display: none;"></div>
-                <h2>Estás seguro que desea rechazar la solicitud?</h2>
-                <p class="lead text-muted" style="display: block;">Si rechaza la solicitud se le enviara al cliente un mail que usted rechazo la oferta!!</p>
-                <p>
-                    <button (click)="volver01()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
-                    <button class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Ok!!</button>
-                </p>
-            </div>
-        </div>
-     
-
-
-
-
-        <div class="row">
-            <div class="col-md-8">
-                    <div id="custom-width-modal01" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                        <div class="modal-dialog modal-md">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h4 class="modal-title">Detalle de la solicitud</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <div class="form-group">
-                                                <label for="field-1" class="control-label">Descripcion:</label>
-                                                <label ><span>Necesito que me desarrolles una aplicacion para controlar el stock de un local de insumos informaticos y que genere alertas cuando existe mercaderia inexistente </span> </label>
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="col-md-9">
-                                                <div class="form-group">
-                                                    <label for="field-1" class="control-label">Archivo Adjunto:</label>
-                                                    <label ><span>Aqui se muestra si el usuario agrego un archivo de detalle: </span> </label>
-                                                    <li><a href="#">detalle.txt</a></li>
-                                                </div>
-                                                
-                                            </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button (click)="volver02()" type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancelar</button>
-                                    <button (click)="volver02()" type="submit" class="btn btn-info waves-effect waves-light">Ok</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-          </div>
-
-
-
-          <div id="finalizarSolicitud" style="display: none;">
-          <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -163px;">
-            <div class="icon error" style="display: none;">
-                <span class="x-mark"><span class="line left"></span>
-                <span class="line right"></span></span>
-            </div>
-            <div class="icon warning" style="display: none;"> 
-                <span class="body"></span> 
-                <span class="dot"></span> 
-            </div> 
-            <div class="icon info" style="display: none;"></div>
-             <div class="icon success" style="display: none;"> 
-                <span class="line tip"></span> 
-                <span class="line long"></span> 
-                <div class="placeholder"></div> 
-                <div class="fix"></div> 
-            </div> 
-            <div class="icon custom" style="display: block; background-image: url(assets/plugins/bootstrap-sweetalert/thumbs-up.jpg); width: 80px; height: 80px;width:80px; height:80px">
-            </div> <h2>Finalizar Solicitud</h2>
-            <p class="lead text-muted" style="display: block;">Para finalizar la solicitud debera calificar al usuario! </p>
-            
-                <input type="text" class="text-center"  placeholder="0" style="width:100px; text-align:center;">
-            <p class="lead text-muted" style="display: block;">Califique con numero del 1 al 5!</p>
-
-            <textarea rows="2" class="form-control"
-                          placeholder="Descripcion de tu calificacion"></textarea>
-            <p>
-                <button class="cancel btn btn-lg btn-default" tabindex="2" style="display: none;">Cancel</button> 
-                <button (click)="volver03()" class="confirm btn btn-lg btn-primary" tabindex="1" style="display: inline-block;">OK</button>
-            </p>
         </div>
     </div>
+    <div class="col-lg-4">
+        <div class="card-box">
+            <h4 class="font-bold m-t-0 m-b-20 text-dark">Solicitudes</h4>
+            <div >
+                <span>Tienes {{cantidadSolicitudesPendientes}} solicitudes pendientes</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="profile-detail card-box">
+            <div>
+                <ul class="list-inline status-list m-t-20">
+                    <li>
+                        <h3 class="text-primary m-b-5">Destacarme!</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
+                        <p class="text-muted">Aprovecha los Beneficios de aparecer primero en las busquedas cuando los usuarios filtren en tu zona.</p>
+                    </li>
+                    <li>
+                        <h3 class="text-success m-b-5">Mas trabajos!</h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
+                        <p class="text-muted">Al destacarte las solicitudes de trabajo aumentaran considerablemente!</p>
+                    </li>
+                </ul>
+                <button type="button" [routerLink]="['/sios/destacar-perfil']" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Destacarme</button>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Aceptar Solicitud -->
+<div id="aceptarSolicitud" style="display: none;">
+    <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
+        <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
+        </div>
+        <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
+        </div>
+        <div class="icon custom" style="display: none;"></div>
+        <h2>Deseas aceptar esta solicitud?</h2>
+        <p class="lead text-muted" style="display: block;">Al aceptar esta solicitud se le enviara una notificacion al cliente y la solicitud pasara a estado en progreso</p>
+        <p>
+            <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
+            <button (click)="confirmarAceptarSolicitud()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
+        </p>
+    </div>
+</div>
+<!-- Modal Rechazar Solicitud -->
+<div id="rechazarSolicitud" style="display: none;">
+    <div class="sweet-alert showSweetAlert visible" style="display: block; margin-top: -165px;">
+        <div class="icon error animateErrorIcon" style="display: block;">
+            <span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
+        </div>
+        <div class="icon warning" style="display: none;">
+            <span class="body"></span> <span class="dot"></span>
+        </div>
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
+        </div>
+        <div class="icon custom" style="display: none;"></div>
+        <h2>Estás seguro que desea rechazar la solicitud?</h2>
+        <p class="lead text-muted" style="display: block;">Si rechaza la solicitud se le enviara al cliente un mail que usted rechazo la oferta!!</p>
+        <p>
+            <button (click)="volver01()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
+            <button (click)="confirmarRechazarSolicitud()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Ok</button>
+        </p>
+    </div>
+</div>
+<!-- Modal Detalle Solicitud -->
+<div class="row">
+    <div class="col-md-8">
+        <div id="detalleSolicitudModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Detalle de la solicitud</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label for="field-1" class="control-label">Descripcion:</label>
+                                    <label ><span>{{solicitudSeleccionada?.descripcion}}</span> </label>
+                                </div>
+                            </div>
+                            <div class="col-md-9" *ngIf="tieneArchivo">
+                                <div class="form-group">
+                                    <label for="field-1" class="control-label">Archivo Adjunto:</label>
+                                    <label ><span>Aqui se muestra si el usuario agrego un archivo de detalle: </span> </label>
+                                    <li><a (click)="visualizarArchivo()" style="cursor: pointer;">Visualizar Archivo</a></li>
+                                </div>
+                            </div>
+                            <div class="col-md-9" *ngIf="!tieneArchivo">
+                                <div class="form-group">
+                                    <label ><span>La solicitud actual no tiene archivos adjuntos</span> </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button (click)="volver02()" type="button" class="btn btn-default waves-effect" data-dismiss="modal">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Finalizar Solicitud -->
+<form [formGroup]="finalizarSolicitudForm" (ngSubmit)="confirmarFinalizarSolicitud()">
+    <div id="finalizarSolicitud" data-backdrop="static" style="display: none;">
+        <div class="sweet-alert showSweetAlert visible" tabindex="-1"  style="display: block; margin-top: -163px;">
+        <div class="icon error" style="display: none;">
+            <span class="x-mark"><span class="line left"></span>
+            <span class="line right"></span></span>
+        </div>
+        <div class="icon warning" style="display: none;"> 
+            <span class="body"></span> 
+            <span class="dot"></span> 
+        </div> 
+        <div class="icon info" style="display: none;"></div>
+            <div class="icon success" style="display: none;"> 
+            <span class="line tip"></span> 
+            <span class="line long"></span> 
+            <div class="placeholder"></div> 
+            <div class="fix"></div> 
+        </div> 
+        <div class="icon custom" style="display: block; background-image: url(assets/plugins/bootstrap-sweetalert/thumbs-up.jpg); width: 80px; height: 80px;width:80px; height:80px">
+        </div> <h2>Finalizar Solicitud</h2>
+        <p class="lead text-muted" style="display: block;">Para finalizar la solicitud debera calificar al usuario del 1 al 5! </p>
+            <input type="number" class="text-center" formControlName="calificacion" name="calificacion" placeholder="0" style="width:100px; text-align:center;">
+        <div *ngIf="finalizarSolicitudForm.controls['calificacion'].touched && finalizarSolicitudForm.controls['calificacion'].errors?.pattern">
+            <p style="color: red;">Califique con un número del 1 al 5!</p>
+        </div>    
+        <textarea rows="2" class="form-control" formControlName="comentario" name="comentario" placeholder="Descripcion de tu calificacion"></textarea>
+        <p>
+            <button type="button" (click)="volver03()" class="btn btn-lg btn-default" tabindex="2" style="display: inline-block;">Volver al listasdo</button> 
+            <button [disabled]="!finalizarSolicitudForm.valid" type="submit" class="btn btn-lg btn-primary" tabindex="1" style="display: inline-block;">Finalizar solicitud</button>
+        </p>
+    </div>
+    </div>
+</form>

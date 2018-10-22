@@ -12,6 +12,8 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { finalize, map } from 'rxjs/operators';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
+import { NgxNotificationService } from 'ngx-notification';
+
 
 declare var $:any;
 @Component({
@@ -33,7 +35,7 @@ export class RequerimientoComponent{
 
   //Hay que hacer un refactor sobre esto de Firebase. Tiene que estar en un servicio.
   constructor(private service:RequerimientoService,private autserv:AutenticacionService,private afStorage: AngularFireStorage,
-    private afs: AngularFirestore,private usuarioService:UsuarioService,private router:Router) {
+    private afs: AngularFirestore,private usuarioService:UsuarioService,private router:Router, private ngxNotificationService: NgxNotificationService) {
     this.archivosCollection = this.afs.collection<ArchivoAdjunto>('archivos'); 
     this.form= new FormGroup({
       'descripcion': new FormControl('',[Validators.required,Validators.minLength(3)]),
@@ -47,15 +49,20 @@ export class RequerimientoComponent{
   addFile(event,index){
     let file=event.target.files[0];
     console.log("file: ",file);
-    if(file.type === "image/jpeg" || file.type === "image/png" || file.type === "application/pdf" || file.size <= 5000000){
+    if((file.type === "image/jpeg" || file.type === "image/png" || file.type === "application/pdf") && file.size <= 5000000){
       this.idArchivo=this.subirArchivo(file);
       this.files[0]=this.idArchivo;      
     }
     else{
-      $.Notification.notify('error','top left', 'Error', 'Archivo excede los 5 mb o formato inválido.');
+      this.mostrarMensajeArchivoIncorrecto();
       this.form.controls['archivoUno'].setValue("");
     }
   }
+
+  mostrarMensajeArchivoIncorrecto() {
+  	this.ngxNotificationService.sendMessage('Archivo excede los 5 mb o posee un formato inválido.', 'danger', 'bottom');
+  }
+
   subirArchivo(archivo){
     //Tener en cuenta que las imagenes que sean de perfil conviene guardarlas en una carpeta 'perfil'
     //Y los demás doc que vengan adjuntos de una solicitud de trabajo o de publicar un requerimiento, que estén en una carpeta 'doc'
@@ -123,9 +130,7 @@ export class RequerimientoComponent{
         urlArchivos: this.files
       }        
       this.service.crearRequerimiento(requerimiento).subscribe(response=>{
-        //$.Notification.notify('success','top left', 'Exito', 'Se ha guardado satisfactoriamente su requerimiento.');
         this.form.reset();
-        //this.router.navigate(['/sios/home']);
         $('#sa-warningt').modal('hide');
         $('#sa-warningt01').modal('show');
 

@@ -32,6 +32,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { AgregarRubroComponent } from './components/perfil/agregar-rubro/agregar-rubro.component';
 import { VerRequerimientoComponent } from './components/ver-requerimiento/ver-requerimiento.component';
 import { OfertarRequerimientoComponent } from './components/ver-requerimiento/ofertar-requerimiento/ofertar-requerimiento.component';
+import { NgxNotificationComponent } from 'ngx-notification';
 //Firebase 
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule,AngularFireStorage,AngularFireUploadTask } from 'angularfire2/storage';
@@ -46,6 +47,7 @@ import { CalificacionesComponent } from './components/reportes/calificaciones/ca
 import { RubrosMasDemandadosComponent } from './components/reportes/rubros-mas-demandados/rubros-mas-demandados.component';
 import { RubrosMasOfrecidosComponent } from './components/reportes/rubros-mas-ofrecidos/rubros-mas-ofrecidos.component';
 import { NombreUserComponent } from './components/ver-requerimiento/nombre-user.component';
+import { UsuarioItemComponent } from './components/ver-solicitud/usuario-item/usuario-item.component';
 import { DestacarPerfilComponent } from './components/perfil/destacar-perfil/destacar-perfil.component';
 
 
@@ -108,7 +110,9 @@ export function getAuthServiceConfigs() {
     RubrosMasDemandadosComponent,
     RubrosMasOfrecidosComponent,
     NombreUserComponent,
-    DestacarPerfilComponent
+    UsuarioItemComponent,
+    DestacarPerfilComponent,
+    NgxNotificationComponent
   ],
   imports: [
     BrowserModule,

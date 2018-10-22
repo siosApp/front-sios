@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { SolicitarTrabajoService } from '../../services/solicitar-trabajo.service';
 import { Archivo } from '../../models/archivo';
 import { Imagen } from '../perfil/perfil.component';
+import { NgxNotificationService } from 'ngx-notification';
 
 declare var $:any;
 @Component({
@@ -33,7 +34,7 @@ export class SolicitarTrabajoComponent {
 
   constructor(private usuarioService:UsuarioService,private afStorage: AngularFireStorage,private afs: AngularFirestore,
     private location:Location,private activatedRoute:ActivatedRoute,
-    private fileService:FileService,private solicitudService:SolicitarTrabajoService) {
+    private fileService:FileService,private solicitudService:SolicitarTrabajoService, private ngxNotificationService: NgxNotificationService) {
     this.urlImagen="assets/images/noimage.png";
     activatedRoute.params.subscribe((parametros:any)=>{
       usuarioService.getUsuarioById(parametros['id']).subscribe((usuarioRes:any)=>{
@@ -69,11 +70,15 @@ export class SolicitarTrabajoComponent {
   }
 
   abrirModal(){
-    $('#sa-warningt').modal('show');
+    $('#crearSolicitud').modal('show');
   }
 
   volver(){
-    $('#sa-warningt').modal('hide');
+    $('#crearSolicitud').modal('hide');
+  }
+
+  notificarArchivoNoPermitido() {
+  	this.ngxNotificationService.sendMessage('Archivo excede los 5 mb o el formato es inválido.', 'danger', 'bottom');
   }
 
   addFile(event,index){
@@ -82,7 +87,7 @@ export class SolicitarTrabajoComponent {
       this.file=file;
     }
     else{
-      $.Notification.notify('error','top left', 'Error', 'Archivo excede los 5 mb o formato inválido.');
+      this.notificarArchivoNoPermitido();
       this.solicitudForm.controls['archivoUno'].setValue("");
     }
   }
@@ -110,7 +115,7 @@ export class SolicitarTrabajoComponent {
                 
         this.solicitudService.crearSolicitud(solicitud).subscribe((res:any)=>{
           console.log("Mensaje: ",res);
-          $('#sa-warningt').modal('hide');
+          $('#crearSolicitud').modal('hide');
           this.location.back();
         })
       })
