@@ -37,4 +37,8 @@ export class SolicitarTrabajoService {
     let url=`${URL_API}/solicitud/finalizarSolicitud?idSolicitud=${idSolicitud}&calificacion=${calificacion}&comentario=${comentario}`;
     return this.http.put(url,null);
   }
+  getSolicitudesEfectuadasPorUsuario(id){
+    let url=`${URL_API}/solicitud/solicitudesEfectuadasPorUsuario?idUsuario=${id}`;
+    return this.http.get(url);
+  }
 }

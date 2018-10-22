@@ -49,6 +49,7 @@ import { RubrosMasOfrecidosComponent } from './components/reportes/rubros-mas-of
 import { NombreUserComponent } from './components/ver-requerimiento/nombre-user.component';
 import { UsuarioItemComponent } from './components/ver-solicitud/usuario-item/usuario-item.component';
 import { DestacarPerfilComponent } from './components/perfil/destacar-perfil/destacar-perfil.component';
+import { MisSolicitudesComponent } from './components/ver-solicitud/mis-solicitudes/mis-solicitudes.component';
 
 
 
@@ -112,7 +113,8 @@ export function getAuthServiceConfigs() {
     NombreUserComponent,
     UsuarioItemComponent,
     DestacarPerfilComponent,
-    NgxNotificationComponent
+    NgxNotificationComponent,
+    MisSolicitudesComponent
   ],
   imports: [
     BrowserModule,
