@@ -1,0 +1,161 @@
+
+<div class="row">
+    <div class="col-sm-12">
+       
+        <h4 class="page-title">DashBoard</h4>
+        <ol class="breadcrumb">
+            <li>
+                <a href="#">Home</a>
+            </li>
+            
+            <li class="active">
+                DashBoard
+            </li>
+        </ol>
+        <p class="text-muted page-title-alt">Bienvenido al panel de Administrador de SIOS</p>
+    </div>
+      
+  </div>
+
+
+<div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="widget-bg-color-icon card-box fadeInDown animated">
+                            <div class="bg-icon bg-icon-info pull-left">
+                                <i class="md md-attach-money text-info"></i>
+                            </div>
+                            <div class="text-right">
+                                <h3 class="text-dark"><b class="counter">119</b></h3>
+                                <p class="text-muted">Usuarios destacados</p>
+                                <button class="btn btn-danger btn-custom waves-effect waves-light btn-xs">Ver </button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="widget-bg-color-icon card-box">
+                            <div class="bg-icon bg-icon-pink pull-left">
+                                <i class="fa fa-users text-pink"></i>
+                            </div>
+                            <div class="text-right">
+                                <h3 class="text-dark"><b class="counter">765</b></h3>
+                                <p class="text-muted">Usuarios registrados</p>
+                                <button class="btn btn-danger btn-custom waves-effect waves-light btn-xs">Ver </button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="widget-bg-color-icon card-box">
+                            <div class="bg-icon bg-icon-purple pull-left">
+                                <i class="ion ion-ios7-world-outline text-purple"></i>
+                            </div>
+                            <div class="text-right">
+                                <h3 class="text-dark"><b class="counter">34</b></h3>
+                                <p class="text-muted">Usuarios en linea</p>
+                                <button class="btn btn-danger btn-custom waves-effect waves-light btn-xs">Ver </button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="widget-bg-color-icon card-box">
+                            <div class="bg-icon bg-icon-success pull-left">
+                                <i class="md md-remove-red-eye text-success"></i>
+                            </div>
+                            <div class="text-right">
+                                <h3 class="text-dark"><b class="counter">56</b></h3>
+                                <p class="text-muted">Destacados por vencer</p>
+                                <button class="btn btn-danger btn-custom waves-effect waves-light btn-xs">Ver </button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-lg-6">
+                  <div class="card-box">
+                      <h4 class="text-dark header-title m-t-0">Usuarios Registrados y Destacados</h4>
+                      
+                      <p class="text-muted font-13 m-b-30">
+                        Seleccione el rango de fechas el que desee consultar los usuarios destacados. El grafico mostrara los usuarios 
+                        destacados junto a la cantidad de usuarios registrados. Si no selecciona fecha se mostraran los usuarios 
+                        destacados y registrados del mes en curso.
+                     </p>
+                     
+                     <label>Desde</label>
+                     <div class="input-group m-b-15">
+                         <input type="date" formControlName="fechaDesde" name="fechaDesde" class="form-control" style="width: 200px;">
+                     </div><!-- input-group -->
+                       <label>Hasta</label>
+                       <div class="input-group m-b-15">
+                         <input type="date" formControlName="fechaHasta" name="fechaHasta" class="form-control" style="width: 200px;">
+                       </div><!-- input-group -->
+                     <div>
+                       <button (click)="randomize()" class="btn btn-primary waves-effect waves-light btn-xs">Actualizar</button>
+                     </div>
+                     <div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                            <div style="display: block">
+                                <canvas baseChart
+                                        [datasets]="barChartData"
+                                        [labels]="barChartLabels"
+                                        [options]="barChartOptions"
+                                        [legend]="barChartLegend"
+                                        [chartType]="barChartType"
+                                        (chartHover)="chartHovered($event)"
+                                        (chartClick)="chartClicked($event)"></canvas>
+                              </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-6">
+                <div class="card-box">
+                    <h4 class="text-dark header-title m-t-0">Usuarios Destacados en el tiempo</h4>
+                    
+                    <p class="text-muted font-13 m-b-30">
+                      Este grafico muestra la cantidad de usuarios destacados y registrados en los ultimos 3 meses.
+                   </p>
+                   
+                   
+                   <div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div style="display: block;">
+                            <canvas baseChart width="400" height="400"
+                                        [datasets]="lineChartData"
+                                        [labels]="lineChartLabels"
+                                        [options]="lineChartOptions"
+                                        [colors]="lineChartColors"
+                                        [legend]="lineChartLegend"
+                                        [chartType]="lineChartType"
+                                        (chartHover)="chartHovered($event)"
+                                        (chartClick)="chartClicked($event)"></canvas>
+                            </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+

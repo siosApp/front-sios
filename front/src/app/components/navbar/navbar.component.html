@@ -282,6 +282,25 @@
                     <li *ngIf="!estaLogueado" class="has-submenu pull-right">
                         <a  [routerLink]="['/login']"><i class="glyphicon glyphicon-user"></i>Iniciar sesión</a>
                     </li>
+
+                    <li class="has-submenu pull-right" *ngIf="estaLogueado" routerLinkActive="active" >
+                        <a  style="cursor: pointer;"><i class="md md-dashboard"></i>DashBoard</a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li>
+                                        <a *ngIf="estaLogueado"  [routerLink]="['dashboard']">DashBoard</a>
+                                        
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+
                 </ul>
                 <!-- End navigation menu        -->
             </div>
