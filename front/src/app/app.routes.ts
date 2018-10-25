@@ -29,6 +29,12 @@ import { RubrosMasDemandadosComponent } from './components/reportes/rubros-mas-d
 import { RubrosMasOfrecidosComponent } from './components/reportes/rubros-mas-ofrecidos/rubros-mas-ofrecidos.component';
 import { TrabajosRealizadosComponent } from './components/reportes/trabajos-realizados/trabajos-realizados.component';
 import { DestacarPerfilComponent } from './components/perfil/destacar-perfil/destacar-perfil.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UsuariosDestacadosComponent } from './components/dashboard/usuarios-destacados/usuarios-destacados.component';
+import { UsuariosEnLineaComponent } from './components/dashboard/usuarios-en-linea/usuarios-en-linea.component';
+import { UsuariosRegistradosComponent } from './components/dashboard/usuarios-registrados/usuarios-registrados.component';
+import { UsuariosPorVencerComponent } from './components/dashboard/usuarios-por-vencer/usuarios-por-vencer.component';
+import { PerfilOferenteComponent } from './components/dashboard/perfil-oferente/perfil-oferente.component';
 
 
 const rutas_hijas: Routes =[
@@ -57,6 +63,12 @@ const rutas_hijas: Routes =[
     { path: 'rubros-mas-ofrecidos', component: RubrosMasOfrecidosComponent },
     { path: 'trabajos-realizados', component: TrabajosRealizadosComponent },
     { path: 'destacar-perfil', component: DestacarPerfilComponent },
+    { path: 'dashboard', component: DashboardComponent },
+    { path: 'usuarios-destacados', component: UsuariosDestacadosComponent },
+    { path: 'usuarios-en-linea', component: UsuariosEnLineaComponent },
+    { path: 'usuarios-registrados', component: UsuariosRegistradosComponent },
+    { path: 'usuarios-por-vencer', component: UsuariosPorVencerComponent },
+    { path: 'perfil-oferente', component: PerfilOferenteComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 

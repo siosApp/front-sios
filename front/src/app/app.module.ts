@@ -49,6 +49,12 @@ import { RubrosMasOfrecidosComponent } from './components/reportes/rubros-mas-of
 import { NombreUserComponent } from './components/ver-requerimiento/nombre-user.component';
 import { UsuarioItemComponent } from './components/ver-solicitud/usuario-item/usuario-item.component';
 import { DestacarPerfilComponent } from './components/perfil/destacar-perfil/destacar-perfil.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UsuariosDestacadosComponent } from './components/dashboard/usuarios-destacados/usuarios-destacados.component';
+import { UsuariosRegistradosComponent } from './components/dashboard/usuarios-registrados/usuarios-registrados.component';
+import { UsuariosEnLineaComponent } from './components/dashboard/usuarios-en-linea/usuarios-en-linea.component';
+import { UsuariosPorVencerComponent } from './components/dashboard/usuarios-por-vencer/usuarios-por-vencer.component';
+import { PerfilOferenteComponent } from './components/dashboard/perfil-oferente/perfil-oferente.component';
 
 
 
@@ -112,7 +118,13 @@ export function getAuthServiceConfigs() {
     NombreUserComponent,
     UsuarioItemComponent,
     DestacarPerfilComponent,
-    NgxNotificationComponent
+    NgxNotificationComponent,
+    DashboardComponent,
+    UsuariosDestacadosComponent,
+    UsuariosRegistradosComponent,
+    UsuariosEnLineaComponent,
+    UsuariosPorVencerComponent,
+    PerfilOferenteComponent
   ],
   imports: [
     BrowserModule,

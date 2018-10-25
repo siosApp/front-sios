@@ -1,0 +1,204 @@
+<div class="row">
+    <div class="col-sm-12">
+      <h4 class="page-title">Usuarios Destacados</h4>
+      <ol class="breadcrumb">
+        <li><a [routerLink]="['/sios/dashboard']" href="" >Dashboard</a></li>
+        <li class="active">Destacados</li>
+      </ol>
+    </div>
+  </div>
+  <form [formGroup]="form">
+          <div class="card-box">
+              <div class="row">
+                  <div class="col-lg-10">
+                      <h4 class="m-t-0 header-title"><b>Usuarios Destacados</b></h4>
+                      <p class="text-muted font-13 m-b-30">
+                         Seleccione el rango de fechas el que desee consultar los usuarios destacados y luego clic
+                         en actualiza y podra visualizar la cantidad usuarios destacados en el rango de fecha seleccionado.
+                          Si no elige fecha se muestra el total de todos los usuarios destacados en el mes en curso.
+                      </p>
+                  </div>
+                  <div class="col-xs-12">
+                      <label>Desde</label>
+                      <div class="input-group m-b-15">
+                          <input type="date"  class="form-control" style="width: 200px;">
+                      </div><!-- input-group -->
+                        <label>Hasta</label>
+                        <div class="input-group m-b-15">
+                          <input type="date"  class="form-control" style="width: 200px;">
+                        </div><!-- input-group -->
+                      <div>
+                        <button type="submit" class="btn btn-primary waves-effect waves-light btn-xs">Ver</button>
+                      </div>
+                      <br>
+                      <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box">
+                            <h4 class="m-t-0 header-title"><b>Destacados</b></h4>
+                            <p class="text-muted m-b-30 font-13">
+                                Usuarios destacados
+                            </p>
+                            <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
+                                <thead>
+                                    <tr>
+                                        <th data-toggle="true"> Nombre </th>
+                                        <th> Apellido </th>
+                                        <th data-hide="phone"> Username </th>
+                                        <th data-hide="all"> Fecha Destacado </th>
+                                        <th data-hide="all"> Accion </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Seba</td>
+                                        <td>Ruiz</td>
+                                        <td>seba.lruiz</td>
+                                        <td>18/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nico</td>
+                                        <td>Gonzalez</td>
+                                        <td>nico22utn</td>
+                                        <td>19/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dante</td>
+                                        <td>Canizo</td>
+                                        <td>dante.canizo</td>
+                                        <td>20/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Martin</td>
+                                        <td>Castronnovo</td>
+                                        <td>martin.castronovo</td>
+                                        <td>21/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>David</td>
+                                        <td>Roco</td>
+                                        <td>david.roco</td>
+                                        <td>22/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seba</td>
+                                        <td>Ruiz</td>
+                                        <td>seba.lruiz</td>
+                                        <td>18/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nico</td>
+                                        <td>Gonzalez</td>
+                                        <td>nico22utn</td>
+                                        <td>19/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dante</td>
+                                        <td>Canizo</td>
+                                        <td>dante.canizo</td>
+                                        <td>20/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Martin</td>
+                                        <td>Castronnovo</td>
+                                        <td>martin.castronovo</td>
+                                        <td>21/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>David</td>
+                                        <td>Roco</td>
+                                        <td>david.roco</td>
+                                        <td>22/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seba</td>
+                                        <td>Ruiz</td>
+                                        <td>seba.lruiz</td>
+                                        <td>18/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nico</td>
+                                        <td>Gonzalez</td>
+                                        <td>nico22utn</td>
+                                        <td>19/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dante</td>
+                                        <td>Canizo</td>
+                                        <td>dante.canizo</td>
+                                        <td>20/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Martin</td>
+                                        <td>Castronnovo</td>
+                                        <td>martin.castronovo</td>
+                                        <td>21/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>David</td>
+                                        <td>Roco</td>
+                                        <td>david.roco</td>
+                                        <td>22/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seba</td>
+                                        <td>Ruiz</td>
+                                        <td>seba.lruiz</td>
+                                        <td>18/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nico</td>
+                                        <td>Gonzalez</td>
+                                        <td>nico22utn</td>
+                                        <td>19/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dante</td>
+                                        <td>Canizo</td>
+                                        <td>dante.canizo</td>
+                                        <td>20/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Martin</td>
+                                        <td>Castronnovo</td>
+                                        <td>martin.castronovo</td>
+                                        <td>21/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>David</td>
+                                        <td>Roco</td>
+                                        <td>david.roco</td>
+                                        <td>22/10/2018</td>
+                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-success">Detalle</span></td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                  </div>
+              </div>
+          </div>
+       
+    </form>
+  
+  
