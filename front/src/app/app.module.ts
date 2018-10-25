@@ -54,6 +54,7 @@ import { UsuariosDestacadosComponent } from './components/dashboard/usuarios-des
 import { UsuariosRegistradosComponent } from './components/dashboard/usuarios-registrados/usuarios-registrados.component';
 import { UsuariosEnLineaComponent } from './components/dashboard/usuarios-en-linea/usuarios-en-linea.component';
 import { UsuariosPorVencerComponent } from './components/dashboard/usuarios-por-vencer/usuarios-por-vencer.component';
+import { PerfilOferenteComponent } from './components/dashboard/perfil-oferente/perfil-oferente.component';
 
 
 
@@ -122,7 +123,8 @@ export function getAuthServiceConfigs() {
     UsuariosDestacadosComponent,
     UsuariosRegistradosComponent,
     UsuariosEnLineaComponent,
-    UsuariosPorVencerComponent
+    UsuariosPorVencerComponent,
+    PerfilOferenteComponent
   ],
   imports: [
     BrowserModule,
