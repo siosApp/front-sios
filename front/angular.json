@@ -38,8 +38,10 @@
                             "src/assets/plugins/switchery/css/switchery.min.css",
                             "src/assets/plugins/multiselect/css/multi-select.css",
                             "src/assets/plugins/select2/css/select2.min.css",
+                            "src/assets/plugins/footable/css/footable.core.css",
                             "src/assets/plugins/bootstrap-select/css/bootstrap-select.min.css",
                             "src/assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css"
+                            
                         ],
                         "scripts": [
                             "src/assets/js/jquery.min.js",
@@ -63,6 +65,9 @@
                             "src/assets/plugins/multiselect/js/jquery.multi-select.js",
                             "src/assets/plugins/jquery-quicksearch/jquery.quicksearch.js",
                             "src/assets/plugins/select2/js/select2.min.js",
+
+                            "src/assets/plugins/footable/js/footable.all.min.js",
+
                             "src/assets/plugins/bootstrap-select/js/bootstrap-select.min.js",
                             "src/assets/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js",
                             "src/assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js",
@@ -80,6 +85,8 @@
                             "src/assets/plugins/bootstrap-inputmask/bootstrap-inputmask.min.js",
                             "src/assets/plugins/autoNumeric/autoNumeric.js",
                             
+                            
+
                             "src/assets/js/jquery.core.js",
                             "src/assets/js/jquery.app.js"
                             
