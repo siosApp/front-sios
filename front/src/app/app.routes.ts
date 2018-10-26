@@ -35,24 +35,25 @@ import { UsuariosEnLineaComponent } from './components/dashboard/usuarios-en-lin
 import { UsuariosRegistradosComponent } from './components/dashboard/usuarios-registrados/usuarios-registrados.component';
 import { UsuariosPorVencerComponent } from './components/dashboard/usuarios-por-vencer/usuarios-por-vencer.component';
 import { PerfilOferenteComponent } from './components/dashboard/perfil-oferente/perfil-oferente.component';
+import { AutenticacionService } from './services/autenticacion.service';
 
 
 const rutas_hijas: Routes =[
     { path: 'home', component: HomeComponent },
     { path: 'solicitarTrabajo/:id', component: SolicitarTrabajoComponent },
-    { path: 'estadoSolicitud', component: EstadoSolicitudComponent },
+    { path: 'estadoSolicitud', component: EstadoSolicitudComponent, canActivate: [AutenticacionService] },
     { path: 'tipoUsuario', component: TipoUsuarioComponent },
-    { path: 'tipoRubro', component: TipoRubroComponent },
-    { path: 'provincia', component: ProvinciaComponent },
-    { path: 'rubro', component: RubroComponent },
-    { path: 'usuario', component: UsuarioComponent },
-    { path: 'medioPago', component: MedioPagoComponent },
-    { path: 'estadoDestacado', component: EstadoDestacadoComponent },
-    { path: 'estadoRequerimiento', component: EstadoRequerimientoComponent },
-    { path: 'departamento', component: DepartamentoComponent },
-    { path: 'localidad', component: LocalidadComponent },
+    { path: 'tipoRubro', component: TipoRubroComponent, canActivate: [AutenticacionService]  },
+    { path: 'provincia', component: ProvinciaComponent, canActivate: [AutenticacionService]  },
+    { path: 'rubro', component: RubroComponent, canActivate: [AutenticacionService]  },
+    { path: 'usuario', component: UsuarioComponent, canActivate: [AutenticacionService]  },
+    { path: 'medioPago', component: MedioPagoComponent, canActivate: [AutenticacionService]  },
+    { path: 'estadoDestacado', component: EstadoDestacadoComponent, canActivate: [AutenticacionService]  },
+    { path: 'estadoRequerimiento', component: EstadoRequerimientoComponent, canActivate: [AutenticacionService]  },
+    { path: 'departamento', component: DepartamentoComponent, canActivate: [AutenticacionService]  },
+    { path: 'localidad', component: LocalidadComponent, canActivate: [AutenticacionService]  },
     { path: 'publicarRequerimiento', component: RequerimientoComponent },
-    { path: 'tarifa', component: TarifaComponent },
+    { path: 'tarifa', component: TarifaComponent, canActivate: [AutenticacionService]  },
     { path: 'perfil', component: PerfilComponent },
     { path: 'agregarRubro', component: AgregarRubroComponent },
     { path: 'verRequerimiento', component: VerRequerimientoComponent },
