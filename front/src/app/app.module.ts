@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts';
@@ -55,6 +56,7 @@ import { UsuariosRegistradosComponent } from './components/dashboard/usuarios-re
 import { UsuariosEnLineaComponent } from './components/dashboard/usuarios-en-linea/usuarios-en-linea.component';
 import { UsuariosPorVencerComponent } from './components/dashboard/usuarios-por-vencer/usuarios-por-vencer.component';
 import { PerfilOferenteComponent } from './components/dashboard/perfil-oferente/perfil-oferente.component';
+import { AutenticacionService } from './services/autenticacion.service';
 
 
 
@@ -65,11 +67,11 @@ export function getAuthServiceConfigs() {
       [
         {
           id: FacebookLoginProvider.PROVIDER_ID,
-	      provider: new FacebookLoginProvider("2154755934762545")
+        provider: new FacebookLoginProvider("2154755934762545")
         },
         {
           id: GoogleLoginProvider.PROVIDER_ID,
-	      provider: new GoogleLoginProvider("607176928872-nbmtt2ke370cvfsl3t4ei6e6dr2eecjj.apps.googleusercontent.com")
+        provider: new GoogleLoginProvider("607176928872-nbmtt2ke370cvfsl3t4ei6e6dr2eecjj.apps.googleusercontent.com")
         },
           {
             id: LinkedinLoginProvider.PROVIDER_ID,
@@ -142,7 +144,7 @@ export function getAuthServiceConfigs() {
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
-    }
+    }, AutenticacionService
   ],
   bootstrap: [AppComponent]
 })
