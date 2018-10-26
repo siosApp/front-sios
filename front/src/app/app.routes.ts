@@ -64,7 +64,7 @@ const rutas_hijas: Routes =[
     { path: 'rubros-mas-ofrecidos', component: RubrosMasOfrecidosComponent },
     { path: 'trabajos-realizados', component: TrabajosRealizadosComponent },
     { path: 'destacar-perfil', component: DestacarPerfilComponent },
-    { path: 'dashboard', component: DashboardComponent },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AutenticacionService] },
     { path: 'usuarios-destacados', component: UsuariosDestacadosComponent },
     { path: 'usuarios-en-linea', component: UsuariosEnLineaComponent },
     { path: 'usuarios-registrados', component: UsuariosRegistradosComponent },
