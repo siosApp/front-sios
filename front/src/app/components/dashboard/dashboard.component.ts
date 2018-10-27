@@ -1,19 +1,27 @@
 import { Component } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
+
+
+declare var $:any;
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent   {
+ 
 
-  constructor() { }
+  constructor(private router:Router) {
 
+   }
 
+   
 //ACA EMPIEZA EL GRAFICO DE DESTACADOS Y REGISTRADOS POR FECHA
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true
+    
   };
   public barChartLabels:string[] = ['Resultado'];
   public barChartType:string = 'bar';
@@ -98,6 +106,42 @@ export class DashboardComponent   {
     this.lineChartData = _lineChartData;
   }
  
+  spinerUsuariosDestacados (){
+    $('#spinerDash').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/usuarios-destacados']);
+      $('#spinerDash').modal('hide');
+    },1000);
+  }
+
+  spinerUsuariosRegistrados (){
+    $('#spinerDash').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/usuarios-registrados']);
+      $('#spinerDash').modal('hide');
+    },1000);
+  }
+
+  spinerUsuariosEnLinea (){
+    $('#spinerDash').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/usuarios-en-linea']);
+      $('#spinerDash').modal('hide');
+    },1000);
+  }
+  spinerUsuariosPorVencer (){
+    $('#spinerDash').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/usuarios-por-vencer']);
+      $('#spinerDash').modal('hide');
+    },1000);
+  }
+
+
+
+
+
+
  
 }
 

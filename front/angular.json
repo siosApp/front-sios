@@ -24,6 +24,8 @@
                         ],
                         "styles": [
                             "src/styles.css",
+                            "src/assets/plugins/select2/css/select2.min.css",
+                            "src/assets/plugins/bootstrap-select/css/bootstrap-select.min.css",
                             "src/assets/css/bootstrap.min.css",
                             "src/assets/css/core.css",
                             "src/assets/css/components.css",
@@ -37,9 +39,9 @@
                             "src/assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css",
                             "src/assets/plugins/switchery/css/switchery.min.css",
                             "src/assets/plugins/multiselect/css/multi-select.css",
-                            "src/assets/plugins/select2/css/select2.min.css",
+                            
                             "src/assets/plugins/footable/css/footable.core.css",
-                            "src/assets/plugins/bootstrap-select/css/bootstrap-select.min.css",
+                            
                             "src/assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css"
                             
                         ],

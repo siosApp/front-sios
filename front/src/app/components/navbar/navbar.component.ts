@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AutenticacionService } from '../../services/autenticacion.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { log } from 'util';
 import { UsuarioService } from '../../services/usuario.service';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
@@ -82,6 +82,84 @@ export class NavbarComponent {
     this.tokenService.cerrarSesion();
     $("#danger-alert").modal("hide");
   }
+
+  spinerPerfil(){
+    $('#spiner').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/perfil']);
+      $('#spiner').modal('hide');
+    },2000);
+  }
+
+
+
+  spinerDashboard(){
+    $('#spiner').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/dashboard']);
+      $('#spiner').modal('hide');
+    },2000);
+  }
+
+
+  spinerHome(){
+    $('#spiner').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/home']);
+      $('#spiner').modal('hide');
+    },1000);
+  }
+
+  spinerPublicarRequerimiento(){
+    $('#spiner').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/publicarRequerimiento']);
+      $('#spiner').modal('hide');
+    },1000);
+  }
+
+  spinerVerRequerimiento(){
+    $('#spiner').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/verRequerimiento']);
+      $('#spiner').modal('hide');
+    },1000);
+  }
+
+  spinerTrabajosRealizados(){
+    $('#spiner').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/trabajos-realizados']);
+      $('#spiner').modal('hide');
+    },1000);
+  }
+
+  spinerCalificaciones(){
+    $('#spiner').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/calificaciones']);
+      $('#spiner').modal('hide');
+    },1000);
+  }
+
+  spinerRubrosDemandados(){
+    $('#spiner').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/rubros-mas-demandados']);
+      $('#spiner').modal('hide');
+    },1000);
+  }
+
+  spinerRubrosOfrecidos(){
+    $('#spiner').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/rubros-mas-ofrecidos']);
+      $('#spiner').modal('hide');
+    },1000);
+  }
+
+
+
 
   abrirModal(){
     $("#danger-alert").modal("show");

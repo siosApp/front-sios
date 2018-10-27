@@ -27,7 +27,7 @@
                             <div class="text-right">
                                 <h3 class="text-dark"><b class="counter">119</b></h3>
                                 <p class="text-muted">Usuarios destacados</p>
-                                <button [routerLink]="['/sios/usuarios-destacados']" class="btn btn-danger btn-custom waves-effect waves-light btn-xs">Ver </button>
+                                <button  (click)="spinerUsuariosDestacados()" class="btn btn-danger btn-custom waves-effect waves-light btn-xs">Ver </button>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -41,7 +41,7 @@
                             <div class="text-right">
                                 <h3 class="text-dark"><b class="counter">765</b></h3>
                                 <p class="text-muted">Usuarios registrados</p>
-                                <button [routerLink]="['/sios/usuarios-registrados']" class="btn btn-danger btn-custom waves-effect waves-light btn-xs">Ver </button>
+                                <button (click)="spinerUsuariosRegistrados()" class="btn btn-danger btn-custom waves-effect waves-light btn-xs">Ver </button>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -55,7 +55,7 @@
                             <div class="text-right">
                                 <h3 class="text-dark"><b class="counter">34</b></h3>
                                 <p class="text-muted">Usuarios en linea</p>
-                                <button [routerLink]="['/sios/usuarios-en-linea']" class="btn btn-danger btn-custom waves-effect waves-light btn-xs">Ver </button>
+                                <button (click)="spinerUsuariosEnLinea()" class="btn btn-danger btn-custom waves-effect waves-light btn-xs">Ver </button>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -69,7 +69,7 @@
                             <div class="text-right">
                                 <h3 class="text-dark"><b class="counter">56</b></h3>
                                 <p class="text-muted">Destacados por vencer</p>
-                                <button [routerLink]="['/sios/usuarios-por-vencer']" class="btn btn-danger btn-custom waves-effect waves-light btn-xs">Ver </button>
+                                <button (click)="spinerUsuariosPorVencer()" class="btn btn-danger btn-custom waves-effect waves-light btn-xs">Ver </button>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -91,11 +91,11 @@
                      
                      <label>Desde</label>
                      <div class="input-group m-b-15">
-                         <input type="date" formControlName="fechaDesde" name="fechaDesde" class="form-control" style="width: 200px;">
+                         <input type="date" name="fechaDesde" class="form-control" style="width: 200px;">
                      </div><!-- input-group -->
                        <label>Hasta</label>
                        <div class="input-group m-b-15">
-                         <input type="date" formControlName="fechaHasta" name="fechaHasta" class="form-control" style="width: 200px;">
+                         <input type="date" name="fechaHasta" class="form-control" style="width: 200px;">
                        </div><!-- input-group -->
                      <div>
                        <button (click)="randomize()" class="btn btn-primary waves-effect waves-light btn-xs">Actualizar</button>
@@ -154,7 +154,20 @@
 
 
 
-
+          <div id="spinerDash" class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="mySmallModalLabel">Cargando...</h4>
+                    </div>
+                    <div class="modal-body text-center">
+        
+                        <span class="fa fa-spin fa-refresh fa-5x"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 

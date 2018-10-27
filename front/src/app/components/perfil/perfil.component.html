@@ -39,7 +39,7 @@
 						<p class="text-muted">Al destacarte las solicitudes de trabajo aumentaran considerablemente!</p>
 					</li>
 				</ul>
-				<button type="button" [routerLink]="['/sios/destacar-perfil']" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Destacarme</button>
+				<button type="button" (click)="spinerDestacarme()" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Destacarme</button>
 				<hr>
 			</div>
 
@@ -303,3 +303,20 @@
 	</div><!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+
+
+<div id="spinerPerfil" class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="mySmallModalLabel">Cargando...</h4>
+			</div>
+			<div class="modal-body text-center">
+
+				<span class="fa fa-spin fa-refresh fa-5x"></span>
+			</div>
+		</div>
+	</div>
+</div>

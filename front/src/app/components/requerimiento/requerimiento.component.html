@@ -21,17 +21,29 @@
 			
 				<ul class="list-inline status-list m-t-20">
 					<li>
-						<h3 class="text-primary m-b-5">Recuerda actualizar tu domicilio en tu perfil.</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
-						<!-- <p class="text-muted">Trabajos Realizados</p> -->
+						<h3 class="text-primary m-b-5">Recuerda actualizar tu domicilio en tu perfil.</h3>
+						
 					</li>
 					<li>
-						<h3 class="text-success m-b-5"><a class="md-2x md-location-on"></a></h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
-						<!-- <p class="text-muted">En curso</p> -->
+						<h3 class="text-success m-b-5"><a class="md-2x md-location-on"></a></h3>
+						
 					</li>
 				</ul>
-				<button type="button" [routerLink]="['/sios/perfil']"  class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Ir a Perfil</button>
+				<button type="button" (click)="spinerIrPerfil()"  class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Ir a Perfil</button>
 				<hr>
-			</div>
+            </div>
+            <ul class="list-inline status-list m-t-20">
+                <li>
+                    <h3 class="text-primary m-b-5">Destacarme!</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
+                    <p class="text-muted">Aprovecha los Beneficios de aparecer primero en las busquedas cuando los usuarios filtren en tu zona.</p>
+                </li>
+                <li>
+                    <h3 class="text-success m-b-5">Mas trabajos!</h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
+                    <p class="text-muted">Al destacarte las solicitudes de trabajo aumentaran considerablemente!</p>
+                </li>
+            </ul>
+            <button type="button" (click)="spinerDestacarme()" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Destacarme</button>
+            <hr>
 		</div>
 	</div>
 <div class="row">
@@ -157,3 +169,21 @@
         </p>
     </div>
 </div> 
+
+
+
+<div id="spinerRequerimiento" class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="mySmallModalLabel">Cargando...</h4>
+                </div>
+                <div class="modal-body text-center">
+    
+                    <span class="fa fa-spin fa-refresh fa-5x"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
