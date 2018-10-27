@@ -70,9 +70,16 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-4 col-md-8">
-                        <button type="submit" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light m-b-30 btn-submit-form pull-right">Buscar</button>
+                        <button (click)="abrirModal()" type="submit" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light m-b-30 btn-submit-form pull-right">Buscar</button>
+                        
+                        
                     </div>
+                   
+                    
                 </div>
+                <!-- <div class="col-md-offset-5 col-md-10">
+                    <i *ngIf="spiner" class="fa fa-spin fa-refresh fa-5x" ></i>
+                </div> -->
             </form>
         </div>
     </div>
@@ -89,8 +96,6 @@
             </p>
         </div>
     </div>
-
-
 
     <div class="row" *ngIf="oferentes != null && oferentes.length > 0">
         <div *ngFor="let oferente of oferentes">
@@ -124,14 +129,8 @@
                         <span class="label label-purple">OFERENTE</span>
                     </div>
 
-                    <!-- <div class="table-detail">
-                        <a href="#" class="btn btn-sm btn-primary waves-effect waves-light">Assign</a>
-                        <a href="#" class="btn btn-sm btn-primary waves-effect waves-light">Call</a>
-                        <a href="#" class="btn btn-sm btn-primary waves-effect waves-light">Email</a>
-                    </div> -->
-
                     <div *ngIf="verificarUsuarioAutenticado(); else notShown" class="table-detail table-actions-bar">
-                        <a href="#" [routerLink]="['/sios/solicitarTrabajo',oferente.idUsuario]" class="btn btn-info waves-effect waves-light"><i class="fa fa-ticket"></i>  Solicitar Trabajo</a>
+                        <a (click)="spinerSolicitarTrabajo(oferente.idUsuario)" class="btn btn-info waves-effect waves-light"><i class="fa fa-ticket"></i>  Solicitar Trabajo</a>
                     </div>
                     <ng-template #notShown>
                         <div class="table-detail table-actions-bar">
@@ -146,41 +145,29 @@
 
 
 
-
 </div>
 
-
-
-<!-- 
-<div class="row" *ngIf="oferentes != null && oferentes.length > 0">
-    <div class="col-sm-12">
-        <div class="card-box">
-            <h4 class="m-t-0 header-title"><b>Ultimos usuarios destacados en SIOS</b></h4>
-            <p class="text-muted m-b-30 font-13">En esta lista vera los ultimos usuarios destacados en nuestro sistema
-                con la descripcion de lo que ofrece cada unos de ellos.</p>
-            <div *ngFor="let oferente of oferentes">
-                <div class="media">
-                    <div class="media-left">
-                        <app-imagen [usuario]="oferente"></app-imagen>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            <div *ngIf="oferente.nombre && oferente.apellido">
-                                {{oferente.nombre}} {{oferente.apellido}}
-                            </div>
-                            <div *ngIf="oferente.nombre==null || oferente.apellido==null">
-                                {{oferente.username}}
-                            </div>
-                            {{oferente.rubros[0].nombreRubro}}
-                        </h4>
-                        <p>{{oferente.experiencia}}</p>
-                    </div>
-                    <button [routerLink]="['/sios/solicitarTrabajo',oferente.idUsuario]" type="button" class="btn btn-default btn-rounded pull-right waves-effect waves-light">Solicitar
-                        Trabajo
-                        <span class="btn-label btn-label-right"><i class="fa fa-arrow-right"></i></span>
-                    </button>
-                </div>
-            </div>
+<!-- <div id="modal" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="width: 100px">
+            <span class="fa fa-spin fa-refresh fa-5x"></span>
         </div>
     </div>
 </div> -->
+
+<div id="spinerHome" class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="mySmallModalLabel">Cargando...</h4>
+            </div>
+            <div class="modal-body text-center">
+
+                <span class="fa fa-spin fa-refresh fa-5x"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
