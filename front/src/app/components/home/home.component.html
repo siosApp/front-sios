@@ -1,85 +1,99 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card-box">
-            <form [formGroup]="form" class="form-horizontal" (ngSubmit)="buscarOferentes()">
+                <form [formGroup]="form" class="form-horizontal" (ngSubmit)="buscarOferentes()">
                 <div class="col-md-6">
-                    <h4 class="m-t-0 header-title"><b>Filtro del Rubro </b></h4>
-                    <p class="text-muted m-b-30 font-13">
-                        A continuacion seleccione el filtro de los rubros y los tipos de rubros existentes para mejorar
-                        su busqueda.
-                    </p>
-                    <div class="form-group has-success">
-                        <label class="col-md-3 control-label" for="state-success">Tipo Rubro</label>
-                        <div class="col-md-6">
-                            <select name="tipoRubro" formControlName="tipoRubro" class="form-control" (change)="getRubrosByTipoRubro()">
-                                <option selected="selected">Seleccione</option>
-                                <option *ngFor="let tipo of tiposRubros" [ngValue]="tipo.nombreTipoRubro">{{tipo.nombreTipoRubro}}</option>
-                            </select>
+                        <div class="panel panel-primary panel-border">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Filtro de Rubro</h3>
+                                <p class="text-muted m-b-30 font-13">
+                                        A continuacion seleccione el filtro de los rubros y los tipos de rubros existentes para mejorar
+                                        su busqueda.
+                                    </p>
+                            </div>
+                            
+                            <div class="panel-body">
+                                    <div class="form-group has-success">
+                                            <label class="col-md-3 control-label" for="state-success">Tipo Rubro</label>
+                                            <div class="col-md-6">
+                                                <select name="tipoRubro" formControlName="tipoRubro" class="form-control" (change)="getRubrosByTipoRubro()">
+                                                    <option selected="selected">Seleccione</option>
+                                                    <option *ngFor="let tipo of tiposRubros" [ngValue]="tipo.nombreTipoRubro">{{tipo.nombreTipoRubro}} </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group has-error">
+                                            <label class="col-md-3 control-label" for="state-success">Rubro</label>
+                                            <div class="col-md-6">
+                                                <select name="rubro" formControlName="rubro" class="form-control">
+                                                    <option selected="selected">Seleccione</option>
+                                                    <option *ngFor="let rubro of rubros" [ngValue]="rubro.nombreRubro">{{rubro.nombreRubro}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group has-success">
-                        <label class="col-md-3 control-label" for="state-success">Rubro</label>
-                        <div class="col-md-6">
-                            <select name="rubro" formControlName="rubro" class="form-control">
-                                <option selected="selected">Seleccione</option>
-                                <option *ngFor="let rubro of rubros" [ngValue]="rubro.nombreRubro">{{rubro.nombreRubro}}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+
+
+
                 <div class="col-md-6">
-                    <h4 class="m-t-0 header-title"><b>Filtro de Zona Geografica</b></h4>
-                    <p class="text-muted m-b-30 font-13">
-                        Seleccione en los siguientes campos los filtros de busqueda que usted desee obtener en las
-                        busquedas del sistema
-                    </p>
-                    <div class="form-group has-success">
-                        <label class="col-md-3 control-label" for="state-success">Provincia</label>
-                        <div class="col-md-6">
-                            <select name="provincia" (change)="getDepartamentosByProvincia()" formControlName="provincia"
-                                class="form-control">
-                                <option selected="selected">Seleccione</option>
-                                <option *ngFor="let provincia of provincias" [ngValue]="provincia.nombreProvincia">{{provincia.nombreProvincia}}</option>
-                            </select>
+                        <div class="panel panel-purple panel-border">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Filtro de Zona Geografica</h3>
+                                <p class="text-muted m-b-30 font-13">
+                                        Seleccione en los siguientes campos los filtros de busqueda que usted desee obtener en las
+                                        busquedas del sistema
+                                    </p>
+                            </div>
+                            <div class="panel-body">
+                                    <div class="form-group has-success">
+                                            <label class="col-md-3 control-label" for="state-success">Provincia</label>
+                                            <div class="col-md-6">
+                                                <select name="provincia" (change)="getDepartamentosByProvincia()" formControlName="provincia"
+                                                    class="form-control">
+                                                    <option selected="selected">Seleccione</option>
+                                                    <option *ngFor="let provincia of provincias" [ngValue]="provincia.nombreProvincia">{{provincia.nombreProvincia}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group has-error" (change)="getLocalidadesByDepartamento()" *ngIf="showDepartamentos">
+                                            <label class="col-md-3 control-label" for="state-error">Departamento</label>
+                                            <div class="col-md-6">
+                                                <select name="departamento" formControlName="departamento" class="form-control">
+                                                    <option selected="selected">Seleccione</option>
+                                                    <option *ngFor="let departamento of departamentos" [ngValue]="departamento.nombreDepartamento">{{departamento.nombreDepartamento}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group has-warning" *ngIf="showLocalidades">
+                                            <label class="col-md-3 control-label" for="state-warning">Localidad</label>
+                                            <div class="col-md-6">
+                                                <select name="localidad" formControlName="localidad" class="form-control">
+                                                    <option selected="selected">Seleccione</option>
+                                                    <option *ngFor="let localidad of localidades" [ngValue]="localidad.nombreLocalidad">{{localidad.nombreLocalidad}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group has-error" *ngIf="!showLocalidades && showDepartamentos && form.controls['departamento'].value!= 'Seleccione'">
+                                            <label class="col-md-3 control-label">Error</label>
+                                            <div class="col-md-6">
+                                                <p class="alert-danger"> No existen localidades para éste departamento.</p>
+                                            </div>
+                                        </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group has-success" (change)="getLocalidadesByDepartamento()" *ngIf="showDepartamentos">
-                        <label class="col-md-3 control-label" for="state-success">Departamento</label>
-                        <div class="col-md-6">
-                            <select name="departamento" formControlName="departamento" class="form-control">
-                                <option selected="selected">Seleccione</option>
-                                <option *ngFor="let departamento of departamentos" [ngValue]="departamento.nombreDepartamento">{{departamento.nombreDepartamento}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group has-success" *ngIf="showLocalidades">
-                        <label class="col-md-3 control-label" for="state-success">Localidad</label>
-                        <div class="col-md-6">
-                            <select name="localidad" formControlName="localidad" class="form-control">
-                                <option selected="selected">Seleccione</option>
-                                <option *ngFor="let localidad of localidades" [ngValue]="localidad.nombreLocalidad">{{localidad.nombreLocalidad}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group has-error" *ngIf="!showLocalidades && showDepartamentos && form.controls['departamento'].value!= 'Seleccione'">
-                        <label class="col-md-3 control-label">Error</label>
-                        <div class="col-md-6">
-                            <p class="alert-danger"> No existen localidades para éste departamento.</p>
-                        </div>
-                    </div>
-                </div>
+
+
                 <div class="form-group">
                     <div class="col-md-offset-4 col-md-8">
-                        <button (click)="abrirModal()" type="submit" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light m-b-30 btn-submit-form pull-right">Buscar</button>
-                        
+                        <button (click)="abrirModal()" type="submit" class="btn btn-inverse btn-custom btn-rounded waves-effect waves-light m-b-30 btn-submit-form pull-right">Buscar</button>
                         
                     </div>
                    
-                    
                 </div>
-                <!-- <div class="col-md-offset-5 col-md-10">
-                    <i *ngIf="spiner" class="fa fa-spin fa-refresh fa-5x" ></i>
-                </div> -->
+                
             </form>
         </div>
     </div>
@@ -147,13 +161,7 @@
 
 </div>
 
-<!-- <div id="modal" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" style="display: none;">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content" style="width: 100px">
-            <span class="fa fa-spin fa-refresh fa-5x"></span>
-        </div>
-    </div>
-</div> -->
+
 
 <div id="spinerHome" class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-sm">

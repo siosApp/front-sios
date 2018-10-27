@@ -137,4 +137,21 @@ export class RequerimientoComponent{
       })
   })    
   }
+
+  spinerIrPerfil(){
+    $('#spinerRequerimiento').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/perfil']);
+      $('#spinerRequerimiento').modal('hide');
+    },1000);
+  }
+
+  spinerDestacarme(){
+    $('#spinerRequerimiento').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/destacar-perfil']);
+      $('#spinerRequerimiento').modal('hide');
+    },1000);
+  }
+
 }
