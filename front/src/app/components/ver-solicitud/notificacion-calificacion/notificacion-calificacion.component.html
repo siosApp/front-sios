@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-lg-4">
+      <div *ngIf="pendientesComoDemandante > 0">
+        <div class="profile-detail card-box">
+            <div>
+                <ul class="list-inline status-list m-t-20">
+                    <li>
+                        <h3 class="text-primary m-b-5">Destacarme!</h3>
+                        <p class="text-muted">Tienes {{pendientesComoDemandante}} solicitudes sin calificar como demandante</p>
+                    </li>
+                </ul>
+                <button type="button" [routerLink]="['/sios/mis-solicitudes']" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Calificar!</button>
+                <hr>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+<div *ngIf="pendientesComoOferente > 0">
+    <ul class="list-inline status-list m-t-20" >
+        <li>
+            <h3 class="text-primary m-b-5">Destacarme!</h3>
+            <p class="text-muted">Tienes {{pendientesComoOferente}} solicitudes sin calificar como oferente.</p>
+        </li>
+    </ul>
+    <button type="button" [routerLink]="['/sios/mis-solicitudes']" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Calificar!</button>
+    <hr>
+</div>
+<div *ngIf="pendientesComoOferente === 0 && pendientesComoDemandante === 0">  
+  <ul class="list-inline status-list m-t-20">
+      <li>
+          <h3 class="text-primary m-b-5">Éxito</h3>
+          <p class="text-muted">No tienes solicitudes pendientes para calificar! </p>
+      </li>
+  </ul>
+  <hr>
+</div>
+

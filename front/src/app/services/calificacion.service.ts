@@ -17,4 +17,9 @@ export class CalificacionService {
     let url=`${this.urlCalificaciones}/calificacionesUsuario?idUsuario=${idUsuario}`;
     return this.http.get(url);
   }
+  
+  calificar(calificacion){
+    let url=`${this.urlCalificaciones}/realizarCalificacion`;
+    return this.http.put(url,calificacion);
+  }
 }

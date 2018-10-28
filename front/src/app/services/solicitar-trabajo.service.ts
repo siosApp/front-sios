@@ -37,4 +37,16 @@ export class SolicitarTrabajoService {
     let url=`${URL_API}/solicitud/finalizarSolicitud?idSolicitud=${idSolicitud}&calificacion=${calificacion}&comentario=${comentario}`;
     return this.http.put(url,null);
   }
+  getSolicitudesEfectuadasPorUsuario(id){
+    let url=`${URL_API}/solicitud/solicitudesEfectuadasPorUsuario?id=${id}`;
+    return this.http.get(url);
+  }
+  getCalificacionesPendientesComoOferente(id){
+    let url=`${URL_API}/solicitud/cantidadSolicitudesComoDemandanteSinCalificar?id=${id}`;
+    return this.http.get(url);
+  }
+  getCalificacionesPendientesComoDemandante(id){
+    let url=`${URL_API}/solicitud/cantidadSolicitudesComoOferenteSinCalificar?id=${id}`;
+    return this.http.get(url);
+  }
 }

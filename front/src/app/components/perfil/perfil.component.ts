@@ -45,12 +45,13 @@ export class PerfilComponent {
   idImagen:any;
   imagenUrl:string;
   eventImage:any;
-  
+  id:string;
   constructor(private service:UsuarioService, private fb:FormBuilder,private router:Router,
               private provinciaService:ProvinciaService,
               private departamentoService:DepartamentoService,
               private localidadService:LocalidadService,private afStorage: AngularFireStorage,
               private afs: AngularFirestore, private ngxNotificationService: NgxNotificationService) {
+      this.id=localStorage.getItem("auth");
       this.imagenesCollections=this.afs.collection<Imagen>('perfil'); 
       this.imagenUrl='assets/images/noimage.png';              
       this.passwordFormGroup=fb.group({

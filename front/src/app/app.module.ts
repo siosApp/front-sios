@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts';
@@ -49,12 +50,16 @@ import { RubrosMasOfrecidosComponent } from './components/reportes/rubros-mas-of
 import { NombreUserComponent } from './components/ver-requerimiento/nombre-user.component';
 import { UsuarioItemComponent } from './components/ver-solicitud/usuario-item/usuario-item.component';
 import { DestacarPerfilComponent } from './components/perfil/destacar-perfil/destacar-perfil.component';
+import { MisSolicitudesComponent } from './components/ver-solicitud/mis-solicitudes/mis-solicitudes.component';
+import { AdjuntoComponent } from './components/ver-solicitud/mis-solicitudes/adjunto/adjunto.component';
+import { NotificacionCalificacionComponent } from './components/ver-solicitud/notificacion-calificacion/notificacion-calificacion.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsuariosDestacadosComponent } from './components/dashboard/usuarios-destacados/usuarios-destacados.component';
 import { UsuariosRegistradosComponent } from './components/dashboard/usuarios-registrados/usuarios-registrados.component';
 import { UsuariosEnLineaComponent } from './components/dashboard/usuarios-en-linea/usuarios-en-linea.component';
 import { UsuariosPorVencerComponent } from './components/dashboard/usuarios-por-vencer/usuarios-por-vencer.component';
 import { PerfilOferenteComponent } from './components/dashboard/perfil-oferente/perfil-oferente.component';
+import { AutenticacionService } from './services/autenticacion.service';
 
 
 
@@ -65,11 +70,11 @@ export function getAuthServiceConfigs() {
       [
         {
           id: FacebookLoginProvider.PROVIDER_ID,
-	      provider: new FacebookLoginProvider("2154755934762545")
+        provider: new FacebookLoginProvider("2154755934762545")
         },
         {
           id: GoogleLoginProvider.PROVIDER_ID,
-	      provider: new GoogleLoginProvider("607176928872-nbmtt2ke370cvfsl3t4ei6e6dr2eecjj.apps.googleusercontent.com")
+        provider: new GoogleLoginProvider("607176928872-nbmtt2ke370cvfsl3t4ei6e6dr2eecjj.apps.googleusercontent.com")
         },
           {
             id: LinkedinLoginProvider.PROVIDER_ID,
@@ -119,6 +124,9 @@ export function getAuthServiceConfigs() {
     UsuarioItemComponent,
     DestacarPerfilComponent,
     NgxNotificationComponent,
+    MisSolicitudesComponent,
+    AdjuntoComponent,
+    NotificacionCalificacionComponent,
     DashboardComponent,
     UsuariosDestacadosComponent,
     UsuariosRegistradosComponent,
@@ -142,7 +150,7 @@ export function getAuthServiceConfigs() {
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
-    }
+    }, AutenticacionService
   ],
   bootstrap: [AppComponent]
 })
