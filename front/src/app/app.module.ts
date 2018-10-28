@@ -50,6 +50,8 @@ import { NombreUserComponent } from './components/ver-requerimiento/nombre-user.
 import { UsuarioItemComponent } from './components/ver-solicitud/usuario-item/usuario-item.component';
 import { DestacarPerfilComponent } from './components/perfil/destacar-perfil/destacar-perfil.component';
 import { MisSolicitudesComponent } from './components/ver-solicitud/mis-solicitudes/mis-solicitudes.component';
+import { AdjuntoComponent } from './components/ver-solicitud/mis-solicitudes/adjunto/adjunto.component';
+import { NotificacionCalificacionComponent } from './components/ver-solicitud/notificacion-calificacion/notificacion-calificacion.component';
 
 
 
@@ -114,7 +116,9 @@ export function getAuthServiceConfigs() {
     UsuarioItemComponent,
     DestacarPerfilComponent,
     NgxNotificationComponent,
-    MisSolicitudesComponent
+    MisSolicitudesComponent,
+    AdjuntoComponent,
+    NotificacionCalificacionComponent
   ],
   imports: [
     BrowserModule,

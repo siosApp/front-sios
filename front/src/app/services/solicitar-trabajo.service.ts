@@ -38,7 +38,15 @@ export class SolicitarTrabajoService {
     return this.http.put(url,null);
   }
   getSolicitudesEfectuadasPorUsuario(id){
-    let url=`${URL_API}/solicitud/solicitudesEfectuadasPorUsuario?idUsuario=${id}`;
+    let url=`${URL_API}/solicitud/solicitudesEfectuadasPorUsuario?id=${id}`;
+    return this.http.get(url);
+  }
+  getCalificacionesPendientesComoOferente(id){
+    let url=`${URL_API}/solicitud/cantidadSolicitudesComoDemandanteSinCalificar?id=${id}`;
+    return this.http.get(url);
+  }
+  getCalificacionesPendientesComoDemandante(id){
+    let url=`${URL_API}/solicitud/cantidadSolicitudesComoOferenteSinCalificar?id=${id}`;
     return this.http.get(url);
   }
 }

@@ -27,8 +27,6 @@
 				<hr>
 			</div>
 			<div>
-				
-				
 				<ul class="list-inline status-list m-t-20">
 					<li>
 						<h3 class="text-primary m-b-5">Destacarme!</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
@@ -42,10 +40,9 @@
 				<button type="button" [routerLink]="['/sios/destacar-perfil']" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Destacarme</button>
 				<hr>
 			</div>
-
-
-
-
+			<div>
+				<app-notificacion-calificacion [id]="id"></app-notificacion-calificacion>
+			</div>
 		</div>
 	</div>
 	<div class="row">
