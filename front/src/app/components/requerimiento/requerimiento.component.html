@@ -77,7 +77,32 @@
                 <span class="font-13 text-muted">Ingrese la cantidad de $ que desea pagar por el trabajo terminado</span>
             </div>
             <p style="color: red" *ngIf="form.get('precioApagar').errors?.required && form.get('precioApagar').touched">Campo obligatorio</p>
-           
+            
+             <div class="form-group m-b-20" >
+                <h3 class="panel-title">Seleccione el rubro que vincula su solicitud de trabajo.</h3>
+                <p> Primero seleccione el tipo del rubro para poder ver las opciones de rubro.</p>
+            </div>
+            <div class="form-group m-b-20 row">
+                    <div class="col-md-6">
+                        <label class="col-md-3 control-label" for="state-success">Tipo Rubro</label>
+                        <div class="col-md-8">
+                            <select name="tipoRubro" formControlName="tipoRubro" class="form-control" (change)="getRubrosByTipoRubro()">
+                                <option selected="selected">Seleccione</option>
+                                <option *ngFor="let tipo of tiposRubros" [ngValue]="tipo.nombreTipoRubro">{{tipo.nombreTipoRubro}} </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="showRubros">
+                        <label class="col-md-4 control-label" for="state-success">Rubro</label>
+                        <div class="col-md-8">
+                            <select name="rubro" formControlName="rubro" class="form-control">
+                                <option selected="selected">Seleccione</option>
+                                <option *ngFor="let rubro of rubros" [ngValue]="rubro.nombreRubro">{{rubro.nombreRubro}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
             <div class="form-group m-b-20">
                 <label>Descripcion <span class="text-danger">*</span></label>
                 <p class="text-muted m-b-15 font-13">

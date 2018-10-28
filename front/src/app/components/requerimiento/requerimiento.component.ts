@@ -13,6 +13,8 @@ import { finalize, map } from 'rxjs/operators';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 import { NgxNotificationService } from 'ngx-notification';
+import { RubroService } from '../../services/rubro.service';
+import { TipoRubroService } from '../../services/tipo-rubro.service';
 
 
 declare var $:any;
@@ -32,20 +34,52 @@ export class RequerimientoComponent{
   archivosCollection: AngularFirestoreCollection<ArchivoAdjunto>;
   uploadPercent:Observable<number>;
   idArchivo:any;
+  showRubros=false;
+  rubros:any[]=[];
+  tiposRubros:any[]=[];
 
   //Hay que hacer un refactor sobre esto de Firebase. Tiene que estar en un servicio.
   constructor(private service:RequerimientoService,private autserv:AutenticacionService,private afStorage: AngularFireStorage,
-    private afs: AngularFirestore,private usuarioService:UsuarioService,private router:Router, private ngxNotificationService: NgxNotificationService) {
+    private afs: AngularFirestore,private usuarioService:UsuarioService,private router:Router, private ngxNotificationService: NgxNotificationService,
+    private rubroService:RubroService,private tipoRubroService:TipoRubroService) {
     this.archivosCollection = this.afs.collection<ArchivoAdjunto>('archivos'); 
     this.form= new FormGroup({
       'descripcion': new FormControl('',[Validators.required,Validators.minLength(3)]),
       'precioApagar': new FormControl('',[Validators.required,Validators.minLength(2)]),
       'tiempoEstimado': new FormControl('',[Validators.required,Validators.minLength(1)]),
       'titulo': new FormControl('',[Validators.required,Validators.minLength(1)]),
-      'archivoUno': new FormControl('',Validators.required)
+      'archivoUno': new FormControl('',Validators.required),
+      'tipoRubro': new FormControl('',Validators.required),
+      'rubro': new FormControl('',Validators.required)
     });
+    tipoRubroService.getTipoRubrosVigentes().subscribe((response:any)=>{
+      this.tiposRubros=response;
+    });
+    rubroService.getRubrosVigentes().subscribe((res:any)=>{
+      this.rubros=res;
+    });
+    this.setValueDefault();
   }
-  
+  setValueDefault(){
+    this.form.patchValue({
+      rubro: 'Seleccione',
+      tipoRubro: 'Seleccione'
+    })
+   
+  }
+  getRubrosByTipoRubro(){
+    let tipoRubro=this.form.controls['tipoRubro'].value;
+    if(tipoRubro !='Seleccione'){
+      this.rubroService.getRubrosByTipoRubro(tipoRubro).subscribe((response:any)=>{
+        this.rubros=response;
+        this.showRubros=true;
+      })
+    }
+    else{
+      this.showRubros=false;
+    }
+    
+  }
   addFile(event,index){
     let file=event.target.files[0];
     console.log("file: ",file);
@@ -127,7 +161,8 @@ export class RequerimientoComponent{
         precioApagar: this.form.controls['precioApagar'].value,
         tiempoEstimado: this.form.controls['tiempoEstimado'].value,
         titulo: this.form.controls['titulo'].value, 
-        urlArchivos: this.files
+        urlArchivos: this.files,
+        nombreRubro: this.form.controls['rubro'].value
       }        
       this.service.crearRequerimiento(requerimiento).subscribe(response=>{
         this.form.reset();

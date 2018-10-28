@@ -36,40 +36,65 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Seleccione el rubro que vincula su solicitud de trabajo.</h3>
+                        <p> Primero seleccione el tipo del rubro para poder ver las opciones de rubro.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-3 control-label" for="state-success">Tipo Rubro</label>
+                        <div class="col-md-8">
+                            <select name="tipoRubro" formControlName="tipoRubro" class="form-control" (change)="getRubrosByTipoRubro()">
+                                <option selected="selected">Seleccione</option>
+                                <option *ngFor="let tipo of tiposRubros" [ngValue]="tipo.nombreTipoRubro">{{tipo.nombreTipoRubro}} </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="showRubros">
+                        <label class="col-md-4 control-label" for="state-success">Rubro</label>
+                        <div class="col-md-8">
+                            <select name="rubro" formControlName="rubro" class="form-control">
+                                <option selected="selected">Seleccione</option>
+                                <option *ngFor="let rubro of rubros" [ngValue]="rubro.nombreRubro">{{rubro.nombreRubro}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br>
                 <div class="col-sm-2 col-lg-12 col-md-2">
-                        <div class="panel panel-border panel-warning">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Describa el trabajo a solicitar al oferente</h3>
-                            </div>
-                            <div class="panel-body">
-                                    <textarea id="textarea" formControlName="descripcion" name="descripcion" class="form-control" maxlength="225" rows="2" placeholder="Ingrese su descripcion"></textarea>
-                                <p>
-                                    <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
-                                </p>
-                            </div>
+                    <div class="panel panel-border panel-warning">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Describa el trabajo a solicitar al oferente</h3>
+                        </div>
+                        <div class="panel-body">
+                                <textarea id="textarea" formControlName="descripcion" name="descripcion" class="form-control" maxlength="225" rows="2" placeholder="Ingrese su descripcion"></textarea>
+                            <p>
+                                <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
+                            </p>
                         </div>
                     </div>
-                    <div class="col-sm-2 col-lg-12 col-md-2">
-                        <div class="panel panel-border panel-danger">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">OPCIONAL</h3>
+                </div>
+                <div class="col-sm-2 col-lg-12 col-md-2">
+                    <div class="panel panel-border panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">OPCIONAL</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                De manera opcional puede seleccionar un archivo para ampliar el detalle de su solicitud y asi ofrecerle mas imformacion a {{oferente?.nombre}}
+                            </p>
+                            <div class="m-t-20">
+                                <input  type="file" class="filestyle" formControlName="archivoUno" name="archivoUno"  data-icon="false" data-buttonname="btn-white" (change)="addFile($event,0)">
                             </div>
-                            <div class="panel-body">
-                                <p>
-                                    De manera opcional puede seleccionar un archivo para ampliar el detalle de su solicitud y asi ofrecerle mas imformacion a {{oferente?.nombre}}
-                                </p>
-                                <div class="m-t-20">
-                                    <input  type="file" class="filestyle" formControlName="archivoUno" name="archivoUno"  data-icon="false" data-buttonname="btn-white" (change)="addFile($event,0)">
-                                </div>
-                                <lib-ngx-notification></lib-ngx-notification>
-                            </div>
+                            <lib-ngx-notification></lib-ngx-notification>
                         </div>
                     </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="p-20">
                             <div class="m-t-20">
-                                <button type="submit" class="btn btn-primary btn-rounded waves-effect waves-light pull-right">
+                                <button [disabled]="!solicitudForm.valid" type="submit" class="btn btn-primary btn-rounded waves-effect waves-light pull-right">
                                     Solicitar</button>
                             </div>
                         </div>
