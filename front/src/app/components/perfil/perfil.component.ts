@@ -372,6 +372,16 @@ export class PerfilComponent {
   volverAlPerfil(){
     $('#danger-alert').modal('hide');
   }
+
+  spinerDestacarme(){
+    $('#spinerPerfil').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/destacar-perfil']);
+      $('#spinerPerfil').modal('hide');
+    },1000);
+  }
+
+
 }
 
 export interface Imagen { id:string;imagePath:string;imageURL:string,imageName:string}

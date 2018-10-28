@@ -4,13 +4,31 @@ import { UsuarioService } from './usuario.service';
 import { URL_API } from '../utils/params';
 import { HttpClient } from '@angular/common/http';
 import { log } from 'util';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AutenticacionService {
+export class AutenticacionService implements CanActivate {
 
-  constructor(private usuarioService:UsuarioService,private http:HttpClient) { }
+  private esAdministrador: boolean;
+  private usuarioTipo: string;
+
+  constructor(private usuarioService:UsuarioService,private http:HttpClient, private router: Router) {
+    this.isUsuarioAdmin();
+   }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    this.isUsuarioAdmin();
+    if (this.esAdministrador) {
+      return true
+
+    } else {
+      this.router.navigate(['login']);
+      return false
+    }
+
+  }
 
   isUsuarioLogueado():boolean{
     let usuario= localStorage.getItem("auth");
@@ -36,23 +54,10 @@ export class AutenticacionService {
   getUsuarioLogueado():any{
     let id=localStorage.getItem("auth");
     let usuario:Usuario;
-    console.log("coso",id);
     
     this.usuarioService.getUsuarioById(id).subscribe((res:any)=>{
       return res;
     });
-    
-    // if(id!=null){
-    //   this.usuarioService.getUsuarioById(id).subscribe((response:Usuario)=>{
-    //     console.log(response);
-        
-    //    return response;
-    //   });
-    // }
-    // else {
-    //   return null;
-    // }
-    // //return usuario;
   }
   cerrarSesion(){
     localStorage.removeItem('recordar');
@@ -61,16 +66,20 @@ export class AutenticacionService {
   isUsuarioAdmin(){
     let id=localStorage.getItem("auth");
     this.usuarioService.getUsuarioById(id).subscribe((response:Usuario)=>{
-      console.log("Usuario: ",response.tipoUsuario);
       let tipoUsuario =response.tipoUsuario;
+      this.usuarioTipo = response.tipoUsuario;
       if(tipoUsuario === "Administrador"){
+        this.esAdministrador = true;
         return true;
       }
-      else{
+      else {
+        this.esAdministrador = false;
         return false;
       }
     })
+
   }
+
   enviarMail(email){
     let url=`${URL_API}/usuario/validarMail?mail=${email}`
     return this.http.get(url);

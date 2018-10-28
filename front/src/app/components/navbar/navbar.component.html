@@ -54,7 +54,7 @@
                                     <li class="notifi-title"><span class="label label-default pull-right"></span>{{this.username}}</li>
                                     <li class="list-group slimscroll-noti notification-list">
                                       
-                                       <a [routerLink]="['perfil']" class="list-group-item">
+                                       <a style="cursor: pointer;" (click)="spinerPerfil()" class="list-group-item">
                                           <div class="media">
                                              <div class="pull-left p-r-10">
                                                 <em class="fa fa-user-plus noti-primary"></em>
@@ -80,7 +80,7 @@
                                            </div>
                                         </div>
                                         </a>
-                                       <a (click)="abrirModal()" class="list-group-item">
+                                       <a style="cursor: pointer;" (click)="abrirModal()" class="list-group-item">
                                             <div class="media">
                                                <div class="pull-left p-r-10">
                                                   <em class="fa fa-power-off noti-danger"></em>
@@ -95,20 +95,10 @@
                                          </a>
                                 </ul>
                             
-                            <!-- <ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0)" [routerLink]="['perfil']"><i class="ti-user text-custom m-r-10"></i>
-                                        Perfil</a></li>
-                                
-                                
-                                <li class="divider"></li>
-                                
-                                <li><a (click)="cerrarSesion()" href="javascript:void(0)" [routerLink]="['/home']"><i class="ti-power-off text-danger m-r-10"></i>
-                                    Salir</a></li>
-                            </ul> -->
+                           
                         </li>
                     </ul>
                     <div class="menu-item">
-                        <!-- Mobile menu toggle-->
                         <a class="navbar-toggle">
                             <div class="lines">
                                 <span></span>
@@ -116,80 +106,8 @@
                                 <span></span>
                             </div>
                         </a>
-                        <!-- End mobile menu toggle-->
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-            <!-- <div *ngIf="estaLogueado" class="menu-extras">
-
-                    <ul class="nav navbar-nav navbar-right pull-right">
-                        
-                        <li class="dropdown navbar-c-items">
-                            <a  data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-                                <i class="icon-bell"></i> <span class="badge badge-xs badge-danger">3</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-lg">
-                                <li class="notifi-title"><span class="label label-default pull-right">Nuevas 3</span>Notificaciones</li>
-                                <li class="list-group slimscroll-noti notification-list">
-                                  
-                                   <a [routerLink]="['verSolicitud']" class="list-group-item">
-                                      <div class="media">
-                                         <div class="pull-left p-r-10">
-                                            <em class="fa fa-diamond noti-primary"></em>
-                                         </div>
-                                         <div class="media-body">
-                                            <h5 class="media-heading">Tienes nuevas solicitudes</h5>
-                                            <p class="m-0">
-                                                <small>Consultalas desde aqui!</small>
-                                            </p>
-                                         </div>
-                                      </div>
-                                   </a>
-                            </ul>
-                        </li>
-                        <li class="dropdown navbar-c-items">
-                            
-                                <ul class="nav navbar-nav navbar-right pull-right">
-                                       
-                                                <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="src/assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
-                                                <ul class="dropdown-menu">
-                                                        <li><a href="javascript:void(0)" [routerLink]="['perfil']"><i class="ti-user text-custom m-r-10"></i>
-                                                            Perfil</a></li>
-                                                    
-                                                    
-                                                    <li class="divider"></li>
-                                                    
-                                                    <li><a href="javascript:void(0)" [routerLink]="['/login']"><i class="ti-power-off text-danger m-r-10"></i>
-                                                        Salir</a></li>
-                                                </ul>
-                                            
-                                    </ul>
-                            </li>
-                        
-
-                       
-                    </ul>
-                    <div class="menu-item">
-                        <a class="navbar-toggle">
-                            <div class="lines">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </a>
-                    </div>
-                </div> -->
 
 
         </div>
@@ -200,7 +118,7 @@
                 <!-- Navigation Menu-->
                 <ul class="navigation-menu">
                     <li class="has-submenu" routerLinkActive="active">
-                        <a [routerLink]="['home']" style="cursor: pointer;"><i class="fa fa-home"></i>Home</a>
+                        <a (click)="spinerHome()" style="cursor: pointer;"><i class="fa fa-home"></i>Home</a>
                     </li>
                     <li   class="has-submenu" routerLinkActive="active" *ngIf="esAdministrador">
                         <a *ngIf="estaLogueado" style="cursor: pointer;"><i class="fa fa-cog"></i>Configuración</a>
@@ -224,17 +142,17 @@
                         </ul>
                     </li>
                     <li class="has-submenu" routerLinkActive="active">
-                        <a ><i class="fa fa-object-group" style="cursor: pointer;"></i>Requerimiento</a>
+                        <a style="cursor: pointer;" ><i class="fa fa-object-group" style="cursor: pointer;"></i>Requerimiento</a>
                         <ul class="submenu megamenu">
                             <li>
                                 <ul>
                                     <li>
-                                        <a *ngIf="estaLogueado"  [routerLink]="['publicarRequerimiento']">Publicar
+                                        <a style="cursor: pointer;" *ngIf="estaLogueado"  (click)="spinerPublicarRequerimiento()">Publicar
                                             Requerimiento</a>
                                         <a *ngIf="!estaLogueado"  [routerLink]="['/login']">Publicar
                                             Requerimiento</a>
                                     </li>
-                                    <li><a [routerLink]="['verRequerimiento']">Ver Requerimientos</a></li>
+                                    <li><a  style="cursor: pointer;" (click)="spinerVerRequerimiento()">Ver Requerimientos</a></li>
 
                                 </ul>
                             </li>
@@ -247,13 +165,13 @@
                             <li>
                                 <ul>
                                     <li>
-                                        <a *ngIf="estaLogueado"  [routerLink]="['trabajos-realizados']">Trabajos Realizados</a>
+                                        <a *ngIf="estaLogueado" style="cursor: pointer;" (click)="spinerTrabajosRealizados()">Trabajos Realizados</a>
                                         
-                                        <a *ngIf="estaLogueado"  [routerLink]="['calificaciones']">Calificaciones</a>
+                                        <a *ngIf="estaLogueado" style="cursor: pointer;" (click)="spinerCalificaciones()">Calificaciones</a>
                                        
-                                        <a *ngIf="estaLogueado"  [routerLink]="['rubros-mas-demandados']">Rubros mas Demandados</a>
+                                        <a *ngIf="estaLogueado" style="cursor: pointer;" (click)="spinerRubrosDemandados()">Rubros mas Demandados</a>
                                       
-                                        <a *ngIf="estaLogueado"  [routerLink]="['rubros-mas-ofrecidos']">Rubros mas Ofrecidos</a>
+                                        <a *ngIf="estaLogueado" style="cursor: pointer;"  (click)="spinerRubrosOfrecidos()">Rubros mas Ofrecidos</a>
                                        
 
                                     </li>
@@ -264,49 +182,23 @@
                     </li>
 
 
-
-                    <!-- <li class="has-submenu pull-right" *ngIf="estaLogueado">
-                        <a ><i class="fa  fa-area-chart"></i>Informes</a>
-                        <ul class="submenu megamenu">
-                            <li>
-                                <ul>
-                                    <li>
-                                        <a *ngIf="estaLogueado"  [routerLink]="['trabajos-realizados']">Trabajos Realizados</a>
-                                        <a *ngIf="!estaLogueado"  [routerLink]="['/login']">Trabajos Realizados</a>
-
-                                        <a *ngIf="estaLogueado"  [routerLink]="['calificaciones']">Calificaciones</a>
-                                        <a *ngIf="!estaLogueado"  [routerLink]="['/login']">Calificaciones</a>
-
-                                        <a *ngIf="estaLogueado"  [routerLink]="['rubros-mas-demandados']">Rubros mas Demandados</a>
-                                        <a *ngIf="!estaLogueado"  [routerLink]="['/login']">Rubros mas Demandados</a>
-
-                                        <a *ngIf="estaLogueado"  [routerLink]="['rubros-mas-ofrecidos']">Rubros mas Ofrecidos</a>
-                                        <a *ngIf="!estaLogueado"  [routerLink]="['/login']">Rubros mas Ofrecidos</a>
-
-                                    </li>
-
-                                </ul>
-                            </li>
-                        </ul>
-                    </li> -->
                     <li *ngIf="!estaLogueado" class="has-submenu pull-right">
                         <a   [routerLink]="['/registracion']" title="Registrarse"><i class="fa fa-user-plus"></i>Registrarse</a>
                     </li>
                     <li *ngIf="!estaLogueado" class="has-submenu pull-right">
                         <a  [routerLink]="['/login']"><i class="glyphicon glyphicon-user"></i>Iniciar sesión</a>
                     </li>
+
+                    <li class="has-submenu pull-right" *ngIf="estaLogueado && esAdministrador" >
+                        <a style="cursor: pointer;" (click)="spinerDashboard()" title="Panel de Administrador"><i  class="md md-dashboard"></i>DashBoard</a>
+                        
+                    </li>
+
                 </ul>
-                <!-- End navigation menu        -->
             </div>
         </div>
-        <!-- end container -->
     </div>
-    <!-- end navbar-custom -->
 </div>
-
-
-
-
 
 <div id="danger-alert" style="display: none;">
     <div class="sweet-alert showSweetAlert" data-backdrop="static" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
@@ -327,3 +219,19 @@
         </p>
     </div>
 </div>
+
+
+<div id="spiner" class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="mySmallModalLabel">Cargando...</h4>
+                </div>
+                <div class="modal-body text-center">
+    
+                    <span class="fa fa-spin fa-refresh fa-5x"></span>
+                </div>
+            </div>
+        </div>
+    </div>

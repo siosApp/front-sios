@@ -21,6 +21,9 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { Imagen } from '../perfil/perfil.component';
 import { NgxNotificationService } from 'ngx-notification';
 
+
+
+declare var $:any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -28,7 +31,7 @@ import { NgxNotificationService } from 'ngx-notification';
 })
 export class HomeComponent{
 
-
+  spiner=false;
   form:FormGroup;
   tiposRubros:TipoRubro[];
   provincias:Provincia[];
@@ -133,16 +136,23 @@ export class HomeComponent{
     }
   }
   buscarOferentes(){
+    this.spiner=true;
+    // $('#spiner').modal('show');
+    $('#spinerHome').modal('show');
     let rubro=this.form.controls['rubro'].value === 'Seleccione'? "null":this.form.controls['rubro'].value;
     let tipoRubro=this.form.controls['tipoRubro'].value === 'Seleccione'? "null":this.form.controls['tipoRubro'].value;
     let provincia=this.form.controls['provincia'].value === 'Seleccione'? "null":this.form.controls['provincia'].value;
     let departamento=this.form.controls['departamento'].value === 'Seleccione'? "null":this.form.controls['departamento'].value;
     let localidad=this.form.controls['localidad'].value === 'Seleccione'? "null":this.form.controls['localidad'].value;
     this.usuarioService.getOferentes(tipoRubro,rubro,provincia,departamento,localidad).subscribe((res:any)=>{
-      this.oferentes=res;
-      console.log("Oferentes: ",this.oferentes[0]);
-      
+
+      setTimeout(()=>{ 
+        this.oferentes=res;
+        this.spiner=false;
+        $('#spinerHome').modal('hide');
+      },2000);
     })
+   
   }
 
   verificarUsuarioAutenticado() {
@@ -151,4 +161,12 @@ export class HomeComponent{
       return true;
     }
   }
+  spinerSolicitarTrabajo(idUsuario){
+    $('#spinerHome').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/solicitarTrabajo',idUsuario]);
+      $('#spinerHome').modal('hide');
+    },1000);
+  }
+
 }

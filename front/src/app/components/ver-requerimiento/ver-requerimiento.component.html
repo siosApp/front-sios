@@ -1,5 +1,17 @@
+
+
 <div class="row">
     <div class="col-lg-12">
+            <h4 class="page-title">Ver Requerimientos</h4>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                
+                <li class="active">
+                    Requerimientos publicados
+                </li>
+            </ol>
         <div class="search-result-box m-t-40">
             <ul class="nav nav-tabs">
                 <li class="active">
@@ -22,7 +34,7 @@
                                         <p>
                                             {{req.descripcion}}
                                         </p>
-                                        <button [routerLink]="['/sios/ofertarRequerimiento',req.id]"  type="button" class="btn btn-primary btn-rounded waves-effect waves-light pull-right">Ofertar</button>
+                                        <button (click)="spinerOfertarRequemiento(req.id)"  type="button" class="btn btn-primary btn-rounded waves-effect waves-light pull-right">Ofertar</button>
                                 </div>    
                             </div>
                             <div class="clearfix"></div>
@@ -33,3 +45,17 @@
         </div>
     </div>
 </div>
+<div id="spinerVerRequerimiento" class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="mySmallModalLabel">Cargando...</h4>
+                </div>
+                <div class="modal-body text-center">
+    
+                    <span class="fa fa-spin fa-refresh fa-5x"></span>
+                </div>
+            </div>
+        </div>
+    </div>
