@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-sm-12">
+      <h4 class="page-title">Solicitudes</h4>
+      <ol class="breadcrumb">
+          <li><a [routerLink]="['/sios/home']">Home</a></li>
+          <li class="active">Mis Solicitudes</li>
+      </ol>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-8">
+      <div class="card-box m-b-10" *ngFor="let solicitud of solicitudes">
+          <div class="table-box opport-box">
+              <div class="table-detail">
+                  <div class="member-info">
+                    <div *ngIf="!solicitud.estaCalificada">
+                        <h4 class="m-t-0"><b>{{solicitud.descripcion}}<span class="pull-right" > <a (click)="abrirModalCalificacion(solicitud)" style="color: red;cursor: pointer;" >Califique ésta solicitud!</a></span></b></h4>
+                    </div> 
+                    <div *ngIf="solicitud.estaCalificada">
+                        <h4 class="m-t-0"><b>{{solicitud.descripcion}}<span class="pull-right" style="color: green;" >SOLICITUD CALIFICADA</span></b></h4>
+                    </div>
+                      <app-usuario-item [username]="solicitud.usuarioOferente"></app-usuario-item>
+                  </div>
+                  <div class="member-info">
+                    <p class="text-dark m-b-5"><b>Fecha de la solicitud: </b> <span class="text-muted">{{solicitud.fechaSolicitud | date:'dd/MM/yyyy'}}</span></p>
+                  </div>
+                  <div class="member-info">
+                    <p class="text-dark m-b-5"><span class="text-muted"><app-adjunto [solicitud]="solicitud"></app-adjunto> </span></p>
+                  </div>
+              </div>
+              <div class="table-detail" *ngIf="solicitud.nombreEstadoSolicitud === 'Finalizada'">
+
+              </div>
+              <div class="table-detail lable-detail">
+                  <span class="label label-info">{{solicitud.nombreEstadoSolicitud | uppercase}}</span>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-lg-4">
+      <div class="profile-detail card-box">
+          <div>
+              <ul class="list-inline status-list m-t-20">
+                  <li>
+                      <h3 class="text-primary m-b-5">Destacarme!</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
+                      <p class="text-muted">Aprovecha los Beneficios de aparecer primero en las busquedas cuando los usuarios filtren en tu zona.</p>
+                  </li>
+                  <li>
+                      <h3 class="text-success m-b-5">Mas trabajos!</h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
+                      <p class="text-muted">Al destacarte las solicitudes de trabajo aumentaran considerablemente!</p>
+                  </li>
+              </ul>
+              <button type="button" [routerLink]="['/sios/destacar-perfil']" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Destacarme</button>
+              <hr>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Modal Finalizar Solicitud -->
+<form [formGroup]="calificarForm" (ngSubmit)="calificar()">
+    <div id="calificarModal" data-backdrop="static" style="display: none;">
+        <div class="sweet-alert showSweetAlert visible" tabindex="-1"  style="display: block; margin-top: -163px;">
+        <div class="icon error" style="display: none;">
+            <span class="x-mark"><span class="line left"></span>
+            <span class="line right"></span></span>
+        </div>
+        <div class="icon warning" style="display: none;"> 
+            <span class="body"></span> 
+            <span class="dot"></span> 
+        </div> 
+        <div class="icon info" style="display: none;"></div>
+            <div class="icon success" style="display: none;"> 
+            <span class="line tip"></span> 
+            <span class="line long"></span> 
+            <div class="placeholder"></div> 
+            <div class="fix"></div> 
+        </div> 
+        <div class="icon custom" style="display: block; background-image: url(assets/plugins/bootstrap-sweetalert/thumbs-up.jpg); width: 80px; height: 80px;width:80px; height:80px">
+        </div> <h2>Finalizar Solicitud</h2>
+        <p class="lead text-muted" style="display: block;">Para finalizar la solicitud debera calificar al usuario del 1 al 5! </p>
+            <input type="number" class="text-center" formControlName="calificacion" name="calificacion" placeholder="0" style="width:100px; text-align:center;">
+        <div *ngIf="calificarForm.controls['calificacion'].touched && calificarForm.controls['calificacion'].errors?.pattern">
+            <p style="color: red;">Califique con un número del 1 al 5!</p>
+        </div>    
+        <textarea rows="2" class="form-control" formControlName="comentario" name="comentario" placeholder="Descripcion de tu calificacion"></textarea>
+        <p>
+            <button type="button" (click)="cerrarModal()" class="btn btn-lg btn-default" tabindex="2" style="display: inline-block;">Volver al listado</button> 
+            <button [disabled]="!calificarForm.valid" type="submit" class="btn btn-lg btn-primary" tabindex="1" style="display: inline-block;">Calificar</button>
+        </p>
+    </div>
+    </div>
+</form>

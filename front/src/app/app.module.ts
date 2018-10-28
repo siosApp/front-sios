@@ -50,6 +50,9 @@ import { RubrosMasOfrecidosComponent } from './components/reportes/rubros-mas-of
 import { NombreUserComponent } from './components/ver-requerimiento/nombre-user.component';
 import { UsuarioItemComponent } from './components/ver-solicitud/usuario-item/usuario-item.component';
 import { DestacarPerfilComponent } from './components/perfil/destacar-perfil/destacar-perfil.component';
+import { MisSolicitudesComponent } from './components/ver-solicitud/mis-solicitudes/mis-solicitudes.component';
+import { AdjuntoComponent } from './components/ver-solicitud/mis-solicitudes/adjunto/adjunto.component';
+import { NotificacionCalificacionComponent } from './components/ver-solicitud/notificacion-calificacion/notificacion-calificacion.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsuariosDestacadosComponent } from './components/dashboard/usuarios-destacados/usuarios-destacados.component';
 import { UsuariosRegistradosComponent } from './components/dashboard/usuarios-registrados/usuarios-registrados.component';
@@ -121,6 +124,9 @@ export function getAuthServiceConfigs() {
     UsuarioItemComponent,
     DestacarPerfilComponent,
     NgxNotificationComponent,
+    MisSolicitudesComponent,
+    AdjuntoComponent,
+    NotificacionCalificacionComponent,
     DashboardComponent,
     UsuariosDestacadosComponent,
     UsuariosRegistradosComponent,

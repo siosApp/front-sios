@@ -29,6 +29,7 @@ import { RubrosMasDemandadosComponent } from './components/reportes/rubros-mas-d
 import { RubrosMasOfrecidosComponent } from './components/reportes/rubros-mas-ofrecidos/rubros-mas-ofrecidos.component';
 import { TrabajosRealizadosComponent } from './components/reportes/trabajos-realizados/trabajos-realizados.component';
 import { DestacarPerfilComponent } from './components/perfil/destacar-perfil/destacar-perfil.component';
+import { MisSolicitudesComponent } from './components/ver-solicitud/mis-solicitudes/mis-solicitudes.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsuariosDestacadosComponent } from './components/dashboard/usuarios-destacados/usuarios-destacados.component';
 import { UsuariosEnLineaComponent } from './components/dashboard/usuarios-en-linea/usuarios-en-linea.component';
@@ -55,6 +56,7 @@ const rutas_hijas: Routes =[
     { path: 'publicarRequerimiento', component: RequerimientoComponent },
     { path: 'tarifa', component: TarifaComponent, canActivate: [AutenticacionService]  },
     { path: 'perfil', component: PerfilComponent },
+    { path: 'mis-solicitudes', component: MisSolicitudesComponent },
     { path: 'agregarRubro', component: AgregarRubroComponent },
     { path: 'verRequerimiento', component: VerRequerimientoComponent },
     { path: 'ofertarRequerimiento/:id', component: OfertarRequerimientoComponent },
