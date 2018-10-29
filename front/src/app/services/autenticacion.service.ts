@@ -50,6 +50,10 @@ export class AutenticacionService implements CanActivate {
   guardarSesion(recordarme,auth){
     localStorage.setItem('recordar',recordarme);
     localStorage.setItem('auth',auth);
+    this.usuarioService.registrarLogin(auth).subscribe();
+  }
+  registrarLogueo(idUsuario){
+    this.usuarioService
   }
   getUsuarioLogueado():any{
     let id=localStorage.getItem("auth");
@@ -60,8 +64,10 @@ export class AutenticacionService implements CanActivate {
     });
   }
   cerrarSesion(){
+    let id=localStorage.getItem("auth");
     localStorage.removeItem('recordar');
     localStorage.removeItem('auth');
+    this.usuarioService.registrarLogout(id).subscribe();
   }
   isUsuarioAdmin(){
     let id=localStorage.getItem("auth");

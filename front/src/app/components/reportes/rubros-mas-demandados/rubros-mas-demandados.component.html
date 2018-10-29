@@ -2,7 +2,7 @@
     <div class="col-sm-12">
       <h4 class="page-title">Los 4 Rubros mas Demandados</h4>
       <ol class="breadcrumb">
-        <li><a href="#">Home</a></li>
+        <li><a >Home</a></li>
         <li class="active">Rubros</li>
       </ol>
     </div>
@@ -30,11 +30,11 @@
                           <input type="date" formControlName="fechaHasta" name="fechaHasta" class="form-control" style="width: 200px;">
                         </div><!-- input-group -->
                       <div>
-                        <button type="submit" class="btn btn-primary waves-effect waves-light btn-xs">Actualizar</button>
+                        <button [disabled]="!reporteForm.valid" type="submit" class="btn btn-primary waves-effect waves-light btn-xs">Actualizar</button>
                       </div>
                       <div>
                         <div style="display: block">
-                            <canvas 
+                            <canvas  *ngIf="showGrafico"
                             baseChart [datasets]="barChartData" 
                             [labels]="barChartLabels" 
                             [options]="barChartOptions"

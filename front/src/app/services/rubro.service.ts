@@ -54,4 +54,8 @@ export class RubroService {
     let url=`${URL_API}/rubro/rubrosMasDemandados?fechaDesde=${fechaDesde}&fechaHasta=${fechaHasta}`;
     return this.http.get(url);
   }
+  getRubrosMasOfrecidos(fechaDesde,fechaHasta){
+    let url=`${URL_API}/rubro/rubrosMasOfrecidos?fechaDesde=${fechaDesde}&fechaHasta=${fechaHasta}`;
+    return this.http.get(url);
+  }
 }
