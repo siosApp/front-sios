@@ -13,30 +13,27 @@
                             </div>
                             
                             <div class="panel-body">
-                                    <div class="form-group has-success">
-                                            <label class="col-md-3 control-label" for="state-success">Tipo Rubro</label>
-                                            <div class="col-md-6">
-                                                <select name="tipoRubro" formControlName="tipoRubro" class="form-control" (change)="getRubrosByTipoRubro()">
-                                                    <option selected="selected">Seleccione</option>
-                                                    <option *ngFor="let tipo of tiposRubros" [ngValue]="tipo.nombreTipoRubro">{{tipo.nombreTipoRubro}} </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group has-error">
-                                            <label class="col-md-3 control-label" for="state-success">Rubro</label>
-                                            <div class="col-md-6">
-                                                <select name="rubro" formControlName="rubro" class="form-control">
-                                                    <option selected="selected">Seleccione</option>
-                                                    <option *ngFor="let rubro of rubros" [ngValue]="rubro.nombreRubro">{{rubro.nombreRubro}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                <div class="form-group has-success">
+                                    <label class="col-md-3 control-label" for="state-success">Tipo Rubro</label>
+                                    <div class="col-md-6">
+                                        <select name="tipoRubro" formControlName="tipoRubro" class="form-control" (change)="getRubrosByTipoRubro()">
+                                            <option selected="selected">Seleccione</option>
+                                            <option *ngFor="let tipo of tiposRubros" [ngValue]="tipo.nombreTipoRubro">{{tipo.nombreTipoRubro}} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group has-error">
+                                    <label class="col-md-3 control-label" for="state-success">Rubro</label>
+                                    <div class="col-md-6">
+                                        <select name="rubro" formControlName="rubro" class="form-control">
+                                            <option selected="selected">Seleccione</option>
+                                            <option *ngFor="let rubro of rubros" [ngValue]="rubro.nombreRubro">{{rubro.nombreRubro}}</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
-
                 <div class="col-md-6">
                         <div class="panel panel-purple panel-border">
                             <div class="panel-heading">
@@ -88,7 +85,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-4 col-md-8">
-                        <button (click)="abrirModal()" type="submit" class="btn btn-inverse btn-custom btn-rounded waves-effect waves-light m-b-30 btn-submit-form pull-right">Buscar</button>
+                        <button type="submit" class="btn btn-inverse btn-custom btn-rounded waves-effect waves-light m-b-30 btn-submit-form pull-right">Buscar</button>
                         
                     </div>
                    

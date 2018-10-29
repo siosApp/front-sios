@@ -13,6 +13,8 @@ import { SolicitarTrabajoService } from '../../services/solicitar-trabajo.servic
 import { Archivo } from '../../models/archivo';
 import { Imagen } from '../perfil/perfil.component';
 import { NgxNotificationService } from 'ngx-notification';
+import { RubroService } from '../../services/rubro.service';
+import { TipoRubroService } from '../../services/tipo-rubro.service';
 
 declare var $:any;
 @Component({
@@ -31,10 +33,14 @@ export class SolicitarTrabajoComponent {
   urlImagen:string;
   imagenesCollections: AngularFirestoreCollection<Imagen>;
   file:any;
-
+  tiposRubros:any[]=[];
+  rubros:any[]=[];
+  showRubros=false;
   constructor(private usuarioService:UsuarioService,private afStorage: AngularFireStorage,private afs: AngularFirestore,
     private location:Location,private activatedRoute:ActivatedRoute,
-    private fileService:FileService,private solicitudService:SolicitarTrabajoService, private ngxNotificationService: NgxNotificationService) {
+    private fileService:FileService,private solicitudService:SolicitarTrabajoService, private ngxNotificationService: NgxNotificationService,
+    private rubroService:RubroService,private tipoRubroService:TipoRubroService) {
+
     this.urlImagen="assets/images/noimage.png";
     activatedRoute.params.subscribe((parametros:any)=>{
       usuarioService.getUsuarioById(parametros['id']).subscribe((usuarioRes:any)=>{
@@ -45,17 +51,44 @@ export class SolicitarTrabajoComponent {
         }
       })
     })
+    tipoRubroService.getTipoRubrosVigentes().subscribe((response:any)=>{
+      this.tiposRubros=response;
+    });
+    rubroService.getRubrosVigentes().subscribe((res:any)=>{
+      this.rubros=res;
+    })
     this.archivosCollection = this.afs.collection<ArchivoAdjunto>('archivos');
     this.solicitudForm=new FormGroup({
       'descripcion': new FormControl('',Validators.required),
-      'archivoUno' : new FormControl('',Validators.required),
-      'archivoDos' : new FormControl('',Validators.required),
-      'archivoTres' : new FormControl('',Validators.required), 
-      'archivoCuarto' : new FormControl('',Validators.required),
-      'archivoQuinto' : new FormControl('',Validators.required)
+      'archivoUno' : new FormControl(''),
+      'tipoRubro' : new FormControl('',Validators.required),
+      'rubro' : new FormControl('',Validators.required)
     })
+    this.setValueDefault();
   }
-
+  setValueDefault(){
+    this.solicitudForm.patchValue({
+      rubro: 'Seleccione',
+      tipoRubro: 'Seleccione'
+    })
+   
+  }
+  getRubrosByTipoRubro(){
+    let tipoRubro=this.solicitudForm.controls['tipoRubro'].value;
+    if(tipoRubro !='Seleccione'){
+      this.rubroService.getRubrosByTipoRubro(tipoRubro).subscribe((response:any)=>{
+        this.rubros=response;
+        this.showRubros=true;
+      })
+    }
+    else{
+      this.showRubros=false;
+      // this.rubroService.getRubrosVigentes().subscribe((res:any)=>{
+      //   this.rubros=res;
+      // })
+    }
+    
+  }
   setFotoPerfil(idUsuario){
     let url='assets/images/download.png';
     this.imagenesCollections = this.afs.collection<Imagen>('perfil', ref => ref.where('id', '==', idUsuario));
@@ -97,6 +130,7 @@ export class SolicitarTrabajoComponent {
   guardarSolicitud(){
     let idLogueado= localStorage.getItem("auth");
     let descripcion= this.solicitudForm.controls['descripcion'].value;
+    let rubro=this.solicitudForm.controls['rubro'].value;
     //Guardando archivos en Firebase..
     if(this.file!=null){
       let idArchivo=this.subirArchivo(this.file);
@@ -111,12 +145,10 @@ export class SolicitarTrabajoComponent {
           nombreEstadoSolicitud: "Creada",
           urlArchivos: this.files,
           usuarioDemandante: usuarioRes.username, 
-          usuarioOferente: this.oferente.username
+          usuarioOferente: this.oferente.username,
+          nombreRubro: rubro
         }
-        console.log("Solicitud: ",solicitud);
-                
         this.solicitudService.crearSolicitud(solicitud).subscribe((res:any)=>{
-          console.log("Mensaje: ",res);
           $('#crearSolicitud').modal('hide');
           this.location.back();
         })
