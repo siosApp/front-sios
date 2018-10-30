@@ -67,4 +67,44 @@ export class UsuarioService {
     let url= `${URL_API}/reservasService/pago/mercadopago`;
     return this.http.post(url,mercadoPago);
   }
+  registrarLogin(id){
+    let url= `${URL_API}/usuario/registrarUsuarioLogueado?idUsuario=${id}`;
+    return this.http.put(url,null);
+  }
+  registrarLogout(id){
+    let url= `${URL_API}/usuario/registrarUsuarioDeslogueado?idUsuario=${id}`;
+    return this.http.put(url,null);
+  }
+  cantidadUsuariosEnLinea(){
+    let url=`${URL_API}/usuario/calcularCantidadUsuariosLinea`;
+    return this.http.get(url);
+  }
+  cantidadUsuariosDestacadosYUsuariosRegistrados(){
+    let url=`${URL_API}/usuario/registradosDestacadosUltimosMeses`;
+    return this.http.get(url);
+  }
+  reporteUsuariosDestacadosYUsuariosRegistrados(fechaDesde,fechaHasta){
+    let url=`${URL_API}/usuario/cantidadUsuariosRegistradosDestacados?fechaDesde=${fechaDesde}&fechaHasta=${fechaHasta}`;
+    return this.http.get(url);
+  }
+  getUsuariosDestacadosPorVencer(){
+    let url=`${URL_API}/usuarioDestacado/usuariosPorVencerDestacado`
+    return this.http.get(url);
+  }
+  getUsuariosDestacados(){
+    let url=`${URL_API}/usuarioDestacado/verCantidadDestacados`
+    return this.http.put(url,null);
+  }
+  cantidadUsuariosRegistrados(){
+    let url=`${URL_API}/usuario/cantidadUsuariosRegistrados`;
+    return this.http.get(url);
+  }
+  cantidadUsuariosDestacados(){
+    let url=`${URL_API}/usuarioDestacado/cantidadUsuariosDestacados`;
+    return this.http.get(url);
+  }
+  getUsuariosDestacadosPorFecha(fechaDesde,fechaHasta){
+    let url= `${URL_API}/usuarioDestacado/verDestacadoByFechas?fechaDesde=${fechaDesde}&fechaHasta=${fechaHasta}`;
+    return this.http.get(url);
+  }
 }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { UsuarioService } from '../../services/usuario.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 
@@ -11,25 +13,46 @@ declare var $:any;
 })
 export class DashboardComponent   {
  
+  showGraficoBarras=false;
+  cantidadUsuariosEnLinea:string;
+  cantidadUsuariosDestacados:string;
+  cantidadUsuariosRegistrados:string;
+  reporteDestacadoForm:FormGroup;
+  cantidadDestacadosPorVencer:string;
 
-  constructor(private router:Router) {
+  constructor(private router:Router,private usuarioService:UsuarioService) {
+    usuarioService.cantidadUsuariosEnLinea().subscribe((cantidadRes:any)=>{
+      this.cantidadUsuariosEnLinea=cantidadRes;
+    })
+    usuarioService.cantidadUsuariosRegistrados().subscribe((cantidadModel:any)=>{
+      this.cantidadUsuariosRegistrados=cantidadModel;
+    })
+    usuarioService.cantidadUsuariosDestacados().subscribe((cantidadModel:any)=>{
+      this.cantidadUsuariosDestacados=cantidadModel;
+    })
+    usuarioService.getUsuariosDestacadosPorVencer().subscribe((res:any)=>{
+      this.cantidadDestacadosPorVencer=res.length;
+    })
+    this.reporteDestacadoForm= new FormGroup({
+      'fechaDesde': new FormControl('',Validators.required),
+      'fechaHasta': new FormControl('',Validators.required)
+    })
+  }
 
-   }
-
-   
+  
 //ACA EMPIEZA EL GRAFICO DE DESTACADOS Y REGISTRADOS POR FECHA
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true
     
   };
-  public barChartLabels:string[] = ['Resultado'];
+  public barChartLabels:string[] = [];// ['Resultado'];
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
  
   public barChartData:any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Usuarios Registrados'},
-    {data: [28, 48, 40, 19, 26, 27, 20], label: 'Destacados'}
+    // {data: [65, 59, 80, 81, 56, 55, 40], label: 'Usuarios Registrados'},
+    // {data: [28, 48, 40, 19, 26, 27, 20], label: 'Destacados'}
   ];
  
   // events
@@ -40,7 +63,39 @@ export class DashboardComponent   {
   public chartHovered(e:any):void {
     console.log(e);
   }
- 
+  
+  generarGraficoBarras(){
+    //obtener fechas y generar reporte.
+    let fechaDesde=this.reporteDestacadoForm.controls['fechaDesde'].value;
+    let fechaHasta=this.reporteDestacadoForm.controls['fechaHasta'].value;
+    this.usuarioService.reporteUsuariosDestacadosYUsuariosRegistrados(new Date(fechaDesde),new Date(fechaHasta)).subscribe((reporteResponse:any)=>{
+      console.log("Reporte grafico: ",reporteResponse);
+      
+      if(reporteResponse.length > 0){
+        this.barChartLabels.push('Destacados');
+        this.barChartLabels.push('Registrados');
+        //Inicializar arreglo.
+        let initData={data: [0,0],label: 'Datos iniciando desde 0'};
+        this.barChartData.push(initData);
+        //Barra destacado
+        
+        let destacadoData= {data: [reporteResponse.destacados,0],label: 'Destacados'};
+        this.barChartData.push(destacadoData);
+
+        //Barra Registrado
+        
+        let registradoData= {data: [0,reporteResponse.registrados],label: 'Registrados'};
+        this.barChartData.push(registradoData);
+
+        this.showGraficoBarras=true;
+      }
+      else{
+
+      }
+      
+    })
+  } 
+
   public randomize():void {
     // Only Change 3 values
     let data = [
@@ -136,13 +191,6 @@ export class DashboardComponent   {
       $('#spinerDash').modal('hide');
     },1000);
   }
-
-
-
-
-
-
- 
 }
 
 
