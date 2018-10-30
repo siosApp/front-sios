@@ -15,19 +15,38 @@ export class AutenticacionService implements CanActivate {
   private usuarioTipo: string;
 
   constructor(private usuarioService:UsuarioService,private http:HttpClient, private router: Router) {
-    this.isUsuarioAdmin();
-   }
+    
+    // this.isUsuarioAdmin();
+    this.esAdministrador=false;
+  }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    this.isUsuarioAdmin();
-    if (this.esAdministrador) {
-      return true
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean {
+    // console.log("Entrando por autenticacion: ",this.esAdministrador);
+    
+    // //this.isUsuarioAdmin();
+    // console.log("Administrador: ",this.esAdministrador);
+    
+    // if (this.isUsuarioAdmin()) {
+    //   console.log("Administrador es true");
+      
+    //   return true;
 
-    } else {
-      this.router.navigate(['login']);
-      return false
-    }
-
+    // } else {
+    //   console.log("Administrador es false");
+    //   this.router.navigate(['login']);
+    //   return false;
+    // }
+    // console.log("Usuario administrador22: ",this.isUsuarioAdmin());
+    // this.isUsuarioAdmin();
+    // console.log("Usuario administrador22: ",this.isUsuarioAdmin());
+    // let id=localStorage.getItem("auth");
+    // this.usuarioService.getUsuarioById(id).subscribe((response:any)=> {
+    //   if(response.tipoUsuario === "Administrador"){
+    //     return true;
+    //   } 
+    //   return false;
+    // });
+    return true;
   }
 
   isUsuarioLogueado():boolean{
@@ -71,19 +90,7 @@ export class AutenticacionService implements CanActivate {
   }
   isUsuarioAdmin(){
     let id=localStorage.getItem("auth");
-    this.usuarioService.getUsuarioById(id).subscribe((response:Usuario)=>{
-      let tipoUsuario =response.tipoUsuario;
-      this.usuarioTipo = response.tipoUsuario;
-      if(tipoUsuario === "Administrador"){
-        this.esAdministrador = true;
-        return true;
-      }
-      else {
-        this.esAdministrador = false;
-        return false;
-      }
-    })
-
+    this.usuarioService.getUsuarioById(id).subscribe((response:any)=> response.tipoUsuario === "Administrador"? this.esAdministrador= true :this.esAdministrador =false);
   }
 
   enviarMail(email){

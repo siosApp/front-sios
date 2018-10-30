@@ -91,4 +91,20 @@ export class UsuarioService {
     let url=`${URL_API}/usuarioDestacado/usuariosPorVencerDestacado`
     return this.http.get(url);
   }
+  getUsuariosDestacados(){
+    let url=`${URL_API}/usuarioDestacado/verCantidadDestacados`
+    return this.http.put(url,null);
+  }
+  cantidadUsuariosRegistrados(){
+    let url=`${URL_API}/usuario/cantidadUsuariosRegistrados`;
+    return this.http.get(url);
+  }
+  cantidadUsuariosDestacados(){
+    let url=`${URL_API}/usuarioDestacado/cantidadUsuariosDestacados`;
+    return this.http.get(url);
+  }
+  getUsuariosDestacadosPorFecha(fechaDesde,fechaHasta){
+    let url= `${URL_API}/usuarioDestacado/verDestacadoByFechas?fechaDesde=${fechaDesde}&fechaHasta=${fechaHasta}`;
+    return this.http.get(url);
+  }
 }

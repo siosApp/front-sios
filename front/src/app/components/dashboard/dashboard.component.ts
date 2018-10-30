@@ -24,10 +24,11 @@ export class DashboardComponent   {
     usuarioService.cantidadUsuariosEnLinea().subscribe((cantidadRes:any)=>{
       this.cantidadUsuariosEnLinea=cantidadRes;
     })
-    usuarioService.cantidadUsuariosDestacadosYUsuariosRegistrados().subscribe((cantidadModel:any)=>{
-      console.log("Model: ",cantidadModel);
-      this.cantidadUsuariosDestacados=cantidadModel.destacados;
-      this.cantidadUsuariosRegistrados=cantidadModel.registrados;
+    usuarioService.cantidadUsuariosRegistrados().subscribe((cantidadModel:any)=>{
+      this.cantidadUsuariosRegistrados=cantidadModel;
+    })
+    usuarioService.cantidadUsuariosDestacados().subscribe((cantidadModel:any)=>{
+      this.cantidadUsuariosDestacados=cantidadModel;
     })
     usuarioService.getUsuariosDestacadosPorVencer().subscribe((res:any)=>{
       this.cantidadDestacadosPorVencer=res.length;
