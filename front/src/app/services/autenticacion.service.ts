@@ -31,6 +31,7 @@ export class AutenticacionService implements CanActivate {
       
     //   return true;
 
+
     // } else {
     //   console.log("Administrador es false");
     //   this.router.navigate(['login']);
