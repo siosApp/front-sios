@@ -19,6 +19,7 @@ export class CalificacionesComponent implements OnInit {
     let id=localStorage.getItem("auth");
     this.calificacionService.getCalificaciones(id).subscribe((res:any)=>{
       this.calificaciones=res;
+      console.log("Calificaciones: ",res);
       for(let item of this.calificaciones){
         if(item != null && item.datosUsuarios.length > 0){
           this.listaUsuariosQueCalificaron.push(item.datosUsuarios);

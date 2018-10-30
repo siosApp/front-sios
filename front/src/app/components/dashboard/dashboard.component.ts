@@ -69,9 +69,9 @@ export class DashboardComponent   {
     let fechaDesde=this.reporteDestacadoForm.controls['fechaDesde'].value;
     let fechaHasta=this.reporteDestacadoForm.controls['fechaHasta'].value;
     this.usuarioService.reporteUsuariosDestacadosYUsuariosRegistrados(new Date(fechaDesde),new Date(fechaHasta)).subscribe((reporteResponse:any)=>{
-      console.log("Reporte grafico: ",reporteResponse);
+      console.log("Reporte grafico2: ",reporteResponse);
       
-      if(reporteResponse.length > 0){
+      if(reporteResponse != null){
         this.barChartLabels.push('Destacados');
         this.barChartLabels.push('Registrados');
         //Inicializar arreglo.
@@ -88,6 +88,7 @@ export class DashboardComponent   {
         this.barChartData.push(registradoData);
 
         this.showGraficoBarras=true;
+        
       }
       else{
 
