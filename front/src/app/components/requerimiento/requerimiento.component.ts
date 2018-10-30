@@ -148,6 +148,11 @@ export class RequerimientoComponent{
     this.router.navigate(['/sios/home']);
   }
 
+
+  volverPerfil(){
+    $('#sa-warningt ').modal('hide');
+  }
+
   guardarRequerimiento(){
     let idUsuario = localStorage.getItem("auth"); 
     //Refactor sobre esto. Los componentes no tienen que acceder al localStorage. Solamente debería hacerlo servicio.

@@ -146,7 +146,7 @@ export class SolicitarTrabajoComponent {
           urlArchivos: this.files,
           usuarioDemandante: usuarioRes.username, 
           usuarioOferente: this.oferente.username,
-          nombreRubro: rubro
+          nombreRubro: this.oferente.usuarioRubros[0].rubro.nombreRubro
         }
         this.solicitudService.crearSolicitud(solicitud).subscribe((res:any)=>{
           $('#crearSolicitud').modal('hide');
