@@ -45,8 +45,10 @@ export class RubrosMasOfrecidosComponent {
         if(contador < 4){
           reporteResponse.push(item);
         }
+        contador++;
       }
-
+      console.log("Reporte: ", reporteResponse);
+      
       if(reporteResponse.length > 0){
         let data = new Array();
         let indice=0;
