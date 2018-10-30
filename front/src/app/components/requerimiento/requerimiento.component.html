@@ -160,7 +160,7 @@
             <div class="form-group">
                     <label class="control-label">Seleccione Archivo</label>
                     <p class="text-muted m-b-15 font-13">
-                            Puede subir un archivo para detallar mejor aún el requerimiento. 
+                            Puede subir un archivo para detallar mejor aún el requerimiento. Recuerde que solo podra subir archivos .pdf o .jpge y no podran superar los 5 Mb de tamaño.
                      </p>
                      <lib-ngx-notification></lib-ngx-notification>
 
@@ -232,9 +232,9 @@
             <div class="fix"></div>
         </div>
         <h2>Todo listo!</h2>
-        <p class="lead text-muted" style="display: block;">Desea publicar su requerimiento.</p>
+        <p class="lead text-muted" style="display: block;">Desea publicar su requerimiento?</p>
         <p>
-            <button class="cancel btn btn-lg btn-white btn-md waves-effect btn-default" tabindex="2">Cancel</button>
+            <button (click)="volverPerfil()" class="cancel btn btn-lg btn-white btn-md waves-effect btn-default" tabindex="2">Cancel</button>
             <button (click)="guardarRequerimiento()" class="confirm btn btn-lg btn-primary" tabindex="1" style="display: inline-block;">OK</button>
         </p>
     </div>

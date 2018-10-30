@@ -17,14 +17,15 @@
                                     <ul class="dropdown-menu dropdown-menu-lg">
                                         <li class="notifi-title"><span class="label label-default pull-right">Pendientes {{cantidadNotificacionesSolicitudes}}</span>Notificaciones</li>
                                         <li class="list-group slimscroll-noti notification-list">
-                                            <div *ngIf="cantidadNotificacionesSolicitudes > 0">
+                                            <div >
+                                                    <!-- *ngIf="cantidadNotificacionesSolicitudes > 0" -->
                                                 <a [routerLink]="['verSolicitud']" class="list-group-item">
                                                     <div class="media">
                                                         <div class="pull-left p-r-10">
                                                             <em class="fa fa-diamond noti-primary"></em>
                                                         </div>
                                                         <div class="media-body">
-                                                            <h5 class="media-heading">Tienes nuevas solicitudes</h5>
+                                                            <h5 class="media-heading">Solicitudes Recibidas</h5>
                                                             <p class="m-0">
                                                                 <small>Consultalas desde aqui!</small>
                                                             </p>
@@ -32,7 +33,7 @@
                                                     </div>
                                                 </a>
                                             </div>
-                                            <div *ngIf="cantidadNotificacionesSolicitudes === 0">
+                                            <!-- <div *ngIf="cantidadNotificacionesSolicitudes === 0">
                                                 <a class="list-group-item">
                                                 <div class="media">
                                                     <div class="pull-left p-r-10">
@@ -43,7 +44,7 @@
                                                     </div>
                                                 </div>
                                                 </a>
-                                            </div>
+                                            </div> -->
                                     </ul>
                                 </li>
 
@@ -67,7 +68,7 @@
                                              </div>
                                           </div>
                                        </a>
-                                       <a [routerLink]="['mis-solicitudes']" class="list-group-item">
+                                       <a (click)="spinerMisSolicitudes()" style="cursor: pointer;" class="list-group-item">
                                         <div class="media">
                                            <div class="pull-left p-r-10">
                                               <em class="fa fa fa-wpforms noti-primary"></em>

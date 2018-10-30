@@ -166,11 +166,16 @@ export class NavbarComponent {
     setTimeout(()=>{ 
       this.router.navigate(['/sios/rubros-mas-ofrecidos']);
       $('#spiner').modal('hide');
-    },1000);
+    },500);
   }
 
-
-
+  spinerMisSolicitudes(){
+    $('#spiner').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/mis-solicitudes']);
+      $('#spiner').modal('hide');
+    },1000);
+  }
 
   abrirModal(){
     $("#danger-alert").modal("show");
