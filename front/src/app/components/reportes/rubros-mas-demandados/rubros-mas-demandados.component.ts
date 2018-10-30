@@ -37,7 +37,15 @@ export class RubrosMasDemandadosComponent   {
     //obtener fechas y generar reporte.
     let fechaDesde=this.reporteForm.controls['fechaDesde'].value;
     let fechaHasta=this.reporteForm.controls['fechaHasta'].value;
-    this.rubroService.getRubrosMasDemandados(fechaDesde,fechaHasta).subscribe((reporteResponse:any)=>{
+    this.rubroService.getRubrosMasDemandados(fechaDesde,fechaHasta).subscribe((response:any)=>{
+      let contador =0;
+      let reporteResponse= new Array();
+      for(let item of response){
+        if(contador < 4){
+          reporteResponse.push(item);
+        }
+      }
+
       if(reporteResponse.length > 0){
         let data = new Array();
         let indice=0;
