@@ -1,165 +1,65 @@
-      <!-- Page-Title -->
-      <div class="row">
-          <div class="col-sm-12">
-             
-              <h4 class="page-title">Trabajos Realizados</h4>
-              <ol class="breadcrumb">
-                  <li>
-                      <a href="#">Home</a>
-                  </li>
-                  
-                  <li class="active">
-                      Trabajos Realizados
-                  </li>
-              </ol>
-          </div>
-      </div>
-
-
-
-      <div class="card-box m-b-10">
-        <div class="table-box opport-box">
+<!-- Page-Title -->
+<div class="row">
+    <div class="col-sm-12">
+        
+        <h4 class="page-title">Trabajos Realizados</h4>
+        <ol class="breadcrumb">
+            <li>
+                <a [routerLink]="['/sios/home']">Home</a>
+            </li>
             
-
-            <div class="table-detail">
-                <div class="member-info">
-                    <h4 class="m-t-0"><b><li>Pagina Web para empresa</li>  </b></h4>
-                    <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted">Desarrollador AngularJS Ssr</span></p>
-                </div>
+            <li class="active">
+                Trabajos Realizados
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="card-box m-b-10" *ngFor="let trabajo of trabajos">
+    <div class="table-box opport-box">
+        <div class="table-detail">
+            <div class="member-info">
+                <h4 class="m-t-0"><b><li>{{trabajo.descripcion}}</li>  </b></h4>
+                <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted">{{trabajo.nombreRubro}}</span></p>
             </div>
+        </div>
+        <div class="table-detail">
+            <p class="text-dark m-b-5"><b>Email: </b> <span class="text-muted"> {{trabajo.mailDemandante}}</span></p>
+        </div>
+<!-- 
+        <div class="table-detail lable-detail">
+            <span class="label label-danger">TERMINADO</span>
+        </div> -->
 
-            <div class="table-detail">
-                <p class="text-dark m-b-5"><b>Email: </b> <span class="text-muted"> joseperez@gmail.com</span></p>
-            </div>
-
-            <div class="table-detail lable-detail">
-                <span class="label label-danger">TERMINADO</span>
-            </div>
-
-            <div class="table-detail table-actions-bar">
-                <a (click)="abrirComentario()" class="table-action-btn"><i class="md md-assignment" title="Ver Comentario"></i></a>
+        <div class="table-detail table-actions-bar" *ngIf="trabajo.comentarios.length > 0">
+            <a (click)="abrirComentario(trabajo.comentarios)" class="table-action-btn"><i class="md md-assignment" title="Ver Comentario"></i></a>
+        </div>
+    </div>
+</div>
+<div class="card-box m-b-10" *ngIf="!showReporte">
+    <div class="table-box opport-box">
+        <div class="table-detail">
+            <div class="member-info">
+                <h4 class="m-t-0"><b>No tienes trabajos realizados.</b></h4>
             </div>
         </div>
     </div>
-    <div class="card-box m-b-10">
-        <div class="table-box opport-box">
-            
-
-            <div class="table-detail">
-                <div class="member-info">
-                    <h4 class="m-t-0"><b><li>Desarroll de una App para pagos</li>  </b></h4>
-                    <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted">Desarrollador AngularJS Ssr</span></p>
-                </div>
-            </div>
-
-            <div class="table-detail">
-                <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted"> armando.j123@gmail.com</span></p>
-            </div>
-
-            <div class="table-detail lable-detail">
-                <span class="label label-danger">TERMINADO</span>
-            </div>
-
-            <div class="table-detail table-actions-bar">
-                <a (click)="abrirComentario()" class="table-action-btn"><i class="md md-assignment" title="Ver Comentario"></i></a>
-            </div>
+</div>
+<!-- Modal Comentario -->
+<div id="modalComentario" style="display: none;">
+    <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
+        <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
         </div>
-    </div>
-    <div class="card-box m-b-10">
-        <div class="table-box opport-box">
-            
-
-            <div class="table-detail">
-                <div class="member-info">
-                    <h4 class="m-t-0"><b><li>Desarrollar una aplicacion para mandar mails a usuarios</li>  </b></h4>
-                    <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted">Desarrollador AngularJS Ssr</span></p>
-                </div>
-            </div>
-
-            <div class="table-detail">
-                <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted"> marcos.345@gmail.com</span></p>
-            </div>
-
-            <div class="table-detail lable-detail">
-                <span class="label label-danger">TERMINADO</span>
-            </div>
-
-            <div class="table-detail table-actions-bar">
-                <a (click)="abrirComentario()" class="table-action-btn"><i class="md md-assignment" title="Ver Comentario"></i></a>
-            </div>
+        <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
         </div>
+        <div class="icon custom" style="display: none;"></div>
+        <h2>Comentario sobre tu trabajo</h2>
+        <p class="lead text-muted" style="display: block;">{{comentario}}</p>
+        <p>
+            <button (click)="cerrarModalComentario()" type="button" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
+        </p>
     </div>
-    <div class="card-box m-b-10">
-        <div class="table-box opport-box">
-            
-
-            <div class="table-detail">
-                <div class="member-info">
-                    <h4 class="m-t-0"><b><li>Aplicacion para control de stock</li>  </b></h4>
-                    <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted">Desarrollador AngularJS Ssr</span></p>
-                </div>
-            </div>
-
-            <div class="table-detail">
-                <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted"> marisa.eq98@gmail.com</span></p>
-            </div>
-
-            <div class="table-detail lable-detail">
-                <span class="label label-danger">TERMINADO</span>
-            </div>
-
-            <div class="table-detail table-actions-bar">
-                <a (click)="abrirComentario()" class="table-action-btn"><i class="md md-assignment" title="Ver Comentario"></i></a>
-            </div>
-        </div>
-    </div>
-    <div class="card-box m-b-10">
-        <div class="table-box opport-box">
-            
-
-            <div class="table-detail">
-                <div class="member-info">
-                    <h4 class="m-t-0"><b><li>Pagina Web para empresa</li>  </b></h4>
-                    <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted">Desarrollador AngularJS Ssr</span></p>
-                </div>
-            </div>
-
-            <div class="table-detail">
-                <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted"> estebanlert@gmail.com</span></p>
-            </div>
-
-            <div class="table-detail lable-detail">
-                <span class="label label-danger">TERMINADO</span>
-            </div>
-
-            <div class="table-detail table-actions-bar">
-                <a (click)="abrirComentario()" class="table-action-btn"><i class="md md-assignment" title="Ver Comentario"></i></a>
-            </div>
-        </div>
-    </div>
-
-    
-
-
-
-
-   
-      <div id="sa-warningt" style="display: none;">
-          <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
-              <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
-              </div>
-              <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
-              <div class="icon info" style="display: none;"></div>
-              <div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
-                  <div class="placeholder"></div>
-                  <div class="fix"></div>
-              </div>
-              <div class="icon custom" style="display: none;"></div>
-              <h2>Comentario sobre tu trabajo</h2>
-              <p class="lead text-muted" style="display: block;">Gracias, muy bueno tu trabajo. 100% recomendable.</p>
-              <p>
-                  
-                  <button (click)="volver()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
-              </p>
-          </div>
-      </div>
+</div>
