@@ -43,9 +43,9 @@
     </div>
     <div class="col-lg-4">
         <div class="card-box">
-            <h4 class="font-bold m-t-0 m-b-20 text-dark">Solicitudes</h4>
+            <h4 class="font-bold m-t-0 m-b-20 text-primary text-center">SOLICITUDES PENDIENTES</h4>
             <div >
-                <span>Tienes {{cantidadSolicitudesPendientes}} solicitudes pendientes</span>
+                <span>Tienes <b class="text-danger">{{cantidadSolicitudesPendientes}}</b> solicitudes creadas para usted. Por favor verifique la lista de solictudes y gestione las que tiene en estado "CREADA".</span>
             </div>
         </div>
     </div>
@@ -125,7 +125,7 @@
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="form-group">
-                                    <label for="field-1" class="control-label">Descripcion:</label>
+                                    <label for="field-1" class="control-label">Descripcion: </label>
                                     <label ><span>{{solicitudSeleccionada?.descripcion}}</span> </label>
                                 </div>
                             </div>
