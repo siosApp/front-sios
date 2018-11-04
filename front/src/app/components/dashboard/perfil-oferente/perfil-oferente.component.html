@@ -14,19 +14,19 @@
               <div class="card-box p-b-0">
                 <a href="javascript:;" class="center-block text-center text-dark">
                   <img src="../../../../assets/images/avatar-1.jpg" class="thumb-lg img-thumbnail img-circle" alt="">
-                  <div class="h5 m-b-0"><strong> Leonardo Sebastian Ruiz</strong></div>
+                  <div class="h5 m-b-0"><strong> {{usuario?.nombre}} {{usuario?.apellido}}</strong></div>
                 </a>
                 <div class="bg-custom pull-in-card p-20 widget-box-two m-b-0 m-t-30 list-inline text-center row">
-                  <div class="col-xs-4">
-                    <h4 class="text-white m-0 font-600">AngularJS Ssr</h4>
+                  <div class="col-xs-4" *ngIf="usuario != null && usuario.usuarioRubros.length > 0">
+                    <h4 class="text-white m-0 font-600">{{usuario?.usuarioRubros[0].rubro.nombreRubro}}</h4>
                     <p class="text-white m-b-0"></p>
                   </div>
                   <div class="col-xs-4">
                     <h4 class="text-white m-0 font-600">Estrellas</h4>
-                    <p class="text-white m-b-0">4/5</p>
+                    <p class="text-white m-b-0">CALCULAR PROMEDIO CALIFICACIONES</p>
                   </div>
                   <div class="col-xs-4">
-                    <h4 class="text-white m-0 font-600">seba.lruiz@gmail.com</h4>
+                    <h4 class="text-white m-0 font-600">{{usuario?.mail}}</h4>
                     <p class="text-white m-b-0"></p>
                   </div>
                 </div>
@@ -36,7 +36,7 @@
         </div>
 
       </div>
-      <div class="col-sm-12">
+      <div class="col-sm-12" *ngIf="showTabla">
         <div class="card-box">
           <h4 class="m-t-0 header-title"><b>Certificados</b></h4>
           <p class="text-muted m-b-30 font-13">
@@ -58,21 +58,17 @@
                 <td><span class="btn btn-xs btn-success">Ver</span></td>
                 <td><span class="btn btn-xs btn-danger">Ver</span></td>
               </tr>
-              <tr>
-                <td>Ingeniero En Sistemas</td>
-                <td>Sistemas</td>
-                <td><span class="btn btn-xs btn-success">Ver</span></td>
-                <td><span class="btn btn-xs btn-danger">Ver</span></td>
-              </tr>
-              <tr>
-                <td>Curso Udemy</td>
-                <td>Sistema</td>
-                <td><span class="btn btn-xs btn-success">Ver</span></td>
-                <td><span class="btn btn-xs btn-danger">Ver</span></td>
-              </tr>
             </tbody>
           </table>
         </div>
       </div>
+      <div class="col-sm-12" *ngIf="!showTabla">
+          <div class="card-box">
+            <h4 class="m-t-0 header-title"><b></b></h4>
+            <p class="text-muted m-b-30 font-13">
+              No tiene certificados o experiencias adjuntas por el momento.
+            </p>
+          </div>
+        </div>
     </div>
   </div>

@@ -107,4 +107,8 @@ export class UsuarioService {
     let url= `${URL_API}/usuarioDestacado/verDestacadoByFechas?fechaDesde=${fechaDesde}&fechaHasta=${fechaHasta}`;
     return this.http.get(url);
   }
+  getUsuariosEnLinea(){
+    let url=`${URL_API}/usuario/usuariosEnLinea`;
+    return this.http.get(url);
+  }
 }
