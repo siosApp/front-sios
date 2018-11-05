@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SolicitarTrabajoService } from '../../../services/solicitar-trabajo.service';
 declare var $: any; 
 @Component({
   selector: 'app-trabajos-realizados',
@@ -7,15 +8,31 @@ declare var $: any;
 })
 export class TrabajosRealizadosComponent {
 
-  constructor() { }
+  trabajos:any[]=[]
+  comentario:any;
+  showReporte:boolean;
 
- 
-  abrirComentario(){
-    $('#sa-warningt').modal('show');
+  constructor(private solicitarTrabajoService:SolicitarTrabajoService) {
+    this.showReporte=false;
+    let id=localStorage.getItem("auth");
+    solicitarTrabajoService.getTrabajosRealizados(id).subscribe((res:any)=>{
+      console.log("Trabajos realizados: ",res);
+      if(res.length > 0){
+        this.showReporte=true;
+        this.trabajos=res;
+      }
+    })  
   }
 
-  volver(){
-    $('#sa-warningt').modal('hide');
+ 
+  abrirComentario(comentarios){
+    this.comentario=comentarios[0];
+    $('#modalComentario').modal('show');
+  }
+
+  cerrarModalComentario(){
+    this.comentario=null;
+    $('#modalComentario').modal('hide');
   }
 
 }

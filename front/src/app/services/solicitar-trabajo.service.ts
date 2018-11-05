@@ -49,4 +49,8 @@ export class SolicitarTrabajoService {
     let url=`${URL_API}/solicitud/cantidadSolicitudesComoOferenteSinCalificar?id=${id}`;
     return this.http.get(url);
   }
+  getTrabajosRealizados(id){
+    let url=`${URL_API}/solicitud/trabajosOferente?idUsuario=${id}`;
+    return this.http.get(url);
+  }
 }
