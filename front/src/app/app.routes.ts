@@ -72,7 +72,7 @@ const rutas_hijas: Routes =[
     { path: 'usuarios-en-linea', component: UsuariosEnLineaComponent },
     { path: 'usuarios-registrados', component: UsuariosRegistradosComponent },
     { path: 'usuarios-por-vencer', component: UsuariosPorVencerComponent },
-    { path: 'perfil-oferente', component: PerfilOferenteComponent },
+    { path: 'perfil-oferente/:id', component: PerfilOferenteComponent },
     { path: 'mis-requerimientos', component: MisRequerimientosComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
