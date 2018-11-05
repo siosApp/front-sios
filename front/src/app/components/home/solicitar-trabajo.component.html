@@ -36,30 +36,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Seleccione el rubro que vincula su solicitud de trabajo.</h3>
-                        <p> Primero seleccione el tipo del rubro para poder ver las opciones de rubro.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="col-md-3 control-label" for="state-success">Tipo Rubro</label>
-                        <div class="col-md-8">
-                            <select name="tipoRubro" formControlName="tipoRubro" class="form-control" (change)="getRubrosByTipoRubro()">
-                                <option selected="selected">Seleccione</option>
-                                <option *ngFor="let tipo of tiposRubros" [ngValue]="tipo.nombreTipoRubro">{{tipo.nombreTipoRubro}} </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6" *ngIf="showRubros">
-                        <label class="col-md-4 control-label" for="state-success">Rubro</label>
-                        <div class="col-md-8">
-                            <select name="rubro" formControlName="rubro" class="form-control">
-                                <option selected="selected">Seleccione</option>
-                                <option *ngFor="let rubro of rubros" [ngValue]="rubro.nombreRubro">{{rubro.nombreRubro}}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div> -->
+                
                 <br>
                 <div class="col-sm-2 col-lg-12 col-md-2">
                     <div class="panel panel-border panel-warning">
@@ -81,7 +58,7 @@
                         </div>
                         <div class="panel-body">
                             <p>
-                                De manera opcional puede seleccionar un archivo para ampliar el detalle de su solicitud y asi ofrecerle mas imformacion a {{oferente?.nombre}}
+                                De manera opcional puede seleccionar un archivo para ampliar el detalle de su solicitud y asi ofrecerle mas imformacion a {{oferente?.nombre}}. Solo se permiten archivos .pdf y .jpg.
                             </p>
                             <div class="m-t-20">
                                 <input  type="file" class="filestyle" formControlName="archivoUno" name="archivoUno"  data-icon="false" data-buttonname="btn-white" (change)="addFile($event,0)">
@@ -124,3 +101,39 @@
         </p>
     </div>
 </div>
+
+
+
+<div id="spinerSolicitarTrabajo" class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="mySmallModalLabel">Solicitando trabajo...</h4>
+            </div>
+            <div class="modal-body text-center">
+                <span class="fa fa-spin fa-refresh fa-5x"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="solicitud-completa" style="display: none;">
+    <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
+        <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
+        </div>
+        <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
+        </div>
+        <div class="icon custom" style="display: none;"></div>
+        <h2>Éxito!</h2>
+        <p class="lead text-muted" style="display: block;">Se envio una solicitud de trabajo para {{oferente?.nombre}} {{oferente?.apellido}}. Consulte el estado de la solicitud en "Mis solicitudes".</p>
+        <p>
+            <button (click)="terminar()" class="confirm btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Ok</button>
+        </p>
+    </div>
+</div> 
+

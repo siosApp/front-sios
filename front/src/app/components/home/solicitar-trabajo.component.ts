@@ -128,6 +128,8 @@ export class SolicitarTrabajoComponent {
   }
 
   guardarSolicitud(){
+    $('#spinerSolicitarTrabajo').modal('show');
+    $('#crearSolicitud').modal('hide');
     let idLogueado= localStorage.getItem("auth");
     let descripcion= this.solicitudForm.controls['descripcion'].value;
     let rubro=this.solicitudForm.controls['rubro'].value;
@@ -136,7 +138,10 @@ export class SolicitarTrabajoComponent {
       let idArchivo=this.subirArchivo(this.file);
       this.files.push(idArchivo);
     }
+
+   
     setTimeout(()=>{
+      
       this.usuarioService.getUsuarioById(idLogueado).subscribe((usuarioRes:any)=>{
         let solicitud ={
           id:null,
@@ -149,12 +154,23 @@ export class SolicitarTrabajoComponent {
           nombreRubro: this.oferente.usuarioRubros[0].rubro.nombreRubro
         }
         this.solicitudService.crearSolicitud(solicitud).subscribe((res:any)=>{
-          $('#crearSolicitud').modal('hide');
-          this.location.back();
+          
+          $('#spinerSolicitarTrabajo').modal('hide');
+
+          
+            $('#solicitud-completa').modal('show');
+          
+          
+
+          //this.location.back();
         })
       })
     },4000);
     
+  }
+  terminar(){
+    $('#solicitud-completa').modal('hide');
+    this.location.back();
   }
   subirArchivo(archivo){
     //Tener en cuenta que las imagenes que sean de perfil conviene guardarlas en una carpeta 'perfil'
