@@ -18,9 +18,9 @@
 <div class="col-md-12">
         <div class="panel panel-danger panel-border">
             <div class="panel-heading">
-                <h3 class="panel-title">Publicacion</h3>
+                <h3 class="panel-title">Publicación</h3>
                 <p class="text-muted m-b-30 font-13">
-                        <b class="text-mutted">{{nombreDemandante}}</b> realizó un pedido de requerimiento que se detalla a continuacion. Mas abajo podrás ofertar a esta publicación. Recuerda que tu oferta es anonima,
+                        <b class="text-mutted">{{nombreDemandante}}</b> realizó un pedido de requerimiento que se detalla a continuación. Más abajo podrás ofertar a esta publicación. Recuerda que tu oferta es anónima,
                         solo la puede ver el usuario que publico la oferta.
                 </p>
             </div>
@@ -33,7 +33,7 @@
         <div class="col-lg-4">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Descripcion</h3>
+                        <h3 class="panel-title">Descripción</h3>
                     </div>
                     <div class="panel-body">
                         <p>
@@ -45,13 +45,13 @@
             <div class="col-lg-4">
                 <div class="panel panel-color panel-custom">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Tiempo de terminacion</h3>
+                        <h3 class="panel-title">Tiempo de terminación</h3>
                     </div>
                     <div class="panel-body">
                         <p>
                             <b>{{nombreDemandante}}</b> necesita que realices el trabajo en no menos de <b>{{requerimiento?.tiempoEstimado}}
-                                dias.</b> Si consideras que puedes hacerlo en menos tiempo realiza una mejor oferta en el
-                            detalle de tu descripcion.
+                                días.</b> Si consideras que puedes hacerlo en menos tiempo realiza una mejor oferta en el
+                            detalle de tu descripción.
                         </p>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="panel-body">
                         <p *ngIf="mostrarAdjunto">
-                            Aqui encontraras si <b>{{nombreDemandante}}</b> a adjuntado algun archivo con mas detalles de su
+                            Aquí encontrarás si <b>{{nombreDemandante}}</b> a adjuntado algun archivo con más detalles de su
                             requerimiento:
                             <br>
                             <li><a (click)="visualizarArchivo(requerimiento.urlArchivos[0])" style="cursor: pointer;">Ver
@@ -92,97 +92,13 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-<!-- 
-<div class="col-sm-12">
-    <h4 class="page-header">
-        <li><a>{{nombreDemandante}}</a> realizó un pedido de requerimiento que se detalla a continuacion</li>
-    </h4>
-</div> -->
-
-
-    <!-- <div class="col-lg-4">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <h3 class="panel-title">Descripcion</h3>
-            </div>
-            <div class="panel-body">
-                <p>
-                    <b>{{requerimiento?.descripcion}}</b>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="panel panel-color panel-custom">
-            <div class="panel-heading">
-                <h3 class="panel-title">Tiempo de terminacion</h3>
-            </div>
-            <div class="panel-body">
-                <p>
-                    <b>{{nombreDemandante}}</b> necesita que realices el trabajo en no menos de <b>{{requerimiento?.tiempoEstimado}}
-                        dias.</b> Si consideras que puedes hacerlo en menos tiempo realiza una mejor oferta en el
-                    detalle de tu descripcion.
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="panel panel-color panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Dinero</h3>
-            </div>
-            <div class="panel-body">
-                <p>
-                    <b>{{nombreDemandante}}</b> esta dispuesto a pagarte $ <b>{{requerimiento?.precioApagar}}</b> por
-                    el trabajo terminado. Si consideras que es poco o mucho debes detallarlo en tu descripcion asi el
-                    usuario puede mejorar su eleccion.
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="panel panel-color panel-danger">
-            <div class="panel-heading">
-                <h3 class="panel-title">Archivo Adjunto</h3>
-            </div>
-            <div class="panel-body">
-                <p *ngIf="mostrarAdjunto">
-                    Aqui encontraras si <b>{{nombreDemandante}}</b> a adjuntado algun archivo con mas detalles de su
-                    requerimiento:
-                    <br>
-                    <li><a (click)="visualizarArchivo(requerimiento.urlArchivos[0])" style="cursor: pointer;">Ver
-                            Archivo</a></li>
-                </p>
-                <p *ngIf="!mostrarAdjunto">
-                    <b>{{nombreDemandante}}</b> no ha adjuntado ningún archivo.
-                </p>
-            </div>
-        </div>
-    </div> -->
-
-
-
-
-
-
-
-
     <div class="col-md-12">
         <div class="panel panel-purple panel-border">
             <div class="panel-heading">
                 <h3 class="panel-title">Realiza tu oferta</h3>
                 <p class="text-muted m-b-30 font-13">
-                    Aquí puedes realizar una oferta al usuario que publicó el requerimiento. El el campo descripción
-                    asegurate de detallar muy bien
+                    Aquí puedes realizar una oferta al usuario que publicó el requerimiento. En el campo descripción
+                    asegúrate de detallar muy bien
                     tu oferta para que el usuario pueda elegirte para el trabajo.
                 </p>
             </div>
@@ -200,7 +116,7 @@
                             <input type="number" class="form-control" placeholder="0" formControlName="precio" name="precio"
                                 required="required">
                         </div>
-                        <label class="col-md-10 control-label">Tiempo de oferta en dias</label>
+                        <label class="col-md-10 control-label">Tiempo de oferta en días</label>
                         <div class="col-md-4 control-label">
 
                             <input type="number" class="form-control " style="widows: 20px;" placeholder="30"
@@ -218,48 +134,6 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <div class="col-lg-12">
-        <form [formGroup]="requerimientoForm" (ngSubmit)="openAlert()">
-            <span class="input-icon icon-right">
-                <textarea rows="2" class="form-control" formControlName="descripcion" name="descripcion"
-                          placeholder="Descripcion de tu oferta"></textarea>
-            </span>
-            <br>
-                    <label class="col-md-10 control-label">Precio de oferta</label>
-                    
-                    <div class="col-md-4 control-label">
-                            <input type="number"  class="form-control" placeholder="0" formControlName="precio" name="precio">
-                    </div>
-                    <label class="col-md-10 control-label" >Tiempo de oferta en dias</label>
-                    <div class="col-md-4 control-label">
-                    
-                    <input type="number" class="form-control " style="widows: 20px;" placeholder="30" formControlName="tiempoEstimado" name="tiempoEstimado">
-                </div>
-                    
-            <div class="p-t-10 pull-right">
-                <button type="submit" class="btn btn-sm btn-primary waves-effect waves-light">Enviar</button>
-            </div>
-            <ul class="nav nav-pills profile-pills m-t-10">
-            </ul>
-        </form>
-    </div> -->
-
 <div id="sa-warningt" style="display: none;">
     <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-allow-ouside-click="false" data-timer="null"
         style="display: block; margin-top: -189px;">
@@ -273,7 +147,7 @@
             <div class="fix"></div>
         </div>
         <div class="icon custom" style="display: none;"></div>
-        <h2>Buen Trabajo!</h2>
+        <h2>¡Buen Trabajo!</h2>
         <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
         <p>
             <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2"
