@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, NgZone, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Usuario } from '../../models/usuario';
 import { UsuarioService } from '../../services/usuario.service';
@@ -18,9 +18,31 @@ import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgxNotificationService } from 'ngx-notification';
+import { MapsAPILoader, AgmMap } from '@agm/core';
+import { GoogleMapsAPIWrapper } from '@agm/core/services';
 
-
+declare var google: any;
 declare var $:any;
+
+interface Marker {
+  lat: number;
+  lng: number;
+  label?: string;
+  draggable: boolean;
+}
+
+interface Location {
+  lat: number;
+  lng: number;
+  viewport?: Object;
+  zoom: number;
+  address_level_1?:string;
+  address_level_2?: string;
+  address_country?: string;
+  address_zip?: string;
+  address_state?: string;
+  marker?: Marker;
+}
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -28,8 +50,23 @@ declare var $:any;
 })
 
 
-export class PerfilComponent {
-  
+export class PerfilComponent implements OnInit {
+  ngOnInit(): void {
+    this.location.marker.draggable = true;
+  }
+  geocoder:any;
+  public location:Location = {
+    lat: 51.678418,
+    lng: 7.809007,
+    marker: {
+      lat: 51.678418,
+      lng: 7.809007,
+      draggable: true
+    },
+    zoom: 5
+  };
+
+  @ViewChild(AgmMap) map: AgmMap;
   usuarioAEditar:Usuario;
   provincias:Provincia[];
   form:FormGroup;
@@ -50,7 +87,8 @@ export class PerfilComponent {
               private provinciaService:ProvinciaService,
               private departamentoService:DepartamentoService,
               private localidadService:LocalidadService,private afStorage: AngularFireStorage,
-              private afs: AngularFirestore, private ngxNotificationService: NgxNotificationService) {
+              private afs: AngularFirestore, private ngxNotificationService: NgxNotificationService,
+              public mapsApiLoader: MapsAPILoader, private zone: NgZone, private wrapper: GoogleMapsAPIWrapper) {
       this.id=localStorage.getItem("auth");
       this.imagenesCollections=this.afs.collection<Imagen>('perfil'); 
       this.imagenUrl='assets/images/noimage.png';              
@@ -95,6 +133,12 @@ export class PerfilComponent {
     });
     provinciaService.getProvinciasVigentes().subscribe((response:any)=>{
       this.provincias=response;
+    });
+    this.mapsApiLoader = mapsApiLoader;
+    this.zone = zone;
+    this.wrapper = wrapper;
+    this.mapsApiLoader.load().then(() => {
+      this.geocoder = new google.maps.Geocoder();
     });
   }
   cargarImagen(user){
