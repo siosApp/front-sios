@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+/// <reference types="@types/googlemaps" />
+
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Usuario } from '../../models/usuario';
 import { UsuarioService } from '../../services/usuario.service';
@@ -17,6 +19,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+
 import { NgxNotificationService } from 'ngx-notification';
 
 
@@ -30,6 +33,9 @@ declare var $:any;
 
 export class PerfilComponent {
   
+ 
+
+
   usuarioAEditar:Usuario;
   provincias:Provincia[];
   form:FormGroup;
@@ -46,6 +52,7 @@ export class PerfilComponent {
   imagenUrl:string;
   eventImage:any;
   id:string;
+  
   constructor(private service:UsuarioService, private fb:FormBuilder,private router:Router,
               private provinciaService:ProvinciaService,
               private departamentoService:DepartamentoService,
@@ -97,6 +104,7 @@ export class PerfilComponent {
       this.provincias=response;
     });
   }
+
   cargarImagen(user){
     if(user.imagen !=null && user.imagen !== ""){
       //Buscar en Firebase
@@ -383,5 +391,7 @@ export class PerfilComponent {
 
 
 }
+
+
 
 export interface Imagen { id:string;imagePath:string;imageURL:string,imageName:string}
