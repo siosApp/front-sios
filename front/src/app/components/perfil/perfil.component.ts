@@ -144,8 +144,10 @@ export class PerfilComponent implements OnInit {
 
   updateOnMap() {
     console.log("provincia", '"' + this.form.controls['provincia'].value + '"')
-    let full_address:string = this.location.address_level_1 || ""
-    if (this.location.address_level_2) full_address = full_address + " " + this.location.address_level_2
+    let full_address:string = ""
+    // if (this.location.address_level_2) full_address = full_address + " " + this.location.address_level_2
+    if (this.domicilioForm.controls['domicilioCalle'].value) full_address = full_address + " " + this.domicilioForm.controls['domicilioCalle'].value
+    if (this.domicilioForm.controls['domicilioNumero'].value) full_address = full_address + " " + this.domicilioForm.controls['domicilioNumero'].value
     if (this.form.controls['localidad'].value) full_address = full_address + " " + this.form.controls['localidad'].value
     if (this.form.controls['departamento'].value) full_address = full_address + " " + this.form.controls['departamento'].value
     if (this.form.controls['provincia'].value) full_address = full_address + " " + this.form.controls['provincia'].value
