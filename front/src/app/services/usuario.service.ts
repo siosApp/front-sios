@@ -111,4 +111,9 @@ export class UsuarioService {
     let url=`${URL_API}/usuario/usuariosEnLinea`;
     return this.http.get(url);
   }
+  getUsuariosRegistrados(sexo,edadDesde,edadHasta,provincia,departamento,localidad,tipoRubro,rubro){
+    let url=`${URL_API}/usuario/listUsuariosRegistrados?sexo=${sexo}&edadDesde=${edadDesde}&edadHasta=${edadHasta}&provincia=${provincia}&departamento=${departamento}`;
+    url+=`&localidad=${localidad}&tipoRubro=${tipoRubro}&rubro=${rubro}`;
+    return this.http.get(url);
+  }
 }
