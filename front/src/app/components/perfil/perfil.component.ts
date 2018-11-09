@@ -145,9 +145,10 @@ export class PerfilComponent implements OnInit {
   updateOnMap() {
     console.log("provincia", '"' + this.form.controls['provincia'].value + '"')
     let full_address:string = this.location.address_level_1 || ""
-    if (this.form.controls['provincia'].value) full_address = full_address + " " + this.form.controls['provincia'].value
-    if (this.form.controls['departamento'].value) full_address = full_address + " " + this.form.controls['departamento'].value
+    if (this.location.address_level_2) full_address = full_address + " " + this.location.address_level_2
     if (this.form.controls['localidad'].value) full_address = full_address + " " + this.form.controls['localidad'].value
+    if (this.form.controls['departamento'].value) full_address = full_address + " " + this.form.controls['departamento'].value
+    if (this.form.controls['provincia'].value) full_address = full_address + " " + this.form.controls['provincia'].value
  
     this.findLocation(full_address);
   }
@@ -180,12 +181,16 @@ export class PerfilComponent implements OnInit {
         }
  
         if (results[0].geometry.location) {
+          console.log("latitud", this.location.lat)
+          console.log("longitud", this.location.lng)
           this.location.lat = results[0].geometry.location.lat();
           this.location.lng = results[0].geometry.location.lng();
           this.location.marker.lat = results[0].geometry.location.lat();
           this.location.marker.lng = results[0].geometry.location.lng();
           this.location.marker.draggable = true;
           this.location.viewport = results[0].geometry.viewport;
+          console.log("latitud", this.location.lat)
+          console.log("longitud", this.location.lng)
         }
         
         this.map.triggerResize()
@@ -449,9 +454,9 @@ export class PerfilComponent implements OnInit {
     // si alguno de estos tres campos es distinto de null se ejecuta el metodo
     this.localidadService.getLocalidadesByNombreAndProvinciaAndDepartamento(localidad,provincia,departamento).subscribe((localidadRes:Localidad)=>{
       if (this.usuarioAEditar.domicilio!=null){
-        domicilio = new Domicilio(this.usuarioAEditar.domicilio.id, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,null,null,localidadRes.id);
+        domicilio = new Domicilio(this.usuarioAEditar.domicilio.id, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,this.location.lat,this.location.lng,localidadRes.id);
       }else{
-        domicilio = new Domicilio(null, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,null,null,localidadRes.id);
+        domicilio = new Domicilio(null, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,this.location.lat,this.location.lng,localidadRes.id);
       }
       let idusuario = localStorage.getItem("auth"); 
       let usuarioActualizado = new Usuario(idusuario,fechaBaja,fechaNacimiento ,
