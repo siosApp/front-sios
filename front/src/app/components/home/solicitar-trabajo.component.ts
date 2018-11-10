@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { UsuarioService } from '../../services/usuario.service';
@@ -15,16 +15,51 @@ import { Imagen } from '../perfil/perfil.component';
 import { NgxNotificationService } from 'ngx-notification';
 import { RubroService } from '../../services/rubro.service';
 import { TipoRubroService } from '../../services/tipo-rubro.service';
+import { MapsAPILoader, AgmMap } from '@agm/core';
+import { GoogleMapsAPIWrapper } from '@agm/core/services';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
+declare var google: any;
 declare var $:any;
+
+interface Marker {
+  lat: number;
+  lng: number;
+  label?: string;
+  draggable: boolean;
+}
+
+interface Locations {
+  lat: number;
+  lng: number;
+  viewport?: Object;
+  zoom: number;
+  address_level_1?:string;
+  address_level_2?: string;
+  address_country?: string;
+  address_zip?: string;
+  address_state?: string;
+  marker?: Marker;
+}
+
 @Component({
   selector: 'app-solicitar-trabajo',
   templateUrl: './solicitar-trabajo.component.html',
   styles: []
 })
-export class SolicitarTrabajoComponent {
+export class SolicitarTrabajoComponent implements OnInit {
+  ngOnInit(): void {
+    // this.locations.marker.draggable = false;
+    // if (this.oferente.domicilio) {
+    //   this.locations.lat = this.oferente.domicilio.latitud
+    //   this.locations.lng = this.oferente.domicilio.longitud
+    //   this.locations.marker.lat = this.oferente.domicilio.latitud
+    //   this.locations.marker.lng = this.oferente.domicilio.longitud
+    // }
+  }
 
 
+  @ViewChild(AgmMap) map: AgmMap;
   oferente:Usuario;
   files:string[]=[];
   solicitudForm:FormGroup;
@@ -36,10 +71,25 @@ export class SolicitarTrabajoComponent {
   tiposRubros:any[]=[];
   rubros:any[]=[];
   showRubros=false;
+
+  geocoder:any;
+  public locations:Locations = {
+    lat: -33.0,
+    lng: -68.809007,
+    marker: {
+      lat: -33.0,
+      lng: -68.809007,
+      draggable: true
+    },
+    zoom: 10
+  }
   constructor(private usuarioService:UsuarioService,private afStorage: AngularFireStorage,private afs: AngularFirestore,
     private location:Location,private activatedRoute:ActivatedRoute,
     private fileService:FileService,private solicitudService:SolicitarTrabajoService, private ngxNotificationService: NgxNotificationService,
-    private rubroService:RubroService,private tipoRubroService:TipoRubroService) {
+    private rubroService:RubroService,private tipoRubroService:TipoRubroService,
+    public mapsApiLoader: MapsAPILoader,
+    private zone: NgZone,
+    private wrapper: GoogleMapsAPIWrapper) {
 
     this.urlImagen="assets/images/noimage.png";
     activatedRoute.params.subscribe((parametros:any)=>{
@@ -49,6 +99,17 @@ export class SolicitarTrabajoComponent {
         if(this.oferente.imagen!=null){
           this.setFotoPerfil(this.oferente.imagen);
         }
+      if (usuarioRes.domicilio) {
+      console.log("this.oferente.domicilio.latitud: ",this.oferente.domicilio.latitud);
+      console.log("this.oferente.domicilio.longitud: ",this.oferente.domicilio.longitud);
+      this.locations.lat = this.oferente.domicilio.latitud;
+      this.locations.lng = this.oferente.domicilio.longitud;
+      this.locations.marker.lat = this.oferente.domicilio.latitud;
+      this.locations.marker.lng = this.oferente.domicilio.longitud;
+      this.map.latitude = this.oferente.domicilio.latitud;
+      this.map.longitude = this.oferente.domicilio.latitud;
+    }
+
       })
     })
     tipoRubroService.getTipoRubrosVigentes().subscribe((response:any)=>{
@@ -65,6 +126,12 @@ export class SolicitarTrabajoComponent {
       'rubro' : new FormControl('',Validators.required)
     })
     this.setValueDefault();
+    // this.mapsApiLoader = mapsApiLoader;
+    // this.zone = zone;
+    // this.wrapper = wrapper;
+    // this.mapsApiLoader.load().then(() => {
+    // this.geocoder = new google.maps.Geocoder();
+    // });
   }
   setValueDefault(){
     this.solicitudForm.patchValue({
