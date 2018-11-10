@@ -143,9 +143,7 @@ export class PerfilComponent implements OnInit {
   }
 
   updateOnMap() {
-    console.log("provincia", '"' + this.form.controls['provincia'].value + '"')
     let full_address:string = ""
-    // if (this.location.address_level_2) full_address = full_address + " " + this.location.address_level_2
     if (this.domicilioForm.controls['domicilioCalle'].value) full_address = full_address + " " + this.domicilioForm.controls['domicilioCalle'].value
     if (this.domicilioForm.controls['domicilioNumero'].value) full_address = full_address + " " + this.domicilioForm.controls['domicilioNumero'].value
     if (this.form.controls['localidad'].value) full_address = full_address + " " + this.form.controls['localidad'].value
@@ -157,8 +155,6 @@ export class PerfilComponent implements OnInit {
 
   findLocation(address) {
     if (!this.geocoder) this.geocoder = new google.maps.Geocoder()
-    console.log("aca esta la direccion", address)
-    console.log("aca esta lel geocoder", this.geocoder)
     this.geocoder.geocode({
       'address': address
     }, (results, status) => {
@@ -183,16 +179,12 @@ export class PerfilComponent implements OnInit {
         }
  
         if (results[0].geometry.location) {
-          console.log("latitud", this.location.lat)
-          console.log("longitud", this.location.lng)
           this.location.lat = results[0].geometry.location.lat();
           this.location.lng = results[0].geometry.location.lng();
           this.location.marker.lat = results[0].geometry.location.lat();
           this.location.marker.lng = results[0].geometry.location.lng();
           this.location.marker.draggable = true;
           this.location.viewport = results[0].geometry.viewport;
-          console.log("latitud", this.location.lat)
-          console.log("longitud", this.location.lng)
         }
         
         this.map.triggerResize()
