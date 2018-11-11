@@ -40,7 +40,7 @@ export class HomeComponent{
   rubros:Rubro[];
   showLocalidades=false;
   showDepartamentos=false;
-  oferentes:UsuarioDestacado[];
+  oferentes:any[];
   imagenesCollections: AngularFirestoreCollection<Imagen>;
   constructor(private fb:FormBuilder,private tipoRubroService:TipoRubroService,
     private provinciaService:ProvinciaService,private rubroService:RubroService,
