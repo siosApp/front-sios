@@ -145,7 +145,6 @@ export class HomeComponent{
     let departamento=this.form.controls['departamento'].value === 'Seleccione'? "null":this.form.controls['departamento'].value;
     let localidad=this.form.controls['localidad'].value === 'Seleccione'? "null":this.form.controls['localidad'].value;
     this.usuarioService.getOferentes(tipoRubro,rubro,provincia,departamento,localidad).subscribe((res:any)=>{
-
       setTimeout(()=>{ 
         this.oferentes=res;
         this.spiner=false;
