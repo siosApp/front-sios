@@ -40,7 +40,7 @@ export class HomeComponent{
   rubros:Rubro[];
   showLocalidades=false;
   showDepartamentos=false;
-  oferentes:UsuarioDestacado[];
+  oferentes:any[];
   imagenesCollections: AngularFirestoreCollection<Imagen>;
   constructor(private fb:FormBuilder,private tipoRubroService:TipoRubroService,
     private provinciaService:ProvinciaService,private rubroService:RubroService,
@@ -145,7 +145,6 @@ export class HomeComponent{
     let departamento=this.form.controls['departamento'].value === 'Seleccione'? "null":this.form.controls['departamento'].value;
     let localidad=this.form.controls['localidad'].value === 'Seleccione'? "null":this.form.controls['localidad'].value;
     this.usuarioService.getOferentes(tipoRubro,rubro,provincia,departamento,localidad).subscribe((res:any)=>{
-
       setTimeout(()=>{ 
         this.oferentes=res;
         this.spiner=false;

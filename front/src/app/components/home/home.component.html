@@ -183,12 +183,11 @@
                     </div>
                     <ng-template #notShown>
                         <div class="table-detail table-actions-bar">
-                            <a (click)="mostrarMensajeDeLoginRequerido()" href="#" [routerLink]="['/login']" class="btn btn-info waves-effect waves-light"><i class="fa fa-ticket"></i>  Solicitar Trabajo</a>
+                            <a [routerLink]="['/login']" class="btn btn-info waves-effect waves-light"><i class="fa fa-ticket"></i>  Solicitar Trabajo</a>
                         </div>
                     </ng-template>
-                    <div class="table-detail">
-                            <img class="media-object img-circle" alt="64x64" src="assets/images/estrella.png" style="width: 64px; height: 64px;">
-                        
+                    <div class="table-detail" *ngIf="oferente.destacado">
+                        <img class="media-object img-circle" alt="64x64" src="assets/images/estrella.png" style="width: 64px; height: 64px;">  
                     </div>
                 </div>
                 </div>
