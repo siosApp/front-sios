@@ -65,7 +65,7 @@ export class UsuarioService {
   }
   destacarPerfil(mercadoPago){
     let url= `${URL_API}/reservasService/pago/mercadopago`;
-    return this.http.post(url,mercadoPago);
+    return this.http.post(url,mercadoPago,{responseType: 'text'});
   }
   registrarLogin(id){
     let url= `${URL_API}/usuario/registrarUsuarioLogueado?idUsuario=${id}`;
