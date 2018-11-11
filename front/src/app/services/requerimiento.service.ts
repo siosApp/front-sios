@@ -15,7 +15,10 @@ import { Requerimiento } from '../models/requerimiento';
       let url=`${URL_API}/requerimiento/publicarRequerimiento`;
       return this.http.post(url,requerimiento); 
     }
-
+    aceptarRequerimiento(idOferta){
+      let url=`${URL_API}/requerimiento/aceptarOfertaRequerimiento?idOfertaRequerimiento=${idOferta}`;
+      return this.http.post(url,null);
+    }
     getRequerimientosActivos(){
       let url=`${URL_API}/requerimiento/getRequerimientosActivos`;
       return this.http.get(url);
@@ -27,5 +30,9 @@ import { Requerimiento } from '../models/requerimiento';
     ofertarRequerimiento(ofertaRequerimiento){
       let url=`${URL_API}/requerimiento/ofertarRequerimiento`;
       return this.http.post(url,ofertaRequerimiento);
+    }
+    getRequerimientosPublicadosPorUsuario(id){
+      let url=`${URL_API}/requerimiento/misRequerimientos?idUsuario=${id}`;
+      return this.http.get(url);
     }
   }
