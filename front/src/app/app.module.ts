@@ -34,6 +34,9 @@ import { AgregarRubroComponent } from './components/perfil/agregar-rubro/agregar
 import { VerRequerimientoComponent } from './components/ver-requerimiento/ver-requerimiento.component';
 import { OfertarRequerimientoComponent } from './components/ver-requerimiento/ofertar-requerimiento/ofertar-requerimiento.component';
 import { NgxNotificationComponent } from 'ngx-notification';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 //Firebase 
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule,AngularFireStorage,AngularFireUploadTask } from 'angularfire2/storage';
@@ -146,13 +149,17 @@ export function getAuthServiceConfigs() {
     AngularFireStorageModule,
     ChartsModule,
     // To initialize AngularFire
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDNHqiKPO7ZZ_p6IsESlHFWTyxZaeya0ZQ'}),
+    FormsModule,
+    NgbModule.forRoot()
   ],
   providers: [
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
-    }, AutenticacionService
+    }, AutenticacionService,
+    GoogleMapsAPIWrapper
   ],
   bootstrap: [AppComponent]
 })

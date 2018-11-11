@@ -33,8 +33,8 @@
         <form [formGroup]="form" (ngSubmit)="filtrarUsuarios()">
           <label>Edad</label>
           <div class="input-group m-b-15" style="width: 200px;">
-            <select class="form-control">
-                <option>18-25</option>
+            <select class="form-control" formControlName="edad" name="edad">
+                <option selected="selected">18-25</option>
                 <option>25-35</option>
                 <option>35-45</option>
                 <option>45-55</option>
@@ -43,18 +43,28 @@
           </div><!-- input-group -->
           <label>Sexo</label>
           <div class="input-group m-b-15" style="width: 200px;">
-              <select class="form-control">
+              <select class="form-control" formControlName="sexo" name="sexo">
+                  <option selected="selected">Sin definir</option>
                   <option>Hombre</option>
                   <option>Mujer</option>
               </select>
           </div><!-- input-group -->
-          <label>Rubro</label>
+          <label>Tipo Rubro</label>
           <div class="input-group m-b-15" style="width: 200px;">
-              <select class="form-control">
-                  <option>Sistemas</option>
-                  <option>Mecanica</option>
+              <select class="form-control" (change)="getRubrosByTipoRubro()" name="tipoRubro"  formControlName="tipoRubro">
+                <option selected="selected">Seleccione</option>
+                <option *ngFor="let tipoRubro of tipoRubros" [ngValue]="tipoRubro.nombreTipoRubro">{{tipoRubro.nombreTipoRubro}}</option>
               </select>
           </div><!-- input-group -->
+          <div *ngIf="showRubros">
+          <label>Rubro</label>
+          <div class="input-group m-b-15" style="width: 200px;">
+              <select class="form-control" name="rubro" formControlName="rubro">
+                <option selected="selected">Seleccione</option>
+                <option *ngFor="let rubro of rubros" [ngValue]="rubro.nombreRubro">{{rubro.nombreRubro}}</option>
+              </select>
+          </div><!-- input-group -->
+          </div>
           <label>Provincia</label>
           <div class="input-group m-b-15" style="width: 200px;">
               <select class="form-control" name="provincia" (change)="getDepartamentosByProvincia()" formControlName="provincia">
@@ -105,10 +115,10 @@
               </thead>
               <tbody>
                 <tr *ngFor="let usuario of usuarios">
-                  <td>Seba</td>
-                  <td>Ruiz</td>
-                  <td>seba.lruiz</td>
-                  <td>18/10/2018</td>
+                  <td>{{usuario.nombre}}</td>
+                  <td>{{usuario.apellido}}</td>
+                  <td>{{usuario.username}}</td>
+                  <td>{{usuario.fechaNacimiento | date: 'dd/MM/yyyy'}}</td>
                   <td><span [routerLink]="['/sios/perfil-oferente',usuario.id]" class="btn btn-xs btn-danger">Detalle</span></td>
                 </tr>
               </tbody>

@@ -1,6 +1,5 @@
 /// <reference types="@types/googlemaps" />
-
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, NgZone, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Usuario } from '../../models/usuario';
 import { UsuarioService } from '../../services/usuario.service';
@@ -21,9 +20,31 @@ import { finalize, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { NgxNotificationService } from 'ngx-notification';
+import { MapsAPILoader, AgmMap } from '@agm/core';
+import { GoogleMapsAPIWrapper } from '@agm/core/services';
 
-
+declare var google: any;
 declare var $:any;
+
+interface Marker {
+  lat: number;
+  lng: number;
+  label?: string;
+  draggable: boolean;
+}
+
+interface Location {
+  lat: number;
+  lng: number;
+  viewport?: Object;
+  zoom: number;
+  address_level_1?:string;
+  address_level_2?: string;
+  address_country?: string;
+  address_zip?: string;
+  address_state?: string;
+  marker?: Marker;
+}
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -31,11 +52,23 @@ declare var $:any;
 })
 
 
-export class PerfilComponent {
-  
- 
+export class PerfilComponent implements OnInit {
+  ngOnInit(): void {
+    this.location.marker.draggable = true;
+  }
+  geocoder:any;
+  public location:Location = {
+    lat: -33.0,
+    lng: -68.809007,
+    marker: {
+      lat: -33.0,
+      lng: -68.809007,
+      draggable: true
+    },
+    zoom: 5
+  };
 
-
+  @ViewChild(AgmMap) map: AgmMap;
   usuarioAEditar:Usuario;
   provincias:Provincia[];
   form:FormGroup;
@@ -57,7 +90,8 @@ export class PerfilComponent {
               private provinciaService:ProvinciaService,
               private departamentoService:DepartamentoService,
               private localidadService:LocalidadService,private afStorage: AngularFireStorage,
-              private afs: AngularFirestore, private ngxNotificationService: NgxNotificationService) {
+              private afs: AngularFirestore, private ngxNotificationService: NgxNotificationService,
+              public mapsApiLoader: MapsAPILoader, private zone: NgZone, private wrapper: GoogleMapsAPIWrapper) {
       this.id=localStorage.getItem("auth");
       this.imagenesCollections=this.afs.collection<Imagen>('perfil'); 
       this.imagenUrl='assets/images/noimage.png';              
@@ -103,6 +137,114 @@ export class PerfilComponent {
     provinciaService.getProvinciasVigentes().subscribe((response:any)=>{
       this.provincias=response;
     });
+    this.mapsApiLoader = mapsApiLoader;
+    this.zone = zone;
+    this.wrapper = wrapper;
+    this.mapsApiLoader.load().then(() => {
+      this.geocoder = new google.maps.Geocoder();
+    });
+  }
+
+  updateOnMap() {
+    let full_address:string = ""
+    if (this.domicilioForm.controls['domicilioCalle'].value) full_address = full_address + " " + this.domicilioForm.controls['domicilioCalle'].value
+    if (this.domicilioForm.controls['domicilioNumero'].value) full_address = full_address + " " + this.domicilioForm.controls['domicilioNumero'].value
+    if (this.form.controls['localidad'].value) full_address = full_address + " " + this.form.controls['localidad'].value
+    if (this.form.controls['departamento'].value) full_address = full_address + " " + this.form.controls['departamento'].value
+    if (this.form.controls['provincia'].value) full_address = full_address + " " + this.form.controls['provincia'].value
+ 
+    this.findLocation(full_address);
+  }
+
+  findLocation(address) {
+    if (!this.geocoder) this.geocoder = new google.maps.Geocoder()
+    this.geocoder.geocode({
+      'address': address
+    }, (results, status) => {
+      console.log(results);
+      console.log("aca esta el resultado",google.maps.GeocoderStatus.OK)
+      if (status == google.maps.GeocoderStatus.OK) {
+        for (var i = 0; i < results[0].address_components.length; i++) {
+          let types = results[0].address_components[i].types
+ 
+          if (types.indexOf('locality') != -1) {
+            this.location.address_level_2 = results[0].address_components[i].long_name
+          }
+          if (types.indexOf('country') != -1) {
+            this.location.address_country = results[0].address_components[i].long_name
+          }
+          if (types.indexOf('postal_code') != -1) {
+            this.location.address_zip = results[0].address_components[i].long_name
+          }
+          if (types.indexOf('administrative_area_level_1') != -1) {
+            this.location.address_state = results[0].address_components[i].long_name
+          }
+        }
+ 
+        if (results[0].geometry.location) {
+          this.location.lat = results[0].geometry.location.lat();
+          this.location.lng = results[0].geometry.location.lng();
+          this.location.marker.lat = results[0].geometry.location.lat();
+          this.location.marker.lng = results[0].geometry.location.lng();
+          this.location.marker.draggable = true;
+          this.location.viewport = results[0].geometry.viewport;
+        }
+        
+        this.map.triggerResize()
+      } else {
+        alert("Sorry, this search produced no results.");
+      }
+    })
+  }
+  markerDragEnd(m: any, $event: any) {
+    this.location.marker.lat = m.coords.lat;
+    this.location.marker.lng = m.coords.lng;
+    this.findAddressByCoordinates();
+   }
+
+   findAddressByCoordinates() {
+    this.geocoder.geocode({
+      'location': {
+        lat: this.location.marker.lat,
+        lng: this.location.marker.lng
+      }
+    }, (results, status) => {
+      this.decomposeAddressComponents(results);
+    })
+  }
+
+    decomposeAddressComponents(addressArray) {
+    if (addressArray.length == 0) return false;
+    let address = addressArray[0].address_components;
+ 
+    for(let element of address) {
+      if (element.length == 0 && !element['types']) continue
+ 
+      if (element['types'].indexOf('street_number') > -1) {
+        this.location.address_level_1 = element['long_name'];
+        continue;
+      }
+      if (element['types'].indexOf('route') > -1) {
+        this.location.address_level_1 += ', ' + element['long_name'];
+        continue;
+      }
+      if (element['types'].indexOf('locality') > -1) {
+        this.location.address_level_2 = element['long_name'];
+        continue;
+      }
+      if (element['types'].indexOf('administrative_area_level_1') > -1) {
+        this.location.address_state = element['long_name'];
+        continue;
+      }
+      if (element['types'].indexOf('country') > -1) {
+        this.location.address_country = element['long_name'];
+        continue;
+      }
+      if (element['types'].indexOf('postal_code') > -1) {
+        this.location.address_zip = element['long_name'];
+        continue;
+      }
+    }
   }
 
   cargarImagen(user){
@@ -310,9 +452,9 @@ export class PerfilComponent {
     // si alguno de estos tres campos es distinto de null se ejecuta el metodo
     this.localidadService.getLocalidadesByNombreAndProvinciaAndDepartamento(localidad,provincia,departamento).subscribe((localidadRes:Localidad)=>{
       if (this.usuarioAEditar.domicilio!=null){
-        domicilio = new Domicilio(this.usuarioAEditar.domicilio.id, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,null,null,localidadRes.id);
+        domicilio = new Domicilio(this.usuarioAEditar.domicilio.id, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,this.location.lat,this.location.lng,localidadRes.id);
       }else{
-        domicilio = new Domicilio(null, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,null,null,localidadRes.id);
+        domicilio = new Domicilio(null, domicilioCalle, codPostal, domicilioNumero, domicilioPiso,this.location.lat,this.location.lng,localidadRes.id);
       }
       let idusuario = localStorage.getItem("auth"); 
       let usuarioActualizado = new Usuario(idusuario,fechaBaja,fechaNacimiento ,
@@ -391,7 +533,5 @@ export class PerfilComponent {
 
 
 }
-
-
 
 export interface Imagen { id:string;imagePath:string;imageURL:string,imageName:string}
