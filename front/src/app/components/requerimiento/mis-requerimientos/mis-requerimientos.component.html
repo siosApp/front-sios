@@ -1,163 +1,106 @@
-  
-      <div class="row">
-          <div class="col-sm-12">
-             
-              <h4 class="page-title">Mis Requerimientos</h4>
-              <ol class="breadcrumb">
-                  <li>
-                      <a href="#">Home</a>
-                  </li>
-                  
-                  <li class="active">
-                      Requerimientos realizados
-                  </li>
-              </ol>
-          </div>
-      </div>
-     
-          <div class="panel panel-border panel-danger">
-              <div class="panel-heading">
-                  <h3 class="panel-title">AQUI SE MUESTRAN TUS REQUERIMIENTOS</h3>
-              </div>
-              <div class="panel-body">
-                  <p>
-                     A continuación, se muestran los requerimientos que has publicado junto con las ofertas que has recibido de las mismas.
-                  </p>
-              </div>
-          </div>
-          <div class="card-box">
-              <div class="comment">
-                  <img src="assets/images/users/avatar-1.jpg" alt="" class="comment-avatar">
-                  <div class="comment-body">
-                      <div class="comment-text">
-                          <div class="comment-header">
-                              <a href="" [routerLink]="['/sios/perfil']" title="">Leonardo Sebastian Ruiz</a><span>16/10/2018</span>
-                          </div>
-                          <p> <b>DESCRIPCION:</b></p>
-                          Necesito albañil para realizar una churrasquera en el patio de mi casa. Necesitaria preferentemente que contenga en su interior ladrillo refractario y de ladrillo visto. Tambien necesito un veredin alrrededor de la misma.
-                          <br>
-                          <br>
-                          <p> <b>PRECIO A PAGAR: $ 3500</b></p>
-                          <p> <b>TIEMPO: 30 dias</b></p>
-                          
-                          <div class="m-t-15">
-                              <p> <b>ARCHIVO ADJUNTO</b></p>
-                              <a href="">
-                                  Archivo.pdf
-                              </a>
-                             
-                          </div>
-                          
-                      </div>
-                  </div>
-                
-                
-
-                  <div class="comment">
-                      <img src="assets/images/users/avatar-4.jpg" alt="" class="comment-avatar">
-                      <div class="comment-body">
-                          <div class="comment-body">
-                              <div class="comment-text">
-                                  <div class="comment-header">
-                                      <a [routerLink]="['/sios/perfil-oferente']" title="">David Roco</a><span>16/10/2018</span>
-                                  </div>
-                                  <p> <b>DESCRIPCION:</b></p>
-                                  Hola, te sirve que el trabajo lo realice en 20 dias y por menos plata de la que publicaste.
-                                  <br>
-                                  <br>
-                                  <p> <b>PRECIO DE OFERTA: $ 2500</b></p>
-                                  <p> <b>TIEMPO: 20 dias</b></p>
-                                  <button (click)="aceptarOferta()" type="button" class="btn btn-primary waves-effect btn-sm waves-light">
-                                      <span class="btn-label"><i class="fa fa-check"></i>
-                                      </span>Aceptar Oferta</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="comment">
-                      <img src="assets/images/users/avatar-3.jpg" alt="" class="comment-avatar">
-                      <div class="comment-body">
-                          <div class="comment-body">
-                              <div class="comment-text">
-                                  <div class="comment-header">
-                                      <a [routerLink]="['/sios/perfil-oferente']" title="">Nicolas Gozalez</a><span>17/10/2018</span>
-                                  </div>
-                                  <p> <b>DESCRIPCION:</b></p>
-                                  Hola, el trabajo parece facil.
-                                  <br>
-                                  <br>
-                                  <p> <b>PRECIO DE OFERTA: $ 2800</b></p>
-                                  <p> <b>TIEMPO: 25 dias</b></p>
-                                  <button (click)="aceptarOferta()" type="button" class="btn btn-primary waves-effect btn-sm waves-light">
-                                      <span class="btn-label"><i class="fa fa-check"></i>
-                                      </span>Aceptar Oferta</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="comment">
-                      <img src="assets/images/users/avatar-5.jpg" alt="" class="comment-avatar">
-                      <div class="comment-body">
-                          <div class="comment-body">
-                              <div class="comment-text">
-                                  <div class="comment-header">
-                                      <a [routerLink]="['/sios/perfil-oferente']" title="">Martin Gonzales</a><span>20/10/2018</span>
-                                  </div>
-                                  <p> <b>DESCRIPCION:</b></p>
-                                  El trabajo te lo hago en menos dias y menos plata.
-                                  <br>
-                                  <br>
-                                  <p> <b>PRECIO DE OFERTA: $ 2800</b></p>
-                                  <p> <b>TIEMPO: 25 dias</b></p>
-                                  <button (click)="aceptarOferta()" type="button" class="btn btn-primary waves-effect btn-sm waves-light">
-                                      <span class="btn-label"><i class="fa fa-check"></i>
-                                      </span>Aceptar Oferta</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="comment">
-                      <img src="assets/images/users/avatar-1.jpg" alt="" class="comment-avatar">
-                      <div class="comment-body">
-                          <div class="comment-body">
-                              <div class="comment-text">
-                                  <div class="comment-header">
-                                      <a [routerLink]="['/sios/perfil-oferente']" title="">Nicolas Gozalez</a><span>22/10/2018</span>
-                                  </div>
-                                  <p> <b>DESCRIPCION:</b></p>
-                                  Hola, con la calidad que usted se merece le hacemos el trabajo.
-                                  <br>
-                                  <br>
-                                  <p> <b>PRECIO DE OFERTA: $ 3000</b></p>
-                                  <p> <b>TIEMPO: 15 dias</b></p>
-                                  <button (click)="aceptarOferta()" type="button" class="btn btn-primary waves-effect btn-sm waves-light">
-                                      <span class="btn-label"><i class="fa fa-check"></i>
-                                      </span>Aceptar Oferta</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title">Mis Requerimientos</h4>
+        <ol class="breadcrumb">
+            <li>
+                <a [routerLink]="['/sios/home']">>Home</a>
+            </li>
+            <li class="active">
+                Requerimientos realizados
+            </li>
+        </ol>
+    </div>
+</div>     
+<div class="panel panel-border panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">AQUI SE MUESTRAN TUS REQUERIMIENTOS</h3>
+    </div>
+    <div class="panel-body">
+        <p>
+            A continuación, se muestran los requerimientos que has publicado junto con las ofertas que has recibido de las mismas.
+        </p>
+    </div>
+</div>
+<div class="card-box">
+    <div class="comment">
+        <!-- <img src="assets/images/users/avatar-1.jpg" class="comment-avatar"> -->
+        <app-avatar [id]="id"></app-avatar>
+        <div  *ngFor="let requerimiento of requerimientos">
+            <div class="comment-body">
+                <div class="comment-text">
+                    <div class="comment-header">
+                        <a [routerLink]="['/sios/perfil-oferente',id]" >{{nombre}}</a><span>{{requerimiento.fechaPublicacion | date:'dd/MM/yyy'}}</span>
+                    </div>
+                    <p> <b>DESCRIPCION:</b></p>
+                    {{requerimiento.descripcion}}
+                    <br>
+                    <br>
+                    <p> <b>PRECIO A PAGAR: $ {{requerimiento.precioApagar}}</b></p>
+                    <p> <b>TIEMPO: {{requerimiento.tiempoEstimado}} dias</b></p>
+                    <div class="m-t-15" >
+                        <app-archivo [idsImagen]="requerimiento.urlArchivos"></app-archivo>
+                    </div>
                 </div>
-          </div>
-     
-
-
-          <div id="aceptar-oferta" style="display: none;">
-              <div class="sweet-alert showSweetAlert" tabindex="-1" data-backdrop="static" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
-                  <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
-                  </div>
-                  <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
-                  <div class="icon info" style="display: none;"></div>
-                  <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
-                      <div class="placeholder"></div>
-                      <div class="fix"></div>
-                  </div>
-                  <div class="icon custom" style="display: none;"></div>
-                  <h2>Estás seguro?</h2>
-                  <p class="lead text-muted" style="display: block;">Deseas aceptar la oferta de este usuario?</p>
-                  <p>
-                      <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
-                      <button (click)="volver()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Aceptar</button>
-                  </p>
-              </div>
-          </div>
+            </div>
+            <div class="comment" *ngFor="let oferta of requerimiento.ofertas">
+                <!-- <img src="assets/images/users/avatar-4.jpg" alt="" class="comment-avatar"> -->
+                <app-avatar [id]="oferta.idUsuario"></app-avatar>
+                <div class="comment-body">
+                    <div class="comment-body">
+                        <div class="comment-text">
+                            <div class="comment-header">
+                                <a [routerLink]="['/sios/perfil-oferente',oferta.idUsuario]" ><app-nombre [id]="oferta.idUsuario"></app-nombre></a><span>{{oferta.fechaOferta | date:'dd/MM/yyy'}}</span>
+                            </div>
+                            <p> <b>DESCRIPCION:</b></p>
+                            {{oferta.respuesta}}
+                            <br>
+                            <br>
+                            <p> <b>PRECIO DE OFERTA: $ {{oferta.precioOfertado}}</b></p>
+                            <p> <b>TIEMPO: XX dias</b></p>
+                            <button (click)="aceptarOferta(oferta.id)" type="button" class="btn btn-primary waves-effect btn-sm waves-light">
+                                <span class="btn-label"><i class="fa fa-check"></i>
+                                </span>Aceptar Oferta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="aceptar-oferta" style="display: none;">
+    <div class="sweet-alert showSweetAlert" tabindex="-1" data-backdrop="static" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
+        <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
+        </div>
+        <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
+        </div>
+        <div class="icon custom" style="display: none;"></div>
+        <h2>Estás seguro?</h2>
+        <p class="lead text-muted" style="display: block;">Deseas aceptar la oferta de este usuario?</p>
+        <p>
+            <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
+            <button (click)="confirmarAceptarOferta()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Aceptar</button>
+        </p>
+    </div>
+</div>
+<div id="oferta-completa" style="display: none;">
+    <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
+        <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
+        </div>
+        <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success animate" style="display: block;"> <span class="line tip animateSuccessTip"></span> <span class="line long animateSuccessLong"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
+        </div>
+        <div class="icon custom" style="display: none;"></div>
+        <h2>Éxito!</h2>
+        <p class="lead text-muted" style="display: block;">Se aceptó exitosamente la oferta. Consulte el estado del requerimiento en "Mis Requerimientos".</p>
+        <p>
+            <button (click)="terminar()" type="button" class="confirm btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Ok</button>
+        </p>
+    </div>
+</div> 
