@@ -14,17 +14,19 @@ export class DestacarPerfilComponent implements OnInit {
   }
 
   destacarPerfil(){
-    let id= localStorage.getItem("auth");
+    let id:string= localStorage.getItem("auth");
     let datosMercadoPago ={
-      title: 'Destacado',
-      quantity: 1,
       currency_id: 'ARG',
-      unit_price: 200,
+      idMedioPago: "a6f9444e-a334-44d5-ad3e-3944107636e8",
       idUsuario: id,
-      idMedioPago: "70679209-7665-4499-ae29-ff3a504f49d6",
+      quantity: 1,
+      title: 'Destacado',
+      unit_price: 200
     }
-    this.usuarioService.destacarPerfil(datosMercadoPago).subscribe((respuesta:any)=>{
-      console.log("Url: ",respuesta);
+    console.log("Id: ",id);
+    
+    this.usuarioService.destacarPerfil(datosMercadoPago).subscribe((respuesta)=>{
+      window.open(respuesta);
     })
   }
 }
