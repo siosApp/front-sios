@@ -223,12 +223,7 @@ export class SolicitarTrabajoComponent implements OnInit {
         this.solicitudService.crearSolicitud(solicitud).subscribe((res:any)=>{
           
           $('#spinerSolicitarTrabajo').modal('hide');
-
-          
-            $('#solicitud-completa').modal('show');
-          
-          
-
+          $('#solicitud-completa').modal('show');
           //this.location.back();
         })
       })

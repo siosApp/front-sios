@@ -177,6 +177,16 @@ export class NavbarComponent {
     },1000);
   }
 
+  spinerSolicitudesRecibidas(){
+    $('#spiner').modal('show');
+    setTimeout(()=>{ 
+      this.router.navigate(['/sios/verSolicitud']);
+      $('#spiner').modal('hide');
+    },1000);
+  }
+
+
+
   abrirModal(){
     $("#danger-alert").modal("show");
   }

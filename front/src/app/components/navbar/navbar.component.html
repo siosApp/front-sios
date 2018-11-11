@@ -19,7 +19,7 @@
                                         <li class="list-group slimscroll-noti notification-list">
                                             <div >
                                                     <!-- *ngIf="cantidadNotificacionesSolicitudes > 0" -->
-                                                <a [routerLink]="['verSolicitud']" class="list-group-item">
+                                                <a (click)="spinerSolicitudesRecibidas()" style="cursor: pointer;" class="list-group-item">
                                                     <div class="media">
                                                         <div class="pull-left p-r-10">
                                                             <em class="fa fa-diamond noti-primary"></em>

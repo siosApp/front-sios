@@ -8,7 +8,7 @@
                     <div class="col-md-12">
                         <h4 class="m-t-0 header-title" ><b>Cree una solicitud de trabajo para {{oferente?.nombre}} {{oferente?.apellido}}</b></h4>
                         <p class="text-muted m-b-30 font-13">
-                            Complete la descripcion del trabajo que necesita con el mayor detalle posible y como forma opcional agregue un archivo adjunto para agregar mas detalle a su descripcion!
+                            Complete la descripción del trabajo que necesita con el mayor detalle posible y como forma opcional agregue un archivo adjunto para agregar mas detalle a su descripcion!
                         </p>
                         <div class="col-lg-1"></div>
                         <div class="col-lg-10">
@@ -60,7 +60,7 @@
                         </div>
                         <div class="panel-body">
                             <p>
-                                De manera opcional puede seleccionar un archivo para ampliar el detalle de su solicitud y asi ofrecerle mas imformacion a {{oferente?.nombre}}. Solo se permiten archivos .pdf y .jpg.
+                                De manera opcional puede seleccionar un archivo para ampliar el detalle de su solicitud y así ofrecerle más imformacián a {{oferente?.nombre}}. Solo se permiten archivos .pdf y .jpg.
                             </p>
                             <div class="m-t-20">
                                 <input  type="file" class="filestyle" formControlName="archivoUno" name="archivoUno"  data-icon="false" data-buttonname="btn-white" (change)="addFile($event,0)">
@@ -84,6 +84,8 @@
     </div>
 </div>
 </div>
+
+
 <div id="crearSolicitud" style="display: none;">
     <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
         <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>
@@ -96,7 +98,7 @@
         </div>
         <div class="icon custom" style="display: none;"></div>
         <h2>Buen Trabajo!</h2>
-        <p class="lead text-muted" style="display: block;">Deseas enviar crear una solicitud para {{oferente?.nombre}} {{oferente?.apellido}} </p>
+        <p class="lead text-muted" style="display: block;">Deseas enviar una solicitud de trabajo para {{oferente?.nombre}} {{oferente?.apellido}} </p>
         <p>
             <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancel</button>
             <button (click)="guardarSolicitud()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
@@ -132,7 +134,7 @@
         </div>
         <div class="icon custom" style="display: none;"></div>
         <h2>Éxito!</h2>
-        <p class="lead text-muted" style="display: block;">Se envio una solicitud de trabajo para {{oferente?.nombre}} {{oferente?.apellido}}. Consulte el estado de la solicitud en "Mis solicitudes".</p>
+        <p class="lead text-muted" style="display: block;">Se envió una solicitud de trabajo para {{oferente?.nombre}} {{oferente?.apellido}}. Consulte el estado de la solicitud en "Mis solicitudes".</p>
         <p>
             <button (click)="terminar()" class="confirm btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Ok</button>
         </p>

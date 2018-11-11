@@ -1,3 +1,4 @@
+/// <reference types="@types/googlemaps" />
 import { Component, Input, ViewChild, NgZone, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Usuario } from '../../models/usuario';
@@ -17,6 +18,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+
 import { NgxNotificationService } from 'ngx-notification';
 import { MapsAPILoader, AgmMap } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
@@ -83,6 +85,7 @@ export class PerfilComponent implements OnInit {
   imagenUrl:string;
   eventImage:any;
   id:string;
+  
   constructor(private service:UsuarioService, private fb:FormBuilder,private router:Router,
               private provinciaService:ProvinciaService,
               private departamentoService:DepartamentoService,
@@ -243,6 +246,7 @@ export class PerfilComponent implements OnInit {
       }
     }
   }
+
   cargarImagen(user){
     if(user.imagen !=null && user.imagen !== ""){
       //Buscar en Firebase

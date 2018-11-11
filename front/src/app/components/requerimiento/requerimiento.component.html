@@ -21,7 +21,7 @@
 			
 				<ul class="list-inline status-list m-t-20">
 					<li>
-						<h3 class="text-primary m-b-5">Recuerda actualizar tu domicilio en tu perfil.</h3>
+						<h3 class="text-primary m-b-5">Recuerda actualizar tu domicilio en tu perfil!</h3>
 						
 					</li>
 					<li>
@@ -34,11 +34,11 @@
             </div>
             <ul class="list-inline status-list m-t-20">
                 <li>
-                    <h3 class="text-primary m-b-5">Destacarme!</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
+                    <h3 class="text-primary m-b-5">Destacarme!</h3>
                     <p class="text-muted">Aprovecha los Beneficios de aparecer primero en las busquedas cuando los usuarios filtren en tu zona.</p>
                 </li>
                 <li>
-                    <h3 class="text-success m-b-5">Mas trabajos!</h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
+                    <h3 class="text-success m-b-5">Más trabajos!</h3>
                     <p class="text-muted">Al destacarte las solicitudes de trabajo aumentaran considerablemente!</p>
                 </li>
             </ul>
@@ -53,7 +53,7 @@
                     
             <h5 class="text-muted text-uppercase m-t-0 m-b-20"><b>Publique su requerimiento</b></h5>
             <p class="text-muted m-b-15 font-13">
-                    A continuación llene este formulario para crear el requerimiento con su detalle.
+                    A continuación llene éste formulario para crear el requerimiento con su detalle.
              </p>
             
             <div class="form-group m-b-20">
@@ -66,22 +66,17 @@
             <div class="form-group m-b-20">
                 <label>Tiempo Estimado <span class="text-danger">*</span></label>
                 <input type="number" formControlName="tiempoEstimado" placeholder="ej, 60" class="form-control autonumber" style="width: 250px">
-                <span class="font-13 text-muted">Ingrese la cantidad de dias que desea que se realice su requerimiento</span>
-                <!-- <input type="text" formControlName="tiempoEstimado" class="form-control" placeholder="ej, 2 dias"> -->
+                <span class="font-13 text-muted">Ingrese la cantidad de días que desea que se realice su requerimiento.</span>
             </div>
             <p style="color: red" *ngIf="form.get('tiempoEstimado').errors?.required && form.get('tiempoEstimado').touched">Campo obligatorio</p>
             
             <div class="form-group m-b-20">
                 <label>Precio a Pagar <span class="text-danger">*</span></label>
                 <input type="number" formControlName="precioApagar" class="form-control" placeholder="ej, 562" style="width: 250px">
-                <span class="font-13 text-muted">Ingrese la cantidad de $ que desea pagar por el trabajo terminado</span>
+                <span class="font-13 text-muted">Ingrese la cantidad de $ que desea pagar por el trabajo terminado.</span>
             </div>
             <p style="color: red" *ngIf="form.get('precioApagar').errors?.required && form.get('precioApagar').touched">Campo obligatorio</p>
             
-             <!-- <div class="form-group m-b-20" >
-                <h3 class="panel-title">Seleccione el rubro que vincula su solicitud de trabajo.</h3>
-                <p> Primero seleccione el tipo del rubro para poder ver las opciones de rubro.</p>
-            </div> -->
 
 
             <h5 class="text-muted text-uppercase m-t-0 m-b-20"><b>Seleccione el rubro</b></h5>
@@ -120,38 +115,13 @@
             
             
             
-            
-            <!-- <div class="form-group m-b-20 row">
-
-
-
-                
-                    <div class="col-md-6">
-                        <label class="col-md-3 control-label" for="state-success">Tipo Rubro</label>
-                        <div class="col-md-8">
-                            <select name="tipoRubro" formControlName="tipoRubro" class="form-control" (change)="getRubrosByTipoRubro()">
-                                <option selected="selected">Seleccione</option>
-                                <option *ngFor="let tipo of tiposRubros" [ngValue]="tipo.nombreTipoRubro">{{tipo.nombreTipoRubro}} </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6" *ngIf="showRubros">
-                        <label class="col-md-4 control-label" for="state-success">Rubro</label>
-                        <div class="col-md-8">
-                            <select name="rubro" formControlName="rubro" class="form-control">
-                                <option selected="selected">Seleccione</option>
-                                <option *ngFor="let rubro of rubros" [ngValue]="rubro.nombreRubro">{{rubro.nombreRubro}}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div> -->
 <br>
 <br>
 <br>
             <div class="form-group m-b-20">
                 <label>Descripcion <span class="text-danger">*</span></label>
                 <p class="text-muted m-b-15 font-13">
-                    Sea lo mas especifico posible en la descripcion, por que de ello dependera el buen entendimiento del trabajo a realizar.
+                    Sea lo más específico posible en la descripción, porque de ello dependerá el buen entendimiento del trabajo a realizar.
              </p>
                 <textarea class="form-control" formControlName="descripcion" rows="6" placeholder="Ingrese la descripcion"></textarea>
             </div>
@@ -160,7 +130,7 @@
             <div class="form-group">
                     <label class="control-label">Seleccione Archivo</label>
                     <p class="text-muted m-b-15 font-13">
-                            Puede subir un archivo para detallar mejor aún el requerimiento. Recuerde que solo podra subir archivos .pdf o .jpge y no podran superar los 5 Mb de tamaño.
+                        Puede subir un archivo para detallar mejor aún el requerimiento. Recuerde que solo podrá subir archivos .pdf o .jpge y no podrán superar los 5 Mb de tamaño.
                      </p>
                      <lib-ngx-notification></lib-ngx-notification>
 
@@ -170,7 +140,7 @@
                     
                     <div *ngIf="this.form.controls['archivoUno'].value != ''" class="progress m-b-5">
                         <div class="progress-bar progress-bar-purple wow animated progress-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"  style="width: 100%;">
-                            <span class="sr-only">{{uploadPercent | async | number:'1.0-0'}}% Complete</span>
+                            <span class="sr-only">{{uploadPercent | async | number:'1.0-0'}}% Completado</span>
                         </div>
                     </div>
 

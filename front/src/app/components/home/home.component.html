@@ -7,7 +7,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Filtro de Rubro</h3>
                                 <p class="text-muted m-b-30 font-13">
-                                        A continuacion seleccione el filtro de los rubros y los tipos de rubros existentes para mejorar
+                                        A continuación seleccione el filtro de los rubros y los tipos de rubros existentes para mejorar
                                         su busqueda.
                                     </p>
                             </div>
@@ -40,7 +40,7 @@
                                 <h3 class="panel-title">Filtro de Zona Geografica</h3>
                                 <p class="text-muted m-b-30 font-13">
                                         Seleccione en los siguientes campos los filtros de busqueda que usted desee obtener en las
-                                        busquedas del sistema
+                                        busquedas del sistema.
                                     </p>
                             </div>
                             <div class="panel-body">
@@ -99,19 +99,18 @@
 <div class="col-sm-2 col-lg-12 col-md-2">
     <div class="panel panel-border panel-danger">
         <div class="panel-heading">
-            <h3 class="panel-title">AQUI SE MOSTRARAN LOS RESULTADOS DE TU BUSQUEDA</h3>
+            <h3 class="panel-title">AQUÍ SE MOSTRARAN LOS RESULTADOS DE TU BUSQUEDA</h3>
         </div>
         <div class="panel-body">
             <p>
-               Una vez filtradas la busqueda que usted desee, aqui se mostrara la lista de los oferentes de servicios.
+               Una vez filtradas la busqueda que usted desee, aquí se mostrara la lista de los oferentes de servicios.
             </p>
         </div>
     </div>
 
     <div class="row" *ngIf="oferentes != null && oferentes.length > 0">
         <div *ngFor="let oferente of oferentes">
-            <div class="card-box m-b-10">
-
+            <div class="card-box m-b-10" >
                 <div class="table-box opport-box">
                     <div class="table-detail">
                             <app-imagen [usuario]="oferente"></app-imagen>
@@ -119,27 +118,66 @@
 
                     <div class="table-detail">
                         <div class="member-info">
-                                <h4 class="m-t-0">
-                                        <div *ngIf="oferente.nombre && oferente.apellido">
-                                            {{oferente.nombre}} {{oferente.apellido}}
-                                        </div>
-                                        <div *ngIf="oferente.nombre==null || oferente.apellido==null">
-                                            {{oferente.username}}
-                                        </div>
-                                        <b>{{oferente.rubros[0].nombreRubro}}</b>
-                                    </h4>
-                            
-                            
-                            
-                            
-                            <p class="text-dark m-b-5"><b>Experiencia: </b> <span class="text-muted">{{oferente.experiencia}}</span></p>
+                                <h4 class="m-t-0" *ngIf="oferente.nombre && oferente.apellido"><b>{{oferente.nombre}} {{oferente.apellido}} </b></h4>
+                                <h4 class="m-t-0" *ngIf="oferente.nombre==null || oferente.apellido==null"><b> {{oferente.username}} </b></h4>
+                                <p class="text-dark m-b-0"><b>Rubro: </b> <span class="text-muted">{{oferente.rubros[0].nombreRubro}}</span></p>
+                                <p class="text-dark m-b-0"><b>Experiencia: </b> <span class="text-muted">{{oferente.experiencia}}</span></p> 
+                                
+                                <!-- PARA 5 ESTRELLAS-->
+                                <!-- <p class="text-dark m-b-0"><b>Calificaciones: </b> 
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                </p>  -->
+                                
+                                
+                                <!-- PARA 4 ESTRELLAS-->
+                                <!-- <p class="text-dark m-b-0"><b>Calificaciones: </b> 
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star"></span>
+                                </p>  -->
+
+                                <!-- PARA 3 ESTRELLAS-->
+                                <p class="text-dark m-b-0"><b>Calificaciones: </b> 
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star"></span>
+                                    <span class="text-muted fa fa-star"></span>
+                                </p> 
+
+                                <!-- PARA 2 ESTRELLAS-->
+                                <!-- <p class="text-dark m-b-0"><b>Calificaciones: </b>
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star"></span>
+                                    <span class="text-muted fa fa-star"></span>
+                                    <span class="text-muted fa fa-star"></span>
+                                </p>  -->
+
+                                <!-- PARA 1 ESTRELLAS-->
+                                <!-- <p class="text-dark m-b-0"><b>Calificaciones: </b> 
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star text-warning"></span>
+                                    <span class="text-muted fa fa-star"></span>
+                                    <span class="text-muted fa fa-star"></span>
+                                    <span class="text-muted fa fa-star"></span>
+                                </p>  -->
+
+
+
                         </div>
                     </div>
 
                     <div class="table-detail lable-detail">
                         <span class="label label-purple">OFERENTE</span>
                     </div>
-
+                    <div class="table-detail lable-detail">
                     <div *ngIf="verificarUsuarioAutenticado(); else notShown" class="table-detail table-actions-bar">
                         <a (click)="spinerSolicitarTrabajo(oferente.idUsuario)" class="btn btn-info waves-effect waves-light"><i class="fa fa-ticket"></i>  Solicitar Trabajo</a>
                     </div>
@@ -148,6 +186,11 @@
                             <a (click)="mostrarMensajeDeLoginRequerido()" href="#" [routerLink]="['/login']" class="btn btn-info waves-effect waves-light"><i class="fa fa-ticket"></i>  Solicitar Trabajo</a>
                         </div>
                     </ng-template>
+                    <div class="table-detail">
+                            <img class="media-object img-circle" alt="64x64" src="assets/images/estrella.png" style="width: 64px; height: 64px;">
+                        
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

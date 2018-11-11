@@ -23,10 +23,11 @@
                 <div class="table-detail lable-detail">
                     <span class="label label-info">{{solicitud.nombreEstadoSolicitud | uppercase}}</span>
                 </div>
-                <div class="table-detail lable-detail">
+                <div class="table-detail table-actions-bar">
                     <a (click)="abrirDetalleSolicitud(solicitud)" class="table-action-btn" style="cursor:pointer;"><i class="md md-assignment" title="Detalle de la Solicitud"></i></a>
                 </div>
                 <div class="table-detail table-actions-bar">
+                    
                     <!-- Independientemente del estado se muestra -->
                     <!-- Se muestra si es una solicitud creada -->
                     <div *ngIf="solicitud.nombreEstadoSolicitud === 'Creada'">
@@ -81,7 +82,7 @@
         </div>
         <div class="icon custom" style="display: none;"></div>
         <h2>Deseas aceptar esta solicitud?</h2>
-        <p class="lead text-muted" style="display: block;">Al aceptar esta solicitud se le enviara una notificacion al cliente y la solicitud pasara a estado en progreso</p>
+        <p class="lead text-muted" style="display: block;">Al aceptar esta solicitud se le enviará una notificación al cliente y la solicitud pasará a estado "Aceptada".</p>
         <p>
             <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
             <button (click)="confirmarAceptarSolicitud()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
@@ -104,7 +105,7 @@
         </div>
         <div class="icon custom" style="display: none;"></div>
         <h2>Estás seguro que desea rechazar la solicitud?</h2>
-        <p class="lead text-muted" style="display: block;">Si rechaza la solicitud se le enviara al cliente un mail que usted rechazo la oferta!!</p>
+        <p class="lead text-muted" style="display: block;">Si rechaza la solicitud se le enviará al cliente un mail que usted rechazo la oferta!!</p>
         <p>
             <button (click)="volver01()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
             <button (click)="confirmarRechazarSolicitud()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Ok</button>
@@ -132,13 +133,13 @@
                             <div class="col-md-9" *ngIf="tieneArchivo">
                                 <div class="form-group">
                                     <label for="field-1" class="control-label">Archivo Adjunto:</label>
-                                    <label ><span>Aqui se muestra si el usuario agrego un archivo de detalle: </span> </label>
+                                    <label ><span>Aquí se muestra si el usuario agrego un archivo de detalle: </span> </label>
                                     <li><a (click)="visualizarArchivo()" style="cursor: pointer;">Visualizar Archivo</a></li>
                                 </div>
                             </div>
                             <div class="col-md-9" *ngIf="!tieneArchivo">
                                 <div class="form-group">
-                                    <label ><span>La solicitud actual no tiene archivos adjuntos</span> </label>
+                                    <label ><span>La solicitud actual no tiene archivos adjuntos.</span> </label>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +173,7 @@
         </div> 
         <div class="icon custom" style="display: block; background-image: url(assets/plugins/bootstrap-sweetalert/thumbs-up.jpg); width: 80px; height: 80px;width:80px; height:80px">
         </div> <h2>Finalizar Solicitud</h2>
-        <p class="lead text-muted" style="display: block;">Para finalizar la solicitud debera calificar al usuario del 1 al 5! </p>
+        <p class="lead text-muted" style="display: block;">Para finalizar la solicitud deberá calificar al usuario del 1 al 5. </p>
             <input type="number" class="text-center" formControlName="calificacion" name="calificacion" placeholder="0" style="width:100px; text-align:center;">
         <div *ngIf="finalizarSolicitudForm.controls['calificacion'].touched && finalizarSolicitudForm.controls['calificacion'].errors?.pattern">
             <p style="color: red;">Califique con un número del 1 al 5!</p>
