@@ -1,7 +1,5 @@
-import { Component, Input, ViewChild, NgZone, OnInit } from '@angular/core';
 /// <reference types="@types/googlemaps" />
-
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, NgZone, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Usuario } from '../../models/usuario';
 import { UsuarioService } from '../../services/usuario.service';
@@ -71,11 +69,6 @@ export class PerfilComponent implements OnInit {
   };
 
   @ViewChild(AgmMap) map: AgmMap;
-export class PerfilComponent {
-  
- 
-
-
   usuarioAEditar:Usuario;
   provincias:Provincia[];
   form:FormGroup;
@@ -540,7 +533,5 @@ export class PerfilComponent {
 
 
 }
-
-
 
 export interface Imagen { id:string;imagePath:string;imageURL:string,imageName:string}
