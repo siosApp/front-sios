@@ -20,10 +20,17 @@ export class UsuariosDestacadosComponent{
   }
 
   generarReporte(){
-    let fechaDesde = new Date(this.form.controls['fechaDesde'].value);
-    let fechaHasta = new Date(this.form.controls['fechaHasta'].value);
-    this.usuarioService.getUsuariosDestacadosPorFecha(fechaDesde,fechaHasta).subscribe((res:any)=>{
-      this.usuarios=res.usuariosDestacados;
+    let fechaDesde:Date = new Date(this.form.controls['fechaDesde'].value);
+    let fechaHasta:Date = new Date(this.form.controls['fechaHasta'].value);
+    // console.log("Fecha desde: ",fechaDesde.toLocaleDateString());
+    // console.log("Fecha hasta: ",fechaHasta);
+    //Casteo de fechas
+    const fechaDesdeCast= new Date(fechaDesde.setDate(fechaDesde.getDate() + 1));
+    const fechaHastaCast= new Date(fechaHasta.setDate(fechaHasta.getDate() + 1));
+    this.usuarioService.getUsuariosDestacadosPorFecha(fechaDesdeCast.toLocaleDateString(),fechaHastaCast.toLocaleDateString()).subscribe((res:any)=>{
+      console.log("Res: ",res);
+      this.showReporte=true;
+      this.usuarios=res;
     })
   }
 }

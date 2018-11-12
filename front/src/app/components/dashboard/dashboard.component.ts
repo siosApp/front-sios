@@ -28,6 +28,8 @@ export class DashboardComponent   {
       this.cantidadUsuariosRegistrados=cantidadModel;
     })
     usuarioService.cantidadUsuariosDestacados().subscribe((cantidadModel:any)=>{
+      console.log("Destacados: ",cantidadModel);
+      
       this.cantidadUsuariosDestacados=cantidadModel;
     })
     usuarioService.getUsuariosDestacadosPorVencer().subscribe((res:any)=>{
