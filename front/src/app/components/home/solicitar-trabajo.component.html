@@ -60,7 +60,7 @@
                         </div>
                         <div class="panel-body">
                             <p>
-                                De manera opcional puede seleccionar un archivo para ampliar el detalle de su solicitud y así ofrecerle más imformacián a {{oferente?.nombre}}. Solo se permiten archivos .pdf y .jpg.
+                                De manera opcional puede seleccionar un archivo para ampliar el detalle de su solicitud y así ofrecerle más imformación a {{oferente?.nombre}}. Solo se permiten archivos .pdf y .jpg.
                             </p>
                             <div class="m-t-20">
                                 <input  type="file" class="filestyle" formControlName="archivoUno" name="archivoUno"  data-icon="false" data-buttonname="btn-white" (change)="addFile($event,0)">
@@ -98,7 +98,7 @@
         </div>
         <div class="icon custom" style="display: none;"></div>
         <h2>Buen Trabajo!</h2>
-        <p class="lead text-muted" style="display: block;">Deseas enviar una solicitud de trabajo para {{oferente?.nombre}} {{oferente?.apellido}} </p>
+        <p class="lead text-muted" style="display: block;">Deseas enviar una solicitud de trabajo para {{oferente?.nombre}} {{oferente?.apellido}} ? </p>
         <p>
             <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancel</button>
             <button (click)="guardarSolicitud()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
