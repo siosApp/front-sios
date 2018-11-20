@@ -12,6 +12,8 @@ export class UsuariosPorVencerComponent{
   constructor(private usuarioService:UsuarioService) {
 
     usuarioService.getUsuariosDestacadosPorVencer().subscribe((res:any)=>{
+      console.log("res: ",res);
+      
       this.usuariosDestacados=res;
     })
   }

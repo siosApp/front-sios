@@ -40,13 +40,15 @@ export class RubrosMasDemandadosComponent   {
     this.rubroService.getRubrosMasDemandados(fechaDesde,fechaHasta).subscribe((response:any)=>{
       let contador =0;
       let reporteResponse= new Array();
+      this.barChartLabels=[];
+      this.barChartData=[];
       for(let item of response){
         if(contador < 4){
           reporteResponse.push(item);
           contador ++;
         }
       }
-      console.log("Reporte: ",reporteResponse);
+      console.log("Reporte: ",response);
       
       if(reporteResponse.length > 0){
         let data = new Array();
