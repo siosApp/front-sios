@@ -64,6 +64,9 @@ import { UsuariosPorVencerComponent } from './components/dashboard/usuarios-por-
 import { PerfilOferenteComponent } from './components/dashboard/perfil-oferente/perfil-oferente.component';
 import { AutenticacionService } from './services/autenticacion.service';
 import { MisRequerimientosComponent } from './components/requerimiento/mis-requerimientos/mis-requerimientos.component';
+import { AvatarComponent } from './components/requerimiento/mis-requerimientos/avatar.component';
+import { NombreComponent } from './components/requerimiento/mis-requerimientos/nombre.component';
+import { ArchivoComponent } from './components/requerimiento/mis-requerimientos/archivo.component';
 
 
 
@@ -137,7 +140,10 @@ export function getAuthServiceConfigs() {
     UsuariosEnLineaComponent,
     UsuariosPorVencerComponent,
     PerfilOferenteComponent,
-    MisRequerimientosComponent
+    MisRequerimientosComponent,
+    AvatarComponent,
+    NombreComponent,
+    ArchivoComponent
   ],
   imports: [
     BrowserModule,

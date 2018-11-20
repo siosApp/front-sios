@@ -23,7 +23,6 @@ export class TrabajosRealizadosComponent {
       }
     })  
   }
-
  
   abrirComentario(comentarios){
     this.comentario=comentarios[0];

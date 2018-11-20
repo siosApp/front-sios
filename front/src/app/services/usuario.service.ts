@@ -65,7 +65,7 @@ export class UsuarioService {
   }
   destacarPerfil(mercadoPago){
     let url= `${URL_API}/reservasService/pago/mercadopago`;
-    return this.http.post(url,mercadoPago);
+    return this.http.post(url,mercadoPago,{responseType: 'text'});
   }
   registrarLogin(id){
     let url= `${URL_API}/usuario/registrarUsuarioLogueado?idUsuario=${id}`;
@@ -104,7 +104,7 @@ export class UsuarioService {
     return this.http.get(url);
   }
   getUsuariosDestacadosPorFecha(fechaDesde,fechaHasta){
-    let url= `${URL_API}/usuarioDestacado/verDestacadoByFechas?fechaDesde=${fechaDesde}&fechaHasta=${fechaHasta}`;
+    let url= `${URL_API}/usuarioDestacado/verDestacadosByFechas?fechaDesde=${fechaDesde}&fechaHasta=${fechaHasta}`;
     return this.http.get(url);
   }
   getUsuariosEnLinea(){

@@ -11,7 +11,7 @@ Para los reportes:
 6. npm install chart.js --save
 7. npm install ngx-notification --save
 8. npm install @agm/core @ng-bootstrap/ng-bootstrap --save
-Done! A correr el proyecto, muchachos!
+9. Done! A correr el proyecto, muchachos!
 
 # Front
 

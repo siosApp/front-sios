@@ -23,7 +23,7 @@
                   </div>
                   <div class="col-xs-4">
                     <h4 class="text-white m-0 font-600">Estrellas</h4>
-                    <p class="text-white m-b-0">CALCULAR PROMEDIO CALIFICACIONES</p>
+                    <p class="text-white m-b-0">{{usuario?.promedioCalificacion}}</p>
                   </div>
                   <div class="col-xs-4">
                     <h4 class="text-white m-0 font-600">{{usuario?.mail}}</h4>
@@ -86,7 +86,7 @@
               <tr *ngFor="let item of experiencias">
                 <td>{{item.descripcion}}</td>
                 <td>{{item.fechaDesde | date:'dd/MM/yyyy'}}</td>
-                <td>{{item.fechaHasta | date:'dd/MM/yyyy'}}</td>
+                <td>     -</td>
               </tr>
             </tbody>
           </table>

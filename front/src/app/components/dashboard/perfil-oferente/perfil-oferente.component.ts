@@ -58,10 +58,12 @@ export class PerfilOferenteComponent {
     }
   }
   visualizarArchivo(id){
-    this.archivosCollection = this.afs.collection<ArchivoAdjunto>('doc', ref => ref.where('id', '==', id));
+    this.archivosCollection = this.afs.collection<ArchivoAdjunto>('certificados', ref => ref.where('id', '==', id));
       setTimeout(()=>{
         let files = this.archivosCollection.valueChanges();
         files.subscribe((res:any)=> {
+          console.log("Docs: ",res);
+          
           console.log(res[0].fileURL);
           window.open(res[0].fileURL);
         })
