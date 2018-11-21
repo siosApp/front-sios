@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RubroService } from '../../../services/rubro.service';
+import * as moment from 'moment';
 
-
-//declare var $: any; 
+declare var $: any; 
 @Component({
   selector: 'app-rubros-mas-ofrecidos',
   templateUrl: './rubros-mas-ofrecidos.component.html',
@@ -33,12 +33,28 @@ export class RubrosMasOfrecidosComponent {
       'fechaHasta': new FormControl('',Validators.required)
     })
   }
-
+  volver(){
+    $('#modalFecha').modal('hide');
+  }
+  abrirModal(){
+    $('#modalFecha').modal('show');
+  }
+  
   generarReporte(){
     //obtener fechas y generar reporte.
     let fechaDesde=this.reporteForm.controls['fechaDesde'].value;
     let fechaHasta=this.reporteForm.controls['fechaHasta'].value;
     this.rubroService.getRubrosMasOfrecidos(fechaDesde,fechaHasta).subscribe((response:any)=>{
+      
+      function compare(a, b) {
+        var momentA = moment(a);
+        var momentB = moment(b);
+        if (momentA > momentB) return 1;
+        else if (momentA <= momentB) 
+        return 0;
+    }
+      
+    if (compare(fechaDesde, fechaHasta) == 0){
       let contador =0;
       let reporteResponse= new Array();
       for(let item of response){
@@ -75,6 +91,9 @@ export class RubrosMasOfrecidosComponent {
       else{
 
       }
+    }else{
+      this.abrirModal();
+    }
       
     })
   }

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RubroService } from '../../../services/rubro.service';
 import * as moment from 'moment';
 
+declare var $:any;
 @Component({
   selector: 'app-rubros-mas-demandados',
   templateUrl: './rubros-mas-demandados.component.html',
@@ -34,15 +35,17 @@ export class RubrosMasDemandadosComponent   {
     })
   }
 
-
+  volver(){
+    $('#modalFecha').modal('hide');
+  }
+  abrirModal(){
+    $('#modalFecha').modal('show');
+  }
+  
 
   
   generarReporte(){
     //obtener fechas y generar reporte.
-
- 
-   
-
 
     let fechaDesde=this.reporteForm.controls['fechaDesde'].value;
     let fechaHasta=this.reporteForm.controls['fechaHasta'].value;
@@ -53,7 +56,7 @@ export class RubrosMasDemandadosComponent   {
         var momentA = moment(a);
         var momentB = moment(b);
         if (momentA > momentB) return 1;
-        else if (momentA < momentB) 
+        else if (momentA <= momentB) 
         return 0;
     }
     // alert(compare(fechaDesde, fechaHasta));
@@ -95,8 +98,10 @@ if (compare(fechaDesde, fechaHasta) == 0){
 
   }
 }else{
-  alert("elija una fecha coherente");
+  // alert("Coso");
+  this.abrirModal();
 }
+
 
     })
   }

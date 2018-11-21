@@ -164,6 +164,27 @@
                 </div>
             </div>
         </div>
+        
+
+        <div id="modalFecha" style="display: none;">
+            <div class="sweet-alert showSweetAlert" tabindex="-1" data-backdrop="static" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
+                <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
+                </div>
+                <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+                <div class="icon info" style="display: none;"></div>
+                <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
+                    <div class="placeholder"></div>
+                    <div class="fix"></div>
+                </div>
+                <div class="icon custom" style="display: none;"></div>
+                <h2>Atencion!!</h2>
+                <p class="lead text-muted" style="display: block;">La "fecha Desde" debe ser menor a la "Fecha Hasta". Por favor elija otra fecha.</p>
+                <p>
+                    
+                    <button (click)="volver()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
+                </p>
+            </div>
+        </div>
 
 
 
