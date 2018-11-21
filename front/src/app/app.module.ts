@@ -67,6 +67,7 @@ import { MisRequerimientosComponent } from './components/requerimiento/mis-reque
 import { AvatarComponent } from './components/requerimiento/mis-requerimientos/avatar.component';
 import { NombreComponent } from './components/requerimiento/mis-requerimientos/nombre.component';
 import { ArchivoComponent } from './components/requerimiento/mis-requerimientos/archivo.component';
+import { PerfilDemandanteComponent } from './components/perfil/perfil-demandante/perfil-demandante.component';
 
 
 
@@ -143,7 +144,8 @@ export function getAuthServiceConfigs() {
     MisRequerimientosComponent,
     AvatarComponent,
     NombreComponent,
-    ArchivoComponent
+    ArchivoComponent,
+    PerfilDemandanteComponent
   ],
   imports: [
     BrowserModule,

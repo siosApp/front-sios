@@ -38,6 +38,7 @@ import { UsuariosPorVencerComponent } from './components/dashboard/usuarios-por-
 import { PerfilOferenteComponent } from './components/dashboard/perfil-oferente/perfil-oferente.component';
 import { AutenticacionService } from './services/autenticacion.service';
 import { MisRequerimientosComponent } from './components/requerimiento/mis-requerimientos/mis-requerimientos.component';
+import { PerfilDemandanteComponent } from './components/perfil/perfil-demandante/perfil-demandante.component';
 
 
 const rutas_hijas: Routes =[
@@ -74,6 +75,7 @@ const rutas_hijas: Routes =[
     { path: 'usuarios-por-vencer', component: UsuariosPorVencerComponent },
     { path: 'perfil-oferente/:id', component: PerfilOferenteComponent },
     { path: 'mis-requerimientos', component: MisRequerimientosComponent },
+    { path: 'perfil-demandante', component: PerfilDemandanteComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
