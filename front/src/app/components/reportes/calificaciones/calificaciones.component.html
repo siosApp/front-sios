@@ -1,60 +1,57 @@
-      <!-- Page-Title -->
-      <div class="row">
-          <div class="col-sm-12">
-             
-              <h4 class="page-title">Calificaciones Recibidas</h4>
-              <ol class="breadcrumb">
-                  <li>
-                      <a href="#">Home</a>
-                  </li>
-                  
-                  <li class="active">
-                      Calificaciones
-                  </li>
-              </ol>
-          </div>
-      </div>
-      <!-- Widget-box -->
-      <div class="row">
-          <div class="col-sm-6 col-md-6 col-lg-3">
-              <div class="widget-bg-color-icon card-box">
-                  <div class="bg-icon bg-icon-info pull-left">
-                      <i class="md md-tag-faces text-info"></i>
-                  </div>
-                  <div class="text-right">
-                      <h3 class="text-dark"><b data-plugin="counterup">{{calificaciones[4]?.cantidadVotos}} Usuario/s</b></h3>
-                      <p class="text-muted">Calificaron con 5 <i class="md md-star text-primary"></i></p>
-                  </div>
-                  <div class="clearfix"></div>
-              </div>
-          </div>
+<!-- Page-Title -->
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title">Calificaciones Recibidas</h4>
+        <ol class="breadcrumb">
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li class="active">
+                Calificaciones
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- Widget-box -->
+<div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-3">
+        <div class="widget-bg-color-icon card-box">
+            <div class="bg-icon bg-icon-info pull-left">
+                <i class="md md-tag-faces text-info"></i>
+            </div>
+            <div class="text-right">
+                <h3 class="text-dark"><b data-plugin="counterup">{{calificaciones[4]?.cantidadVotos}} Usuario/s</b></h3>
+                <p class="text-muted">Calificaron con 5 <i class="md md-star text-primary"></i></p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
 
-          <div class="col-sm-6 col-md-6 col-lg-3">
-              <div class="widget-bg-color-icon card-box">
-                  <div class="bg-icon bg-icon-danger pull-left">
-                      <i class="icon icon-like text-dark"></i>
-                  </div>
-                  <div class="text-right">
-                      <h3 class="text-dark"><b data-plugin="counterup">{{calificaciones[3]?.cantidadVotos}} Usuario/s</b></h3>
-                      <p class="text-muted">Calificaron con 4 <i class="md md-star text-primary"></i></p>
-                  </div>
-                  <div class="clearfix"></div>
-              </div>
-          </div>
+    <div class="col-sm-6 col-md-6 col-lg-3">
+        <div class="widget-bg-color-icon card-box">
+            <div class="bg-icon bg-icon-danger pull-left">
+                <i class="icon icon-like text-dark"></i>
+            </div>
+            <div class="text-right">
+                <h3 class="text-dark"><b data-plugin="counterup">{{calificaciones[3]?.cantidadVotos}} Usuario/s</b></h3>
+                <p class="text-muted">Calificaron con 4 <i class="md md-star text-primary"></i></p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
 
-          <div class="col-sm-6 col-md-6 col-lg-3">
-              <div class="widget-bg-color-icon card-box">
-                  <div class="bg-icon bg-icon-purple pull-left">
-                      <i class="fa fa-eye text-purple"></i>
-                  </div>
-                  <div class="text-right">
-                      <h3 class="text-dark"><b data-plugin="counterup">{{calificaciones[2]?.cantidadVotos}} Usuario/s</b></h3>
-                      <p class="text-muted">Calificó con 3 <i class="md md-star text-primary"></i></p>
-                  </div>
-                  <div class="clearfix"></div>
-              </div>
-          </div>
-
+    <div class="col-sm-6 col-md-6 col-lg-3">
+        <div class="widget-bg-color-icon card-box">
+            <div class="bg-icon bg-icon-purple pull-left">
+                <i class="fa fa-eye text-purple"></i>
+            </div>
+            <div class="text-right">
+                <h3 class="text-dark"><b data-plugin="counterup">{{calificaciones[2]?.cantidadVotos}} Usuario/s</b></h3>
+                <p class="text-muted">Calificó con 3 <i class="md md-star text-primary"></i></p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
 
           <div class="col-sm-6 col-md-6 col-lg-3">
               <div class="widget-bg-color-icon card-box">
@@ -70,36 +67,33 @@
           </div>
           
       </div>
-        <div class="card-box m-b-10" *ngFor="let item of listaUsuariosQueCalificaron">
-            <div class="table-box opport-box">
-                <div class="table-detail">
-                    <div class="member-info">
-                        <h4 class="m-t-0"><b><li><a href="#">Leonardo Sebastian Ruiz</a> te calificó</li>  </b></h4>
-                        <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted">Java Developer</span></p>
-                        <p class="text-dark m-b-0"><b>Calificacion: </b> <span class="text-muted">5 <i class="md md-star text-primary"> </i></span></p>
-                    </div>
-                </div>
-                <div class="table-detail">
-                    <!-- <p class="text-dark m-b-5"><b>Email:</b> <span class="text-muted">joseperez@gmail.com</span></p> -->
-                    <p class="text-dark m-b-0"><b>Titulo:</b> <span class="text-muted">Necesito una api para una aplicacion web.</span></p>
-                </div>
-                <!-- <div class="table-detail lable-detail">
-                    <span class="label label-info">CALIFICADO</span>
-                </div> -->
-                <div class="table-detail table-actions-bar">
-                    <a (click)="abrirComentario(item.comentarios)" class="table-action-btn"><i class="md md-assignment" title="Ver Comentario"></i></a>
-                </div>
+</div>
+<div class="card-box m-b-10" *ngFor="let item of listaUsuariosQueCalificaron">
+    <div class="table-box opport-box">
+        <div class="table-detail">
+            <div class="member-info">
+                <h4 class="m-t-0"><b><li  style="cursor: pointer;"><a [routerLink]="['/sios/perfil-oferente',item.idUsuario]">{{item.username}}</a> te calificó</li>  </b></h4>
+                <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted">{{item.nombreRubro}}</span></p>
+                <p class="text-dark m-b-0"><b>Calificacion: </b> <span class="text-muted">{{item.calificacion}} <i class="md md-star text-primary"> </i></span></p>
             </div>
         </div>
-        <div class="card-box m-b-10" *ngIf="listaUsuariosQueCalificaron.length == 0">
-                <div class="table-box opport-box">
-                    <div class="table-detail">
-                        <div class="member-info">
-                            <p class="text-dark m-b-5"><b>Alerta: </b> <span class="text-muted">No hay calificaciones por el momento.</span></p>
-                        </div>
-                    </div>
-                </div>
+        <div class="table-detail">
+            <p class="text-dark m-b-0"><b>Titulo:</b> <span class="text-muted">{{item.descripcionTrabajo}}</span></p>
+        </div>
+        <div class="table-detail table-actions-bar">
+            <a (click)="abrirComentario(item.comentarios)" class="table-action-btn"><i class="md md-assignment" title="Ver Comentario"></i></a>
+        </div>
+    </div>
+</div>
+<div class="card-box m-b-10" *ngIf="listaUsuariosQueCalificaron.length == 0">
+    <div class="table-box opport-box">
+        <div class="table-detail">
+            <div class="member-info">
+                <p class="text-dark m-b-5"><b>Alerta: </b> <span class="text-muted">No hay calificaciones por el momento.</span></p>
             </div>
+        </div>
+    </div>
+</div>
 <div id="modalComentario" style="display: none;">
     <div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -189px;">
         <div class="icon error" style="display: none;"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span>

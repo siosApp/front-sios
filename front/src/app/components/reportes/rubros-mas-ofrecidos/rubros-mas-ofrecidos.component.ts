@@ -63,6 +63,8 @@ export class RubrosMasOfrecidosComponent {
         }
         contador++;
       }
+      this.barChartLabels=[];
+      this.barChartData=[];
       console.log("Reporte: ", reporteResponse);
       
       if(reporteResponse.length > 0){

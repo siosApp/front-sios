@@ -49,9 +49,30 @@ export class RubrosMasDemandadosComponent   {
 
     let fechaDesde=this.reporteForm.controls['fechaDesde'].value;
     let fechaHasta=this.reporteForm.controls['fechaHasta'].value;
+    this.showGrafico=false;
     this.rubroService.getRubrosMasDemandados(fechaDesde,fechaHasta).subscribe((response:any)=>{
-
-
+      let contador =0;
+      this.barChartLabels=new Array();
+      this.barChartData=new Array();
+      console.log("Reporte: ",response);
+      
+      if(response.length > 0){
+        let data = new Array();
+        let indice=0;
+        for(let reporte of response){
+          let datito=new Array();
+          //datito.push(arrayAux);
+          data.push(reporte.cantidadSolicitudes);
+          this.barChartLabels.push(reporte.nombreRubro);
+          datito[indice]=reporte.cantidadSolicitudes;
+          // datito.push(data[indice]);
+          let datos= {data: datito,label: reporte.nombreRubro};
+          this.barChartData.push(datos);        
+          indice++;
+        }
+        this.showGrafico=true;
+      }
+      else{
       function compare(a, b) {
         var momentA = moment(a);
         var momentB = moment(b);

@@ -11,7 +11,8 @@ Para los reportes:
 6. npm install chart.js --save
 7. npm install ngx-notification --save
 8. npm install @agm/core @ng-bootstrap/ng-bootstrap --save
-9. Done! A correr el proyecto, muchachos!
+9. npm install moment-timezone --save
+10. Done! A correr el proyecto, muchachos!
 
 # Front
 
