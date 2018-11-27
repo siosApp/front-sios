@@ -37,34 +37,21 @@ export class RubrosMasDemandadosComponent   {
     //obtener fechas y generar reporte.
     let fechaDesde=this.reporteForm.controls['fechaDesde'].value;
     let fechaHasta=this.reporteForm.controls['fechaHasta'].value;
+    this.showGrafico=false;
     this.rubroService.getRubrosMasDemandados(fechaDesde,fechaHasta).subscribe((response:any)=>{
       let contador =0;
-      let reporteResponse= new Array();
-      this.barChartLabels=[];
-      this.barChartData=[];
-      for(let item of response){
-        if(contador < 4){
-          reporteResponse.push(item);
-          contador ++;
-        }
-      }
+      this.barChartLabels=new Array();
+      this.barChartData=new Array();
       console.log("Reporte: ",response);
       
-      if(reporteResponse.length > 0){
+      if(response.length > 0){
         let data = new Array();
         let indice=0;
-        let arrayAux= new Array();
-        for(let reporte of reporteResponse){
+        for(let reporte of response){
+          let datito=new Array();
+          //datito.push(arrayAux);
           data.push(reporte.cantidadSolicitudes);
           this.barChartLabels.push(reporte.nombreRubro);
-          arrayAux.push(0);
-        }
-        //Inicializar arreglo.
-        let initData={data: arrayAux,label: 'Datos iniciando desde 0'};
-        this.barChartData.push(initData);
-        for(let reporte of reporteResponse){
-          let datito=new Array();
-          datito.push(arrayAux);
           datito[indice]=reporte.cantidadSolicitudes;
           // datito.push(data[indice]);
           let datos= {data: datito,label: reporte.nombreRubro};
