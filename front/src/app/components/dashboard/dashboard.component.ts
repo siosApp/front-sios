@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import * as moment from 'moment';
 
 
 
@@ -43,7 +44,9 @@ export class DashboardComponent   {
 
   
 //ACA EMPIEZA EL GRAFICO DE DESTACADOS Y REGISTRADOS POR FECHA
-  public barChartOptions:any = {
+  
+
+public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true
     
@@ -65,14 +68,35 @@ export class DashboardComponent   {
   public chartHovered(e:any):void {
     console.log(e);
   }
+  volver(){
+    $('#modalFecha').modal('hide');
+  }
+  abrirModal(){
+    $('#modalFecha').modal('show');
+  }
+  
   
   generarGraficoBarras(){
     //obtener fechas y generar reporte.
+
+   
+  
     let fechaDesde=this.reporteDestacadoForm.controls['fechaDesde'].value;
     let fechaHasta=this.reporteDestacadoForm.controls['fechaHasta'].value;
     this.usuarioService.reporteUsuariosDestacadosYUsuariosRegistrados(new Date(fechaDesde),new Date(fechaHasta)).subscribe((reporteResponse:any)=>{
       console.log("Reporte grafico2: ",reporteResponse);
       
+      
+      function compare(a, b) {
+        var momentA = moment(a);
+        var momentB = moment(b);
+        if (momentA > momentB) return 1;
+        else if (momentA <= momentB) 
+        return 0;
+    }
+
+
+    if (compare(fechaDesde, fechaHasta) == 0){
       if(reporteResponse != null){
         this.barChartLabels.push('Destacados');
         this.barChartLabels.push('Registrados');
@@ -95,6 +119,9 @@ export class DashboardComponent   {
       else{
 
       }
+    }else{
+      this.abrirModal();
+    }
       
     })
   } 

@@ -53,20 +53,20 @@
         </div>
     </div>
 
-
-    <div class="col-sm-6 col-md-6 col-lg-3">
-        <div class="widget-bg-color-icon card-box">
-            <div class="bg-icon bg-icon-success pull-left">
-                <i class="icon icon-dislike text-danger"></i>
-            </div>
-            <div class="text-right">
-                <h3 class="text-dark"><b data-plugin="counterup">{{calificaciones[1]?.cantidadVotos}} Usuario/s</b></h3>
-                <p class="text-muted">Calificó con 2 <i class="md md-star text-primary"></i></p>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-    
+          <div class="col-sm-6 col-md-6 col-lg-3">
+              <div class="widget-bg-color-icon card-box">
+                  <div class="bg-icon bg-icon-success pull-left">
+                      <i class="icon icon-dislike text-danger"></i>
+                  </div>
+                  <div class="text-right">
+                      <h3 class="text-dark"><b data-plugin="counterup">{{calificaciones[1]?.cantidadVotos}} Usuario/s</b></h3>
+                      <p class="text-muted">Calificó con 2 <i class="md md-star text-primary"></i></p>
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+          </div>
+          
+      </div>
 </div>
 <div class="card-box m-b-10" *ngFor="let item of listaUsuariosQueCalificaron">
     <div class="table-box opport-box">
@@ -106,7 +106,7 @@
         </div>
         <div class="icon custom" style="display: none;"></div>
         <h2>Comentario sobre tu trabajo</h2>
-        <p class="lead text-muted" style="display: block;">{{comentario}}</p>
+        <p class="lead text-muted" style="display: block;">Muy buen servicio!</p>
         <p>
             <button (click)="volver()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
         </p>

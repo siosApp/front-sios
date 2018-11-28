@@ -1,0 +1,117 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <div class="card-box">
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="m-t-0 header-title"><b>Perfil del usuario</b></h4>
+            <p class="text-muted m-b-30 font-13">
+              Se muestra el perfil del usuario seleccionado como demandante.
+            </p>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+              <div class="card-box p-b-0">
+                <a href="javascript:;" class="center-block text-center text-dark">
+                  <img src="../../../../assets/images/avatar-1.jpg" class="thumb-lg img-thumbnail img-circle" alt="">
+                  <div class="h5 m-b-0"><strong> Leonardo Ruiz</strong></div>
+                </a>
+                <div class="bg-custom pull-in-card p-20 widget-box-two m-b-0 m-t-30 list-inline text-center row">
+                  <div class="col-xs-4">
+                    <h4 class="text-white m-0 font-600">No se que poner aca</h4>
+                    <p class="text-white m-b-0"></p>
+                  </div>
+                  <div class="col-xs-4">
+                    <h4 class="text-white m-0 font-600">Estrellas</h4>
+                    
+                    <!-- Aca deberiamos hacer los ngif por cada una de la cantidad de estrellas que tenga el usuario como demandante  -->
+                    <p class="text-white m-b-0">
+                        <span class="text-muted fa fa-star text-warning"></span>
+                        <span class="text-muted fa fa-star text-warning"></span>
+                        <span class="text-muted fa fa-star text-warning"></span>
+                        <span class="text-muted fa fa-star text-dark"></span>
+                        <span class="text-muted fa fa-star text-dark"></span>
+                    </p>
+                  
+                  </div>
+                  <div class="col-xs-4">
+                    <h4 class="text-white m-0 font-600">seba.lruiz@gmail.com</h4>
+                    <p class="text-white m-b-0"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-2 col-lg-12 col-md-2">
+        <div class="panel panel-border panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title">INFORMACION COMO DEMANDANTE</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                   Aqui se mostrará los comentarios que ha recibido el usuario como demandante de servicios.
+                </p>
+            </div>
+        </div>
+        <div class="card-box">
+          <div class="comment">
+               <img src="assets/images/users/avatar-1.jpg" class="comment-avatar"> 
+              <!-- <div  *ngFor="let requerimiento of requerimientos"> -->
+                  <div class="comment-body">
+                      <div class="comment-text">
+                          <div class="comment-header">
+                              <a [routerLink]="['/sios/perfil-oferente',id]" >Matias Perez</a><span>17-12-18</span>
+                          </div>
+                          <p> <b>COMENTARIO:</b>
+                            Muy buen cliente pero es muy desconfiado con tema de dinero. Recomendacion: que el cliente compre el material.
+                          </p>
+                          <!-- Aca hay que hacer un ngif por cada calificacion (si recibio una calificacion de una estrella mostrar una estrella, si recibio dos estrellas mostrar dos estrellas.... ) -->
+                          <p class="text-dark m-b-0"><b>Calificación: </b> 
+                            <span class="text-muted fa fa-star text-warning"></span>
+                            <span class="text-muted fa fa-star text-warning"></span>
+                            <span class="text-muted fa fa-star text-warning"></span>
+                            <span class="text-muted fa fa-star text-warning"></span>
+                            <span class="text-muted fa fa-star"></span>
+                        </p> 
+                          <!-- <p> <b>TIEMPO: {{requerimiento.tiempoEstimado}} dias</b></p> -->
+                          <!-- <div class="m-t-15" >
+                              <app-archivo [idsImagen]="requerimiento.urlArchivos"></app-archivo>
+                          </div> -->
+                      </div>
+                  </div>
+                 
+              <!-- </div> -->
+          </div>
+          <div class="comment">
+            <img src="assets/images/users/avatar-1.jpg" class="comment-avatar"> 
+           <!-- <div  *ngFor="let requerimiento of requerimientos"> -->
+               <div class="comment-body">
+                   <div class="comment-text">
+                       <div class="comment-header">
+                           <a [routerLink]="['/sios/perfil-oferente',id]" >Jose Lopez</a><span>17-12-18</span>
+                       </div>
+                       <p> <b>COMENTARIO:</b>
+                         Excelente cliente!
+                       </p>
+                       <!-- Aca hay que hacer un ngif por cada calificacion (si recibio una calificacion de una estrella mostrar una estrella, si recibio dos estrellas mostrar dos estrellas.... ) -->
+                       <p class="text-dark m-b-0"><b>Calificación: </b> 
+                         <span class="text-muted fa fa-star text-warning"></span>
+                         <span class="text-muted fa fa-star text-warning"></span>
+                         <span class="text-muted fa fa-star text-warning"></span>
+                         <span class="text-muted fa fa-star text-warning"></span>
+                         <span class="text-muted fa fa-star text-warning"></span>
+                     </p> 
+                       <!-- <p> <b>TIEMPO: {{requerimiento.tiempoEstimado}} dias</b></p> -->
+                       <!-- <div class="m-t-15" >
+                           <app-archivo [idsImagen]="requerimiento.urlArchivos"></app-archivo>
+                       </div> -->
+                   </div>
+               </div>
+              
+           <!-- </div> -->
+       </div>
+      </div>
+      </div>

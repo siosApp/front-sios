@@ -196,14 +196,50 @@
 								<p class="alert-danger"> No existen localidades para éste departamento.</p>
 							</div>
 						</div>
-						<div class="form-group pull-right" >
-							<label class="col-md-3 control-label"></label>
-							<div class="col-md-8">
-							  <!-- <input (click)="openAlert()" class="btn btn-primary" value="Guardar"> -->
-							  <button type="submit" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Guardar</button>
+
+
+							<!-- <h4 class="m-t-0 m-b-20 header-title"><b>Ubícate en el mapa</b></h4>
+							<div class="form-group"> 
+								<button (click)='updateOnMap()' class="btn btn-primary">Ubicar automáticamente</button>
+							  </div>
+							  <div class="form-group pull-right" >
+								<label class="col-md-3 control-label"></label>
+								<div class="col-md-8">
+								  <button type="submit" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Guardar</button>
+								</div>
+							</div> -->
+<!-- 							
+							<agm-map style="width:100%;height:500px" [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
+								<agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
+							  </agm-map> -->
+							<div class="form-group pull-right" >
+								<label class="col-md-3 control-label"></label>
+								<div class="col-md-8">
+								  <button type="submit" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Guardar</button>
+								</div>
+							</div> 
+						
+					</form>
+				</div>
+				<div class="col-md-12">
+					<div class="card-box">
+						<h4 class="m-t-0 m-b-20 header-title"><b>Ubícate en el mapa</b></h4>
+						<p class="text-muted m-b-30 font-13">
+							Ponga a disposición su ubicación para que los demás usuarios tengan más información a la hora de solicitarle un trabajo. 
+						</p>
+						<div class="row">
+							<div class="form-group">
+								<button (click)='updateOnMap()' type="submit" class="btn btn-primary btn-custom waves-effect waves-light">Ubicar automáticamente</button>
 							</div>
 						</div>
-					</form>
+				
+				
+						<agm-map style="width:100%;height:400px" [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom"
+						 [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
+							<agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable"
+							 (dragEnd)='markerDragEnd($event)'></agm-marker>
+						</agm-map>
+					</div>
 				</div>
 
 				
@@ -324,16 +360,10 @@
 	</div><!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-<div class="container-fluid">
-	<div class='row'>
-	  <div class="form-group"> 
-	  <button (click)='updateOnMap()' type="submit" class="btn btn-primary">Ubicar automáticamente</button>
-	</div>
-  </div>
-</div>
-<agm-map style="width:100%;height:400px" [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-	<agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
-  </agm-map>
+
+
+
+
 
 
 <div id="spinerPerfil" class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">

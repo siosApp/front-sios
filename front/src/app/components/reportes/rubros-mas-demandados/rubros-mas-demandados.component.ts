@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RubroService } from '../../../services/rubro.service';
+import * as moment from 'moment';
 
+declare var $:any;
 @Component({
   selector: 'app-rubros-mas-demandados',
   templateUrl: './rubros-mas-demandados.component.html',
@@ -33,8 +35,18 @@ export class RubrosMasDemandadosComponent   {
     })
   }
 
+  volver(){
+    $('#modalFecha').modal('hide');
+  }
+  abrirModal(){
+    $('#modalFecha').modal('show');
+  }
+  
+
+  
   generarReporte(){
     //obtener fechas y generar reporte.
+
     let fechaDesde=this.reporteForm.controls['fechaDesde'].value;
     let fechaHasta=this.reporteForm.controls['fechaHasta'].value;
     this.showGrafico=false;
@@ -61,9 +73,57 @@ export class RubrosMasDemandadosComponent   {
         this.showGrafico=true;
       }
       else{
+      function compare(a, b) {
+        var momentA = moment(a);
+        var momentB = moment(b);
+        if (momentA > momentB) return 1;
+        else if (momentA <= momentB) 
+        return 0;
+    }
+    // alert(compare(fechaDesde, fechaHasta));
+if (compare(fechaDesde, fechaHasta) == 0){
+  let contador =0;
+  let reporteResponse= new Array();
+  for(let item of response){
+    if(contador < 4){
+      reporteResponse.push(item);
+      contador ++;
+    }
+  }
+  console.log("Reporte: ",reporteResponse);
+  
+  if(reporteResponse.length > 0){
+    let data = new Array();
+    let indice=0;
+    let arrayAux= new Array();
+    for(let reporte of reporteResponse){
+      data.push(reporte.cantidadSolicitudes);
+      this.barChartLabels.push(reporte.nombreRubro);
+      arrayAux.push(0);
+    }
+    //Inicializar arreglo.
+    let initData={data: arrayAux,label: 'Datos iniciando desde 0'};
+    this.barChartData.push(initData);
+    for(let reporte of reporteResponse){
+      let datito=new Array();
+      datito.push(arrayAux);
+      datito[indice]=reporte.cantidadSolicitudes;
+      // datito.push(data[indice]);
+      let datos= {data: datito,label: reporte.nombreRubro};
+      this.barChartData.push(datos);        
+      indice++;
+    }
+    this.showGrafico=true;
+  }
+  else{
 
-      }
-      
+  }
+}else{
+  // alert("Coso");
+  this.abrirModal();
+}
+
+
     })
   }
   // events
