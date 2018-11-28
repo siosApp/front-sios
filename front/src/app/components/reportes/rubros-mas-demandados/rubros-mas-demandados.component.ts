@@ -34,16 +34,6 @@ export class RubrosMasDemandadosComponent   {
       'fechaHasta': new FormControl('',Validators.required)
     })
   }
-
-  volver(){
-    $('#modalFecha').modal('hide');
-  }
-  abrirModal(){
-    $('#modalFecha').modal('show');
-  }
-  
-
-  
   generarReporte(){
     //obtener fechas y generar reporte.
 
@@ -115,16 +105,21 @@ if (compare(fechaDesde, fechaHasta) == 0){
     }
     this.showGrafico=true;
   }
-  else{
-
-  }
-}else{
-  // alert("Coso");
-  this.abrirModal();
 }
+  else{
+    // alert("Coso");
+    this.abrirModal();
+  }
 
 
     })
+  }
+
+  volver(){
+    $('#modalFecha').modal('hide');
+  }
+  abrirModal(){
+    $('#modalFecha').modal('show');
   }
   // events
   public chartClicked(e:any):void {
