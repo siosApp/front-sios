@@ -46,84 +46,57 @@ export class RubrosMasDemandadosComponent   {
   
   generarReporte(){
     //obtener fechas y generar reporte.
-
+    this.showGrafico=false;
     let fechaDesde=this.reporteForm.controls['fechaDesde'].value;
     let fechaHasta=this.reporteForm.controls['fechaHasta'].value;
-    this.showGrafico=false;
     this.rubroService.getRubrosMasDemandados(fechaDesde,fechaHasta).subscribe((response:any)=>{
-      let contador =0;
-      this.barChartLabels=new Array();
-      this.barChartData=new Array();
-      console.log("Reporte: ",response);
-      
-      if(response.length > 0){
-        let data = new Array();
-        let indice=0;
-        for(let reporte of response){
-          let datito=new Array();
-          //datito.push(arrayAux);
-          data.push(reporte.cantidadSolicitudes);
-          this.barChartLabels.push(reporte.nombreRubro);
-          datito[indice]=reporte.cantidadSolicitudes;
-          // datito.push(data[indice]);
-          let datos= {data: datito,label: reporte.nombreRubro};
-          this.barChartData.push(datos);        
-          indice++;
-        }
-        this.showGrafico=true;
-      }
-      else{
+      this.barChartLabels=[];
+      this.barChartData=[];
       function compare(a, b) {
         var momentA = moment(a);
         var momentB = moment(b);
         if (momentA > momentB) return 1;
         else if (momentA <= momentB) 
         return 0;
-    }
-    // alert(compare(fechaDesde, fechaHasta));
-if (compare(fechaDesde, fechaHasta) == 0){
-  let contador =0;
-  let reporteResponse= new Array();
-  for(let item of response){
-    if(contador < 4){
-      reporteResponse.push(item);
-      contador ++;
-    }
-  }
-  console.log("Reporte: ",reporteResponse);
-  
-  if(reporteResponse.length > 0){
-    let data = new Array();
-    let indice=0;
-    let arrayAux= new Array();
-    for(let reporte of reporteResponse){
-      data.push(reporte.cantidadSolicitudes);
-      this.barChartLabels.push(reporte.nombreRubro);
-      arrayAux.push(0);
-    }
-    //Inicializar arreglo.
-    let initData={data: arrayAux,label: 'Datos iniciando desde 0'};
-    this.barChartData.push(initData);
-    for(let reporte of reporteResponse){
-      let datito=new Array();
-      datito.push(arrayAux);
-      datito[indice]=reporte.cantidadSolicitudes;
-      // datito.push(data[indice]);
-      let datos= {data: datito,label: reporte.nombreRubro};
-      this.barChartData.push(datos);        
-      indice++;
-    }
-    this.showGrafico=true;
-  }
-  else{
-
-  }
-}else{
-  // alert("Coso");
-  this.abrirModal();
-}
-
-
+      }
+      if (compare(fechaDesde, fechaHasta) == 0){
+        let contador =0;
+        let reporteResponse= new Array();
+        for(let item of response){
+          if(contador < 4){
+            reporteResponse.push(item);
+            contador ++;
+          }
+        }
+        console.log("Reporte: ",reporteResponse);
+        
+          if(reporteResponse.length > 0){
+            let data = new Array();
+            let indice=0;
+            let arrayAux= new Array();
+            for(let reporte of reporteResponse){
+              data.push(reporte.cantidadSolicitudes);
+              this.barChartLabels.push(reporte.nombreRubro);
+              arrayAux.push(0);
+            }
+            //Inicializar arreglo.
+            let initData={data: arrayAux,label: 'Datos iniciando desde 0'};
+            this.barChartData.push(initData);
+            for(let reporte of reporteResponse){
+              let datito=new Array();
+              datito.push(arrayAux);
+              datito[indice]=reporte.cantidadSolicitudes;
+              // datito.push(data[indice]);
+              let datos= {data: datito,label: reporte.nombreRubro};
+              this.barChartData.push(datos);        
+              indice++;
+            }
+            this.showGrafico=true;
+          }
+        }
+        else{
+        this.abrirModal();
+        }
     })
   }
   // events
