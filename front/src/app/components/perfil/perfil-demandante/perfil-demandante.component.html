@@ -12,9 +12,9 @@
             <div class="col-lg-1"></div>
             <div class="col-lg-10">
               <div class="card-box p-b-0">
-                <a href="javascript:;" class="center-block text-center text-dark">
-                  <img src="../../../../assets/images/avatar-1.jpg" class="thumb-lg img-thumbnail img-circle" alt="">
-                  <div class="h5 m-b-0"><strong> Leonardo Ruiz</strong></div>
+                <a class="center-block text-center text-dark">
+                  <img [src]="imagen" class="thumb-lg img-thumbnail img-circle" alt="">
+                  <div class="h5 m-b-0"><strong> {{usuario?.username}}</strong></div>
                 </a>
                 <div class="bg-custom pull-in-card p-20 widget-box-two m-b-0 m-t-30 list-inline text-center row">
                   <div class="col-xs-4">
@@ -24,18 +24,15 @@
                   <div class="col-xs-4">
                     <h4 class="text-white m-0 font-600">Estrellas</h4>
                     
-                    <!-- Aca deberiamos hacer los ngif por cada una de la cantidad de estrellas que tenga el usuario como demandante  -->
-                    <p class="text-white m-b-0">
-                        <span class="text-muted fa fa-star text-warning"></span>
-                        <span class="text-muted fa fa-star text-warning"></span>
-                        <span class="text-muted fa fa-star text-warning"></span>
-                        <span class="text-muted fa fa-star text-dark"></span>
-                        <span class="text-muted fa fa-star text-dark"></span>
-                    </p>
-                  
+                        <div style="display: unset;" *ngFor="let item of toArray(usuario?.promedioCalificacion)">
+                            <span class="fa fa-star text-warning"></span>
+                        </div>
+                        <div style="display: unset;" *ngFor="let item of toArray(cantidadEstrellasNegativas)">
+                            <span class="fa fa-star text-dark"></span>
+                        </div>
                   </div>
                   <div class="col-xs-4">
-                    <h4 class="text-white m-0 font-600">seba.lruiz@gmail.com</h4>
+                    <h4 class="text-white m-0 font-600">{{usuario?.mail}}</h4>
                     <p class="text-white m-b-0"></p>
                   </div>
                 </div>
@@ -57,61 +54,26 @@
             </div>
         </div>
         <div class="card-box">
-          <div class="comment">
-               <img src="assets/images/users/avatar-1.jpg" class="comment-avatar"> 
-              <!-- <div  *ngFor="let requerimiento of requerimientos"> -->
+          <div class="comment" *ngFor="let com of comentarios">
+            <app-avatar [id]="com.idUsuario"></app-avatar> 
                   <div class="comment-body">
                       <div class="comment-text">
                           <div class="comment-header">
-                              <a [routerLink]="['/sios/perfil-oferente',id]" >Matias Perez</a><span>17-12-18</span>
+                              <a [routerLink]="['/sios/perfil-oferente',com.idUsuario]" >{{com.username}}</a><span>{{com.fechaCalificacion | date: 'dd/M/yyyy'}}</span>
                           </div>
                           <p> <b>COMENTARIO:</b>
-                            Muy buen cliente pero es muy desconfiado con tema de dinero. Recomendacion: que el cliente compre el material.
+                            {{com.comentario}}
                           </p>
                           <!-- Aca hay que hacer un ngif por cada calificacion (si recibio una calificacion de una estrella mostrar una estrella, si recibio dos estrellas mostrar dos estrellas.... ) -->
-                          <p class="text-dark m-b-0"><b>Calificación: </b> 
+                          <b>Calificación: </b> 
+                          <div style="display: unset;" *ngFor="let cal of toArray(com.calificacion)">
                             <span class="text-muted fa fa-star text-warning"></span>
-                            <span class="text-muted fa fa-star text-warning"></span>
-                            <span class="text-muted fa fa-star text-warning"></span>
-                            <span class="text-muted fa fa-star text-warning"></span>
+                          </div>
+                          <div style="display: unset;" *ngFor="let cal of toArray( 5 - com.calificacion)"> <!-- 5 - com.calificacion -->
                             <span class="text-muted fa fa-star"></span>
-                        </p> 
-                          <!-- <p> <b>TIEMPO: {{requerimiento.tiempoEstimado}} dias</b></p> -->
-                          <!-- <div class="m-t-15" >
-                              <app-archivo [idsImagen]="requerimiento.urlArchivos"></app-archivo>
-                          </div> -->
+                          </div>  
                       </div>
                   </div>
-                 
-              <!-- </div> -->
           </div>
-          <div class="comment">
-            <img src="assets/images/users/avatar-1.jpg" class="comment-avatar"> 
-           <!-- <div  *ngFor="let requerimiento of requerimientos"> -->
-               <div class="comment-body">
-                   <div class="comment-text">
-                       <div class="comment-header">
-                           <a [routerLink]="['/sios/perfil-oferente',id]" >Jose Lopez</a><span>17-12-18</span>
-                       </div>
-                       <p> <b>COMENTARIO:</b>
-                         Excelente cliente!
-                       </p>
-                       <!-- Aca hay que hacer un ngif por cada calificacion (si recibio una calificacion de una estrella mostrar una estrella, si recibio dos estrellas mostrar dos estrellas.... ) -->
-                       <p class="text-dark m-b-0"><b>Calificación: </b> 
-                         <span class="text-muted fa fa-star text-warning"></span>
-                         <span class="text-muted fa fa-star text-warning"></span>
-                         <span class="text-muted fa fa-star text-warning"></span>
-                         <span class="text-muted fa fa-star text-warning"></span>
-                         <span class="text-muted fa fa-star text-warning"></span>
-                     </p> 
-                       <!-- <p> <b>TIEMPO: {{requerimiento.tiempoEstimado}} dias</b></p> -->
-                       <!-- <div class="m-t-15" >
-                           <app-archivo [idsImagen]="requerimiento.urlArchivos"></app-archivo>
-                       </div> -->
-                   </div>
-               </div>
-              
-           <!-- </div> -->
-       </div>
       </div>
       </div>
