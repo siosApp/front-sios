@@ -68,6 +68,7 @@ import { AvatarComponent } from './components/requerimiento/mis-requerimientos/a
 import { NombreComponent } from './components/requerimiento/mis-requerimientos/nombre.component';
 import { ArchivoComponent } from './components/requerimiento/mis-requerimientos/archivo.component';
 import { PerfilDemandanteComponent } from './components/perfil/perfil-demandante/perfil-demandante.component';
+import { CalificacionComponent } from './components/reportes/calificaciones/single/calificacion.component';
 
 
 
@@ -145,7 +146,8 @@ export function getAuthServiceConfigs() {
     AvatarComponent,
     NombreComponent,
     ArchivoComponent,
-    PerfilDemandanteComponent
+    PerfilDemandanteComponent,
+    CalificacionComponent
   ],
   imports: [
     BrowserModule,
