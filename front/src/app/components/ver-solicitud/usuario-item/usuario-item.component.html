@@ -1,7 +1,9 @@
-<div *ngIf="usuario?.apellido!=null && usuario?.nombre!=null">
-  <p class="text-dark m-b-5"><b>Usuario: </b> <span class="text-muted"><a [routerLink]="['/sios/perfil-demandante',usuario.id]">{{usuario?.nombre}} {{usuario?.apellido}}</a></span></p>
+<div *ngIf="usuario">
+  <div *ngIf="usuario.apellido!=null && usuario.nombre!=null">
+    <p class="text-dark m-b-5"><b>Usuario: </b> <span class="text-muted"><a [routerLink]="['/sios/perfil-demandante',usuario.id]">{{usuario.nombre}} {{usuario.apellido}}</a></span></p>
+  </div>
+  <div *ngIf="usuario.apellido === null || usuario.nombre ===null">
+      <p class="text-dark m-b-5"><b>Usuario: </b> <span class="text-muted"> <a [routerLink]="['/sios/perfil-demandante',usuario.id]">{{usuario.username}}</a></span></p>
+  </div>
+  <p class="text-dark m-b-0"><b>Contacto: </b> <span class="text-muted">{{usuario.mail}}</span></p>
 </div>
-<div *ngIf="usuario?.apellido === null || usuario?.nombre ===null">
-    <p class="text-dark m-b-5"><b>Usuario: </b> <span class="text-muted"> <a [routerLink]="['/sios/perfil-demandante',usuario.id]">{{usuario?.username}}</a></span></p>
-</div>
-<p class="text-dark m-b-0"><b>Contacto: </b> <span class="text-muted">{{usuario?.mail}}</span></p>
