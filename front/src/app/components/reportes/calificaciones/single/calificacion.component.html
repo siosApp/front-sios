@@ -53,20 +53,20 @@
   <div class="table-box opport-box">
       <div class="table-detail">
           <div class="member-info">
-              <h4 class="m-t-0"><b><li  style="cursor: pointer;"><a [routerLink]="['/sios/perfil-oferente',item.idUsuario]">{{item.username}}</a> te calificó</li>  </b></h4>
-              <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted">{{item.nombreRubro}}</span></p>
+              <h4 class="m-t-0"><b><li  style="cursor: pointer;"><a [routerLink]="['/sios/perfil-oferente',item.id]">{{item.username}}</a> te calificó</li>  </b></h4>
+              <p class="text-dark m-b-5"><b>Rubro: </b> <span class="text-muted">{{item.rubro}}</span></p>
               <p class="text-dark m-b-0"><b>Calificación: </b> <span class="text-muted">{{item.calificacion}} <i class="md md-star text-primary"> </i></span></p>
           </div>
       </div>
       <div class="table-detail">
-          <p class="text-dark m-b-0"><b>Titulo:</b> <span class="text-muted">{{item.descripcionTrabajo}}</span></p>
+          <p class="text-dark m-b-0"><b>Titulo:</b> <span class="text-muted">{{item.descripcionSolicitud}}</span></p>
       </div>
       <div class="table-detail table-actions-bar">
-          <a (click)="abrirComentario(item.comentarios)" class="table-action-btn"><i class="md md-assignment" title="Ver Comentario"></i></a>
+          <a (click)="abrirComentario(item.comentario)" class="table-action-btn"><i class="md md-assignment" title="Ver Comentario"></i></a>
       </div>
   </div>
 </div>
-<div class="card-box m-b-10" *ngIf="listaUsuariosQueCalificaron.length == 0">
+<div class="card-box m-b-10" *ngIf="listaUsuariosQueCalificaron?.length == 0">
   <div class="table-box opport-box">
       <div class="table-detail">
           <div class="member-info">
@@ -87,7 +87,7 @@
       </div>
       <div class="icon custom" style="display: none;"></div>
       <h2>Comentario sobre tu trabajo</h2>
-      <p class="lead text-muted" style="display: block;">Muy buen servicio!</p>
+      <p class="lead text-muted" style="display: block;">{{comentario}}</p>
       <p>
           <button (click)="volver()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">OK</button>
       </p>
