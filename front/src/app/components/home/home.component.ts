@@ -42,11 +42,14 @@ export class HomeComponent{
   showDepartamentos=false;
   oferentes:any[];
   imagenesCollections: AngularFirestoreCollection<Imagen>;
+  busquedaVacia:boolean;
+
   constructor(private fb:FormBuilder,private tipoRubroService:TipoRubroService,
     private provinciaService:ProvinciaService,private rubroService:RubroService,
     private departamentoService:DepartamentoService,private localidadService:LocalidadService,
     private usuarioService:UsuarioService,private router:Router,private authService:AutenticacionService,
     private afStorage: AngularFireStorage,private afs: AngularFirestore) {
+    this.busquedaVacia = false;
     this.imagenesCollections=this.afs.collection<Imagen>('perfil'); 
     this.form= new FormGroup({
       'rubro': new FormControl('',[Validators.required,Validators.minLength(3)]),
@@ -145,13 +148,24 @@ export class HomeComponent{
     let departamento=this.form.controls['departamento'].value === 'Seleccione'? "null":this.form.controls['departamento'].value;
     let localidad=this.form.controls['localidad'].value === 'Seleccione'? "null":this.form.controls['localidad'].value;
     this.usuarioService.getOferentes(tipoRubro,rubro,provincia,departamento,localidad).subscribe((res:any)=>{
-      setTimeout(()=>{ 
-        this.oferentes=res;
+      setTimeout(()=>{
+        if(res.length > 0){
+          this.busquedaVacia = false;
+          this.oferentes=res;
+          console.log("res: ", res)
+        } 
+        else{
+          this.busquedaVacia = true;
+        }
         this.spiner=false;
         $('#spinerHome').modal('hide');
       },2000);
     })
    
+  }
+
+  toArray(n: number): any[] {
+    return Array(n);
   }
 
   verificarUsuarioAutenticado() {

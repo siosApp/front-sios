@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CalificacionService } from '../../../../services/calificacion.service';
 
+declare var $:any;
+
 @Component({
   selector: 'app-calificacion',
   templateUrl: './calificacion.component.html',
@@ -24,7 +26,8 @@ export class CalificacionComponent implements OnInit {
 
   ngOnInit() {
     let id=localStorage.getItem("auth");
-    this.calificacionService.getCalificaciones(id).subscribe((res:any)=>{
+    this.calificacionService.getCalificaciones(id,this.demandante,this.oferente).subscribe((res:any)=>{
+      console.log("res: ",res)
       this.listaUsuariosQueCalificaron=res.usuariosCalificadores;
       this.cantidadUsuariosCinco=res.cantidadUsuariosCinco;
       this.cantidadUsuariosCuatro=res.cantidadUsuariosCuatro;
@@ -36,13 +39,14 @@ export class CalificacionComponent implements OnInit {
 
 
 
-  abrirComentario(comentarios){
+  abrirComentario(comentario){
     $('#modalComentario').modal('show');
-    this.comentario=comentarios[0];
+    this.comentario=comentario;
   }
 
   volver(){
     $('#modalComentario').modal('hide');
+    this.comentario = null ;
   }
 
 }

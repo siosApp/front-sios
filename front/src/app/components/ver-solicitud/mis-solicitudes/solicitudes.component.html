@@ -13,9 +13,12 @@
           <div class="table-box opport-box">
               <div class="table-detail">
                   <div class="member-info">
-                    <div *ngIf="!solicitud.estaCalificada">
+                    <div *ngIf="!solicitud.estaCalificada && solicitud.nombreEstadoSolicitud === 'Finalizada'">
                         <h4 class="m-t-0"><b>{{solicitud.descripcion}}<span class="pull-right" > <a (click)="abrirModalCalificacion(solicitud)" style="color: red;cursor: pointer;" >Califique ésta solicitud!</a></span></b></h4>
-                    </div> 
+                    </div>
+                    <div *ngIf="!solicitud.estaCalificada && solicitud.nombreEstadoSolicitud !== 'Finalizada'">
+                        <h4 class="m-t-0"><b>{{solicitud.descripcion}}</b></h4>
+                    </div>  
                     <div *ngIf="solicitud.estaCalificada">
                         <h4 class="m-t-0"><b>{{solicitud.descripcion}}<span class="pull-right" style="color: green;" >SOLICITUD CALIFICADA</span></b></h4>
                     </div>

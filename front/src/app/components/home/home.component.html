@@ -96,7 +96,7 @@
     </div>
 </div>
 
-<div class="col-sm-2 col-lg-12 col-md-2">
+<div class="col-sm-2 col-lg-12 col-md-2" *ngIf="!busquedaVacia">
     <div class="panel panel-border panel-danger">
         <div class="panel-heading">
             <h3 class="panel-title">AQUÍ SE MOSTRARÁN LOS RESULTADOS DE TU BÚSQUEDA</h3>
@@ -107,7 +107,6 @@
             </p>
         </div>
     </div>
-
     <div class="row" *ngIf="oferentes != null && oferentes.length > 0">
         <div *ngFor="let oferente of oferentes">
             <div class="card-box m-b-10" >
@@ -115,71 +114,26 @@
                     <div class="table-detail">
                             <app-imagen [usuario]="oferente"></app-imagen>
                     </div>
-
                     <div class="table-detail">
                         <div class="member-info">
-                                <h4 class="m-t-0" *ngIf="oferente.nombre && oferente.apellido"><b>{{oferente.nombre}} {{oferente.apellido}} </b></h4>
-                                <h4 class="m-t-0" *ngIf="oferente.nombre==null || oferente.apellido==null"><b> {{oferente.username}} </b></h4>
-                                <p class="text-dark m-b-0"><b>Rubro: </b> <span class="text-muted">{{oferente.rubros[0].nombreRubro}}</span></p>
+                                <h4 class="m-t-0" *ngIf="oferente.nombre && oferente.apellido"><b>{{oferente.nombreUsuario}}</b></h4>
+                                <p class="text-dark m-b-0"><b>Rubro: </b> <span class="text-muted">{{oferente.rubro}}</span></p>
                                 <p class="text-dark m-b-0"><b>Experiencia: </b> <span class="text-muted">{{oferente.experiencia}}</span></p> 
-                                
-                                <!-- PARA 5 ESTRELLAS-->
-                                <!-- <p class="text-dark m-b-0"><b>Calificaciones: </b> 
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                </p>  -->
-                                
-                                
-                                <!-- PARA 4 ESTRELLAS-->
-                                <!-- <p class="text-dark m-b-0"><b>Calificaciones: </b> 
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star"></span>
-                                </p>  -->
-
-                                <!-- PARA 3 ESTRELLAS-->
-                                <p class="text-dark m-b-0"><b>Calificaciones: </b> 
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star"></span>
-                                    <span class="text-muted fa fa-star"></span>
-                                </p> 
-
-                                <!-- PARA 2 ESTRELLAS-->
-                                <!-- <p class="text-dark m-b-0"><b>Calificaciones: </b>
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star"></span>
-                                    <span class="text-muted fa fa-star"></span>
-                                    <span class="text-muted fa fa-star"></span>
-                                </p>  -->
-
-                                <!-- PARA 1 ESTRELLAS-->
-                                <!-- <p class="text-dark m-b-0"><b>Calificaciones: </b> 
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star text-warning"></span>
-                                    <span class="text-muted fa fa-star"></span>
-                                    <span class="text-muted fa fa-star"></span>
-                                    <span class="text-muted fa fa-star"></span>
-                                </p>  -->
-
-
-
+                                <b>Calificación: </b> 
+                            <div style="display: unset;" *ngFor="let cal of toArray(oferente.calificacion)">
+                                <span class="text-muted fa fa-star text-warning"></span>
+                            </div>
+                            <div style="display: unset;" *ngFor="let cal of toArray( 5 - oferente.calificacion)">
+                                <span class="text-muted fa fa-star"></span>
+                            </div>  
                         </div>
                     </div>
-
                     <div class="table-detail lable-detail">
                         <span class="label label-purple">OFERENTE</span>
                     </div>
                     <div class="table-detail lable-detail">
                     <div *ngIf="verificarUsuarioAutenticado(); else notShown" class="table-detail table-actions-bar">
-                        <a (click)="spinerSolicitarTrabajo(oferente.idUsuario)" class="btn btn-info waves-effect waves-light"><i class="fa fa-ticket"></i>  Solicitar Trabajo</a>
+                        <a (click)="spinerSolicitarTrabajo(oferente.id)" class="btn btn-info waves-effect waves-light"><i class="fa fa-ticket"></i>  Solicitar Trabajo</a>
                     </div>
                     <ng-template #notShown>
                         <div class="table-detail table-actions-bar">
@@ -194,12 +148,19 @@
             </div>
         </div>
     </div>
-
-
-
-
 </div>
-
+<div class="col-sm-2 col-lg-12 col-md-2" *ngIf="busquedaVacia">
+    <div class="panel panel-border panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title">SIN RESULTADOS</h3>
+        </div>
+        <div class="panel-body">
+            <p>
+               No se han encontrado resultados que se ajusten a tu búsqueda.
+            </p>
+        </div>
+    </div>
+</div>
 
 
 <div id="spinerHome" class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
