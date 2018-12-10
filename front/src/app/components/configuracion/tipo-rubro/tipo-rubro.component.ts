@@ -73,11 +73,11 @@ export class TipoRubroComponent {
       this.mensaje=mensajeAlta;
       this.habilitaTipoRubro=true;
     }
-    $('#danger-alert').modal('show');
+    $('#tipoRubroModal').modal('show');
   }
   volver(){
     this.tipoRubroAEditar=null;
-    $('#danger-alert').modal('hide');
+    $('#tipoRubroModal').modal('hide');
   }
   cancelar(){
     this.tipoRubroAEditar=null;

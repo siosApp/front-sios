@@ -73,11 +73,11 @@ export class MedioPagoComponent {
       this.mensaje=mensajeAlta;
       this.habilitaMedioPago=true;
     }
-    $('#danger-alert').modal('show');
+    $('#medioPagoModal').modal('show');
   }
   volver(){
     this.medioPagoEditar=null;
-    $('#danger-alert').modal('hide');
+    $('#medioPagoModal').modal('hide');
   }
   confirmarOperacion(){
     if(this.habilitaMedioPago){

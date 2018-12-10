@@ -3,7 +3,7 @@
         <h4 class="page-title">Mis Requerimientos</h4>
         <ol class="breadcrumb">
             <li>
-                <a [routerLink]="['/sios/home']">>Home</a>
+                <a [routerLink]="['/sios/home']">Home</a>
             </li>
             <li class="active">
                 Requerimientos realizados
@@ -31,7 +31,7 @@
                     <div class="comment-header">
                         <a [routerLink]="['/sios/perfil-oferente',id]" >{{nombre}}</a><span>{{requerimiento.fechaPublicacion | date:'dd/MM/yyy'}}</span>
                     </div>
-                    <p> <b>DESCRIPCION:</b></p>
+                    <p> <b>DESCRIPCIÓN:</b></p>
                     {{requerimiento.descripcion}}
                     <br>
                     <br>
@@ -51,7 +51,7 @@
                             <div class="comment-header">
                                 <a [routerLink]="['/sios/perfil-oferente',oferta.idUsuario]" ><app-nombre [id]="oferta.idUsuario"></app-nombre></a><span>{{oferta.fechaOferta | date:'dd/MM/yyy'}}</span>
                             </div>
-                            <p> <b>DESCRIPCION:</b></p>
+                            <p> <b>DESCRIPCIÓN:</b></p>
                             {{oferta.respuesta}}
                             <br>
                             <br>
