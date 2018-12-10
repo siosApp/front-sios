@@ -116,4 +116,8 @@ export class UsuarioService {
     url+=`&localidad=${localidad}&tipoRubro=${tipoRubro}&rubro=${rubro}`;
     return this.http.get(url);
   }
+  getComentariosOferentes(id){
+    let url = `${URL_API}/usuario/comentarios-oferente?id=${id}`;
+    return this.http.get(url);
+  }
 }
