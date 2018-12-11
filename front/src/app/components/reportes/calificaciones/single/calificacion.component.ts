@@ -37,15 +37,13 @@ export class CalificacionComponent implements OnInit {
     })
   }
 
-
-
   abrirComentario(comentario){
-    $('#modalComentario').modal('show');
+    $('.modalComentario').modal('show');
     this.comentario=comentario;
   }
 
   volver(){
-    $('#modalComentario').modal('hide');
+    $('.modalComentario').modal('hide');
     this.comentario = null ;
   }
 

@@ -82,7 +82,7 @@ export class RubroComponent {
       this.mensaje=mensajeAlta;
       this.habilitaRubro=true;
     }
-    $('#danger-alert').modal('show');
+    $('#rubroModal').modal('show');
   }
 
   abrirModal(){
@@ -91,7 +91,7 @@ export class RubroComponent {
   }
   volver(){
     this.rubroAEditar=null;
-    $('#danger-alert').modal('hide');
+    $('#rubroModal').modal('hide');
   }
   cancelar(){
     this.rubroAEditar=null;

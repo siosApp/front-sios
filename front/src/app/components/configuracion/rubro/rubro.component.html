@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card-box">
-            <h4 class="m-t-0 header-title"><b>Rubros.</b></h4>
+            <h4 class="m-t-0 header-title"><b>Rubros</b></h4>
             <p class="text-muted m-b-30 font-13">
                 Se muestran los distintos rubros.
             </p>
@@ -83,7 +83,7 @@
         <!-- /.modal -->
     </div>
 </div>
-<div id="danger-alert" style="display: none;">
+<div id="rubroModal" style="display: none;">
     <div class="sweet-alert showSweetAlert" tabindex="-1" data-backdrop="static" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
         <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
         </div>
@@ -95,7 +95,7 @@
         </div>
         <div class="icon custom" style="display: none;"></div>
         <h2>Estás seguro?</h2>
-        <p class="lead text-muted" style="display: block;">{{mensaje}}</p>
+        <p class="lead text-muted" style="display: block;">Estás a punto de borrar un rubro.</p>
         <p>
             <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
             <button (click)="confirmarOperacion()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Ok!!</button>

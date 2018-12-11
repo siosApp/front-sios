@@ -72,11 +72,11 @@ export class EstadoSolicitudComponent {
       this.mensaje=mensajeAlta;
       this.habilitaEstado=true;
     }
-    $('#danger-alert').modal('show');
+    $('#estadoSolicitudModal').modal('show');
   }
   volver(){
     this.estadoAEditar=null;
-    $('#danger-alert').modal('hide');
+    $('#estadoSolicitudModal').modal('hide');
   }
   cancelar(){
     this.estadoAEditar=null;
