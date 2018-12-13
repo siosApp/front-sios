@@ -7,6 +7,7 @@ import { Provincia } from '../../../models/provincia';
 import { RubroService } from '../../../services/rubro.service';
 import { TipoRubroService } from '../../../services/tipo-rubro.service';
 import { UsuarioService } from '../../../services/usuario.service';
+import { PdfService } from '../../../services/pdf.service';
 
 @Component({
   selector: 'app-usuarios-registrados',
@@ -27,7 +28,7 @@ export class UsuariosRegistradosComponent {
   showLocalidades:boolean;
   showRubros:boolean;
   constructor(private provinciaService:ProvinciaService,private departamentoService:DepartamentoService,private localidadService:LocalidadService,
-    private rubroService:RubroService,private tipoRubroService:TipoRubroService,private usuarioService:UsuarioService) {
+    private rubroService:RubroService,private tipoRubroService:TipoRubroService,private usuarioService:UsuarioService,private pdfService:PdfService) {
     this.showTabla=false;
     this.showRubros=false;
     this.form= new FormGroup({
@@ -46,6 +47,12 @@ export class UsuariosRegistradosComponent {
       this.tipoRubros=response;
     });
     this.setValueDefault();
+  }
+
+  exportarPDF(){
+    let params = document.getElementById("reporteRegistrados");
+    let reportName= "reporte-usuarios-registrados";
+    this.pdfService.export(params,reportName);
   }
 
   setValueDefault(){

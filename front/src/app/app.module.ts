@@ -168,7 +168,7 @@ export function getAuthServiceConfigs() {
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
-    }, AutenticacionService,
+    },
     GoogleMapsAPIWrapper
   ],
   bootstrap: [AppComponent]

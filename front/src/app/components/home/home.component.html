@@ -106,6 +106,15 @@
                Una vez filtrada la búsqueda que usted desee, aquí se mostrará la lista de los oferentes de servicios.
             </p>
         </div>
+        <div class="panel-body" *ngIf="oferentes != null && oferentes.length > 0">
+            <label class="col-md-3 control-label" for="state-warning">Ordena según calificación:</label>
+            <div class="col-md-6">
+                <select name="orden" class="form-control" (change)="ordenar($event)">
+                    <option selected="selected">De menor a mayor calificación</option>
+                    <option >De mayor a menor calificación</option>
+                </select>
+            </div>
+        </div>
     </div>
     <div class="row" *ngIf="oferentes != null && oferentes.length > 0">
         <div *ngFor="let oferente of oferentes">

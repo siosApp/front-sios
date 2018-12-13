@@ -39,11 +39,11 @@ export class RecoverPasswordComponent  {
     let pass=this.passwordFormGroup.controls['password'].value;
     this.authService.cambiarContrasena(email,pass,codigo).subscribe((response:any)=>{
       if(response!=null){
-        $.Notification.notify('success','top left', 'Info', 'Se ha cambiado satisfactoriamente su contraseña.');
+        //$.Notification.notify('success','top left', 'Info', 'Se ha cambiado satisfactoriamente su contraseña.');
         this.router.navigate(['login']);
       }
       else{
-        $.Notification.notify('error','top left', 'Error', 'Ha surgido un inconveniente. Revise sus datos ingresados.');
+        //$.Notification.notify('error','top left', 'Error', 'Ha surgido un inconveniente. Revise sus datos ingresados.');
         this.router.navigate(['login']);
       }     
     })

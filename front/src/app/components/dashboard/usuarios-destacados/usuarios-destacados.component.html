@@ -29,9 +29,10 @@
                     </div><!-- input-group -->
                     <div>
                     <button type="submit" class="btn btn-primary waves-effect waves-light btn-xs">Filtrar</button>
+                    <div *ngIf="showReporte"><a class="pull-right" style="cursor: pointer;" (click)="exportarPDF()"><i class="fa fa-file-pdf-o"> Exportar a PDF</i></a></div>
                     </div>
                     <br>
-                    <div class="row" *ngIf="showReporte">
+                    <div class="row" *ngIf="showReporte" id="reporteDestacado">
                         <div class="col-sm-12">
                             <div class="card-box">
                                 <h4 class="m-t-0 header-title"><b>Destacados</b></h4>

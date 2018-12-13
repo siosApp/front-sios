@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsuarioService } from '../../../services/usuario.service';
 import * as moment from 'moment';
+import { PdfService } from '../../../services/pdf.service';
 
 declare var $:any;
 @Component({
@@ -14,7 +15,7 @@ export class UsuariosDestacadosComponent{
   form:FormGroup;
   usuarios:any[]=[];
   showReporte=false;
-  constructor(private usuarioService:UsuarioService) { 
+  constructor(private usuarioService:UsuarioService,private pdfService:PdfService) { 
     this.form=new FormGroup({
       'fechaDesde': new FormControl('',Validators.required),
       'fechaHasta': new FormControl('',Validators.required)
@@ -28,10 +29,13 @@ export class UsuariosDestacadosComponent{
     $('#modalFecha').modal('show');
   }
   
+  exportarPDF(){
+    let params = document.getElementById("reporteDestacado");
+    let reportName= "reporte-usuarios-destacados";
+    this.pdfService.export(params,reportName);
+  }
 
   generarReporte(){
-
-
 
     let fechaDesde:Date = new Date(this.form.controls['fechaDesde'].value);
     let fechaHasta:Date = new Date(this.form.controls['fechaHasta'].value);

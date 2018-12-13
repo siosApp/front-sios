@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RubroService } from '../../../services/rubro.service';
 import * as moment from 'moment';
+import { PdfService } from '../../../services/pdf.service';
 
 declare var $: any; 
 @Component({
@@ -27,7 +28,7 @@ export class RubrosMasOfrecidosComponent {
   //   {data: [20, 67, 87, 54, 86, 34, 78], label: 'Carpinteria'}
   // ];
   showGrafico=false;
-  constructor(private rubroService:RubroService){
+  constructor(private rubroService:RubroService,private pdfService:PdfService){
     this.reporteForm= new FormGroup({
       'fechaDesde': new FormControl('',Validators.required),
       'fechaHasta': new FormControl('',Validators.required)
@@ -45,57 +46,57 @@ export class RubrosMasOfrecidosComponent {
     let fechaDesde=this.reporteForm.controls['fechaDesde'].value;
     let fechaHasta=this.reporteForm.controls['fechaHasta'].value;
     this.rubroService.getRubrosMasOfrecidos(fechaDesde,fechaHasta).subscribe((response:any)=>{
-      
+      this.showGrafico=false;
       function compare(a, b) {
         var momentA = moment(a);
         var momentB = moment(b);
         if (momentA > momentB) return 1;
         else if (momentA <= momentB) 
         return 0;
-    }
-      
-    if (compare(fechaDesde, fechaHasta) == 0){
-      let contador =0;
-      let reporteResponse= new Array();
-      for(let item of response){
-        if(contador < 4){
-          reporteResponse.push(item);
-        }
-        contador++;
       }
-      this.barChartLabels=[];
-      this.barChartData=[];
-      console.log("Reporte: ", reporteResponse);
-      
-      if(reporteResponse.length > 0){
-        let data = new Array();
-        let indice=0;
-        let arrayAux= new Array();
-        for(let reporte of reporteResponse){
-          data.push(reporte.cantidadSolicitudes);
-          this.barChartLabels.push(reporte.nombreRubro);
-          arrayAux.push(0);
+      console.log("res: ",response);
+      if (compare(fechaDesde, fechaHasta) == 0){
+        let contador =0;
+        let reporteResponse= new Array();
+        for(let item of response){
+          if(contador < 4){
+            reporteResponse.push(item);
+          }
+          contador++;
         }
-        //Inicializar arreglo.
-        let initData={data: arrayAux,label: 'Datos iniciando desde 0'};
-        this.barChartData.push(initData);
-        for(let reporte of reporteResponse){
-          let datito=new Array();
-          datito.push(arrayAux);
-          datito[indice]=reporte.cantidadSolicitudes;
-          // datito.push(data[indice]);
-          let datos= {data: datito,label: reporte.nombreRubro};
-          this.barChartData.push(datos);        
-          indice++;
+        this.barChartLabels=[];
+        this.barChartData=[];
+        console.log("Reporte: ", reporteResponse);
+        
+        if(reporteResponse.length > 0){
+          let data = new Array();
+          let indice=0;
+          let arrayAux= new Array();
+          for(let reporte of reporteResponse){
+            data.push(reporte.cantidadSolicitudes);
+            this.barChartLabels.push(reporte.nombreRubro);
+            arrayAux.push(0);
+          }
+          //Inicializar arreglo.
+          let initData={data: arrayAux,label: 'Datos iniciando desde 0'};
+          this.barChartData.push(initData);
+          for(let reporte of reporteResponse){
+            let datito=new Array();
+            datito.push(arrayAux);
+            datito[indice]=reporte.cantidadSolicitudes;
+            // datito.push(data[indice]);
+            let datos= {data: datito,label: reporte.nombreRubro};
+            this.barChartData.push(datos);        
+            indice++;
+          }
+          this.showGrafico=true;
         }
-        this.showGrafico=true;
+        else{
+          
+        }
+      } else{
+        this.abrirModal();
       }
-      else{
-
-      }
-    }else{
-      this.abrirModal();
-    }
       
     })
   }
@@ -122,5 +123,11 @@ export class RubrosMasOfrecidosComponent {
     clone[0].data = data;
     this.barChartData = clone;
    
+  }
+
+  exportarPDF(){
+    let params = document.getElementById("reporteRubroMasOfrecido");
+    let reportName= "reporte-rubro-mas-ofrecidos";
+    this.pdfService.export(params,reportName);
   }
 }

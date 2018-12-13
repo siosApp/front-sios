@@ -138,6 +138,17 @@ export class HomeComponent{
       this.showLocalidades=false;
     }
   }
+  ordenar(event){
+    let orden = event == null ?"De menor a mayor calificación":event.target.value;
+    if(orden === "De menor a mayor calificación"){
+      console.log("object")
+      this.oferentes.sort((oferente1, oferente2)=> { if(oferente1.destacado === false && oferente2.destacado === false) return oferente1.calificacion - oferente2.calificacion});
+    }
+    else if (orden === "De mayor a menor calificación"){
+      this.oferentes.sort((oferente1, oferente2)=> { if(oferente1.destacado === false && oferente2.destacado === false) return oferente2.calificacion - oferente1.calificacion});
+    }
+  }
+
   buscarOferentes(){
     this.spiner=true;
     // $('#spiner').modal('show');
@@ -153,6 +164,7 @@ export class HomeComponent{
           this.busquedaVacia = false;
           this.oferentes=res;
           console.log("res: ", res)
+          this.ordenar(null);
         } 
         else{
           this.busquedaVacia = true;

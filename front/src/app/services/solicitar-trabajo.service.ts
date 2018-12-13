@@ -50,7 +50,11 @@ export class SolicitarTrabajoService {
     return this.http.get(url);
   }
   getTrabajosRealizados(id){
-    let url=`${URL_API}/solicitud/trabajosOferente?idUsuario=${id}`;
+    let url=`${URL_API}/solicitud/trabajosRealizados?idUsuario=${id}`;
+    return this.http.get(url);
+  }
+  getTrabajosEnCurso(id){
+    let url=`${URL_API}/solicitud/trabajosEnCurso?idUsuario=${id}`;
     return this.http.get(url);
   }
 }
