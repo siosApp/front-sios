@@ -39,6 +39,7 @@ import { PerfilOferenteComponent } from './components/dashboard/perfil-oferente/
 import { AutenticacionService } from './services/autenticacion.service';
 import { MisRequerimientosComponent } from './components/requerimiento/mis-requerimientos/mis-requerimientos.component';
 import { PerfilDemandanteComponent } from './components/perfil/perfil-demandante/perfil-demandante.component';
+import { AyudaComponent } from './components/ayuda/ayuda.component';
 
 
 const rutas_hijas: Routes =[
@@ -76,6 +77,7 @@ const rutas_hijas: Routes =[
     { path: 'perfil-oferente/:id', component: PerfilOferenteComponent },
     { path: 'mis-requerimientos', component: MisRequerimientosComponent },
     { path: 'perfil-demandante/:id', component: PerfilDemandanteComponent },
+    { path: 'ayuda-en-linea', component: AyudaComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 

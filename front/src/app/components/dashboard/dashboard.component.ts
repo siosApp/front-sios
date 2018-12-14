@@ -78,52 +78,50 @@ public barChartOptions:any = {
   
   generarGraficoBarras(){
     //obtener fechas y generar reporte.
-
-   
-  
     let fechaDesde=this.reporteDestacadoForm.controls['fechaDesde'].value;
     let fechaHasta=this.reporteDestacadoForm.controls['fechaHasta'].value;
     this.usuarioService.reporteUsuariosDestacadosYUsuariosRegistrados(new Date(fechaDesde),new Date(fechaHasta)).subscribe((reporteResponse:any)=>{
       console.log("Reporte grafico2: ",reporteResponse);
-      
-      
+      this.showGraficoBarras=false;
+      this.barChartData = [];
+      this.barChartLabels = [];
       function compare(a, b) {
         var momentA = moment(a);
         var momentB = moment(b);
         if (momentA > momentB) return 1;
         else if (momentA <= momentB) 
         return 0;
-    }
+      }
 
+      if (compare(fechaDesde, fechaHasta) == 0){
+        if(reporteResponse != null && reporteResponse.destacados != 0 && reporteResponse.registrados != 0){
+          this.barChartLabels.push('Destacados');
+          this.barChartLabels.push('Registrados');
+          //Inicializar arreglo.
+          let initData={data: [0,0],label: 'Datos iniciando desde 0'};
+          this.barChartData.push(initData);
+          //Barra destacado
+          
+          let destacadoData= {data: [reporteResponse.destacados,0],label: 'Destacados'};
+          this.barChartData.push(destacadoData);
 
-    if (compare(fechaDesde, fechaHasta) == 0){
-      if(reporteResponse != null){
-        this.barChartLabels.push('Destacados');
-        this.barChartLabels.push('Registrados');
-        //Inicializar arreglo.
-        let initData={data: [0,0],label: 'Datos iniciando desde 0'};
-        this.barChartData.push(initData);
-        //Barra destacado
-        
-        let destacadoData= {data: [reporteResponse.destacados,0],label: 'Destacados'};
-        this.barChartData.push(destacadoData);
+          //Barra Registrado
+          
+          let registradoData= {data: [0,reporteResponse.registrados],label: 'Registrados'};
+          this.barChartData.push(registradoData);
 
-        //Barra Registrado
-        
-        let registradoData= {data: [0,reporteResponse.registrados],label: 'Registrados'};
-        this.barChartData.push(registradoData);
-
-        this.showGraficoBarras=true;
-        
+          this.showGraficoBarras=true;
+          
+        }
+        else{
+          this.showGraficoBarras=false;
+        }
       }
       else{
-
+        this.abrirModal();
       }
-    }else{
-      this.abrirModal();
-    }
       
-    })
+      })
   } 
 
   public randomize():void {

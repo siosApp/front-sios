@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../../services/usuario.service';
+import { PdfService } from '../../../services/pdf.service';
 
 @Component({
   selector: 'app-usuarios-en-linea',
@@ -12,15 +13,20 @@ export class UsuariosEnLineaComponent implements OnInit {
   usuarios:any[]=[];
   showLista:boolean;
 
-  constructor(private usuarioService:UsuarioService) {
+  constructor(private usuarioService:UsuarioService,private pdfService:PdfService) {
     this.showLista=false;
     usuarioService.getUsuariosEnLinea().subscribe((usuariosRes:any)=>{
-      console.log("Usuario ejemplo: ",usuariosRes[0]);
       if(usuariosRes.length > 0){
         this.showLista=true;
         this.usuarios=usuariosRes;
       }
     })
+  }
+
+  exportarPDF(){
+    let params = document.getElementById("reporteEnLinea");
+    let reportName= "reporte-usuarios-en-linea";
+    this.pdfService.export(params,reportName);
   }
 
   ngOnInit() {

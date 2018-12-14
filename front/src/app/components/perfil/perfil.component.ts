@@ -22,6 +22,7 @@ import { Router } from '@angular/router';
 import { NgxNotificationService } from 'ngx-notification';
 import { MapsAPILoader, AgmMap } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
+import { SolicitarTrabajoService } from '../../services/solicitar-trabajo.service';
 
 declare var google: any;
 declare var $:any;
@@ -85,13 +86,16 @@ export class PerfilComponent implements OnInit {
   imagenUrl:string;
   eventImage:any;
   id:string;
-  
+  cantidadTrabajosRealizados:number;
+  cantidadTrabajosEnCurso:number;
+
   constructor(private service:UsuarioService, private fb:FormBuilder,private router:Router,
               private provinciaService:ProvinciaService,
               private departamentoService:DepartamentoService,
               private localidadService:LocalidadService,private afStorage: AngularFireStorage,
               private afs: AngularFirestore, private ngxNotificationService: NgxNotificationService,
-              public mapsApiLoader: MapsAPILoader, private zone: NgZone, private wrapper: GoogleMapsAPIWrapper) {
+              public mapsApiLoader: MapsAPILoader, private zone: NgZone, private wrapper: GoogleMapsAPIWrapper,
+              private solicitudService:SolicitarTrabajoService) {
       this.id=localStorage.getItem("auth");
       this.imagenesCollections=this.afs.collection<Imagen>('perfil'); 
       this.imagenUrl='assets/images/noimage.png';              
@@ -134,6 +138,12 @@ export class PerfilComponent implements OnInit {
       }
       this.cargarImagen(response);
     });
+    solicitudService.getTrabajosEnCurso(idusuario).subscribe((res:any)=>{
+      this.cantidadTrabajosEnCurso = res;
+    })
+    solicitudService.getTrabajosRealizados(idusuario).subscribe((res:any) =>{
+      this.cantidadTrabajosRealizados = res;
+    })
     provinciaService.getProvinciasVigentes().subscribe((response:any)=>{
       this.provincias=response;
     });
@@ -498,14 +508,14 @@ export class PerfilComponent implements OnInit {
     }
     if(this.hayCambiosEnPerfil()){
       this.mensaje = mensajeGuardar;
-      $('#danger-alert').modal('show');
+      $('.oferenteModal').modal('show');
     }
     else{
       this.irAPageAgregarRubro();
     }
   }
   irAPageAgregarRubro(){
-    $('#danger-alert').modal('hide');
+    $('.oferenteModal').modal('hide');
     this.router.navigate(['/sios/agregarRubro']);
   }
   volver(){
@@ -520,7 +530,7 @@ export class PerfilComponent implements OnInit {
   //   $('#sa-warningt').modal('hide');
   // }
   volverAlPerfil(){
-    $('#danger-alert').modal('hide');
+    $('.oferenteModal').modal('hide');
   }
 
   spinerDestacarme(){

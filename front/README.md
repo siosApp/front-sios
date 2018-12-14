@@ -12,7 +12,9 @@ Para los reportes:
 7. npm install ngx-notification --save
 8. npm install @agm/core @ng-bootstrap/ng-bootstrap --save
 9. npm install moment-timezone --save
-10. Done! A correr el proyecto, muchachos!
+10. npm install jspdf 
+11. npm install html2canvas
+12. Done! A correr el proyecto, muchachos!
 
 # Front
 

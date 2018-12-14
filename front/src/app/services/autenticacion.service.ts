@@ -21,6 +21,7 @@ export class AutenticacionService implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean {
+    console.log("object: ",state);
     // console.log("Entrando por autenticacion: ",this.esAdministrador);
     
     // //this.isUsuarioAdmin();

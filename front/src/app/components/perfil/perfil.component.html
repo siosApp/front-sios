@@ -15,11 +15,11 @@
 				</div>
 				<ul class="list-inline status-list m-t-20">
 					<li>
-						<h3 class="text-danger m-b-5">0</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
+						<h3 class="text-danger m-b-5">{{cantidadTrabajosRealizados}}</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
 						<p class="text-muted">Trabajos Realizados</p>
 					</li>
 					<li>
-						<h3 class="text-danger m-b-5">0</h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
+						<h3 class="text-danger m-b-5">{{cantidadTrabajosEnCurso}}</h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
 						<p class="text-muted">En curso</p>
 					</li>
 				</ul>
@@ -314,7 +314,7 @@
 </div>
 
 
-<div id="danger-alert" style="display: none;">
+<div class="oferenteModal" style="display: none;">
     <div class="sweet-alert showSweetAlert" data-backdrop="static" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
         <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
         </div>

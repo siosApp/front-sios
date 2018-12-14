@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../../services/usuario.service';
+import { PdfService } from '../../../services/pdf.service';
 
 @Component({
   selector: 'app-usuarios-por-vencer',
@@ -9,7 +10,7 @@ import { UsuarioService } from '../../../services/usuario.service';
 export class UsuariosPorVencerComponent{
 
   usuariosDestacados:any[]=[];
-  constructor(private usuarioService:UsuarioService) {
+  constructor(private usuarioService:UsuarioService,private pdfService:PdfService) {
 
     usuarioService.getUsuariosDestacadosPorVencer().subscribe((res:any)=>{
       
@@ -17,5 +18,9 @@ export class UsuariosPorVencerComponent{
     })
   }
 
-
+  exportarPDF(){
+    let params = document.getElementById("reporteDestacado");
+    let reportName= "reporte-usuarios-en-linea";
+    this.pdfService.export(params,reportName);
+  }
 }

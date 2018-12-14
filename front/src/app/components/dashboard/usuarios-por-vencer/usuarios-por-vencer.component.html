@@ -6,44 +6,44 @@
         <li class="active">Destacados por Vencer</li>
       </ol>
     </div>
-  </div>
-
-          <div class="card-box">
-              <div class="row">
-                  <div class="col-lg-10">
-                      <h4 class="m-t-0 header-title"><b>Destacados por Vencer</b></h4>
-                      <p class="text-muted font-13 m-b-30">
-                         Se muestran los usuarios destacados a los que se le esta por vencer la suscripción.
-                      </p>
-                  </div>
-                  <div class="col-xs-12">
-                      
-                            <table id="demo-foo-row-toggler" class="table toggle-circle table-hover" *ngIf="usuariosDestacados.length >0">
-                                <thead>
-                                    <tr>
-                                        <th data-toggle="true"> Nombre </th>
-                                        <th> Apellido </th>
-                                        <th data-hide="phone"> Username </th>
-                                        <th data-hide="all"> Fecha vencimiento</th>
-                                        <th data-hide="all"> Accion </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let destacado of usuariosDestacados">
-                                        <td>{{destacado.nombre}}</td>
-                                        <td>{{destacado.apellido}}</td>
-                                        <td>{{destacado.username}}</td>
-                                        <td>18/11/2018</td>
-                                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-warning">Detalle</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div *ngIf="usuariosDestacados.length == 0">
-                                <p>No hay usuarios destacados próximos a vencerse.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+</div>
+<div class="col-sm-12"><a class="pull-right" style="cursor: pointer;" (click)="exportarPDF()"><i class="fa fa-file-pdf-o"> Exportar a PDF</i></a></div>
+<hr>
+<div class="card-box" id="reporteDestacado">
+    <div class="row">
+        <div class="col-lg-10">
+            <h4 class="m-t-0 header-title"><b>Destacados por Vencer</b></h4>
+            <p class="text-muted font-13 m-b-30">
+                Se muestran los usuarios destacados a los que se le esta por vencer la suscripción.
+            </p>
+        </div>
+        <div class="col-xs-12">
+            <table id="demo-foo-row-toggler" class="table toggle-circle table-hover" *ngIf="usuariosDestacados.length >0">
+                <thead>
+                    <tr>
+                        <th data-toggle="true"> Nombre </th>
+                        <th> Apellido </th>
+                        <th data-hide="phone"> Username </th>
+                        <th data-hide="all"> Fecha vencimiento</th>
+                        <th data-hide="all"> Accion </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let destacado of usuariosDestacados">
+                        <td>{{destacado.nombre}}</td>
+                        <td>{{destacado.apellido}}</td>
+                        <td>{{destacado.username}}</td>
+                        <td>18/11/2018</td>
+                        <td><span [routerLink]="['/sios/perfil-oferente']" class="btn btn-xs btn-warning">Detalle</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div *ngIf="usuariosDestacados.length == 0">
+                <p>No hay usuarios destacados próximos a vencerse.</p>
+            </div>
+        </div>
+    </div>
+</div>
        
   
   
