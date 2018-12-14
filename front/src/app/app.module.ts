@@ -69,6 +69,7 @@ import { NombreComponent } from './components/requerimiento/mis-requerimientos/n
 import { ArchivoComponent } from './components/requerimiento/mis-requerimientos/archivo.component';
 import { PerfilDemandanteComponent } from './components/perfil/perfil-demandante/perfil-demandante.component';
 import { CalificacionComponent } from './components/reportes/calificaciones/single/calificacion.component';
+import { AyudaComponent } from './components/ayuda/ayuda.component';
 
 
 
@@ -147,7 +148,8 @@ export function getAuthServiceConfigs() {
     NombreComponent,
     ArchivoComponent,
     PerfilDemandanteComponent,
-    CalificacionComponent
+    CalificacionComponent,
+    AyudaComponent
   ],
   imports: [
     BrowserModule,
