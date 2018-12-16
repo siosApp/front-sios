@@ -37,6 +37,7 @@ export class CalificacionComponent implements OnInit {
       this.cantidadUsuariosUno=res.cantidadUsuariosUno;
       let suma = this.cantidadUsuariosCinco + this.cantidadUsuariosCuatro + this.cantidadUsuariosTres + this.cantidadUsuariosDos + this.cantidadUsuariosUno;
       this.promedioCalificacion = (this.cantidadUsuariosCinco * 5) + (this.cantidadUsuariosCuatro * 4 ) + (this.cantidadUsuariosTres * 3) + (this.cantidadUsuariosDos * 2) + ( this.cantidadUsuariosUno * 1 );
+      this.promedioCalificacion = Math.round(this.promedioCalificacion / suma);
     })
   }
 
