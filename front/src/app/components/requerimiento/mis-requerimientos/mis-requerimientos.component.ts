@@ -23,7 +23,7 @@ export class MisRequerimientosComponent {
     this.id=localStorage.getItem("auth");    
     requerimientoService.getRequerimientosPublicadosPorUsuario(this.id).subscribe((requerimientosRes:any)=>{
       this.requerimientos=requerimientosRes;
-      console.log("Requerimiento: ",requerimientosRes[0]);   
+      console.log("Requerimiento: ",requerimientosRes);   
     })
     usuarioService.getUsuarioById(this.id).subscribe((usuarioRes:any)=>{
       if(usuarioRes.nombre == null && usuarioRes.apellido == null){

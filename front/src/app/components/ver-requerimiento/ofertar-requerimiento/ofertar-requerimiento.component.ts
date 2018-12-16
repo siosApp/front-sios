@@ -71,6 +71,11 @@ export class OfertarRequerimientoComponent implements OnInit{
     }, 2000);
   }
   ofertarRequerimiento(){
+    if(!this.requerimientoForm.valid){
+      this.abrirFormIncompletoModal();
+      $('#sa-warningt').modal('hide');
+      return;
+    }
     let descripcion=this.requerimientoForm.controls['descripcion'].value;
     let tiempoEstimado=this.requerimientoForm.controls['tiempoEstimado'].value;
     let precioApagar=this.requerimientoForm.controls['precio'].value;
@@ -98,5 +103,11 @@ export class OfertarRequerimientoComponent implements OnInit{
   volver(){
     $('#sa-warningt').modal('hide');
   }
-
+  
+  cerrarFormIncompletoModal(){
+    $('.formIncompletoModal').modal('hide');
+  }
+  abrirFormIncompletoModal(){
+    $('.formIncompletoModal').modal('show');
+  }
 }

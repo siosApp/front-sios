@@ -21,6 +21,7 @@ export class CalificacionComponent implements OnInit {
   cantidadUsuariosTres:any;
   cantidadUsuariosDos:any;
   cantidadUsuariosUno:any;
+  promedioCalificacion:any;
 
   constructor(private calificacionService:CalificacionService) { }
 
@@ -34,6 +35,8 @@ export class CalificacionComponent implements OnInit {
       this.cantidadUsuariosTres=res.cantidadUsuariosTres;
       this.cantidadUsuariosDos=res.cantidadUsuariosDos;
       this.cantidadUsuariosUno=res.cantidadUsuariosUno;
+      let suma = this.cantidadUsuariosCinco + this.cantidadUsuariosCuatro + this.cantidadUsuariosTres + this.cantidadUsuariosDos + this.cantidadUsuariosUno;
+      this.promedioCalificacion = (this.cantidadUsuariosCinco * 5) + (this.cantidadUsuariosCuatro * 4 ) + (this.cantidadUsuariosTres * 3) + (this.cantidadUsuariosDos * 2) + ( this.cantidadUsuariosUno * 1 );
     })
   }
 

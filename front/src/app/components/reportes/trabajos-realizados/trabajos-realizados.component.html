@@ -7,7 +7,6 @@
             <li>
                 <a [routerLink]="['/sios/home']">Home</a>
             </li>
-            
             <li class="active">
                 Trabajos Realizados
             </li>
@@ -25,11 +24,6 @@
         <div class="table-detail">
             <p class="text-dark m-b-5"><b>Email: </b> <span class="text-muted"> {{trabajo.mailDemandante}}</span></p>
         </div>
-<!-- 
-        <div class="table-detail lable-detail">
-            <span class="label label-danger">TERMINADO</span>
-        </div> -->
-
         <div class="table-detail table-actions-bar" *ngIf="trabajo.comentarios.length > 0">
             <a style="cursor: pointer;" (click)="abrirComentario(trabajo.comentarios)" class="table-action-btn"><i class="md md-assignment" title="Ver Comentario"></i></a>
         </div>

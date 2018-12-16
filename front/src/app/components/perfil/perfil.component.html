@@ -241,13 +241,7 @@
 						</agm-map>
 					</div>
 				</div>
-
-				
 <!-- map/map.component.html -->
- 
-
-
-
 		</div>
 	</div>
 </div>
@@ -360,12 +354,6 @@
 	</div><!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-
-
-
-
-
-
 <div id="spinerPerfil" class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
@@ -379,4 +367,23 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="fechaNacimientoModal" style="display: none;">
+    <div class="sweet-alert showSweetAlert" data-backdrop="static" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
+        <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
+        </div>
+        <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
+        </div>
+        <div class="icon custom" style="display: none;"></div>
+        <h2>Error!</h2>
+        <p class="lead text-muted" style="display: block;">La fecha de nacimiento ingresada no puede ser mayor a la fecha actual del sistema.</p>
+        <p>
+            <button (click)="cerrarFechaNacimientoModal()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Volver</button>
+        </p>
+    </div>
 </div>

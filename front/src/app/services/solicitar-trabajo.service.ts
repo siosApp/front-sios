@@ -53,6 +53,10 @@ export class SolicitarTrabajoService {
     let url=`${URL_API}/solicitud/trabajosRealizados?idUsuario=${id}`;
     return this.http.get(url);
   }
+  getListaTrabajosRealizados(id){
+    let url=`${URL_API}/solicitud/trabajosOferente?idUsuario=${id}`;
+    return this.http.get(url);
+  }
   getTrabajosEnCurso(id){
     let url=`${URL_API}/solicitud/trabajosEnCurso?idUsuario=${id}`;
     return this.http.get(url);

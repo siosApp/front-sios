@@ -48,9 +48,9 @@ export class RequerimientoComponent{
       'precioApagar': new FormControl('',[Validators.required,Validators.minLength(2)]),
       'tiempoEstimado': new FormControl('',[Validators.required,Validators.minLength(1)]),
       'titulo': new FormControl('',[Validators.required,Validators.minLength(1)]),
-      'archivoUno': new FormControl('',Validators.required),
-      'tipoRubro': new FormControl('',Validators.required),
-      'rubro': new FormControl('',Validators.required)
+      'archivoUno': new FormControl(''),
+      'tipoRubro': new FormControl(''),
+      'rubro': new FormControl('')
     });
     tipoRubroService.getTipoRubrosVigentes().subscribe((response:any)=>{
       this.tiposRubros=response;
@@ -148,13 +148,34 @@ export class RequerimientoComponent{
     this.router.navigate(['/sios/home']);
   }
 
+  cerrarTipoRubroModal(){
+    this.volverPerfil();
+    $('.tipoRubroModal').modal('hide');
+  }
 
   volverPerfil(){
     $('#sa-warningt ').modal('hide');
   }
 
+  cerrarErrorModal(){
+    this.volverPerfil();
+    $('.errorModal').modal('hide');
+  }
+
   guardarRequerimiento(){
-    let idUsuario = localStorage.getItem("auth"); 
+    
+    if(!this.form.valid){
+      $('.errorModal').modal('show');
+      return;
+    }
+
+    let idUsuario = localStorage.getItem("auth");
+    let tipoRubro = this.form.controls['tipoRubro'].value;
+    let rubro = this.form.controls['rubro'].value;
+    if (tipoRubro == "Seleccione" || rubro == "Seleccione" ){
+      $('.tipoRubroModal').modal('show');
+      return;
+    }
     //Refactor sobre esto. Los componentes no tienen que acceder al localStorage. Solamente debería hacerlo servicio.
     this.usuarioService.getUsuarioById(idUsuario).subscribe((usuarioRes:any)=>{
       let requerimiento ={
@@ -171,6 +192,7 @@ export class RequerimientoComponent{
       }        
       this.service.crearRequerimiento(requerimiento).subscribe(response=>{
         this.form.reset();
+        
         $('#sa-warningt').modal('hide');
         $('#sa-warningt01').modal('show');
 

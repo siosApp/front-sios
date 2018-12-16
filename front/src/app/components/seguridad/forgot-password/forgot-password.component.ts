@@ -24,7 +24,7 @@ export class ForgotPasswordComponent {
     let email=this.form.controls['email'].value;
     this.authService.enviarMail(email).subscribe((res:any)=>{
       this.ngxNotificationService.sendMessage('Te hemos enviado un correo al mail. Revisa tu bandeja de entrada', 'success', 'top-left');
-      this.router.navigate(['login']);
+      //this.router.navigate(['login']);
     });
   }
 }

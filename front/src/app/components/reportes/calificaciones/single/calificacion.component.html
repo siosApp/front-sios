@@ -49,6 +49,27 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-sm-6 col-lg-3">
+        <div class="widget-bg-color-icon card-box">
+            <div class="bg-icon bg-icon-danger pull-left">
+                <i class="icon icon-dislike text-danger"></i>
+            </div>
+            <div class="text-right">
+                <h3 class="text-dark"><b data-plugin="counterup">{{cantidadUsuariosUno}} Usuario/s</b></h3>
+                <p class="text-muted">Calificó con 1 <i class="md md-star text-primary"></i></p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-8 pull-right">
+        <div class="widget-panel widget-style-2 bg-white">
+            <i class="md md-account-child text-custom"></i>
+            <h2 class="m-0 text-dark counter font-600"><span data-plugin="counterup">{{promedioCalificacion}}</span></h2>
+            <div class="text-muted m-t-5">Promedio de calificaciones recibidas</div>
+        </div>
+    </div>
+</div>
 <div class="card-box m-b-10" *ngFor="let item of listaUsuariosQueCalificaron">
   <div class="table-box opport-box">
       <div class="table-detail">

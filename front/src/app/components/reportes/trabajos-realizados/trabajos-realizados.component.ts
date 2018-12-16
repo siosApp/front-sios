@@ -15,7 +15,7 @@ export class TrabajosRealizadosComponent {
   constructor(private solicitarTrabajoService:SolicitarTrabajoService) {
     this.showReporte=false;
     let id=localStorage.getItem("auth");
-    solicitarTrabajoService.getTrabajosRealizados(id).subscribe((res:any)=>{
+    solicitarTrabajoService.getListaTrabajosRealizados(id).subscribe((res:any)=>{
       console.log("Trabajos realizados: ",res);
       if(res.length > 0){
         this.showReporte=true;

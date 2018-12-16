@@ -11,10 +11,6 @@
         </li>
     </ol>
 </div>
-
-
-
-
 <div class="col-md-12">
         <div class="panel panel-danger panel-border">
             <div class="panel-heading">
@@ -110,19 +106,23 @@
                                 placeholder="Descripción de tu oferta" required="required"></textarea>
                         </span>
                         <br>
+                        <span class="text-danger">* Campo obligatorio.</span>
+                        <br>
                         <label class="col-md-10 control-label">Precio de oferta</label>
 
                         <div class="col-md-4 control-label">
                             <input type="number" class="form-control" placeholder="0" formControlName="precio" name="precio"
                                 required="required">
+                                <br>
+                                <span class="text-danger">* Campo obligatorio.</span>
                         </div>
                         <label class="col-md-10 control-label">Tiempo de oferta en días</label>
                         <div class="col-md-4 control-label">
-
                             <input type="number" class="form-control " style="widows: 20px;" placeholder="30"
                                 formControlName="tiempoEstimado" name="tiempoEstimado" required="required">
+                                <br>
+                                <span class="text-danger">* Campo obligatorio.</span>
                         </div>
-
                         <div class="p-t-10 pull-right">
                             <button type="submit" class="btn btn-sm btn-primary waves-effect waves-light">Enviar</button>
                         </div>
@@ -154,6 +154,24 @@
                 style="display: inline-block;">Cancel</button>
             <button (click)="ofertarRequerimiento()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light"
                 tabindex="1" style="display: inline-block;">OK</button>
+        </p>
+    </div>
+</div>
+<div class="formIncompletoModal" style="display: none;">
+    <div class="sweet-alert showSweetAlert" data-backdrop="static" tabindex="-1" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">
+        <div class="icon error animateErrorIcon" style="display: block;"><span class="x-mark animateXMark"><span class="line left"></span><span class="line right"></span></span>
+        </div>
+        <div class="icon warning" style="display: none;"> <span class="body"></span> <span class="dot"></span> </div>
+        <div class="icon info" style="display: none;"></div>
+        <div class="icon success" style="display: none;"> <span class="line tip"></span> <span class="line long"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
+        </div>
+        <div class="icon custom" style="display: none;"></div>
+        <h2>Error!</h2>
+        <p class="lead text-muted" style="display: block;">Debe completar todos los campos obligatorios.</p>
+        <p>
+            <button (click)="cerrarFormIncompletoModal()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Volver</button>
         </p>
     </div>
 </div>

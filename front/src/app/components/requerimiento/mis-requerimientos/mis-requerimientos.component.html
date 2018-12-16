@@ -13,7 +13,7 @@
 </div>     
 <div class="panel panel-border panel-danger">
     <div class="panel-heading">
-        <h3 class="panel-title">AQUI SE MUESTRAN TUS REQUERIMIENTOS</h3>
+        <h3 class="panel-title">AQUÍ SE MUESTRAN TUS REQUERIMIENTOS.</h3>
     </div>
     <div class="panel-body">
         <p>
@@ -21,7 +21,7 @@
         </p>
     </div>
 </div>
-<div class="card-box">
+<div class="card-box" *ngIf="requerimientos.length > 0">
     <div class="comment">
         <!-- <img src="assets/images/users/avatar-1.jpg" class="comment-avatar"> -->
         <app-avatar [id]="id"></app-avatar>
@@ -66,6 +66,16 @@
             </div>
         </div>
     </div>
+</div>
+<div  class="panel panel-border panel-info" *ngIf="requerimientos.length == 0">
+        <div class="panel-heading">
+            <h3 class="panel-title">ATENCIÓN.</h3>
+        </div>
+        <div class="panel-body">
+            <p>
+                Usted no ha realizado ningún requerimiento aún.
+            </p>
+        </div>
 </div>
 <div id="aceptar-oferta" style="display: none;">
     <div class="sweet-alert showSweetAlert" tabindex="-1" data-backdrop="static" data-has-cancel-button="true" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; margin-top: -165px;">

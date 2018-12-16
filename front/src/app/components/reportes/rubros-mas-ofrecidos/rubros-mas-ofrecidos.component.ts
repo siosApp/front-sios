@@ -28,6 +28,7 @@ export class RubrosMasOfrecidosComponent {
   //   {data: [20, 67, 87, 54, 86, 34, 78], label: 'Carpinteria'}
   // ];
   showGrafico=false;
+  showError=false;
   constructor(private rubroService:RubroService,private pdfService:PdfService){
     this.reporteForm= new FormGroup({
       'fechaDesde': new FormControl('',Validators.required),
@@ -92,7 +93,7 @@ export class RubrosMasOfrecidosComponent {
           this.showGrafico=true;
         }
         else{
-          
+          this.showError = true;
         }
       } else{
         this.abrirModal();

@@ -458,7 +458,12 @@ export class PerfilComponent implements OnInit {
     let oferente = this.usuarioAEditar.oferente;
     let tipousuario = this.usuarioAEditar.tipoUsuario;
     let domicilio;
-    
+    console.log("fecha Nacimiento: ",fechaNacimiento);
+    if(new Date(fechaNacimiento) > new Date()){
+      $('#sa-warningt').modal('hide');
+      $(".fechaNacimientoModal").modal("show"); 
+      return;
+    }
     // si alguno de estos tres campos es distinto de null se ejecuta el metodo
     this.localidadService.getLocalidadesByNombreAndProvinciaAndDepartamento(localidad,provincia,departamento).subscribe((localidadRes:Localidad)=>{
       if (this.usuarioAEditar.domicilio!=null){
@@ -471,10 +476,15 @@ export class PerfilComponent implements OnInit {
       fechaUltimoIngreso,mail,nombre,oferente,password,sexo, tipousuario, username ,null ,apellido, domicilio,this.usuarioAEditar.imagen,null);  
       this.service.updateUsuario(usuarioActualizado).subscribe(response=>{
         $('#sa-warningt').modal('hide');
+        this.cerrarFechaNacimientoModal();
         this.router.navigate(['/sios/home']);
       })
     })
   }
+  cerrarFechaNacimientoModal(){
+    $(".fechaNacimientoModal").modal("hide"); 
+  }
+
   hayCambiosEnPerfil(){
     if (this.form.touched || this.eventImage != null){
       return true;
