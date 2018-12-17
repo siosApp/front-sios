@@ -39,8 +39,8 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Filtro de Zona Geográfica</h3>
                                 <p class="text-muted m-b-30 font-13">
-                                        Seleccione en los siguientes campos los filtros de búsqueda que usted desee obtener en las
-                                        búsquedas del sistema.
+                                        Seleccione en los siguientes campos los filtros de búsqueda geográfica que usted desee, para obtener resultados 
+                                        más precisos. 
                                     </p>
                             </div>
                             <div class="panel-body">
@@ -107,9 +107,9 @@
             </p>
         </div>
         <div class="panel-body" *ngIf="oferentes != null && oferentes.length > 0">
-            <label class="col-md-3 control-label" for="state-warning">Ordena según calificación:</label>
-            <div class="col-md-6">
-                <select name="orden" class="form-control" (change)="ordenar($event)">
+            <label class="col-md-12 control-label text-center" for="state-warning">Ordena según calificación:</label>
+            <div class="col-md-12">
+                <select name="orden" class="form-control text-center col-md-offset-5" style="width:250px" (change)="ordenar($event)">
                     <option selected="selected">De menor a mayor calificación</option>
                     <option >De mayor a menor calificación</option>
                 </select>

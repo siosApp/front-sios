@@ -145,7 +145,7 @@ public barChartOptions:any = {
     {data: [5, 12, 14], label: 'Registrados'},
     {data: [2, 6, 7], label: 'Destacados'}
   ];
-  public lineChartLabels:Array<any> = ['Septiembre', 'Octubre', 'Noviembre'];
+  public lineChartLabels:Array<any> = ['Octubre', 'Noviembre', 'Diciembre'];
   public lineChartOptions:any = {
     responsive: true
   };
