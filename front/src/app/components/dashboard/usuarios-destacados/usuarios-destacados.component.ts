@@ -15,6 +15,7 @@ export class UsuariosDestacadosComponent{
   form:FormGroup;
   usuarios:any[]=[];
   showReporte=false;
+  showError=false;
   constructor(private usuarioService:UsuarioService,private pdfService:PdfService) { 
     this.form=new FormGroup({
       'fechaDesde': new FormControl('',Validators.required),
@@ -51,16 +52,22 @@ export class UsuariosDestacadosComponent{
         if (momentA > momentB) return 1;
         else if (momentA <= momentB) 
         return 0;
-    }
-    if (compare(fechaDesde, fechaHasta) == 0){
-      
-      
-      console.log("Res: ",res);
-      this.showReporte=true;
-      this.usuarios=res;
-    }else{
-      this.abrirModal();
-    }
+      }
+      if (compare(fechaDesde, fechaHasta) == 0){
+        if(res.length > 0){
+          console.log("Res: ",res);
+          this.showReporte=true;
+          this.usuarios=res;
+        }
+        else{
+          this.showReporte=false;
+          this.showError=true;
+        }
+        
+      }
+      else{
+        this.abrirModal();
+      }
     })
   }
 }

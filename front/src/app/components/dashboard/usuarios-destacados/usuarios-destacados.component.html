@@ -28,7 +28,7 @@
                         <input type="date" formControlName="fechaHasta"  name="fechaHasta" class="form-control" style="width: 200px;">
                     </div><!-- input-group -->
                     <div>
-                    <button type="submit" class="btn btn-primary waves-effect waves-light btn-xs">Filtrar</button>
+                    <button [disabled]="!form.valid" type="submit" class="btn btn-primary waves-effect waves-light btn-xs">Filtrar</button>
                     <div *ngIf="showReporte"><a class="pull-right" style="cursor: pointer;" (click)="exportarPDF()"><i class="fa fa-file-pdf-o"> Exportar a PDF</i></a></div>
                     </div>
                     <br>
@@ -59,6 +59,16 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="!showReporte && showError">
+                        <div class="col-sm-12">
+                            <div class="card-box">
+                                <h4 class="m-t-0 header-title"><b>Atención!</b></h4>
+                                <p class="text-muted m-b-30 font-13">
+                                    No existen usuarios destacados para las fechas elegidas.
+                                </p>
                             </div>
                         </div>
                     </div>
