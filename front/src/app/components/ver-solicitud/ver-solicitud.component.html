@@ -9,7 +9,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-8" *ngIf="solicitudes.length > 0">
         <div class="card-box m-b-10" *ngFor="let solicitud of solicitudes">
             <div class="table-box opport-box">
                 <div class="table-detail">
@@ -27,16 +27,29 @@
                     <a (click)="abrirDetalleSolicitud(solicitud)" class="table-action-btn" style="cursor:pointer;"><i class="md md-assignment" title="Detalle de la Solicitud"></i></a>
                 </div>
                 <div class="table-detail table-actions-bar">
-                    
-                    <!-- Independientemente del estado se muestra -->
-                    <!-- Se muestra si es una solicitud creada -->
                     <div *ngIf="solicitud.nombreEstadoSolicitud === 'Creada'">
                         <a (click)="aceptarSolicitud(solicitud)" class="table-action-btn" style="cursor:pointer;"><i class="md md-done" title="Aceptar Solicitud"></i></a>
                         <a (click)="rechazarSolicitud(solicitud)" class="table-action-btn" style="cursor:pointer;"><i class="md md-close" title="Rechazar Solicitud"></i></a>
                     </div>
-                    <!-- Se muestra si es una solicitud aceptada -->
                     <div *ngIf="solicitud.nombreEstadoSolicitud === 'Aceptada'">
                         <a (click)="finalizarSolicitud(solicitud)" class="table-action-btn" style="cursor:pointer;"><i class="md md-spellcheck" title="Finalizar Solicitud"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="table-detail">
+                <div class="member-info">
+                    <p class="text-dark m-b-5"><b>Fecha: </b> <span class="text-muted">{{solicitud.fechaSolicitud | date:'d/MM/yyyy'}}</span></p> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8" *ngIf="solicitudes.length == 0">
+        <div class="card-box m-b-10">
+            <div class="table-box opport-box">
+                <div class="table-detail">
+                    <div class="member-info">
+                        <h4 class="m-t-0"><b>Atención!</b></h4>
+                        <p class="text-dark m-b-5"><span class="text-muted">Aún no tienes solicitudes asignadas.</span></p>
                     </div>
                 </div>
             </div>
@@ -46,21 +59,21 @@
         <div class="card-box">
             <h4 class="font-bold m-t-0 m-b-20 text-primary text-center">SOLICITUDES PENDIENTES</h4>
             <div >
-                <span>Tienes <b class="text-danger">{{cantidadSolicitudesPendientes}}</b> solicitudes creadas para usted. Por favor verifique la lista de solictudes y gestione las que tiene en estado "CREADA".</span>
+                <span>Tienes <b class="text-danger">{{cantidadSolicitudesPendientes}}</b> solicitud/es pendiente/s de respuesta. Por favor verifique la lista de solicitudes y gestione las que tiene en estado "CREADA".</span>
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 pull-right">
         <div class="profile-detail card-box">
             <div>
                 <ul class="list-inline status-list m-t-20">
                     <li>
                         <h3 class="text-primary m-b-5">Destacarme!</h3><!-- Hardcodeado. Hay que calcular las solicitudes finalizadas del flaco -->
-                        <p class="text-muted">Aprovecha los Beneficios de aparecer primero en las busquedas cuando los usuarios filtren en tu zona.</p>
+                        <p class="text-muted">Aprovecha los beneficios de aparecer primero en las búsquedas cuando los usuarios filtren en tu zona.</p>
                     </li>
                     <li>
-                        <h3 class="text-success m-b-5">Mas trabajos!</h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
-                        <p class="text-muted">Al destacarte las solicitudes de trabajo aumentaran considerablemente!</p>
+                        <h3 class="text-success m-b-5">Más trabajos!</h3><!-- Hardcodeado. Hay que calcular las solicitudes pendientes del flaco -->
+                        <p class="text-muted">Al destacarte las solicitudes de trabajo aumentarán considerablemente!</p>
                     </li>
                 </ul>
                 <button type="button" [routerLink]="['/sios/destacar-perfil']" class="btn btn-danger btn-custom btn-rounded waves-effect waves-light">Destacarme</button>
@@ -104,8 +117,8 @@
             <div class="fix"></div>
         </div>
         <div class="icon custom" style="display: none;"></div>
-        <h2>Estás seguro que desea rechazar la solicitud?</h2>
-        <p class="lead text-muted" style="display: block;">Si rechaza la solicitud se le enviará al cliente un mail que usted rechazo la oferta!!</p>
+        <h2>Estás seguro que deseas rechazar la solicitud?</h2>
+        <p class="lead text-muted" style="display: block;">Si rechazas la solicitud se le enviará al cliente un mail que rechazaste la oferta!</p>
         <p>
             <button (click)="volver01()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Cancelar</button>
             <button (click)="confirmarRechazarSolicitud()" class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Ok</button>
@@ -126,7 +139,7 @@
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="form-group">
-                                    <label for="field-1" class="control-label">Descripcion: </label>
+                                    <label for="field-1" class="control-label">Descripción: </label>
                                     <label ><span>{{solicitudSeleccionada?.descripcion}}</span> </label>
                                 </div>
                             </div>

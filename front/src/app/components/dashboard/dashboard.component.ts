@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as moment from 'moment';
+import { PdfService } from '../../services/pdf.service';
 
 
 
@@ -20,8 +21,9 @@ export class DashboardComponent   {
   cantidadUsuariosRegistrados:string;
   reporteDestacadoForm:FormGroup;
   cantidadDestacadosPorVencer:string;
+  showError=false;
 
-  constructor(private router:Router,private usuarioService:UsuarioService) {
+  constructor(private router:Router,private usuarioService:UsuarioService,private pdfService:PdfService) {
     usuarioService.cantidadUsuariosEnLinea().subscribe((cantidadRes:any)=>{
       this.cantidadUsuariosEnLinea=cantidadRes;
     })
@@ -114,6 +116,7 @@ public barChartOptions:any = {
           
         }
         else{
+          this.showError = true;
           this.showGraficoBarras=false;
         }
       }
@@ -123,6 +126,12 @@ public barChartOptions:any = {
       
       })
   } 
+
+  exportarPDF(){
+    let params = document.getElementById("reporteDestacadosYRegistrados");
+    let reportName= "reporte-registrados-destacados";
+    this.pdfService.export(params,reportName);
+  }
 
   public randomize():void {
     // Only Change 3 values

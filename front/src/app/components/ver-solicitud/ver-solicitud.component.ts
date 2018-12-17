@@ -96,7 +96,7 @@ export class VerSolicitudComponent implements OnInit {
   recargarDatos(){
     let id=localStorage.getItem("auth");
     this.solicitudService.getSolicitudesPorUsuario(id).subscribe((solicitudRes:any)=>{
-      this.solicitudes=solicitudRes;
+        this.solicitudes=solicitudRes;
     })
     this.solicitudService.getCantidadSolicitudesPendientesPorUsuario(id).subscribe((cantidad:any)=>{
       this.cantidadSolicitudesPendientes=cantidad;

@@ -95,12 +95,12 @@
                         </div><!-- input-group -->
                         <div>
                         <button [disabled]="!reporteDestacadoForm.valid" type="submit" class="btn btn-primary waves-effect waves-light btn-xs">Generar Gráfico</button>
-                        </div>
+                        <div *ngIf="showGraficoBarras"><a class="pull-right" style="cursor: pointer;" (click)="exportarPDF()"><i class="fa fa-file-pdf-o"> Exportar a PDF</i></a></div>
+                    </div>
                         <div>
-
                         <div class="row">
                             <div class="col-md-12">
-                                <div style="display: block">
+                                <div id="reporteDestacadosYRegistrados" style="display: block">
                                     <canvas baseChart *ngIf="showGraficoBarras"
                                             [datasets]="barChartData"
                                             [labels]="barChartLabels"
@@ -109,6 +109,13 @@
                                             [chartType]="barChartType"
                                             (chartHover)="chartHovered($event)"
                                             (chartClick)="chartClicked($event)"></canvas>
+                                </div>
+                                <div class="card-box">
+                                    <div class="row" *ngIf="!showGraficoBarras && showError">
+                                        <p class="text-muted font-13 m-b-30">
+                                            No existen datos para las fechas elegidas.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
