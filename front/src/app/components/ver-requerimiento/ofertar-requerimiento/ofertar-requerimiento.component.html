@@ -46,7 +46,7 @@
                     <div class="panel-body">
                         <p>
                             <b>{{nombreDemandante}}</b> necesita que realices el trabajo en no menos de <b>{{requerimiento?.tiempoEstimado}}
-                                días.</b> Si consideras que puedes hacerlo en menos tiempo realiza una mejor oferta en el
+                                días.</b> Si consideras que puedes hacerlo en menos tiempo, realiza una mejor oferta en el
                             detalle de tu descripción.
                         </p>
                     </div>
@@ -59,9 +59,9 @@
                     </div>
                     <div class="panel-body">
                         <p>
-                            <b>{{nombreDemandante}}</b> esta dispuesto a pagarte $ <b>{{requerimiento?.precioApagar}}</b> por
-                            el trabajo terminado. Si consideras que es poco o mucho debes detallarlo en tu descripcion asi el
-                            usuario puede mejorar su eleccion.
+                            <b>{{nombreDemandante}}</b> está dispuesto a pagarte $ <b>{{requerimiento?.precioApagar}}</b> por
+                            el trabajo terminado. Si consideras que es poco o mucho debes detallarlo en tu descripción, así el
+                            usuario puede mejorar su elección.
                         </p>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="panel-body">
                         <p *ngIf="mostrarAdjunto">
-                            Aquí encontrarás si <b>{{nombreDemandante}}</b> a adjuntado algun archivo con más detalles de su
+                            Aquí encontrarás si <b>{{nombreDemandante}}</b> ha adjuntado algún archivo con más detalles de su
                             requerimiento:
                             <br>
                             <li><a (click)="visualizarArchivo(requerimiento.urlArchivos[0])" style="cursor: pointer;">Ver
@@ -93,7 +93,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Realiza tu oferta</h3>
                 <p class="text-muted m-b-30 font-13">
-                    Aquí puedes realizar una oferta al usuario que publicó el requerimiento. En el campo descripción
+                    Aquí puedes realizar una oferta al usuario que publicó el requerimiento. En el campo 'descripción'
                     asegúrate de detallar muy bien
                     tu oferta para que el usuario pueda elegirte para el trabajo.
                 </p>

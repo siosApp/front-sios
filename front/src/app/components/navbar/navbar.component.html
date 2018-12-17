@@ -184,9 +184,9 @@
                                         
                                         <a *ngIf="estaLogueado" style="cursor: pointer;" (click)="spinerCalificaciones()">Calificaciones</a>
                                        
-                                        <a *ngIf="estaLogueado" style="cursor: pointer;" (click)="spinerRubrosDemandados()">Rubros mas Demandados</a>
+                                        <a *ngIf="estaLogueado" style="cursor: pointer;" (click)="spinerRubrosDemandados()">Rubros Más Demandados</a>
                                       
-                                        <a *ngIf="estaLogueado" style="cursor: pointer;"  (click)="spinerRubrosOfrecidos()">Rubros mas Ofrecidos</a>
+                                        <a *ngIf="estaLogueado" style="cursor: pointer;"  (click)="spinerRubrosOfrecidos()">Rubros Más Ofrecidos</a>
                                        
 
                                     </li>
@@ -227,7 +227,7 @@
         </div>
         <div class="icon custom" style="display: none;"></div>
         <h2>Estás seguro?</h2>
-        <p class="lead text-muted" style="display: block;">Desea cerrar sesion? si te arrepentis clic en "Volver".</p>
+        <p class="lead text-muted" style="display: block;">Deseas cerrar sesión? Si no deseas salir, haz click en 'Volver'.</p>
         <p>
             <button (click)="volver()" class="cancel btn btn-lg btn-default btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;">Volver</button>
             <button (click)="cerrarSesion()" [routerLink]="['/home']" routerLinkActive="router-link-active"  class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;">Seguir de todas formas.</button>
@@ -244,7 +244,6 @@
                     <h4 class="modal-title" id="mySmallModalLabel">Cargando...</h4>
                 </div>
                 <div class="modal-body text-center">
-    
                     <span class="fa fa-spin fa-refresh fa-5x"></span>
                 </div>
             </div>
