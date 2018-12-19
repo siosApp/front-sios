@@ -8,7 +8,7 @@
   </div>
 </div>
 <form [formGroup]="reporteForm" (ngSubmit)="generarReporte()">
-<div class="row">
+<div class="row" id="reporteRubroMasOfrecido">
     <div class="col-sm-12">
         <div class="card-box">
             <div class="row">
@@ -34,7 +34,7 @@
                       <!-- <button type="button" class="btn btn-primary pull-right" title="Exportar a PDF"><i class="fa fa-file-pdf-o"></i></button> <-->
                       <div *ngIf="showGrafico"><a class="pull-right" style="cursor: pointer;" (click)="exportarPDF()"><i class="fa fa-file-pdf-o"> Exportar a PDF</i></a></div>
                     </div>
-                    <div id="reporteRubroMasOfrecido">
+                    <div >
                       <div style="display: block">
                         <canvas *ngIf="showGrafico"
                         baseChart [datasets]="barChartData" 

@@ -7,130 +7,132 @@
     </ol>
   </div>
 </div>
-<div class="row">
-  <div class="col-lg-12">
-    <div class="panel panel-border panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title">Usuarios Registrados</h3>
-      </div>
-      <div class="panel-body">
-        <p>
-          Seleccione el filtro que desee consultar para los usuarios registrados y luego haga click
-          en "Filtrar" y podrá visualizar la cantidad usuarios registrados con el filtro seleccionado.
-          Si no elige ningún filtro, se mostrarán todos los usuarios registrados en el sistema.
-        </p>
+<div id="reporteRegistrados">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-border panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">Usuarios Registrados</h3>
+        </div>
+        <div class="panel-body">
+          <p>
+            Seleccione el filtro que desee consultar para los usuarios registrados y luego haga click
+            en "Filtrar" y podrá visualizar la cantidad usuarios registrados con el filtro seleccionado.
+            Si no elige ningún filtro, se mostrarán todos los usuarios registrados en el sistema.
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-sm-3">
-    <div class="panel panel-border panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">FILTRO</h3>
-      </div>
-      <div class="panel-body">
-        <form [formGroup]="form" (ngSubmit)="filtrarUsuarios()">
-          <label>Edad</label>
-          <div class="input-group m-b-15" style="width: 200px;">
-            <select class="form-control" formControlName="edad" name="edad">
-                <option selected="selected">18-25</option>
-                <option>25-35</option>
-                <option>35-45</option>
-                <option>45-55</option>
-                <option>Mas de 55</option>
-            </select>
-          </div><!-- input-group -->
-          <label>Sexo</label>
-          <div class="input-group m-b-15" style="width: 200px;">
-              <select class="form-control" formControlName="sexo" name="sexo">
-                  <option selected="selected">Sin definir</option>
-                  <option>Hombre</option>
-                  <option>Mujer</option>
-              </select>
-          </div><!-- input-group -->
-          <label>Tipo Rubro</label>
-          <div class="input-group m-b-15" style="width: 200px;">
-              <select class="form-control" (change)="getRubrosByTipoRubro()" name="tipoRubro"  formControlName="tipoRubro">
-                <option selected="selected">Seleccione</option>
-                <option *ngFor="let tipoRubro of tipoRubros" [ngValue]="tipoRubro.nombreTipoRubro">{{tipoRubro.nombreTipoRubro}}</option>
-              </select>
-          </div><!-- input-group -->
-          <div *ngIf="showRubros">
-          <label>Rubro</label>
-          <div class="input-group m-b-15" style="width: 200px;">
-              <select class="form-control" name="rubro" formControlName="rubro">
-                <option selected="selected">Seleccione</option>
-                <option *ngFor="let rubro of rubros" [ngValue]="rubro.nombreRubro">{{rubro.nombreRubro}}</option>
-              </select>
-          </div><!-- input-group -->
-          </div>
-          <label>Provincia</label>
-          <div class="input-group m-b-15" style="width: 200px;">
-              <select class="form-control" name="provincia" (change)="getDepartamentosByProvincia()" formControlName="provincia">
-                <option selected="selected">Seleccione</option>
-                <option *ngFor="let provincia of provincias" [ngValue]="provincia.nombreProvincia">{{provincia.nombreProvincia}}</option>
-              </select>
-          </div><!-- input-group -->
-          <div *ngIf="showDepartamentos">
-            <label>Departamento</label>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="panel panel-border panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">FILTRO</h3>
+        </div>
+        <div class="panel-body">
+          <form [formGroup]="form" (ngSubmit)="filtrarUsuarios()">
+            <label>Edad</label>
             <div class="input-group m-b-15" style="width: 200px;">
-                <select class="form-control" (change)="getLocalidadesByDepartamento()" name="departamento" formControlName="departamento" class="form-control">
-                  <option selected="selected">Seleccione</option>
-                  <option *ngFor="let departamento of departamentos" [ngValue]="departamento.nombreDepartamento">{{departamento.nombreDepartamento}}</option>
+              <select class="form-control" formControlName="edad" name="edad">
+                  <option selected="selected">18-25</option>
+                  <option>25-35</option>
+                  <option>35-45</option>
+                  <option>45-55</option>
+                  <option>Mas de 55</option>
+              </select>
+            </div><!-- input-group -->
+            <label>Sexo</label>
+            <div class="input-group m-b-15" style="width: 200px;">
+                <select class="form-control" formControlName="sexo" name="sexo">
+                    <option selected="selected">Sin definir</option>
+                    <option>Hombre</option>
+                    <option>Mujer</option>
                 </select>
             </div><!-- input-group -->
-          </div>
-          <div *ngIf="showLocalidades">
-            <label>Localidad</label>
+            <label>Tipo Rubro</label>
             <div class="input-group m-b-15" style="width: 200px;">
-                <select class="form-control"  name="localidad" formControlName="localidad" >
+                <select class="form-control" (change)="getRubrosByTipoRubro()" name="tipoRubro"  formControlName="tipoRubro">
                   <option selected="selected">Seleccione</option>
-                  <option *ngFor="let localidad of localidades" [ngValue]="localidad.nombreLocalidad">{{localidad.nombreLocalidad}}</option>
+                  <option *ngFor="let tipoRubro of tipoRubros" [ngValue]="tipoRubro.nombreTipoRubro">{{tipoRubro.nombreTipoRubro}}</option>
                 </select>
             </div><!-- input-group -->
-          </div>
-          <div>
-            <button type="submit" class="btn btn-primary btn-custom waves-effect waves-light">Filtrar</button>
-          </div>
-        </form>
+            <div *ngIf="showRubros">
+            <label>Rubro</label>
+            <div class="input-group m-b-15" style="width: 200px;">
+                <select class="form-control" name="rubro" formControlName="rubro">
+                  <option selected="selected">Seleccione</option>
+                  <option *ngFor="let rubro of rubros" [ngValue]="rubro.nombreRubro">{{rubro.nombreRubro}}</option>
+                </select>
+            </div><!-- input-group -->
+            </div>
+            <label>Provincia</label>
+            <div class="input-group m-b-15" style="width: 200px;">
+                <select class="form-control" name="provincia" (change)="getDepartamentosByProvincia()" formControlName="provincia">
+                  <option selected="selected">Seleccione</option>
+                  <option *ngFor="let provincia of provincias" [ngValue]="provincia.nombreProvincia">{{provincia.nombreProvincia}}</option>
+                </select>
+            </div><!-- input-group -->
+            <div *ngIf="showDepartamentos">
+              <label>Departamento</label>
+              <div class="input-group m-b-15" style="width: 200px;">
+                  <select class="form-control" (change)="getLocalidadesByDepartamento()" name="departamento" formControlName="departamento" class="form-control">
+                    <option selected="selected">Seleccione</option>
+                    <option *ngFor="let departamento of departamentos" [ngValue]="departamento.nombreDepartamento">{{departamento.nombreDepartamento}}</option>
+                  </select>
+              </div><!-- input-group -->
+            </div>
+            <div *ngIf="showLocalidades">
+              <label>Localidad</label>
+              <div class="input-group m-b-15" style="width: 200px;">
+                  <select class="form-control"  name="localidad" formControlName="localidad" >
+                    <option selected="selected">Seleccione</option>
+                    <option *ngFor="let localidad of localidades" [ngValue]="localidad.nombreLocalidad">{{localidad.nombreLocalidad}}</option>
+                  </select>
+              </div><!-- input-group -->
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary btn-custom waves-effect waves-light">Filtrar</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-sm-9" *ngIf="showTabla"><a class="pull-right" style="cursor: pointer;" (click)="exportarPDF()"><i class="fa fa-file-pdf-o"> Exportar a PDF</i></a></div>
-  <div class="col-sm-9" *ngIf="showTabla" id="reporteRegistrados">
-    <div class="panel panel-border panel-warning">
-      <div class="panel-heading">
-        <h3 class="panel-title">Registrados</h3>
-      </div>
-      <div class="panel-body">
-          <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
-              <thead>
-                <tr>
-                  <th data-toggle="true"> Nombre </th>
-                  <th> Apellido </th>
-                  <th data-hide="phone"> Username </th>
-                  <th data-hide="all"> Fecha Registro </th>
-                  <th data-hide="all"> Accion </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let usuario of usuarios">
-                  <td>{{usuario.nombre}}</td>
-                  <td>{{usuario.apellido}}</td>
-                  <td>{{usuario.username}}</td>
-                  <td>{{usuario.fechaNacimiento | date: 'dd/MM/yyyy'}}</td>
-                  <td><span [routerLink]="['/sios/perfil-oferente',usuario.id]" class="btn btn-xs btn-danger">Detalle</span></td>
-                </tr>
-              </tbody>
-          </table>
+    <div class="col-sm-9" *ngIf="showTabla"><a class="pull-right" style="cursor: pointer;" (click)="exportarPDF()"><i class="fa fa-file-pdf-o"> Exportar a PDF</i></a></div>
+    <div class="col-sm-9" *ngIf="showTabla" >
+      <div class="panel panel-border panel-warning">
+        <div class="panel-heading">
+          <h3 class="panel-title">Registrados</h3>
+        </div>
+        <div class="panel-body">
+            <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
+                <thead>
+                  <tr>
+                    <th data-toggle="true"> Nombre </th>
+                    <th> Apellido </th>
+                    <th data-hide="phone"> Username </th>
+                    <th data-hide="all"> Fecha Registro </th>
+                    <th data-hide="all"> Accion </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let usuario of usuarios">
+                    <td>{{usuario.nombre}}</td>
+                    <td>{{usuario.apellido}}</td>
+                    <td>{{usuario.username}}</td>
+                    <td>{{usuario.fechaNacimiento | date: 'dd/MM/yyyy'}}</td>
+                    <td><span [routerLink]="['/sios/perfil-oferente',usuario.id]" class="btn btn-xs btn-danger">Detalle</span></td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-sm-9" *ngIf="!showTabla">
-    <div class="panel panel-border panel-warning">
-      <div class="panel-body">
-          <p>No existen usuarios registrados que coincidan con los filtros establecidos.</p>
+    <div class="col-sm-9" *ngIf="!showTabla">
+      <div class="panel panel-border panel-warning">
+        <div class="panel-body">
+            <p>No existen usuarios registrados que coincidan con los filtros establecidos.</p>
+        </div>
       </div>
     </div>
   </div>
