@@ -63,7 +63,6 @@ export class UsuariosDestacadosComponent{
           this.showReporte=false;
           this.showError=true;
         }
-        
       }
       else{
         this.abrirModal();
